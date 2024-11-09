@@ -1,2 +1,5 @@
 .idea
 conf.json
+/templates/files/
+__pycache__
+.venv
