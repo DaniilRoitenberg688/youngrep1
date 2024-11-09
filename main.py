@@ -1,3 +1,5 @@
+from doctest import debug
+
 from flask import Flask, render_template, request
 from werkzeug.utils import redirect
 
@@ -120,4 +122,4 @@ def invite():
 
 
 
-app.run(host='0.0.0.0')
+app.run(debug=True)
