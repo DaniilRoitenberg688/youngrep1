@@ -9,6 +9,11 @@ app = Flask(__name__)
 
 data_base = ExcelConnector()
 
+all_subjects = ["Математика", "Информатика", "Физика", "Химия", "Биология"]
+end_age = 17
+all_achievements = ["победитель_ВСОШ", "призер_ВСОШ", "победитель_перечневой олимпиады_1_уровня",
+                    "призер перечневой_олимпиады_1_уровня "]
+
 
 def parameters_to_dict(line):
     params = line.split('&')
@@ -23,68 +28,95 @@ def parameters_to_dict(line):
 @app.route('/teachers')
 def teachers():
     teachers = sorted(data_base.all_teachers(), key=lambda x: -int(x[8]))
-    return render_template('teachers.html', teachers=teachers)
+    return render_template('teachers.html', teachers=teachers, all_subjects=all_subjects, max_age=end_age,
+                           all_achievements=all_achievements)
 
+
+# @app.route('/search/<search_parameters>')
+# def search(search_parameters):
+#     parameters = parameters_to_dict(search_parameters)
+#     if not parameters['subject'] and not parameters.get('param', ''):
+#         return redirect('/')
+#     all_teachers = data_base.all_teachers()
+#     if parameters['subject']:
+#         all_teachers = data_base.search_by_subject(parameters['subject'], all_teachers)
+#
+#     param: str = parameters.get('param', '')
+#     if param:
+#         if param.isdigit():
+#             if int(param) > 11:
+#                 all_teachers = data_base.search_by_tariff(int(param), all_teachers)
+#                 return render_template('teachers.html', teachers=all_teachers, current_subject=parameters['subject'])
+#
+#             all_teachers = data_base.search_by_class(int(param), all_teachers)
+#             return render_template('teachers.html', teachers=all_teachers, current_subject=parameters['subject'])
 
 @app.route('/search/<search_parameters>')
 def search(search_parameters):
     parameters = parameters_to_dict(search_parameters)
-    if not parameters['subject'] and not parameters.get('param', ''):
-        return redirect('/')
     all_teachers = data_base.all_teachers()
-    if parameters['subject']:
+
+    if not parameters.get('subject', '') and not int(parameters.get('age', 0)) and not parameters.get('achieve',
+                                                                                                      '') and not parameters.get(
+            'param', ''):
+        return redirect('/teachers')
+
+    if parameters.get('subject', ''):
         all_teachers = data_base.search_by_subject(parameters['subject'], all_teachers)
 
-    param: str = parameters.get('param', '')
-    if param:
-        if param.isdigit():
-            if int(param) > 11:
-                all_teachers = data_base.search_by_tariff(int(param), all_teachers)
-                return render_template('teachers.html', teachers=all_teachers, current_subject=parameters['subject'])
+    if int(parameters.get('age', 0)):
+        all_teachers = data_base.search_by_age(int(parameters['age']), all_teachers)
 
-            all_teachers = data_base.search_by_class(int(param), all_teachers)
-            return render_template('teachers.html', teachers=all_teachers, current_subject=parameters['subject'])
+    if parameters.get('achieve', ''):
+        all_teachers = data_base.search_by_achievements(parameters['achieve'], all_teachers)
 
+    if parameters.get('param', ''):
+        a = parameters.get('param').split()
+        if len(a) == 2:
+            first = a[0]
+            second = a[1]
+            test1 = data_base.search_by_name(first, all_teachers)
+            test2 = data_base.search_by_surname(second, all_teachers)
 
-        try_by_name = data_base.search_by_name(param, all_teachers)
-        try_by_surname = data_base.search_by_surname(param, all_teachers)
-        try_by_place = data_base.search_by_place(param, all_teachers)
-        try_by_achievement = data_base.search_by_achievements(param, all_teachers)
+            if test1 or test2:
+                if test1:
+                    all_teachers = test1
+                if test2:
+                    all_teachers = test2
 
-        if try_by_name:
-            return render_template('teachers.html', teachers=try_by_name, current_subject=parameters['subject'])
+            else:
+                first, second = first, second
+                test1 = data_base.search_by_name(first, all_teachers)
+                test2 = data_base.search_by_surname(second, all_teachers)
 
-        if try_by_surname:
-            return render_template('teachers.html', teachers=try_by_surname, current_subject=parameters['subject'])
+                if test1 or test2:
+                    if test1:
+                        all_teachers = test1
+                    if test2:
+                        all_teachers = test2
 
-        if try_by_place:
-            return render_template('teachers.html', teachers=try_by_place, current_subject=parameters['subject'])
-
-        if try_by_achievement:
-            return render_template('teachers.html', teachers=try_by_achievement, current_subject=parameters['subject'])
-
-
-    print(all_teachers)
-    return render_template('teachers.html', teachers=all_teachers, current_subject=parameters['subject'])
-
-
-
-
-@app.route('/search_form/<search_parameters>', methods=['post'])
-def search_form(search_parameters):
-    param = request.form.get('param', '')
-    print(param)
-    return redirect(f'/search/{search_parameters}&param={param}')
+        elif len(a) == 1:
+            first = a[0]
+            all_teachers = data_base.search_by_name(first, all_teachers)
 
 
+    return render_template('teachers.html', teachers=all_teachers, all_subjects=all_subjects, max_age=end_age,
+                           all_achievements=all_achievements)
+
+
+@app.route('/search_form/', methods=['post'])
+def search_form():
+    data = request.form
+    subject = data.get('subject', '')
+    achievement = data.get('achieve', '')
+    age = data.get('age', 0)
+
+    return redirect(f'/search/subject={subject}&achieve={achievement}&age={age}&param={data.get("param")}')
 
 
 @app.route('/')
 def index():
     return render_template('index.html')
-
-
-
 
 
 @app.route('/teacher_profile/<int:id>')
@@ -103,6 +135,7 @@ def materials():
 def about():
     return render_template('about.html')
 
+
 @app.route('/checking_system')
 def checking_system():
     return render_template('checking_system.html')
@@ -112,9 +145,11 @@ def checking_system():
 def error():
     return render_template('error.html')
 
+
 @app.route('/subjects')
 def subjects():
     return render_template('subjects.html')
+
 
 @app.route('/invite')
 def invite():
@@ -122,5 +157,4 @@ def invite():
 
 
 if __name__ == '__main__':
-
     app.run('0.0.0.0', debug=True)

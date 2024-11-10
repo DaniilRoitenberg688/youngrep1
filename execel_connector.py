@@ -31,23 +31,23 @@ class ExcelConnector:
     def search_by_surname(self, surname, teachers):
         return [i for i in teachers if i[2].lower() == surname.lower()]
 
-    def search_by_class(self, class_num: int, teachers):
+    def search_by_age(self, age: int, teachers):
         result = []
         for teacher in teachers:
-            down, high = teacher[4].split('-')
-            if int(down) <= class_num <= int(high):
+            age_ = int(teacher[4])
+            if int(age) == age_:
                 result.append(teacher)
         return result
 
-    def search_by_place(self, place, teachers):
-        return [i for i in teachers if len(set(i[5]) & set(place)) >= 3]
+    def search_by_school(self, school, teachers):
+        return [i for i in teachers if int(i[5]) == int(school)]
 
     def search_by_tariff(self, tariff, teachers):
         return [i for i in teachers if int(i[6]) <= tariff]
 
     def search_by_achievements(self, achievement, teachers):
-        return [i for i in teachers if len(set(i[7]) & set(achievement)) >= 3]
-
+        print(teachers[0][7])
+        return [i for i in teachers if i[7] == ' '.join(achievement.split('_'))]
     def teacher_by_id(self, id):
         try:
             teacher = [i for i in self.worksheet.get_all_values()[1:] if int(i[0]) == id][0]
