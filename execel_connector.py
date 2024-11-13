@@ -1,5 +1,7 @@
 import gspread
 
+from requests import get
+
 
 class ExcelConnector:
     def __init__(self):
@@ -25,6 +27,9 @@ class ExcelConnector:
     def search_by_subject(self, subject, teachers):
         return [i for i in teachers if i[3].lower() == subject.lower()]
 
+    def search_by_other_subject(self, teachers, subjects):
+        return [i for i in teachers if i[3].lower() not in list(map(lambda x: x.lower(), subjects))]
+
     def search_by_name(self, name, teachers):
         return [i for i in teachers if i[1].lower() == name.lower()]
 
@@ -45,9 +50,24 @@ class ExcelConnector:
     def search_by_tariff(self, tariff, teachers):
         return [i for i in teachers if int(i[6]) <= tariff]
 
-    def search_by_achievements(self, achievement, teachers):
-        print(teachers[0][7])
-        return [i for i in teachers if i[7] == ' '.join(achievement.split('_'))]
+    def search_by_achievements(self, achievements, teachers):
+        return [i for i in teachers if len(set(map(lambda x: ' '.join(x.split('_')).lower(), i[7].split(', '))) & set(
+            map(lambda x: ' '.join(x.split('_')).lower(), achievements)))]
+
+    def search_by_other_achievements(self, teachers, achievements):
+        return [i for i in teachers if
+                i[7].lower() not in list(map(lambda x: ' '.join(x.split('_')).lower(), achievements))]
+
+    def search_by_hobbies(self, hobbies, teachers):
+        return [i for i in teachers if len(set(map(lambda x: ' '.join(x.split('_')).lower(), i[12].split(', '))) & set(
+            map(lambda x: ' '.join(x.split('_')).lower(), hobbies)))]
+
+    def search_by_other_hobbies(self, teachers, hobbies):
+        print(teachers[0][12])
+        print(list(map(lambda x: ' '.join(x.split('_')).lower(), hobbies)))
+        return [i for i in teachers if
+                i[12].lower() not in list(map(lambda x: ' '.join(x.split('_')).lower(), hobbies))]
+
     def teacher_by_id(self, id):
         try:
             teacher = [i for i in self.worksheet.get_all_values()[1:] if int(i[0]) == id][0]
@@ -60,11 +80,22 @@ class ExcelConnector:
             return False
 
 
+    def load_images(self):
+        teachers = self.all_teachers()
+        ids = []
+        for teacher in teachers:
+            r = teacher[9].split('/')
+            ids.append(r[r.index('d') + 1])
+
+        for i, id in enumerate(ids):
+            url = f'https://drive.google.com/uc?id={id}&export=download'
+            resp = get(url)
+            with open(f'static/teachers_images/{i}.png', 'wb') as file:
+                file.write(resp.content)
 
 
 
 if __name__ == '__main__':
     connector = ExcelConnector()
     all_teachers = connector.all_teachers()
-    print(all_teachers)
-    print(connector.search_by_tariff(10000, teachers=all_teachers))
+    connector.load_images()

@@ -9,10 +9,11 @@ app = Flask(__name__)
 
 data_base = ExcelConnector()
 
-all_subjects = ["Математика", "Информатика", "Физика", "Химия", "Биология"]
-end_age = 17
+all_subjects = ["Математика", "Информатика", "Физика", "Химия", "Биология", "другие..."]
+end_age = 11
 all_achievements = ["победитель_ВСОШ", "призер_ВСОШ", "победитель_перечневой олимпиады_1_уровня",
-                    "призер перечневой_олимпиады_1_уровня "]
+                    "призер перечневой_олимпиады_1_уровня", "другие..."]
+hobbies = ['Спорт', 'Творчество', 'Литература', 'Научные_исследования', 'Компьютерные_игры', 'Настольные_игры', 'другие...']
 
 
 def parameters_to_dict(line):
@@ -29,27 +30,8 @@ def parameters_to_dict(line):
 def teachers():
     teachers = sorted(data_base.all_teachers(), key=lambda x: -int(x[8]))
     return render_template('teachers.html', teachers=teachers, all_subjects=all_subjects, max_age=end_age,
-                           all_achievements=all_achievements)
+                           all_achievements=all_achievements, hobbies=hobbies)
 
-
-# @app.route('/search/<search_parameters>')
-# def search(search_parameters):
-#     parameters = parameters_to_dict(search_parameters)
-#     if not parameters['subject'] and not parameters.get('param', ''):
-#         return redirect('/')
-#     all_teachers = data_base.all_teachers()
-#     if parameters['subject']:
-#         all_teachers = data_base.search_by_subject(parameters['subject'], all_teachers)
-#
-#     param: str = parameters.get('param', '')
-#     if param:
-#         if param.isdigit():
-#             if int(param) > 11:
-#                 all_teachers = data_base.search_by_tariff(int(param), all_teachers)
-#                 return render_template('teachers.html', teachers=all_teachers, current_subject=parameters['subject'])
-#
-#             all_teachers = data_base.search_by_class(int(param), all_teachers)
-#             return render_template('teachers.html', teachers=all_teachers, current_subject=parameters['subject'])
 
 @app.route('/search/<search_parameters>')
 def search(search_parameters):
@@ -58,17 +40,33 @@ def search(search_parameters):
 
     if not parameters.get('subject', '') and not int(parameters.get('age', 0)) and not parameters.get('achieve',
                                                                                                       '') and not parameters.get(
-            'param', ''):
-        return redirect('/teachers')
+        'param', '') and not parameters.get('tariff', '') and not parameters.get('hobby', ''):
+        return render_template('teachers.html', teachers=teachers, all_subjects=all_subjects, max_age=end_age,
+                           all_achievements=all_achievements, hobbies=hobbies, search=1)
 
     if parameters.get('subject', ''):
-        all_teachers = data_base.search_by_subject(parameters['subject'], all_teachers)
+        if parameters.get('subject') == 'другие...':
+            all_teachers = data_base.search_by_other_subject(teachers=all_teachers, subjects=all_subjects)
+        else:
+            all_teachers = data_base.search_by_subject(parameters['subject'], all_teachers)
 
     if int(parameters.get('age', 0)):
         all_teachers = data_base.search_by_age(int(parameters['age']), all_teachers)
 
+    if int(parameters.get('tariff', 0)):
+        all_teachers = data_base.search_by_tariff(int(parameters['tariff']), all_teachers)
+
     if parameters.get('achieve', ''):
-        all_teachers = data_base.search_by_achievements(parameters['achieve'], all_teachers)
+        if parameters.get('achieve') == 'другие...':
+            all_teachers = data_base.search_by_other_achievements(teachers=all_teachers, achievements=all_achievements)
+        else:
+            all_teachers = data_base.search_by_achievements(parameters['achieve'].split(','), all_teachers)
+
+    if parameters.get('hobby', ''):
+        if parameters.get('hobby') == 'другие...':
+            all_teachers = data_base.search_by_other_hobbies(teachers=all_teachers, hobbies=hobbies)
+        else:
+            all_teachers = data_base.search_by_hobbies(parameters['hobby'].split(','), all_teachers)
 
     if parameters.get('param', ''):
         a = parameters.get('param').split()
@@ -99,19 +97,27 @@ def search(search_parameters):
             first = a[0]
             all_teachers = data_base.search_by_name(first, all_teachers)
 
-
     return render_template('teachers.html', teachers=all_teachers, all_subjects=all_subjects, max_age=end_age,
-                           all_achievements=all_achievements)
+                           all_achievements=all_achievements, hobbies=hobbies, search=True)
 
 
-@app.route('/search_form/', methods=['post'])
+@app.route('/search_form', methods=['post', 'get'])
 def search_form():
     data = request.form
     subject = data.get('subject', '')
-    achievement = data.get('achieve', '')
     age = data.get('age', 0)
+    hobbies_ = []
+    for i in data:
+        if 'hobby' in i:
+            hobbies_.append(data[i])
 
-    return redirect(f'/search/subject={subject}&achieve={achievement}&age={age}&param={data.get("param")}')
+    achievements = []
+    for i in data:
+        if 'achieve' in i:
+            achievements.append(data[i])
+
+    return redirect(
+        f'/search/subject={subject}&achieve={",".join(achievements)}&age={age}&param={data.get("param")}&tariff={data.get("tariff", 0)}&hobby={",".join(hobbies_)}')
 
 
 @app.route('/')
@@ -122,7 +128,7 @@ def index():
 @app.route('/teacher_profile/<int:id>')
 def teacher_profile(id):
     teacher = data_base.teacher_by_id(id)
-    replies = teacher[-1].split('; ')
+    replies = teacher[10].split('; ')
     return render_template('teachers_profile.html', teacher=teacher, replies=replies)
 
 
@@ -155,6 +161,10 @@ def subjects():
 def invite():
     return render_template('invite.html')
 
+@app.route('/update_photos')
+def update_photos():
+    data_base.load_images()
+    return redirect('/')
 
 if __name__ == '__main__':
     app.run('0.0.0.0', debug=True)
