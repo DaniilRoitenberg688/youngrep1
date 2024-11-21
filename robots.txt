@@ -1,0 +1,20 @@
+User-Agent: *
+Disallow: /page50304637.html
+Disallow: /page50304725.html
+Disallow: /tilda/form*
+Disallow: /tilda/rec*
+Disallow: /tilda/click*
+Disallow: /tilda/scroll*
+Disallow: /tilda/popup*
+Disallow: /tilda/cart*
+Disallow: /tilda/product*
+Disallow: /tilda/event*
+Disallow: /*_escaped_fragment_*
+Disallow: /members/login*
+Disallow: /members/signup*
+Disallow:
+
+
+Sitemap: http://young-rep.ru/sitemap.xml
+Sitemap: http://young-rep.ru/sitemap-store.xml
+Host: young-rep.ru
