@@ -12,11 +12,9 @@
 {% block content %}
 
 
-
-
-<div class="mx-lg-5 position-relative mt-5 " id="start">
-    <form class="d-flex flex-column flex-lg-row ms-4 mb-5" method="post" action="/search_form">
-        <nav class="nav d-flex flex-row col-sm-12 col-lg-7 col-12 ">
+<div class="position-relative mt-5 col-lg-12 col-sm-5 col-12 " id="start" style="padding: 0">
+    <form class="d-flex flex-column flex-lg-row me-3 ms-2 mb-5" method="post" action="/search_form">
+        <nav class="nav d-flex flex-row col-sm-1 col-lg-7 col-12 ">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
                    data-bs-toggle="dropdown" aria-expanded="false">
@@ -110,7 +108,7 @@
             </li>
         </nav>
         <br>
-        <div class="col-lg-3 col-md-12 col-sm-12 col-12 d-inline-flex">
+        <div class="col-lg-3 col-md-12 col-sm-1 col-12 d-inline-flex">
             <input class="form-control me-3 " type="search" placeholder="Фамилия" aria-label="Search"
                    name="param">
             <button class="btn btn-outline-success me-3" type="submit">
@@ -122,32 +120,33 @@
             <a class="btn btn-outline-danger" href="/search/subject=&achieve=&age=0&param=&tariff=0&hobby=">Сбросить</a>
         </div>
     </form>
+    <div class="me-3">
+        <div class="row me-3 ms-2">
+            {% for teacher in teachers %}
 
-    <div class="row mx-3">
-        {% for teacher in teachers %}
-
-        <div class="col-lg-3 col-md-4 col-sm-10 col-12 m-lg-3">
-            <div class="card mb-3" onclick="location.href='/teacher_profile/{{teacher[0]}}'">
-                <img class="card-img-top img-fluid" style=""
-                     src="/static/teachers_images/{{teacher[0]}}.png">
-                <div class="card-body">
-                    <p class="card-title mb-3 fs-3">{{teacher[1].capitalize()}} {{teacher[2]}}</p>
-                    <p class="card-text mb-2">{{teacher[3]}}</p>
-                    <p class="card-text mb-3">{{teacher[7].capitalize()}}</p>
-                    <p class="card-text mb-3 fs-4">{{teacher[6]}}</p>
-                    <div>
-                        {%for i in range(teacher[8]) %}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
-                             class="bi bi-star-fill fs-2" viewBox="0 0 16 16">
-                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                        </svg>
-                        {% endfor %}
+            <div class="col-lg-3 col-md-4 col-sm-10 col-12 m-lg-3">
+                <div class="card mb-3" onclick="location.href='/teacher_profile/{{teacher[0]}}'">
+                    <img class="card-img-top img-fluid" style=""
+                         src="/static/teachers_images/{{teacher[0]}}.png">
+                    <div class="card-body">
+                        <p class="card-title mb-3 fs-3">{{teacher[1].capitalize()}} {{teacher[2]}}</p>
+                        <p class="card-text mb-2">{{teacher[3]}}</p>
+                        <p class="card-text mb-3">{{teacher[7].capitalize()}}</p>
+                        <p class="card-text mb-3 fs-4">{{teacher[6]}}</p>
+                        <div>
+                            {%for i in range(teacher[8]) %}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                                 class="bi bi-star-fill fs-2" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 </div>
 
