@@ -31,7 +31,7 @@
     <script src="https://neo.tildacdn.com/js/tilda-fallback-1.0.min.js" async charset="utf-8"></script>
     <link rel="stylesheet" href="static/css/tilda-grid-3.0.min.css" type="text/css" media="all"
           onerror="this.loaderr='y';"/>
-    <link rel="stylesheet" href="static/css/tilda-blocks-page57934547.min.css?t=1733061695" type="text/css" media="all"
+    <link rel="stylesheet" href="static/css/tilda-blocks-page57934547.min.css?t=1734976073" type="text/css" media="all"
           onerror="this.loaderr='y';"/>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;600;700&subset=latin,cyrillic"
@@ -72,7 +72,7 @@
         };
     }</script>
     <script src="static/js/tilda-scripts-3.0.min.js" charset="utf-8" defer onerror="this.loaderr='y';"></script>
-    <script src="static/js/tilda-blocks-page57934547.min.js?t=1733061695" charset="utf-8" async
+    <script src="static/js/tilda-blocks-page57934547.min.js?t=1734976073" charset="utf-8" async
             onerror="this.loaderr='y';"></script>
     <script src="static/js/lazyload-1.3.min.export.js" charset="utf-8" async onerror="this.loaderr='y';"></script>
     <script src="static/js/tilda-animation-2.0.min.js" charset="utf-8" async onerror="this.loaderr='y';"></script>
@@ -126,34 +126,34 @@
                 <div class="t228__maincontainer " style="">
                     <div class="t228__padding40px"></div>
                     <div class="t228__leftside">
-                        <div class="t228__leftcontainer"><a href="/" class="t228__imgwrapper">
+                        <div class="t228__leftcontainer"><a href="{{ url_for('index') }}" class="t228__imgwrapper">
                             <div class="t228__logo t-title" field="title">YoungRep</div>
                         </a></div>
                     </div>
                     <div class="t228__centerside ">
-                                                <nav class="t228__centercontainer">
+                        <nav class="t228__centercontainer">
                             <ul role="list" class="t228__list t-menu__list t228__list_hidden">
                                 <li class="t228__list_item"
                                     style="padding:0 15px 0 0;"><a class="t-menu__link-item"
-                                                                   href="/about"
+                                                                   href="{{ url_for('about') }}"
                                                                    data-menu-submenu-hook="" data-menu-item-number="1">
                                     О нас
                                 </a></li>
                                 <li class="t228__list_item"
                                     style="padding:0 15px;"><a class="t-menu__link-item"
-                                                               href="/teachers"
+                                                               href="{{ url_for('teachers') }}"
                                                                data-menu-submenu-hook="" data-menu-item-number="2">
                                     Каталог менторов
                                 </a></li>
                                 <li class="t228__list_item"
                                     style="padding:0 15px;"><a class="t-menu__link-item"
-                                                               href="/checking_system"
+                                                               href="{{ url_for('checking_system') }}"
                                                                data-menu-submenu-hook="" data-menu-item-number="3">
                                     Checking Система
                                 </a></li>
                                 <li class="t228__list_item"
                                     style="padding:0 0 0 15px;"><a class="t-menu__link-item"
-                                                                   href="/invite"
+                                                                   href="{{ url_for('invite') }}"
                                                                    data-menu-submenu-hook="" data-menu-item-number="4">
                                     Преподавать у нас
                                 </a></li>
@@ -177,10 +177,13 @@
                     <div class="t228__padding40px"></div>
                 </div>
             </div>
-            <style>@media screen and (max-width: 980px) {
-                #rec759491682 .t228 {
-                    position: static;
-                }
+            <style>@media screen and (max-width: 980px){
+                #rec759491682
+
+            .t228 {
+                position: static;
+            }
+
             }</style>
             <script>window.addEventListener('load', function () {
                 t_onFuncLoad('t228_setWidth', function () {
@@ -218,31 +221,34 @@
             }</style> <![endif]-->
             <style>@media (hover: hover),(min-width: 0\0
             ) {
-                #rec759491682 .t-btn:not(.t-animate_no-hover):hover {
-                    color: #ffffff !important;
-                    box-shadow: 0px 2px 3px rgba(0, 11, 48, 0.25) !important;
-                    background-color: #0077ff !important;
-                }
+                #rec759491682
 
-                #rec759491682 .t-btn:not(.t-animate_no-hover):focus-visible {
-                    color: #ffffff !important;
-                    box-shadow: 0px 2px 3px rgba(0, 11, 48, 0.25) !important;
-                    background-color: #0077ff !important;
-                }
+            .t-btn:not(.t-animate_no-hover):hover {
+                color: #ffffff !important;
+                box-shadow: 0px 2px 3px rgba(0, 11, 48, 0.25) !important;
+                background-color: #0077ff !important;
+            }
 
-                #rec759491682 .t-btn:not(.t-animate_no-hover) {
-                    transition-property: background-color, color, border-color, box-shadow;
-                    transition-duration: 0.2s;
-                    transition-timing-function: ease-in-out;
-                }
+            #rec759491682 .t-btn:not(.t-animate_no-hover):focus-visible {
+                color: #ffffff !important;
+                box-shadow: 0px 2px 3px rgba(0, 11, 48, 0.25) !important;
+                background-color: #0077ff !important;
+            }
 
-                #rec759491682 .t-btntext:not(.t-animate_no-hover):hover {
-                    color: #ffffff !important;
-                }
+            #rec759491682 .t-btn:not(.t-animate_no-hover) {
+                transition-property: background-color, color, border-color, box-shadow;
+                transition-duration: 0.2s;
+                transition-timing-function: ease-in-out;
+            }
 
-                #rec759491682 .t-btntext:not(.t-animate_no-hover):focus-visible {
-                    color: #ffffff !important;
-                }
+            #rec759491682 .t-btntext:not(.t-animate_no-hover):hover {
+                color: #ffffff !important;
+            }
+
+            #rec759491682 .t-btntext:not(.t-animate_no-hover):focus-visible {
+                color: #ffffff !important;
+            }
+
             }</style>
             <style>#rec759491682 .t-menu__link-item {
                 -webkit-transition: color 0.3s ease-in-out, opacity 0.3s ease-in-out;
@@ -291,10 +297,13 @@
                 bottom: -1px;
             }
 
-            @supports (overflow:-webkit-marquee) and (justify-content:inherit) {
-                #rec759491682 .t-menu__link-item, #rec759491682 .t-menu__link-item.t-active {
-                    opacity: 1 !important;
-                }
+            @supports (overflow:-webkit-marquee) and (justify-content:inherit){
+                #rec759491682
+
+            .t-menu__link-item, #rec759491682 .t-menu__link-item.t-active {
+                opacity: 1 !important;
+            }
+
             }</style>
             <style> #rec759491682 a.t-menusub__link-item {
                 color: #5400fe;
@@ -321,10 +330,13 @@
                 font-family: 'Ubuntu';
             }
 
-            @media screen and (min-width: 480px) {
-                #rec759491682 .t228__logo {
-                    font-size: 30px;
-                }
+            @media screen and (min-width: 480px){
+                #rec759491682
+
+            .t228__logo {
+                font-size: 30px;
+            }
+
             }</style>
         </div>
         <div id="rec814490555" class="r t-rec" style=" " data-animationappear="off" data-record-type="971">
@@ -365,7 +377,8 @@
                     <div class="t898__svg__wrapper">
                         <div class="t898__svg__bg"></div>
                         <svg class="t-sociallinks__svg" role="presentation" width=50px height=50px viewBox="0 0 100 100"
-                             fill="none" xmlns="http://www.w3.org/2000/svg">
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
                                   d="M50 100c27.614 0 50-22.386 50-50S77.614 0 50 0 0 22.386 0 50s22.386 50 50 50Zm21.977-68.056c.386-4.38-4.24-2.576-4.24-2.576-3.415 1.414-6.937 2.85-10.497 4.302-11.04 4.503-22.444 9.155-32.159 13.734-5.268 1.932-2.184 3.864-2.184 3.864l8.351 2.577c3.855 1.16 5.91-.129 5.91-.129l17.988-12.238c6.424-4.38 4.882-.773 3.34.773l-13.49 12.882c-2.056 1.804-1.028 3.35-.129 4.123 2.55 2.249 8.82 6.364 11.557 8.16.712.467 1.185.778 1.292.858.642.515 4.111 2.834 6.424 2.319 2.313-.516 2.57-3.479 2.57-3.479l3.083-20.226c.462-3.511.993-6.886 1.417-9.582.4-2.546.705-4.485.767-5.362Z"
                                   fill="#1d98dc"/>
@@ -601,9 +614,12 @@
             }
 
             @media screen and (max-width: 960px) {
-                #rec822969075 .t-section__title {
-                    margin-bottom: 45px;
-                }
+                #rec822969075
+
+            .t-section__title {
+                margin-bottom: 45px;
+            }
+
             }</style>
             <div class="t844__container t-card__container t-container">
                 <div class="t-card__col t-card__col_withoutbtn t844__col t-col t-col_4 t-align_center t-item t-animate"
@@ -743,10 +759,14 @@
             #rec823227853 .t-section__descr {
             }
 
-            @media screen and (max-width: 960px) {
-                #rec823227853 .t-section__title {
-                    margin-bottom: 45px;
-                }
+            @media screen and (max-width: 960px)
+            {
+                #rec823227853
+
+            .t-section__title {
+                margin-bottom: 45px;
+            }
+
             }</style>
             <ul role="list" class="t510__container t-container">
                 <li class="t-col t-col_8 t-prefix_2 t-item t-list__item">
@@ -833,19 +853,22 @@
         </div>
         <style>@media (hover: hover),(min-width: 0\0
         ) {
-            #rec822969076 .t-btn:not(.t-animate_no-hover):hover {
-                box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7) !important;
-            }
+            #rec822969076
 
-            #rec822969076 .t-btn:not(.t-animate_no-hover):focus-visible {
-                box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7) !important;
-            }
+        .t-btn:not(.t-animate_no-hover):hover {
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7) !important;
+        }
 
-            #rec822969076 .t-btn:not(.t-animate_no-hover) {
-                transition-property: background-color, color, border-color, box-shadow;
-                transition-duration: 0.2s;
-                transition-timing-function: ease-in-out;
-            }
+        #rec822969076 .t-btn:not(.t-animate_no-hover):focus-visible {
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7) !important;
+        }
+
+        #rec822969076 .t-btn:not(.t-animate_no-hover) {
+            transition-property: background-color, color, border-color, box-shadow;
+            transition-duration: 0.2s;
+            transition-timing-function: ease-in-out;
+        }
+
         }</style>
         <style> #rec822969076 .t581__descr {
             max-width: 600px;
@@ -875,9 +898,12 @@
             }
 
             @media screen and (max-width: 960px) {
-                #rec822969078 .t-section__title {
-                    margin-bottom: 45px;
-                }
+                #rec822969078
+
+            .t-section__title {
+                margin-bottom: 45px;
+            }
+
             }</style>
             <ul role="list" class="t508__container t-container">
                 <li class="t-col t-col_6 t-prefix_3 t-item t-list__item t-animate" data-animate-style="fadeindown"
@@ -995,9 +1021,12 @@
             }
 
             @media screen and (max-width: 960px) {
-                #rec833854018 .t-section__title {
-                    margin-bottom: 45px;
-                }
+                #rec833854018
+
+            .t-section__title {
+                margin-bottom: 45px;
+            }
+
             }</style>
             <style> #rec833854018 .t-section__title {
                 color: #000000;
@@ -1075,15 +1104,18 @@
                                         href="https://t.me/NYR001" target="_blank" rel="nofollow" aria-label="Telegram"
                                         title="Telegram" style="width: 50px; height: 50px;">
                                     <svg class="t-sociallinks__svg" role="presentation" width=50px height=50px
-                                         viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M83.1797 17.5886C83.1797 17.5886 90.5802 14.7028 89.9635 21.711C89.758 24.5968 87.9079 34.6968 86.4688 45.6214L81.5351 77.9827C81.5351 77.9827 81.124 82.7235 77.4237 83.548C73.7233 84.3724 68.173 80.6623 67.145 79.8378C66.3227 79.2195 51.7273 69.9438 46.5878 65.4092C45.1488 64.1724 43.5042 61.6989 46.7934 58.8132L68.3785 38.201C70.8454 35.7274 73.3122 29.956 63.0336 36.9642L34.2535 56.5459C34.2535 56.5459 30.9644 58.6071 24.7973 56.752L11.4351 52.6295C11.4351 52.6295 6.50135 49.5377 14.9298 46.4457C35.4871 36.7579 60.7724 26.864 83.1797 17.5886Z"
-                                              fill="#ffffff"/>
+                                         viewBox="0 0 100 100" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                                d="M83.1797 17.5886C83.1797 17.5886 90.5802 14.7028 89.9635 21.711C89.758 24.5968 87.9079 34.6968 86.4688 45.6214L81.5351 77.9827C81.5351 77.9827 81.124 82.7235 77.4237 83.548C73.7233 84.3724 68.173 80.6623 67.145 79.8378C66.3227 79.2195 51.7273 69.9438 46.5878 65.4092C45.1488 64.1724 43.5042 61.6989 46.7934 58.8132L68.3785 38.201C70.8454 35.7274 73.3122 29.956 63.0336 36.9642L34.2535 56.5459C34.2535 56.5459 30.9644 58.6071 24.7973 56.752L11.4351 52.6295C11.4351 52.6295 6.50135 49.5377 14.9298 46.4457C35.4871 36.7579 60.7724 26.864 83.1797 17.5886Z"
+                                                fill="#ffffff"/>
                                     </svg>
                                 </a></li>&nbsp;<li class="t-sociallinks__item t-sociallinks__item_whatsapp"><a
                                     href="https://wa.me/79150463446" target="_blank" rel="nofollow"
                                     aria-label="WhatsApp" title="WhatsApp" style="width: 50px; height: 50px;">
                                 <svg class="t-sociallinks__svg" role="presentation" width=50px height=50px
-                                     viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                     viewBox="0 0 100 100" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                           d="M50.168 10C60.8239 10.004 70.8257 14.1522 78.346 21.6819C85.8676 29.2114 90.0066 39.2185 90 49.8636C89.9906 71.8252 72.1203 89.6956 50.1668 89.6956H50.1508C43.4852 89.6929 36.9338 88.0208 31.1162 84.8468L10 90.3853L15.6516 69.7437C12.1665 63.7042 10.3323 56.851 10.3349 49.8304C10.343 27.8676 28.2134 10 50.168 10V10ZM61.5376 54.7631C62.4507 55.0954 67.3433 57.5023 68.3389 58.0009C68.5313 58.0971 68.7113 58.1842 68.8784 58.265C69.5753 58.602 70.0458 58.8296 70.2462 59.1651C70.4947 59.5799 70.4947 61.5736 69.6654 63.8982C68.8359 66.2229 64.8605 68.3442 62.9478 68.63C61.2319 68.8865 59.0627 68.9928 56.6782 68.2353C55.2322 67.7767 53.3794 67.1653 51.0041 66.1392C41.6698 62.1082 35.3628 53.06 34.1747 51.3556C34.0919 51.2368 34.0341 51.1538 34.0017 51.1106L33.9981 51.1056C33.486 50.4243 29.9372 45.7022 29.9372 40.8149C29.9372 36.2325 32.1873 33.8303 33.2244 32.7232C33.2961 32.6467 33.3619 32.5763 33.4208 32.5118C34.3341 31.5149 35.412 31.2664 36.0751 31.2664C36.7385 31.2664 37.4029 31.2717 37.9826 31.301C38.0541 31.3046 38.1286 31.304 38.2056 31.3037C38.786 31.3001 39.5087 31.2957 40.2221 33.0089C40.4976 33.6707 40.9012 34.653 41.3265 35.6882C42.1818 37.7702 43.1251 40.066 43.2912 40.399C43.5397 40.8974 43.7058 41.4782 43.3736 42.1427C43.323 42.2436 43.2763 42.3387 43.2318 42.4295C42.9831 42.9364 42.7995 43.3104 42.378 43.8029C42.2125 43.9963 42.0413 44.2045 41.8703 44.4131C41.5273 44.8309 41.1842 45.2488 40.8853 45.5467C40.387 46.0425 39.8686 46.5808 40.4493 47.5777C41.0303 48.5731 43.028 51.8323 45.9867 54.472C49.1661 57.3091 51.93 58.5078 53.3318 59.1157C53.6058 59.2346 53.8279 59.3308 53.9907 59.4124C54.9849 59.9109 55.5658 59.8284 56.1465 59.1637C56.7274 58.4993 58.6347 56.2583 59.298 55.2615C59.9612 54.2646 60.6259 54.4307 61.5376 54.7631V54.7631Z"
                                           fill="#ffffff"/>

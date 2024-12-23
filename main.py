@@ -132,8 +132,8 @@ def teacher_profile(id):
     return render_template('teachers_profile.html', teacher=teacher, replies=replies)
 
 
-@app.route('/materials')
-def materials():
+@app.errorhandler(404)
+def error(e):
     return render_template('error.html')
 
 
@@ -145,11 +145,6 @@ def about():
 @app.route('/checking_system')
 def checking_system():
     return render_template('checking_system.html')
-
-
-@app.route('/error')
-def error():
-    return render_template('error.html')
 
 
 @app.route('/subjects')
