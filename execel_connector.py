@@ -2,6 +2,8 @@ import gspread
 
 from requests import get
 
+from write_log import write_log
+
 
 class ExcelConnector:
     def __init__(self):
@@ -51,22 +53,22 @@ class ExcelConnector:
         return [i for i in teachers if int(i[6]) <= tariff]
 
     def search_by_achievements(self, achievements, teachers):
-        return [i for i in teachers if len(set(map(lambda x: ' '.join(x.split('_')).lower(), i[7].split(', '))) & set(
+        return [i for i in teachers if len(set(map(lambda x: ' '.join(x.split('_')).lower(), i[13].split(', '))) & set(
             map(lambda x: ' '.join(x.split('_')).lower(), achievements)))]
 
     def search_by_other_achievements(self, teachers, achievements):
         return [i for i in teachers if
-                i[7].lower() not in list(map(lambda x: ' '.join(x.split('_')).lower(), achievements))]
+                i[13].lower() not in list(map(lambda x: ' '.join(x.split('_')).lower(), achievements))]
 
     def search_by_hobbies(self, hobbies, teachers):
-        return [i for i in teachers if len(set(map(lambda x: ' '.join(x.split('_')).lower(), i[12].split(', '))) & set(
+        return [i for i in teachers if len(set(map(lambda x: ' '.join(x.split('_')).lower(), i[14].split(', '))) & set(
             map(lambda x: ' '.join(x.split('_')).lower(), hobbies)))]
 
     def search_by_other_hobbies(self, teachers, hobbies):
-        print(teachers[0][12])
+        print(teachers[0][14])
         print(list(map(lambda x: ' '.join(x.split('_')).lower(), hobbies)))
         return [i for i in teachers if
-                i[12].lower() not in list(map(lambda x: ' '.join(x.split('_')).lower(), hobbies))]
+                i[14].lower() not in list(map(lambda x: ' '.join(x.split('_')).lower(), hobbies))]
 
     def teacher_by_id(self, id):
         try:
@@ -76,22 +78,26 @@ class ExcelConnector:
             teacher[8] = int(teacher[8])
             return teacher
         except Exception as e:
-            print(e)
+            write_log(e)
             return False
 
 
     def load_images(self):
-        teachers = self.all_teachers()
-        ids = []
-        for teacher in teachers:
-            r = teacher[9].split('/')
-            ids.append(r[r.index('d') + 1])
+        try:
+            teachers = self.all_teachers()
+            ids = []
+            for teacher in teachers:
+                r = teacher[9].split('/')
+                ids.append(r[r.index('d') + 1])
 
-        for i, id in enumerate(ids):
-            url = f'https://drive.google.com/uc?id={id}&export=download'
-            resp = get(url)
-            with open(f'static/teachers_images/{i}.png', 'wb') as file:
-                file.write(resp.content)
+            for i, id in enumerate(ids):
+                url = f'https://drive.google.com/uc?id={id}&export=download'
+                resp = get(url)
+                with open(f'static/teachers_images/{i}.png', 'wb') as file:
+                    file.write(resp.content)
+        except Exception as e:
+            write_log(e)
+
 
 
 
