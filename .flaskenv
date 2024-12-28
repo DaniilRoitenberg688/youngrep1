@@ -1,0 +1,2 @@
+FLASK_APP=teachers_add.py
+FLASK_DEBUG=1
