@@ -17,20 +17,16 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for('admin.index'))
     form = LoginForm()
-    print(form.validate_on_submit())
     if form.validate_on_submit():
-        print('sdf')
         user: User = User.query.filter_by(login=form.login.data).first()
         if not user or not user.check_password(form.password.data):
             flash('Wrong password or username')
             return redirect(url_for('admin.login'))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
-        # if not next_page or urlsplit(next_page).netloc != '':
-        #     next_page = url_for('admin.index')
-        # return redirect(next_page)
-        return redirect(url_for('admin.index'))
-    print('sdfsdf')
+        if not next_page or urlsplit(next_page).netloc != '':
+            next_page = url_for('admin.index')
+        return redirect(next_page)
     return render_template('admin/login.html', form=form, title='Login')
 
 
