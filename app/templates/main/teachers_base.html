@@ -7,15 +7,15 @@
     преподавателей</title>
     <meta name="description" content="Функции ментора"/>
     <meta property="og:url" content="templates/page50246267.html"/>
-    <meta property="og:title" content="Каталог преподавателей"/>
-    <meta property="og:description" content="Функции ментора"/>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
 
+    <meta property="og:title" content="Каталог преподавателей"/>
+    <meta property="og:description" content="Функции ментора"/>
     <meta property="og:type" content="website"/>
     <link rel="canonical" href="templates/page50246267.html"> <!--/metatextblock-->
     <meta name="format-detection" content="telephone=no"/>
@@ -94,7 +94,7 @@
     <script src="/static/js/tilda-scripts-3.0.min.js" charset="utf-8" defer onerror="this.loaderr='y';"></script>
     <script src="/static/js/tilda-blocks-page50246267.min.js?t=1734976073" charset="utf-8" async
             onerror="this.loaderr='y';"></script>
-    <script src="/static/js/lazyload-1.3.min.export.js" charset="utf-8" async onerror="this.loaderr='y';"></script>
+    <script src="//js/lazyload-1.3.min.export.js" charset="utf-8" async onerror="this.loaderr='y';"></script>
     <script src="/static/js/tilda-animation-2.0.min.js" charset="utf-8" async onerror="this.loaderr='y';"></script>
     <script src="/static/js/tilda-t635-typed-1.0.min.js" charset="utf-8" async onerror="this.loaderr='y';"></script>
     <script src="/static/js/tilda-popup-1.0.min.js" charset="utf-8" async onerror="this.loaderr='y';"></script>
@@ -150,41 +150,7 @@
                  data-menu="yes">
                 <div class="t228__maincontainer " style="">
                     <div class="t228__padding40px"></div>
-                    <div class="t228__leftside">
-                        <div class="t228__leftcontainer"><a href="{{ url_for('index') }}" class="t228__imgwrapper">
-                            <div class="t228__logo t-title" field="title">YoungRep</div>
-                        </a></div>
-                    </div>
-                    <div class="t228__centerside ">
-                        <nav class="t228__centercontainer">
-                            <ul role="list" class="t228__list t-menu__list t228__list_hidden">
-                                <li class="t228__list_item"
-                                    style="padding:0 15px 0 0;"><a class="t-menu__link-item"
-                                                                   href="{{ url_for('about') }}"
-                                                                   data-menu-submenu-hook="" data-menu-item-number="1">
-                                    О нас
-                                </a></li>
-                                <li class="t228__list_item"
-                                    style="padding:0 15px;"><a class="t-menu__link-item"
-                                                               href="{{ url_for('teachers') }}"
-                                                               data-menu-submenu-hook="" data-menu-item-number="2">
-                                    Каталог менторов
-                                </a></li>
-                                <li class="t228__list_item"
-                                    style="padding:0 15px;"><a class="t-menu__link-item"
-                                                               href="{{ url_for('checking_system') }}"
-                                                               data-menu-submenu-hook="" data-menu-item-number="3">
-                                    Checking Система
-                                </a></li>
-                                <li class="t228__list_item"
-                                    style="padding:0 0 0 15px;"><a class="t-menu__link-item"
-                                                                   href="{{ url_for('invite') }}"
-                                                                   data-menu-submenu-hook="" data-menu-item-number="4">
-                                    Преподавать у нас
-                                </a></li>
-                            </ul>
-                        </nav>
-                    </div>
+                    {% include 'base_nav.html' %}
                     <div class="t228__rightside">
                         <div class="t228__rightcontainer">
                             <div class="t228__right_buttons">
@@ -202,11 +168,12 @@
                     <div class="t228__padding40px"></div>
                 </div>
             </div>
-            <style>@media screen and (max-width: 980px) {
+            <style>@media screen and (max-width: 980px){
                 #rec759491682
-                .t228 {
-                    position: static;
-                }
+
+            .t228 {
+                position: static;
+            }
 
             }</style>
             <script>window.addEventListener('load', function () {
@@ -246,31 +213,32 @@
             <style>@media (hover: hover),(min-width: 0\0
             ) {
                 #rec759491682
-                .t-btn:not(.t-animate_no-hover):hover {
-                    color: #ffffff !important;
-                    box-shadow: 0px 2px 3px rgba(0, 11, 48, 0.25) !important;
-                    background-color: #0077ff !important;
-                }
 
-                #rec759491682 .t-btn:not(.t-animate_no-hover):focus-visible {
-                    color: #ffffff !important;
-                    box-shadow: 0px 2px 3px rgba(0, 11, 48, 0.25) !important;
-                    background-color: #0077ff !important;
-                }
+            .t-btn:not(.t-animate_no-hover):hover {
+                color: #ffffff !important;
+                box-shadow: 0px 2px 3px rgba(0, 11, 48, 0.25) !important;
+                background-color: #0077ff !important;
+            }
 
-                #rec759491682 .t-btn:not(.t-animate_no-hover) {
-                    transition-property: background-color, color, border-color, box-shadow;
-                    transition-duration: 0.2s;
-                    transition-timing-function: ease-in-out;
-                }
+            #rec759491682 .t-btn:not(.t-animate_no-hover):focus-visible {
+                color: #ffffff !important;
+                box-shadow: 0px 2px 3px rgba(0, 11, 48, 0.25) !important;
+                background-color: #0077ff !important;
+            }
 
-                #rec759491682 .t-btntext:not(.t-animate_no-hover):hover {
-                    color: #ffffff !important;
-                }
+            #rec759491682 .t-btn:not(.t-animate_no-hover) {
+                transition-property: background-color, color, border-color, box-shadow;
+                transition-duration: 0.2s;
+                transition-timing-function: ease-in-out;
+            }
 
-                #rec759491682 .t-btntext:not(.t-animate_no-hover):focus-visible {
-                    color: #ffffff !important;
-                }
+            #rec759491682 .t-btntext:not(.t-animate_no-hover):hover {
+                color: #ffffff !important;
+            }
+
+            #rec759491682 .t-btntext:not(.t-animate_no-hover):focus-visible {
+                color: #ffffff !important;
+            }
 
             }</style>
             <style>#rec759491682 .t-menu__link-item {
@@ -320,11 +288,12 @@
                 bottom: -1px;
             }
 
-            @supports (overflow:-webkit-marquee) and (justify-content:inherit) {
+            @supports (overflow:-webkit-marquee) and (justify-content:inherit){
                 #rec759491682
-                .t-menu__link-item, #rec759491682 .t-menu__link-item.t-active {
-                    opacity: 1 !important;
-                }
+
+            .t-menu__link-item, #rec759491682 .t-menu__link-item.t-active {
+                opacity: 1 !important;
+            }
 
             }</style>
             <style> #rec759491682 a.t-menusub__link-item {
@@ -352,11 +321,12 @@
                 font-family: 'Ubuntu';
             }
 
-            @media screen and (min-width: 480px) {
+            @media screen and (min-width: 480px){
                 #rec759491682
-                .t228__logo {
-                    font-size: 30px;
-                }
+
+            .t228__logo {
+                font-size: 30px;
+            }
 
             }</style>
         </div>
@@ -893,16 +863,18 @@
 
             @media screen and (max-width: 960px) {
                 #rec820345789
-                .t-section__title {
-                    margin-bottom: 45px;
-                }
+
+            .t-section__title {
+                margin-bottom: 45px;
+            }
 
             }</style>
-            <style> @media screen and (min-width: 480px) {
+            <style> @media screen and (min-width: 480px){
                 #rec820345789
-                .t-section__title {
-                    font-size: 30px;
-                }
+
+            .t-section__title {
+                font-size: 30px;
+            }
 
             }</style>
             <div class="t491__container t-card__container t-container">
@@ -960,7 +932,7 @@
                      data-animate-style="zoomin" data-animate-chain="yes">
                     <div class="t491__content">
                         <div class="t491__wrapper"><img class="t491__img t-img"
-                                                        src="static/images/lib__emoji__fluent__man_surfing_3d.png"
+                                                        src="/static/images/lib__emoji__fluent__man_surfing_3d.png"
                                                         imgfield="li_img__0402100789022"
                                                         alt="">
                             <div class="t-card__title t-name t-name_sm" field="li_title__0402100789022">
@@ -1111,9 +1083,10 @@
 
             @media screen and (max-width: 960px) {
                 #rec824374715
-                .t-section__title {
-                    margin-bottom: 45px;
-                }
+
+            .t-section__title {
+                margin-bottom: 45px;
+            }
 
             }</style>
             <style> #rec824374715 .t-section__title {
@@ -1246,19 +1219,20 @@
         <style>@media (hover: hover),(min-width: 0\0
         ) {
             #rec824409422
-            .t-btn:not(.t-animate_no-hover):hover {
-                background-color: #0077ff !important;
-            }
 
-            #rec824409422 .t-btn:not(.t-animate_no-hover):focus-visible {
-                background-color: #0077ff !important;
-            }
+        .t-btn:not(.t-animate_no-hover):hover {
+            background-color: #0077ff !important;
+        }
 
-            #rec824409422 .t-btn:not(.t-animate_no-hover) {
-                transition-property: background-color, color, border-color, box-shadow;
-                transition-duration: 0.2s;
-                transition-timing-function: ease-in-out;
-            }
+        #rec824409422 .t-btn:not(.t-animate_no-hover):focus-visible {
+            background-color: #0077ff !important;
+        }
+
+        #rec824409422 .t-btn:not(.t-animate_no-hover) {
+            transition-property: background-color, color, border-color, box-shadow;
+            transition-duration: 0.2s;
+            transition-timing-function: ease-in-out;
+        }
 
         }</style>
         <style>#rec824409422 .t-btn[data-btneffects-first], #rec824409422 .t-btn[data-btneffects-second], #rec824409422 .t-btn[data-btneffects-third], #rec824409422 .t-submit[data-btneffects-first], #rec824409422 .t-submit[data-btneffects-second], #rec824409422 .t-submit[data-btneffects-third] {
@@ -1395,7 +1369,7 @@
          data-animationappear="off" data-record-type="951"> <!-- t951 -->
         <!-- @classes: t-text t-text_xxs t-name t-name_xs t-name_md t-name_xl t-descr t-descr_xxs t-btn t-btn_xs t-btn_sm t-btn_md data-zoomable="yes" t-align_center -->
         <div class="t951"> <!-- grid container start -->
-            <div class="container" id="a" style="margin-right: 100px; padding-left: 0">
+                        <div class="container" id="a" style="margin-right: 100px; padding-left: 0">
                 {% block content %}{% endblock content %}
             </div>
             {% if search %}
@@ -1405,229 +1379,230 @@
                     elem.scrollIntoView(true)
                 </script>
 
-            {% endif %}
-        </div> <!-- grid container end --></div> <!-- catalog setup start -->
-    <style>#rec758999686 .t-slds__bullet_active .t-slds__bullet_body {
-        background-color: #222 !important;
-    }
+            {% endif %} <!-- grid container end --></div> <!-- catalog setup start -->
+        <style>#rec758999686 .t-slds__bullet_active .t-slds__bullet_body {
+            background-color: #222 !important;
+        }
 
-    #rec758999686 .t-slds__bullet:hover .t-slds__bullet_body {
-        background-color: #222 !important;
-    }
+        #rec758999686 .t-slds__bullet:hover .t-slds__bullet_body {
+            background-color: #222 !important;
+        }
 
-    #rec758999686 .t-store__parts-switch-btn {
-        font-weight: 700;
-    }
+        #rec758999686 .t-store__parts-switch-btn {
+            font-weight: 700;
+        }
 
-    #rec758999686 .t-store__filter__item-title, #rec758999686 .t-store__filter__opts-mob-btn {
-        font-weight: 700;
-    }</style>
-    <style> #rec758999686 .t-store__card .t-store__card__price {
-        font-weight: 400;
-    }
+        #rec758999686 .t-store__filter__item-title, #rec758999686 .t-store__filter__opts-mob-btn {
+            font-weight: 700;
+        }</style>
+        <style> #rec758999686 .t-store__card .t-store__card__price {
+            font-weight: 400;
+        }
 
-    #rec758999686 .t-store__card .t-store__card__price_old {
-        font-weight: 400;
-    }</style>
-    <style> #rec758999686 .t-popup .t-store__prod-popup__price {
-        font-weight: 400;
-    }
+        #rec758999686 .t-store__card .t-store__card__price_old {
+            font-weight: 400;
+        }</style>
+        <style> #rec758999686 .t-popup .t-store__prod-popup__price {
+            font-weight: 400;
+        }
 
-    #rec758999686 .t-popup .t-store__prod-popup__price_old {
-        font-weight: 400;
-    }</style>
-    <div class="js-store-tpl-slider-arrows" style="display: none;">
-        <li class="t-slds__arrow_wrapper t-slds__arrow_wrapper-left" data-slide-direction="left">
-            <button
-                    type="button"
-                    class="t-slds__arrow t-slds__arrow-left t-slds__arrow-withbg"
-                    aria-controls="carousel_758999686"
-                    aria-disabled="false"
-                    aria-label="Предыдущий слайд"
-                    style="width: 40px; height: 40px;background-color: rgba(255,255,255,1);">
-                <div class="t-slds__arrow_body t-slds__arrow_body-left" style="width: 9px;">
-                    <svg role="presentation" focusable="false" style="display: block" viewBox="0 0 9.3 17"
-                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <polyline
-                                fill="none"
-                                stroke="#000000"
-                                stroke-linejoin="butt"
-                                stroke-linecap="butt"
-                                stroke-width="1"
-                                points="0.5,0.5 8.5,8.5 0.5,16.5"
-                        />
-                    </svg>
-                </div>
-            </button>
-        </li>
-        <li class="t-slds__arrow_wrapper t-slds__arrow_wrapper-right" data-slide-direction="right">
-            <button
-                    type="button"
-                    class="t-slds__arrow t-slds__arrow-right t-slds__arrow-withbg"
-                    aria-controls="carousel_758999686"
-                    aria-disabled="false"
-                    aria-label="Следующий слайд"
-                    style="width: 40px; height: 40px;background-color: rgba(255,255,255,1);">
-                <div class="t-slds__arrow_body t-slds__arrow_body-right" style="width: 9px;">
-                    <svg role="presentation" focusable="false" style="display: block" viewBox="0 0 9.3 17"
-                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <polyline
-                                fill="none"
-                                stroke="#000000"
-                                stroke-linejoin="butt"
-                                stroke-linecap="butt"
-                                stroke-width="1"
-                                points="0.5,0.5 8.5,8.5 0.5,16.5"
-                        />
-                    </svg>
-                </div>
-            </button>
-        </li>
-    </div>
-    <script>t_onReady(function () {
-        var prodcard_optsObj = {
-            blockId: '951',
-            hasWrap: '',
-            txtPad: '',
-            bgColor: '',
-            borderRadius: '',
-            shadow: '',
-            shadowSize: '',
-            shadowOpacity: '',
-            shadowHover: '',
-            shadowSizeHover: '',
-            shadowOpacityHover: '',
-            shadowShiftyHover: '',
-            btnTitle1: '',
-            btnLink1: 'popup',
-            btnTitle2: '',
-            btnLink2: 'popup',
-            showOpts: false,
-            style: '',
-            hasImg: false,
-            hasDescr: true,
-            hasSeparator: true
-        };
-        var price_optsObj = {color: '', colorOld: '', position: '', priceRange: ''};
-        var popup_optsObj = {
-            popupContainer: '',
-            columns: '6',
-            columns2: '6',
-            isVertical: '',
-            align: 'left',
-            btnTitle: 'Добавить в корзину',
-            closeText: 'Все товары',
-            iconColor: '#000000',
-            containerBgColor: '#ffffff',
-            overlayBgColor: '#ffffff',
-            overlayBgColorRgba: 'rgba(255,255,255,1)',
-            popupStat: '',
-            tabsPosition: '',
-            fixedButton: false,
-            mobileGalleryStyle: ''
-        };
-        var slider_optsObj = {
-            anim_speed: '',
-            videoPlayerIconColor: '',
-            cycle: '',
-            controls: 'arrowsthumbs',
-            bgcolor: '#ebebeb'
-        };
-        var slider_dotsOptsObj = {size: '', bgcolor: '', bordersize: '', bgcoloractive: ''};
-        var slider_slidesOptsObj = {zoomable: true, bgsize: 'cover', ratio: '1'};
-        var typography_optsObj = {descrColor: '', titleColor: ''};
-        var default_sort = {default: null, in_stock: false};
-        var options = {
-            storepart: '185453003832',
-            previewmode: 'yes',
-            prodCard: prodcard_optsObj,
-            popup_opts: popup_optsObj,
-            defaultSort: default_sort,
-            galleryStyle: '',
-            slider_opts: slider_optsObj,
-            slider_dotsOpts: slider_dotsOptsObj,
-            slider_slidesOpts: slider_slidesOptsObj,
-            typo: typography_optsObj,
-            price: price_optsObj,
-            blocksInRow: '4',
-            colClass: 't-store__stretch-col t-store__stretch-col_25',
-            sidebar: true,
-            colWidth: '',
-            colClassFullWidth: 't-store__stretch-col t-store__stretch-col_100',
-            imageHover: true,
-            imageHeight: '400px',
-            imageWidth: '',
-            imageRatio: '1',
-            imageRatioClass: 't-store__card__imgwrapper_1-1',
-            align: 'left',
-            vindent: '',
-            isHorizOnMob: false,
-            itemsAnim: '',
-            hasOriginalAspectRatio: false,
-            size: 36,
-            markColor: '#ffffff',
-            markBgColor: '#ff4a4a',
-            currencySide: 'r',
-            currencyTxt: 'р.',
-            currencySeparator: ',',
-            currencyDecimal: '',
-            btnSize: '',
-            btn1_style: 'color:#ffffff;background-color:#000000;border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px;',
-            btn2_style: 'color:#000000;border:1px solid #000000;border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px;',
-            isFlexCols: 'true',
-            hideStoreParts: false,
-            verticalAlignButtons: false,
-            hideFilters: false,
-            titleRelevants: '',
-            showRelevants: '',
-            showPagination: '',
-            tabs: '',
-            relevants_slider: false,
-            relevants_quantity: '4',
-            sliderthumbsside: '',
-            showStoreBtnQuantity: '',
-            verticalAlign: '',
-            rightColumnWidth: '',
-            isTitleClip: false,
-            horizontalScrollHint: 'hand'
-        };
-        t_onFuncLoad('t_store_init', function () {
-            t_store_init('758999686', options);
-        });
-    });</script> <!-- catalog setup end -->
-    <style>#rec758999686 .t-menu__link-item {
-    }
+        #rec758999686 .t-popup .t-store__prod-popup__price_old {
+            font-weight: 400;
+        }</style>
+        <div class="js-store-tpl-slider-arrows" style="display: none;">
+            <li class="t-slds__arrow_wrapper t-slds__arrow_wrapper-left" data-slide-direction="left">
+                <button
+                        type="button"
+                        class="t-slds__arrow t-slds__arrow-left t-slds__arrow-withbg"
+                        aria-controls="carousel_758999686"
+                        aria-disabled="false"
+                        aria-label="Предыдущий слайд"
+                        style="width: 40px; height: 40px;background-color: rgba(255,255,255,1);">
+                    <div class="t-slds__arrow_body t-slds__arrow_body-left" style="width: 9px;">
+                        <svg role="presentation" focusable="false" style="display: block" viewBox="0 0 9.3 17"
+                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <polyline
+                                    fill="none"
+                                    stroke="#000000"
+                                    stroke-linejoin="butt"
+                                    stroke-linecap="butt"
+                                    stroke-width="1"
+                                    points="0.5,0.5 8.5,8.5 0.5,16.5"
+                            />
+                        </svg>
+                    </div>
+                </button>
+            </li>
+            <li class="t-slds__arrow_wrapper t-slds__arrow_wrapper-right" data-slide-direction="right">
+                <button
+                        type="button"
+                        class="t-slds__arrow t-slds__arrow-right t-slds__arrow-withbg"
+                        aria-controls="carousel_758999686"
+                        aria-disabled="false"
+                        aria-label="Следующий слайд"
+                        style="width: 40px; height: 40px;background-color: rgba(255,255,255,1);">
+                    <div class="t-slds__arrow_body t-slds__arrow_body-right" style="width: 9px;">
+                        <svg role="presentation" focusable="false" style="display: block" viewBox="0 0 9.3 17"
+                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <polyline
+                                    fill="none"
+                                    stroke="#000000"
+                                    stroke-linejoin="butt"
+                                    stroke-linecap="butt"
+                                    stroke-width="1"
+                                    points="0.5,0.5 8.5,8.5 0.5,16.5"
+                            />
+                        </svg>
+                    </div>
+                </button>
+            </li>
+        </div>
+        <script>t_onReady(function () {
+            var prodcard_optsObj = {
+                blockId: '951',
+                hasWrap: '',
+                txtPad: '',
+                bgColor: '',
+                borderRadius: '',
+                shadow: '',
+                shadowSize: '',
+                shadowOpacity: '',
+                shadowHover: '',
+                shadowSizeHover: '',
+                shadowOpacityHover: '',
+                shadowShiftyHover: '',
+                btnTitle1: '',
+                btnLink1: 'popup',
+                btnTitle2: '',
+                btnLink2: 'popup',
+                showOpts: false,
+                style: '',
+                hasImg: false,
+                hasDescr: true,
+                hasSeparator: true
+            };
+            var price_optsObj = {color: '', colorOld: '', position: '', priceRange: ''};
+            var popup_optsObj = {
+                popupContainer: '',
+                columns: '6',
+                columns2: '6',
+                isVertical: '',
+                align: 'left',
+                btnTitle: 'Добавить в корзину',
+                closeText: 'Все товары',
+                iconColor: '#000000',
+                containerBgColor: '#ffffff',
+                overlayBgColor: '#ffffff',
+                overlayBgColorRgba: 'rgba(255,255,255,1)',
+                popupStat: '',
+                tabsPosition: '',
+                fixedButton: false,
+                mobileGalleryStyle: ''
+            };
+            var slider_optsObj = {
+                anim_speed: '',
+                videoPlayerIconColor: '',
+                cycle: '',
+                controls: 'arrowsthumbs',
+                bgcolor: '#ebebeb'
+            };
+            var slider_dotsOptsObj = {size: '', bgcolor: '', bordersize: '', bgcoloractive: ''};
+            var slider_slidesOptsObj = {zoomable: true, bgsize: 'cover', ratio: '1'};
+            var typography_optsObj = {descrColor: '', titleColor: ''};
+            var default_sort = {default: null, in_stock: false};
+            var options = {
+                storepart: '185453003832',
+                previewmode: 'yes',
+                prodCard: prodcard_optsObj,
+                popup_opts: popup_optsObj,
+                defaultSort: default_sort,
+                galleryStyle: '',
+                slider_opts: slider_optsObj,
+                slider_dotsOpts: slider_dotsOptsObj,
+                slider_slidesOpts: slider_slidesOptsObj,
+                typo: typography_optsObj,
+                price: price_optsObj,
+                blocksInRow: '4',
+                colClass: 't-store__stretch-col t-store__stretch-col_25',
+                sidebar: true,
+                colWidth: '',
+                colClassFullWidth: 't-store__stretch-col t-store__stretch-col_100',
+                imageHover: true,
+                imageHeight: '400px',
+                imageWidth: '',
+                imageRatio: '1',
+                imageRatioClass: 't-store__card__imgwrapper_1-1',
+                align: 'left',
+                vindent: '',
+                isHorizOnMob: false,
+                itemsAnim: '',
+                hasOriginalAspectRatio: false,
+                size: 36,
+                markColor: '#ffffff',
+                markBgColor: '#ff4a4a',
+                currencySide: 'r',
+                currencyTxt: 'р.',
+                currencySeparator: ',',
+                currencyDecimal: '',
+                btnSize: '',
+                btn1_style: 'color:#ffffff;background-color:#000000;border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px;',
+                btn2_style: 'color:#000000;border:1px solid #000000;border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px;',
+                isFlexCols: 'true',
+                hideStoreParts: false,
+                verticalAlignButtons: false,
+                hideFilters: false,
+                titleRelevants: '',
+                showRelevants: '',
+                showPagination: '',
+                tabs: '',
+                relevants_slider: false,
+                relevants_quantity: '4',
+                sliderthumbsside: '',
+                showStoreBtnQuantity: '',
+                verticalAlign: '',
+                rightColumnWidth: '',
+                isTitleClip: false,
+                horizontalScrollHint: 'hand'
+            };
+            t_onFuncLoad('t_store_init', function () {
+                t_store_init('758999686', options);
+            });
+        });</script> <!-- catalog setup end -->
+        <style>#rec758999686 .t-menu__link-item {
+        }
 
-    @supports (overflow:-webkit-marquee) and (justify-content:inherit) {
-        #rec758999686
+        @supports (overflow:-webkit-marquee) and (justify-content:inherit){
+            #rec758999686
+
         .t-menu__link-item, #rec758999686 .t-menu__link-item.t-active {
             opacity: 1 !important;
         }
 
-    }</style>
-    <style>#rec758999686 .t951__cont-wrapper .t951__sidebar {
-        background-color: inherit;
-        padding: initial;;
-    }
+        }</style>
+        <style>#rec758999686 .t951__cont-wrapper .t951__sidebar {
+            background-color: inherit;
+            padding: initial;;
+        }
 
-    #rec758999686 .t951 .t951__sidebar .t-store__filter__item .t-checkbox__control {
-        color: inherit;
-    }
+        #rec758999686 .t951 .t951__sidebar .t-store__filter__item .t-checkbox__control {
+            color: inherit;
+        }
 
-    #rec758999686 .t951 .t951__sidebar .t-store__filter__custom-sel {
-        color: inherit;
-    }
+        #rec758999686 .t951 .t951__sidebar .t-store__filter__custom-sel {
+            color: inherit;
+        }
 
-    #rec758999686 .t951 .t951__sidebar .t-store__filter__btn-text {
-        color: inherit;
-    }
+        #rec758999686 .t951 .t951__sidebar .t-store__filter__btn-text {
+            color: inherit;
+        }
 
-    #rec758999686 .t951 .t951__sidebar .t-store__filter__btn-expand {
-        border-color: inherit;
-    }
+        #rec758999686 .t951 .t951__sidebar .t-store__filter__btn-expand {
+            border-color: inherit;
+        }
 
-    @media screen and (min-width: 960px) {
-        #rec758999686
+        @media screen and (min-width: 960px){
+            #rec758999686
+
         .t951 .t-store__filter__chosen-bar {
         }
 
@@ -1636,106 +1611,106 @@
             max-height: calc(100vh - 50px);
         }
 
-    }</style> <!--Reset t951 specific variables--> <!-- / Reset t951 specific variables--> </div>
-<div id="rec758999687" class="r t-rec" style=" " data-record-type="215"><a name="contacts" style="font-size:0;"></a>
-</div> <!--footer-->
-<footer id="t-footer" class="t-records" data-hook="blocks-collection-content-node" data-tilda-project-id="9758731"
-        data-tilda-page-id="50304725" data-tilda-formskey="f43772198e75de741ecdfcdfd9758731" data-tilda-cookie="no"
-        data-tilda-lazy="yes" data-tilda-project-lang="RU" data-tilda-root-zone="com">
-    <div id="rec832481927" class="r t-rec t-rec_pt_30 t-rec_pb_0"
-         style="padding-top:30px;padding-bottom:0px;background-color:#000000; " data-record-type="372"
-         data-bg-color="#000000"> <!-- T372 -->
-        <div class="t372">
-            <div class="t-container ">
-                <div class="t-col t-col_10 t-prefix_1">
-                    <div class="t-divider t372__line " style="background-color: #ff5500;height: 3px;"></div>
-                    <div field="text" class="t372__text t-text t-text_md t-text_weight_plus"><strong>Миссия YoungRep
-                        - предоставить качественное и доступное образование для всех детей, обеспечивая
-                        индивидуальный подход к каждому ученику. А также обеспечить финансовую свободу для
-                        школьников, создавая рабочие места с достойной оплатой труда для несовершеннолетних
-                        работников.</strong></div>
+        }</style> <!--Reset t951 specific variables--> <!-- / Reset t951 specific variables--> </div>
+    <div id="rec758999687" class="r t-rec" style=" " data-record-type="215"><a name="contacts" style="font-size:0;"></a>
+    </div> <!--footer-->
+    <footer id="t-footer" class="t-records" data-hook="blocks-collection-content-node" data-tilda-project-id="9758731"
+            data-tilda-page-id="50304725" data-tilda-formskey="f43772198e75de741ecdfcdfd9758731" data-tilda-cookie="no"
+            data-tilda-lazy="yes" data-tilda-project-lang="RU" data-tilda-root-zone="com">
+        <div id="rec832481927" class="r t-rec t-rec_pt_30 t-rec_pb_0"
+             style="padding-top:30px;padding-bottom:0px;background-color:#000000; " data-record-type="372"
+             data-bg-color="#000000"> <!-- T372 -->
+            <div class="t372">
+                <div class="t-container ">
+                    <div class="t-col t-col_10 t-prefix_1">
+                        <div class="t-divider t372__line " style="background-color: #ff5500;height: 3px;"></div>
+                        <div field="text" class="t372__text t-text t-text_md t-text_weight_plus"><strong>Миссия YoungRep
+                            - предоставить качественное и доступное образование для всех детей, обеспечивая
+                            индивидуальный подход к каждому ученику. А также обеспечить финансовую свободу для
+                            школьников, создавая рабочие места с достойной оплатой труда для несовершеннолетних
+                            работников.</strong></div>
+                    </div>
                 </div>
             </div>
+            <style> #rec832481927 .t372__text {
+                color: #ffffff;
+            }</style>
         </div>
-        <style> #rec832481927 .t372__text {
-            color: #ffffff;
-        }</style>
-    </div>
-    <div id="rec832481928" class="r t-rec t-rec_pt_0 t-rec_pb_0"
-         style="padding-top:0px;padding-bottom:0px;background-color:#000000; " data-animationappear="off"
-         data-record-type="460" data-bg-color="#000000"> <!-- t460 --> <!-- cover --> <!--[if IE 8]>
-        <style>.t460 .t-sociallinks__item a:before {
-            background: none !important;
-        }
+        <div id="rec832481928" class="r t-rec t-rec_pt_0 t-rec_pb_0"
+             style="padding-top:0px;padding-bottom:0px;background-color:#000000; " data-animationappear="off"
+             data-record-type="460" data-bg-color="#000000"> <!-- t460 --> <!-- cover --> <!--[if IE 8]>
+            <style>.t460 .t-sociallinks__item a:before {
+                background: none !important;
+            }
 
-        .t460 .t-sociallinks__item a {
-            overflow: visible !important;
-        }</style> <![endif]-->
-        <div class="t460">
-            <div class="t-container">
-                <div class="t460__wrapper">
-                    <div class="t-sociallinks">
-                        <ul role="list" class="t-sociallinks__wrapper" aria-label="Social media links">
-                            <!-- new soclinks -->
-                            <li class="t-sociallinks__item t-sociallinks__item_telegram"><a
-                                    href="https://t.me/NYR001" target="_blank" rel="nofollow" aria-label="Telegram"
-                                    title="Telegram" style="width: 50px; height: 50px;">
+            .t460 .t-sociallinks__item a {
+                overflow: visible !important;
+            }</style> <![endif]-->
+            <div class="t460">
+                <div class="t-container">
+                    <div class="t460__wrapper">
+                        <div class="t-sociallinks">
+                            <ul role="list" class="t-sociallinks__wrapper" aria-label="Social media links">
+                                <!-- new soclinks -->
+                                <li class="t-sociallinks__item t-sociallinks__item_telegram"><a
+                                        href="https://t.me/NYR001" target="_blank" rel="nofollow" aria-label="Telegram"
+                                        title="Telegram" style="width: 50px; height: 50px;">
+                                    <svg class="t-sociallinks__svg" role="presentation" width=50px height=50px
+                                         viewBox="0 0 100 100" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                                d="M83.1797 17.5886C83.1797 17.5886 90.5802 14.7028 89.9635 21.711C89.758 24.5968 87.9079 34.6968 86.4688 45.6214L81.5351 77.9827C81.5351 77.9827 81.124 82.7235 77.4237 83.548C73.7233 84.3724 68.173 80.6623 67.145 79.8378C66.3227 79.2195 51.7273 69.9438 46.5878 65.4092C45.1488 64.1724 43.5042 61.6989 46.7934 58.8132L68.3785 38.201C70.8454 35.7274 73.3122 29.956 63.0336 36.9642L34.2535 56.5459C34.2535 56.5459 30.9644 58.6071 24.7973 56.752L11.4351 52.6295C11.4351 52.6295 6.50135 49.5377 14.9298 46.4457C35.4871 36.7579 60.7724 26.864 83.1797 17.5886Z"
+                                                fill="#ffffff"/>
+                                    </svg>
+                                </a></li>&nbsp;<li class="t-sociallinks__item t-sociallinks__item_whatsapp"><a
+                                    href="https://wa.me/79150463446" target="_blank" rel="nofollow"
+                                    aria-label="WhatsApp" title="WhatsApp" style="width: 50px; height: 50px;">
                                 <svg class="t-sociallinks__svg" role="presentation" width=50px height=50px
                                      viewBox="0 0 100 100" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                            d="M83.1797 17.5886C83.1797 17.5886 90.5802 14.7028 89.9635 21.711C89.758 24.5968 87.9079 34.6968 86.4688 45.6214L81.5351 77.9827C81.5351 77.9827 81.124 82.7235 77.4237 83.548C73.7233 84.3724 68.173 80.6623 67.145 79.8378C66.3227 79.2195 51.7273 69.9438 46.5878 65.4092C45.1488 64.1724 43.5042 61.6989 46.7934 58.8132L68.3785 38.201C70.8454 35.7274 73.3122 29.956 63.0336 36.9642L34.2535 56.5459C34.2535 56.5459 30.9644 58.6071 24.7973 56.752L11.4351 52.6295C11.4351 52.6295 6.50135 49.5377 14.9298 46.4457C35.4871 36.7579 60.7724 26.864 83.1797 17.5886Z"
-                                            fill="#ffffff"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M50.168 10C60.8239 10.004 70.8257 14.1522 78.346 21.6819C85.8676 29.2114 90.0066 39.2185 90 49.8636C89.9906 71.8252 72.1203 89.6956 50.1668 89.6956H50.1508C43.4852 89.6929 36.9338 88.0208 31.1162 84.8468L10 90.3853L15.6516 69.7437C12.1665 63.7042 10.3323 56.851 10.3349 49.8304C10.343 27.8676 28.2134 10 50.168 10V10ZM61.5376 54.7631C62.4507 55.0954 67.3433 57.5023 68.3389 58.0009C68.5313 58.0971 68.7113 58.1842 68.8784 58.265C69.5753 58.602 70.0458 58.8296 70.2462 59.1651C70.4947 59.5799 70.4947 61.5736 69.6654 63.8982C68.8359 66.2229 64.8605 68.3442 62.9478 68.63C61.2319 68.8865 59.0627 68.9928 56.6782 68.2353C55.2322 67.7767 53.3794 67.1653 51.0041 66.1392C41.6698 62.1082 35.3628 53.06 34.1747 51.3556C34.0919 51.2368 34.0341 51.1538 34.0017 51.1106L33.9981 51.1056C33.486 50.4243 29.9372 45.7022 29.9372 40.8149C29.9372 36.2325 32.1873 33.8303 33.2244 32.7232C33.2961 32.6467 33.3619 32.5763 33.4208 32.5118C34.3341 31.5149 35.412 31.2664 36.0751 31.2664C36.7385 31.2664 37.4029 31.2717 37.9826 31.301C38.0541 31.3046 38.1286 31.304 38.2056 31.3037C38.786 31.3001 39.5087 31.2957 40.2221 33.0089C40.4976 33.6707 40.9012 34.653 41.3265 35.6882C42.1818 37.7702 43.1251 40.066 43.2912 40.399C43.5397 40.8974 43.7058 41.4782 43.3736 42.1427C43.323 42.2436 43.2763 42.3387 43.2318 42.4295C42.9831 42.9364 42.7995 43.3104 42.378 43.8029C42.2125 43.9963 42.0413 44.2045 41.8703 44.4131C41.5273 44.8309 41.1842 45.2488 40.8853 45.5467C40.387 46.0425 39.8686 46.5808 40.4493 47.5777C41.0303 48.5731 43.028 51.8323 45.9867 54.472C49.1661 57.3091 51.93 58.5078 53.3318 59.1157C53.6058 59.2346 53.8279 59.3308 53.9907 59.4124C54.9849 59.9109 55.5658 59.8284 56.1465 59.1637C56.7274 58.4993 58.6347 56.2583 59.298 55.2615C59.9612 54.2646 60.6259 54.4307 61.5376 54.7631V54.7631Z"
+                                          fill="#ffffff"/>
                                 </svg>
-                            </a></li>&nbsp;<li class="t-sociallinks__item t-sociallinks__item_whatsapp"><a
-                                href="https://wa.me/79150463446" target="_blank" rel="nofollow"
-                                aria-label="WhatsApp" title="WhatsApp" style="width: 50px; height: 50px;">
-                            <svg class="t-sociallinks__svg" role="presentation" width=50px height=50px
-                                 viewBox="0 0 100 100" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                      d="M50.168 10C60.8239 10.004 70.8257 14.1522 78.346 21.6819C85.8676 29.2114 90.0066 39.2185 90 49.8636C89.9906 71.8252 72.1203 89.6956 50.1668 89.6956H50.1508C43.4852 89.6929 36.9338 88.0208 31.1162 84.8468L10 90.3853L15.6516 69.7437C12.1665 63.7042 10.3323 56.851 10.3349 49.8304C10.343 27.8676 28.2134 10 50.168 10V10ZM61.5376 54.7631C62.4507 55.0954 67.3433 57.5023 68.3389 58.0009C68.5313 58.0971 68.7113 58.1842 68.8784 58.265C69.5753 58.602 70.0458 58.8296 70.2462 59.1651C70.4947 59.5799 70.4947 61.5736 69.6654 63.8982C68.8359 66.2229 64.8605 68.3442 62.9478 68.63C61.2319 68.8865 59.0627 68.9928 56.6782 68.2353C55.2322 67.7767 53.3794 67.1653 51.0041 66.1392C41.6698 62.1082 35.3628 53.06 34.1747 51.3556C34.0919 51.2368 34.0341 51.1538 34.0017 51.1106L33.9981 51.1056C33.486 50.4243 29.9372 45.7022 29.9372 40.8149C29.9372 36.2325 32.1873 33.8303 33.2244 32.7232C33.2961 32.6467 33.3619 32.5763 33.4208 32.5118C34.3341 31.5149 35.412 31.2664 36.0751 31.2664C36.7385 31.2664 37.4029 31.2717 37.9826 31.301C38.0541 31.3046 38.1286 31.304 38.2056 31.3037C38.786 31.3001 39.5087 31.2957 40.2221 33.0089C40.4976 33.6707 40.9012 34.653 41.3265 35.6882C42.1818 37.7702 43.1251 40.066 43.2912 40.399C43.5397 40.8974 43.7058 41.4782 43.3736 42.1427C43.323 42.2436 43.2763 42.3387 43.2318 42.4295C42.9831 42.9364 42.7995 43.3104 42.378 43.8029C42.2125 43.9963 42.0413 44.2045 41.8703 44.4131C41.5273 44.8309 41.1842 45.2488 40.8853 45.5467C40.387 46.0425 39.8686 46.5808 40.4493 47.5777C41.0303 48.5731 43.028 51.8323 45.9867 54.472C49.1661 57.3091 51.93 58.5078 53.3318 59.1157C53.6058 59.2346 53.8279 59.3308 53.9907 59.4124C54.9849 59.9109 55.5658 59.8284 56.1465 59.1637C56.7274 58.4993 58.6347 56.2583 59.298 55.2615C59.9612 54.2646 60.6259 54.4307 61.5376 54.7631V54.7631Z"
-                                      fill="#ffffff"/>
-                            </svg>
-                        </a></li>&nbsp;<li class="t-sociallinks__item t-sociallinks__item_vkmessenger"><a
-                                href="https://vk.com/nyr001007" target="_blank" rel="nofollow"
-                                aria-label="vkmessenger" style="width: 50px; height: 50px;">
-                            <svg class="t-sociallinks__svg" role="presentation" width=50px height=50px
-                                 viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                      d="M45.065 10.238c-.473.116-1.904.392-3.18.614-2.71.472-6.429 1.712-9.206 3.07-2.552 1.248-3.36 1.726-6.868 4.06-.84.559-6.632 6.273-7.725 7.62-.958 1.182-2.813 4.174-3.871 6.246-2.954 5.783-4.232 11.31-4.215 18.22.02 7.85 1.897 14.64 5.814 21.032 1.014 1.655 1.026 1.45-.443 8.143-1.07 4.875-1.138 5.58-.583 6.04.452.375 1.783.19 7.1-.992 4.868-1.082 5.554-1.142 6.409-.554 3.735 2.571 8.328 4.415 13.947 5.6 2.849.6 3.685.671 7.848.662 4.059-.008 5.05-.092 7.679-.647 2.843-.601 7.199-1.911 7.763-2.334.14-.106.641-.344 1.113-.53 1.063-.418 3.862-1.971 5.583-3.098 5.56-3.64 10.54-9.291 13.64-15.474 1.34-2.672 2.984-7.553 3.527-10.472.508-2.725.577-10.7.121-14.009-.673-4.894-3.02-10.92-5.913-15.186-6.624-9.768-15.461-15.573-26.87-17.65-2.745-.5-4.134-.617-7.112-.597-2.035.014-4.086.12-4.558.236ZM33.047 38.074c.438.438.954 1.601 2.333 5.259.57 1.513 3.055 6.168 4.214 7.896 1.397 2.082 2.858 3.443 3.586 3.34.533-.077.535-.091.535-6.331v-6.254l-.97-1.557c-.92-1.478-.95-1.588-.603-2.207l.365-.651h11.004l.31.613c.226.448.31 2.376.313 7.165.004 6.226.028 6.565.479 6.806.687.368 1.432-.006 2.746-1.38 1.2-1.253 3.401-4.302 3.401-4.71 0-.134.151-.394.335-.578.368-.368 2.957-5.4 3.2-6.222.084-.282.435-.778.78-1.103.6-.563.805-.595 4.427-.67 3.232-.067 3.893-.017 4.427.333.57.373.615.52.488 1.595-.16 1.341-.583 2.25-2.712 5.82-.826 1.386-1.614 2.71-1.751 2.944-.474.806-1.71 2.632-1.864 2.754-.466.367-1.689 2.632-1.689 3.127 0 .396.72 1.326 2.29 2.956 2.97 3.083 5.66 6.449 6.454 8.073.689 1.408.66 2.834-.064 3.11-.721.278-8.442.16-9.002-.136-.295-.156-1.032-.846-1.639-1.533-2.419-2.742-6.089-6.183-7.15-6.706-2.606-1.284-3.152-.553-3.152 4.222 0 3.67-.137 3.914-2.349 4.19-3.111.39-7.514-.43-10.244-1.907-2.893-1.565-6.164-4.463-8.38-7.425-.807-1.08-1.53-2.017-1.604-2.085-.241-.219-3.723-6.149-4.299-7.322-1.112-2.265-2.065-4.47-2.065-4.776a.908.908 0 0 0-.226-.545c-.431-.443-1.529-4.753-1.356-5.32.426-1.398.615-1.45 4.94-1.367 3.64.07 4.032.12 4.492.582Z"
-                                      fill="#ffffff"/>
-                            </svg>
-                        </a></li>&nbsp;<li class="t-sociallinks__item t-sociallinks__item_email"><a
-                                href="mailto:youngrep6@gmail.com?subject=Добрый день! Вопрос с сайта:"
-                                target="_blank" rel="nofollow" aria-label="Gmail" title="Gmail"
-                                style="width: 50px; height: 50px;">
-                            <svg class="t-sociallinks__svg" role="presentation" width=50px height=50px
-                                 viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                      d="M84.6275 27.4266L52.5185 49.7063C50.6833 50.9797 48.2451 50.9592 46.4316 49.6552L15.2876 27.2617C16.3799 25.8838 18.0684 25 19.9633 25H79.8257C81.7951 25 83.5416 25.9547 84.6275 27.4266ZM85.789 31.6456V69.0367C85.789 72.3301 83.1191 75 79.8257 75H19.9633C16.6699 75 14 72.3301 14 69.0367V31.4207L44.0214 53.0071C47.2543 55.3316 51.6007 55.3681 54.872 53.0982L85.789 31.6456Z"
-                                      fill="#ffffff"/>
-                            </svg>
-                        </a></li><!-- /new soclinks --> </ul>
-                    </div>
-                    <div class="t460__linerelativewrapper">
-                        <div class="t460__linewrapper">
-                            <hr class="t-divider t460__horizontalline"
-                                style="background-color:#ffffff; opacity:0.1;"
-                                data-divider-fieldset="color3,bordersize,opacity">
+                            </a></li>&nbsp;<li class="t-sociallinks__item t-sociallinks__item_vkmessenger"><a
+                                    href="https://vk.com/nyr001007" target="_blank" rel="nofollow"
+                                    aria-label="vkmessenger" style="width: 50px; height: 50px;">
+                                <svg class="t-sociallinks__svg" role="presentation" width=50px height=50px
+                                     viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M45.065 10.238c-.473.116-1.904.392-3.18.614-2.71.472-6.429 1.712-9.206 3.07-2.552 1.248-3.36 1.726-6.868 4.06-.84.559-6.632 6.273-7.725 7.62-.958 1.182-2.813 4.174-3.871 6.246-2.954 5.783-4.232 11.31-4.215 18.22.02 7.85 1.897 14.64 5.814 21.032 1.014 1.655 1.026 1.45-.443 8.143-1.07 4.875-1.138 5.58-.583 6.04.452.375 1.783.19 7.1-.992 4.868-1.082 5.554-1.142 6.409-.554 3.735 2.571 8.328 4.415 13.947 5.6 2.849.6 3.685.671 7.848.662 4.059-.008 5.05-.092 7.679-.647 2.843-.601 7.199-1.911 7.763-2.334.14-.106.641-.344 1.113-.53 1.063-.418 3.862-1.971 5.583-3.098 5.56-3.64 10.54-9.291 13.64-15.474 1.34-2.672 2.984-7.553 3.527-10.472.508-2.725.577-10.7.121-14.009-.673-4.894-3.02-10.92-5.913-15.186-6.624-9.768-15.461-15.573-26.87-17.65-2.745-.5-4.134-.617-7.112-.597-2.035.014-4.086.12-4.558.236ZM33.047 38.074c.438.438.954 1.601 2.333 5.259.57 1.513 3.055 6.168 4.214 7.896 1.397 2.082 2.858 3.443 3.586 3.34.533-.077.535-.091.535-6.331v-6.254l-.97-1.557c-.92-1.478-.95-1.588-.603-2.207l.365-.651h11.004l.31.613c.226.448.31 2.376.313 7.165.004 6.226.028 6.565.479 6.806.687.368 1.432-.006 2.746-1.38 1.2-1.253 3.401-4.302 3.401-4.71 0-.134.151-.394.335-.578.368-.368 2.957-5.4 3.2-6.222.084-.282.435-.778.78-1.103.6-.563.805-.595 4.427-.67 3.232-.067 3.893-.017 4.427.333.57.373.615.52.488 1.595-.16 1.341-.583 2.25-2.712 5.82-.826 1.386-1.614 2.71-1.751 2.944-.474.806-1.71 2.632-1.864 2.754-.466.367-1.689 2.632-1.689 3.127 0 .396.72 1.326 2.29 2.956 2.97 3.083 5.66 6.449 6.454 8.073.689 1.408.66 2.834-.064 3.11-.721.278-8.442.16-9.002-.136-.295-.156-1.032-.846-1.639-1.533-2.419-2.742-6.089-6.183-7.15-6.706-2.606-1.284-3.152-.553-3.152 4.222 0 3.67-.137 3.914-2.349 4.19-3.111.39-7.514-.43-10.244-1.907-2.893-1.565-6.164-4.463-8.38-7.425-.807-1.08-1.53-2.017-1.604-2.085-.241-.219-3.723-6.149-4.299-7.322-1.112-2.265-2.065-4.47-2.065-4.776a.908.908 0 0 0-.226-.545c-.431-.443-1.529-4.753-1.356-5.32.426-1.398.615-1.45 4.94-1.367 3.64.07 4.032.12 4.492.582Z"
+                                          fill="#ffffff"/>
+                                </svg>
+                            </a></li>&nbsp;<li class="t-sociallinks__item t-sociallinks__item_email"><a
+                                    href="mailto:youngrep6@gmail.com?subject=Добрый день! Вопрос с сайта:"
+                                    target="_blank" rel="nofollow" aria-label="Gmail" title="Gmail"
+                                    style="width: 50px; height: 50px;">
+                                <svg class="t-sociallinks__svg" role="presentation" width=50px height=50px
+                                     viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M84.6275 27.4266L52.5185 49.7063C50.6833 50.9797 48.2451 50.9592 46.4316 49.6552L15.2876 27.2617C16.3799 25.8838 18.0684 25 19.9633 25H79.8257C81.7951 25 83.5416 25.9547 84.6275 27.4266ZM85.789 31.6456V69.0367C85.789 72.3301 83.1191 75 79.8257 75H19.9633C16.6699 75 14 72.3301 14 69.0367V31.4207L44.0214 53.0071C47.2543 55.3316 51.6007 55.3681 54.872 53.0982L85.789 31.6456Z"
+                                          fill="#ffffff"/>
+                                </svg>
+                            </a></li><!-- /new soclinks --> </ul>
                         </div>
-                    </div>
-                    <div class="t460__bottomtext t-descr t-descr_xxs" field="text" style="text-align:center;">© Все
-                        права защищены
+                        <div class="t460__linerelativewrapper">
+                            <div class="t460__linewrapper">
+                                <hr class="t-divider t460__horizontalline"
+                                    style="background-color:#ffffff; opacity:0.1;"
+                                    data-divider-fieldset="color3,bordersize,opacity">
+                            </div>
+                        </div>
+                        <div class="t460__bottomtext t-descr t-descr_xxs" field="text" style="text-align:center;">© Все
+                            права защищены
+                        </div>
                     </div>
                 </div>
             </div>
+            <style>#rec832481928 .t460__bottomtext {
+                color: #ffffff;
+            }</style>
         </div>
-        <style>#rec832481928 .t460__bottomtext {
-            color: #ffffff;
-        }</style>
-    </div>
-</footer> <!--/footer--> </div> <!--/allrecords-->  <!-- Stat -->
+    </footer> <!--/footer--> </div> <!--/allrecords-->  <!-- Stat -->
 <script type="text/javascript">if (!window.mainTracker) {
     window.mainTracker = 'tilda';
 }

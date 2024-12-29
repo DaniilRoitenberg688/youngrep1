@@ -1,20 +1,16 @@
-from flask import Flask, render_template, request
-from werkzeug.utils import redirect
+from app.main import bp
+from app import app, data_base, end_age
+from flask import redirect, render_template, request, url_for
+from app.write_log import write_log
+from app.models import Subject, Teacher, Achievement, Hobby
 
-from execel_connector import ExcelConnector
-
-from write_log import write_log
-
-app = Flask(__name__)
-
-data_base = ExcelConnector()
-
-all_subjects = ["Математика", "Программирование", "Физика", "Химия", "Биология", "другие..."]
-end_age = 11
-all_achievements = ["победитель_ВСОШ", "призер_ВСОШ", "победитель_перечневой олимпиады_1_уровня",
-                    "призер перечневой_олимпиады_1_уровня", "другие..."]
-hobbies = ['Спорт', 'Творчество', 'Литература', 'Научные_исследования', 'Компьютерные_игры', 'Настольные_игры', 'другие...']
-
+with (((app.app_context()))):
+    all_achievements = [i.name for i in Achievement.query.all()]
+    all_achievements.append('другие...')
+    all_subjects = [i.name for i in Subject.query.all()]
+    all_subjects.append('другие...')
+    all_hobbies = [i.name for i in Hobby.query.all()]
+    all_hobbies.append('другие...')
 
 def parameters_to_dict(line):
     params = line.split('&')
@@ -26,14 +22,14 @@ def parameters_to_dict(line):
     return result
 
 
-@app.route('/teachers')
+@bp.route('/teachers')
 def teachers():
     teachers = sorted(data_base.all_teachers(), key=lambda x: -int(x[8]))
-    return render_template('teachers.html', teachers=teachers, all_subjects=all_subjects, max_age=end_age,
-                           all_achievements=all_achievements, hobbies=hobbies)
+    return render_template('main/teachers.html', teachers=teachers, all_subjects=all_subjects, max_age=end_age,
+                           all_achievements=all_achievements, hobbies=all_hobbies)
 
 
-@app.route('/search/<search_parameters>')
+@bp.route('/search/<search_parameters>')
 def search(search_parameters):
     try:
         parameters = parameters_to_dict(search_parameters)
@@ -42,8 +38,8 @@ def search(search_parameters):
         if not parameters.get('subject', '') and not int(parameters.get('age', 0)) and not parameters.get('achieve',
                                                                                                           '') and not parameters.get(
             'param', '') and not parameters.get('tariff', '') and not parameters.get('hobby', ''):
-            return render_template('teachers.html', teachers=teachers, all_subjects=all_subjects, max_age=end_age,
-                               all_achievements=all_achievements, hobbies=hobbies, search=1)
+            return render_template('main/teachers.html', teachers=teachers, all_subjects=all_subjects, max_age=end_age,
+                                   all_achievements=all_achievements, hobbies=all_hobbies, search=1)
 
         if parameters.get('subject', ''):
             if parameters.get('subject') == 'другие...':
@@ -65,7 +61,7 @@ def search(search_parameters):
 
         if parameters.get('hobby', ''):
             if parameters.get('hobby') == 'другие...':
-                all_teachers = data_base.search_by_other_hobbies(teachers=all_teachers, hobbies=hobbies)
+                all_teachers = data_base.search_by_other_hobbies(teachers=all_teachers, hobbies=all_hobbies)
             else:
                 all_teachers = data_base.search_by_hobbies(parameters['hobby'].split(','), all_teachers)
 
@@ -98,14 +94,14 @@ def search(search_parameters):
                 first = a[0]
                 all_teachers = data_base.search_by_name(first, all_teachers)
 
-        return render_template('teachers.html', teachers=all_teachers, all_subjects=all_subjects, max_age=end_age,
-                               all_achievements=all_achievements, hobbies=hobbies, search=True)
+        return render_template('main/teachers.html', teachers=all_teachers, all_subjects=all_subjects, max_age=end_age,
+                               all_achievements=all_achievements, hobbies=all_hobbies, search=True)
 
     except Exception as e:
         write_log(e)
 
 
-@app.route('/search_form', methods=['post', 'get'])
+@bp.route('/search_form', methods=['post', 'get'])
 def search_form():
     data = request.form
     subject = data.get('subject', '')
@@ -120,55 +116,44 @@ def search_form():
         if 'achieve' in i:
             achievements.append(data[i])
 
-    return redirect(
-        f'/search/subject={subject}&achieve={",".join(achievements)}&age={age}&param={data.get("param")}&tariff={data.get("tariff", 0)}&hobby={",".join(hobbies_)}')
+    return redirect(url_for('search', search_parameters=f'subject={subject}&achieve={",".join(achievements)}&age={age}&param={data.get("param")}&tariff={data.get("tariff", 0)}&hobby={",".join(hobbies_)}'))
 
 
-@app.route('/')
+@bp.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('main/index.html')
 
 
-@app.route('/teacher_profile/<int:id>')
+@bp.route('/teacher_profile/<int:id>')
 def teacher_profile(id):
     teacher = data_base.teacher_by_id(id)
     print(teacher[10])
     replies = teacher[10].split('; ')
     print(replies)
-    return render_template('teachers_profile.html', teacher=teacher, replies=replies)
+    return render_template('main/teachers_profile.html', teacher=teacher, replies=replies)
 
 
-@app.errorhandler(404)
-def error(e):
-    write_log(e)
-    return render_template('error.html')
 
-
-@app.route('/about')
+@bp.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('main/about.html')
 
 
-@app.route('/checking_system')
+@bp.route('/checking_system')
 def checking_system():
-    return render_template('checking_system.html')
+    return render_template('main/checking_system.html')
 
 
-@app.route('/subjects')
+@bp.route('/subjects')
 def subjects():
-    return render_template('subjects.html')
+    return render_template('main/subjects.html')
 
 
-@app.route('/invite')
+@bp.route('/invite')
 def invite():
-    return render_template('invite.html')
+    return render_template('main/invite.html')
 
-@app.route('/update_photos')
+@bp.route('/update_photos')
 def update_photos():
     data_base.load_images()
     return redirect('/')
-
-if __name__ == '__main__':
-    app.run('0.0.0.0', debug=True)
-    from app import app
-    app.run(host='0.0.0.0', port=8000, debug=True)

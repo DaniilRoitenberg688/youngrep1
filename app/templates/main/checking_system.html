@@ -133,41 +133,7 @@
                  data-menu="yes">
                 <div class="t228__maincontainer " style="">
                     <div class="t228__padding40px"></div>
-                    <div class="t228__leftside">
-                        <div class="t228__leftcontainer"><a href="{{ url_for('index') }}" class="t228__imgwrapper">
-                            <div class="t228__logo t-title" field="title">YoungRep</div>
-                        </a></div>
-                    </div>
-                    <div class="t228__centerside ">
-                        <nav class="t228__centercontainer">
-                            <ul role="list" class="t228__list t-menu__list t228__list_hidden">
-                                <li class="t228__list_item"
-                                    style="padding:0 15px 0 0;"><a class="t-menu__link-item"
-                                                                   href="{{ url_for('about') }}"
-                                                                   data-menu-submenu-hook="" data-menu-item-number="1">
-                                    О нас
-                                </a></li>
-                                <li class="t228__list_item"
-                                    style="padding:0 15px;"><a class="t-menu__link-item"
-                                                               href="{{ url_for('teachers') }}"
-                                                               data-menu-submenu-hook="" data-menu-item-number="2">
-                                    Каталог менторов
-                                </a></li>
-                                <li class="t228__list_item"
-                                    style="padding:0 15px;"><a class="t-menu__link-item"
-                                                               href="{{ url_for('checking_system') }}"
-                                                               data-menu-submenu-hook="" data-menu-item-number="3">
-                                    Checking Система
-                                </a></li>
-                                <li class="t228__list_item"
-                                    style="padding:0 0 0 15px;"><a class="t-menu__link-item"
-                                                                   href="{{ url_for('invite') }}"
-                                                                   data-menu-submenu-hook="" data-menu-item-number="4">
-                                    Преподавать у нас
-                                </a></li>
-                            </ul>
-                        </nav>
-                    </div>
+                    {% include 'base_nav.html' %}
                     <div class="t228__rightside">
                         <div class="t228__rightcontainer">
                             <div class="t228__right_buttons">
@@ -662,7 +628,7 @@
                             <div class="t959__card-image t-bgimg t959__card-image_zoom t959__animation_fast"
                                  bgimgfield="li_img__1520419895308"
                                  data-original="static/images/tild6236-3432-4335-b933-646333373030__gayatri-malhotra-4wf.jpeg"
-                                 style="background: url('static/images/tild6236-3432-4335-b933-646333373030__-__resizeb__20x__gayatri-malhotra-4wf.jpeg') no-repeat center; background-size: cover;"></div>
+                                 style="background: url('../../static/images/tild6236-3432-4335-b933-646333373030__-__resizeb__20x__gayatri-malhotra-4wf.jpeg') no-repeat center; background-size: cover;"></div>
                             <div class="t959__card-overlay t959__animation_fast"
                                  style="background: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)); background: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)); background: -o-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)); background: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5));"></div>
                             <div class="t959__card-content t959__animation_fast">
@@ -700,7 +666,7 @@
                             <div class="t959__card-image t-bgimg t959__card-image_zoom t959__animation_fast"
                                  bgimgfield="li_img__1521103691910"
                                  data-original="static/images/tild6230-6431-4861-b332-653862336262__florian-olivo-4hbj-e.jpeg"
-                                 style="background: url('static/images/tild6230-6431-4861-b332-653862336262__-__resizeb__20x__florian-olivo-4hbj-e.jpeg') no-repeat center; background-size: cover;"></div>
+                                 style="background: url('../../static/images/tild6230-6431-4861-b332-653862336262__-__resizeb__20x__florian-olivo-4hbj-e.jpeg') no-repeat center; background-size: cover;"></div>
                             <div class="t959__card-overlay t959__animation_fast"
                                  style="background: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)); background: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)); background: -o-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)); background: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5));"></div>
                             <div class="t959__card-content t959__animation_fast">
@@ -738,7 +704,7 @@
                             <div class="t959__card-image t-bgimg t959__card-image_zoom t959__animation_fast"
                                  bgimgfield="li_img__1520419870620"
                                  data-original="static/images/tild3535-3761-4562-b936-376239313061__sunder-muthukumaran-.jpeg"
-                                 style="background: url('static/images/tild3535-3761-4562-b936-376239313061__-__resizeb__20x__sunder-muthukumaran-.jpeg') no-repeat center; background-size: cover;"></div>
+                                 style="background: url('../../static/images/tild3535-3761-4562-b936-376239313061__-__resizeb__20x__sunder-muthukumaran-.jpeg') no-repeat center; background-size: cover;"></div>
                             <div class="t959__card-overlay t959__animation_fast"
                                  style="background: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)); background: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)); background: -o-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)); background: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5));"></div>
                             <div class="t959__card-content t959__animation_fast">
@@ -849,7 +815,7 @@
                                 bgimgfield="li_img__2836581094110"
                                 itemscope
                                 itemtype="http://schema.org/ImageObject"
-                                style=" background-image: url('static/images/lib__emoji__fluent__spiral_calendar_3d.png');">
+                                style=" background-image: url('../../static/images/lib__emoji__fluent__spiral_calendar_3d.png');">
                             <meta itemprop="image" content="static/images/lib__emoji__fluent__spiral_calendar_3d.png">
                         </div>
                         <div class="t1007__title t-name t-name_xl" field="li_title__2836581094110">Расписание</div>
@@ -871,7 +837,7 @@
                                 bgimgfield="li_img__2836581094111"
                                 itemscope
                                 itemtype="http://schema.org/ImageObject"
-                                style=" background-image: url('static/images/lib__emoji__fluent__open_mailbox_with_raised_flag_3d.png');">
+                                style=" background-image: url('../../static/images/lib__emoji__fluent__open_mailbox_with_raised_flag_3d.png');">
                             <meta itemprop="image"
                                   content="static/images/lib__emoji__fluent__open_mailbox_with_raised_flag_3d.png">
                         </div>
@@ -893,7 +859,7 @@
                                 bgimgfield="li_img__2836581094112"
                                 itemscope
                                 itemtype="http://schema.org/ImageObject"
-                                style=" background-image: url('static/images/lib__emoji__fluent__money-mouth_face_3d.png');">
+                                style=" background-image: url('../../static/images/lib__emoji__fluent__money-mouth_face_3d.png');">
                             <meta itemprop="image" content="static/images/lib__emoji__fluent__money-mouth_face_3d.png">
                         </div>
                         <div class="t1007__title t-name t-name_xl" field="li_title__2836581094112">Цена</div>
@@ -1116,7 +1082,7 @@
                              data-animate-chain="yes"
                              bgimgfield="img3"
                              data-original="static/images/tild6234-3533-4435-b637-363164396539___21102024_0921.jpeg"
-                             style="background: url('static/images/tild6234-3533-4435-b637-363164396539__-__resizeb__20x___21102024_0921.jpeg') center center no-repeat; background-size:cover;"></div>
+                             style="background: url('../../static/images/tild6234-3533-4435-b637-363164396539__-__resizeb__20x___21102024_0921.jpeg') center center no-repeat; background-size:cover;"></div>
                     </div>
                 </div>
             </div>

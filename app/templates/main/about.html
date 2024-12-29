@@ -129,41 +129,7 @@
                  data-menu="yes">
                 <div class="t228__maincontainer " style="">
                     <div class="t228__padding40px"></div>
-                    <div class="t228__leftside">
-                        <div class="t228__leftcontainer"><a href="{{ url_for('index') }}" class="t228__imgwrapper">
-                            <div class="t228__logo t-title" field="title">YoungRep</div>
-                        </a></div>
-                    </div>
-                    <div class="t228__centerside ">
-                        <nav class="t228__centercontainer">
-                            <ul role="list" class="t228__list t-menu__list t228__list_hidden">
-                                <li class="t228__list_item"
-                                    style="padding:0 15px 0 0;"><a class="t-menu__link-item"
-                                                                   href="{{ url_for('about') }}"
-                                                                   data-menu-submenu-hook="" data-menu-item-number="1">
-                                    О нас
-                                </a></li>
-                                <li class="t228__list_item"
-                                    style="padding:0 15px;"><a class="t-menu__link-item"
-                                                               href="{{ url_for('teachers') }}"
-                                                               data-menu-submenu-hook="" data-menu-item-number="2">
-                                    Каталог менторов
-                                </a></li>
-                                <li class="t228__list_item"
-                                    style="padding:0 15px;"><a class="t-menu__link-item"
-                                                               href="{{ url_for('checking_system') }}"
-                                                               data-menu-submenu-hook="" data-menu-item-number="3">
-                                    Checking Система
-                                </a></li>
-                                <li class="t228__list_item"
-                                    style="padding:0 0 0 15px;"><a class="t-menu__link-item"
-                                                                   href="{{ url_for('invite') }}"
-                                                                   data-menu-submenu-hook="" data-menu-item-number="4">
-                                    Преподавать у нас
-                                </a></li>
-                            </ul>
-                        </nav>
-                    </div>
+                    {% include 'base_nav.html' %}
                     <div class="t228__rightside">
                         <div class="t228__rightcontainer">
                             <div class="t228__right_buttons">
@@ -602,7 +568,7 @@
                     <div class="t480__blockimg t-bgimg"
                          data-original="static/images/yarik.jpg"
                          bgimgfield="img"
-                         style="background-image:url('static/images/tild6233-3133-4966-b964-636431356635__-__resizeb__20x__big_boss.jpg'); height:560px;"></div>
+                         style="background-image:url('../../static/images/tild6233-3133-4966-b964-636431356635__-__resizeb__20x__big_boss.jpg'); height:560px;"></div>
                 </div>
                 <div class="t480__col t-col t-col_6 ">
                     <div class="t480__textwrapper t-align_center" style="height:560px;">
@@ -769,21 +735,21 @@
                              data-animate-chain="yes"
                              data-original="static/images/tild3662-3632-4630-a532-623533343730___21082024_1903.jpeg"
                              bgimgfield="img"
-                             style="background: url('static/images/tild3662-3632-4630-a532-623533343730__-__resizeb__20x___21082024_1903.jpeg') center center no-repeat; background-size:cover;"></div>
+                             style="background: url('../../static/images/tild3662-3632-4630-a532-623533343730__-__resizeb__20x___21082024_1903.jpeg') center center no-repeat; background-size:cover;"></div>
                     </div>
                     <div class="t-col t-col_4">
                         <div class="t472__blockimg t-bgimg t-animate" data-animate-style="fadeinup"
                              data-animate-chain="yes"
                              data-original="static/images/tild3836-6439-4533-a438-336634636637___02112024_1146.jpeg"
                              bgimgfield="img2"
-                             style="background: url('static/images/tild3836-6439-4533-a438-336634636637__-__resizeb__20x___02112024_1146.jpeg') center center no-repeat; background-size:cover;"></div>
+                             style="background: url('../../static/images/tild3836-6439-4533-a438-336634636637__-__resizeb__20x___02112024_1146.jpeg') center center no-repeat; background-size:cover;"></div>
                     </div>
                     <div class="t-col t-col_4">
                         <div class="t472__blockimg t-bgimg t-animate" data-animate-style="fadeinup"
                              data-animate-chain="yes"
                              bgimgfield="img3"
                              data-original="static/images/tild6234-3533-4435-b637-363164396539___21102024_0921.jpeg"
-                             style="background: url('static/images/tild6234-3533-4435-b637-363164396539__-__resizeb__20x___21102024_0921.jpeg') center center no-repeat; background-size:cover;"></div>
+                             style="background: url('../../static/images/tild6234-3533-4435-b637-363164396539__-__resizeb__20x___21102024_0921.jpeg') center center no-repeat; background-size:cover;"></div>
                     </div>
                 </div>
             </div>
@@ -976,7 +942,7 @@
                              data-animate-chain="yes"
                              data-original="static/images/tild3662-3632-4630-a532-623533343730___21082024_1903.jpeg"
                              bgimgfield="img"
-                             style="background: url('static/images/tild3662-3632-4630-a532-623533343730__-__resizeb__20x___21082024_1903.jpeg') center center no-repeat; background-size:cover;"></div>
+                             style="background: url('../../static/images/tild3662-3632-4630-a532-623533343730__-__resizeb__20x___21082024_1903.jpeg') center center no-repeat; background-size:cover;"></div>
                     </div>
                 </div>
             </div>
@@ -1102,7 +1068,7 @@
                              data-animate-chain="yes"
                              data-original="static/images/tild3836-6439-4533-a438-336634636637___02112024_1146.jpeg"
                              bgimgfield="img2"
-                             style="background: url('static/images/tild3836-6439-4533-a438-336634636637__-__resizeb__20x___02112024_1146.jpeg') center center no-repeat; background-size:cover;"></div>
+                             style="background: url('../../static/images/tild3836-6439-4533-a438-336634636637__-__resizeb__20x___02112024_1146.jpeg') center center no-repeat; background-size:cover;"></div>
                     </div>
                 </div>
             </div>
@@ -1228,7 +1194,7 @@
                              data-animate-chain="yes"
                              bgimgfield="img3"
                              data-original="static/images/tild6234-3533-4435-b637-363164396539___21102024_0921.jpeg"
-                             style="background: url('static/images/tild6234-3533-4435-b637-363164396539__-__resizeb__20x___21102024_0921.jpeg') center center no-repeat; background-size:cover;"></div>
+                             style="background: url('../../static/images/tild6234-3533-4435-b637-363164396539__-__resizeb__20x___21102024_0921.jpeg') center center no-repeat; background-size:cover;"></div>
                     </div>
                 </div>
             </div>
