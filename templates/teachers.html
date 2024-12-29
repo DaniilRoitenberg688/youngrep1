@@ -133,15 +133,15 @@
 
             <div class="col-lg-3 col-md-4 col-sm-10 col-12 m-lg-3">
                 <div class="card mb-3" onclick="location.href='/teacher_profile/{{teacher[0]}}'">
-                    <img class="card-img-top img-fluid" style=""
-                         src="/static/teachers_images/{{teacher[0]}}.png">
+                    <img class="card-img-top img-fluid" style="width: auto; height: 300px"
+                         src="/static/teachers_images/{{teacher[0]}}.png" >
                     <div class="card-body">
                         <p class="card-title mb-3 fs-3">{{teacher[1].capitalize()}} {{teacher[2]}}</p>
                         <p class="card-text mb-2 fs-4"><b>{{teacher[3]}}</b></p>
-                        {%  if teacher[7]|length < 90 %}
-                            <p class="card-text mb-3">{{teacher[7].capitalize()}}</p>
+                        {%  if teacher[7]|length < 40 %}
+                            <p class="card-text mb-3">{{teacher[7].capitalize().lstrip()}}</p>
                         {% else %}
-                            <p>{{teacher[7][:90].capitalize()}}...</p>
+                            <p>{{teacher[7][:40].capitalize()}}...</p>
                         {% endif %}
                         <p class="card-text mb-3 fs-4">{{teacher[6]}}</p>
                         <div>
