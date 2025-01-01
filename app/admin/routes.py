@@ -1,12 +1,12 @@
 from urllib.parse import urlsplit
 import os
 
-from app import app
+from app import app, db
 from app.admin import bp
 from flask import render_template, redirect, url_for, flash, request
 from app.admin.forms import LoginForm, AddTeacherForm
 from flask_login import current_user, login_user, login_required, logout_user
-from app.models import User, Teacher
+from app.models import User, Teacher, Subject, Achievement, Hobby
 
 
 @bp.route('/')
@@ -47,15 +47,38 @@ def new_teacher():
             surname=form.surname.data,
             students_class=form.student_class.data,
             school=form.school.data,
-            about_text=form.about_text.data
+            about_text=form.about_text.data,
+            tariff=form.tariff.data,
+            feedback=form.feedback.data,
+            achievements_text=form.achievements_text.data,
+            hobbies_text=form.hobbies_text.data
         )
+
+
+        subjects = request.form.getlist('subjects')
+        achievements = request.form.getlist('achievements')
+        hobbies = request.form.getlist('hobbies')
+        for subject in subjects:
+            subject: Subject = Subject.query.filter_by(name=subject).first()
+            teacher.subjects.append(subject)
+
+        for achievement in achievements:
+            achievement: Achievement = Achievement.query.filter_by(name=achievement).first()
+            teacher.achievements.append(achievement)
+
+        for hobby in hobbies:
+            hobby: Hobby = Hobby.query.filter_by(name=hobby).first()
+            teacher.hobbies.append(hobby)
+
+        db.session.add(teacher)
+
+        db.session.commit()
 
         image = form.image.data
         if image is not None:
             image.save(os.path.join(app.config['UPLOAD_PATH'], str(teacher.id) + '.png'))
             teacher.image = str(teacher.id) + '.png'
-
-
+            db.session.commit()
 
 
         return redirect(url_for('admin.index'))

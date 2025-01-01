@@ -5,6 +5,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import login
 
+
 @login.user_loader
 def load_user(id):
     return db.session.get(User, id)
@@ -27,7 +28,8 @@ class Teacher(db.Model):
     name = db.Column(db.String(), nullable=True)
     surname = db.Column(db.String(), nullable=True)
     students_class = db.Column(db.Integer, nullable=True, index=True)
-    school = db.Column(db.Integer, nullable=True)
+    tariff = db.Column(db.Integer, nullable=True, index=True)
+    school = db.Column(db.String(), nullable=True)
     feedback = db.Column(db.Integer, nullable=True)
     about_text = db.Column(db.Text, nullable=True)
     image = db.Column(db.String(), nullable=True)
@@ -41,6 +43,17 @@ class Teacher(db.Model):
     achievements = db.relationship('Achievement', secondary=teacher_achievement, backref=db.backref('teachers'))
 
     hobbies = db.relationship('Hobby', secondary=teacher_hobby, backref=db.backref('teachers'))
+
+    def __init__(self, name, surname, students_class, tariff, school, feedback, about_text, achievements_text, hobbies_text):
+        self.name = name
+        self.surname = surname
+        self.students_class = students_class
+        self.tariff = tariff
+        self.school = school
+        self.feedback = feedback
+        self.about_text = about_text
+        self.achievements_text = achievements_text
+        self.hobbies_text = hobbies_text
 
 
 class Subject(db.Model):

@@ -18,30 +18,88 @@
                             {{ form.surname(class="form-control") }}
                         </div>
 
-                        <div class="mb-2">
-                            {{ form.image_link.label }}
-                            {{ form.image_link(class='form-control', placeholder='not necessary') }}
+                        <div class="mb-5">
+                            {{ form.tariff.label(class="") }}
+                            {{ form.tariff(class="form-control") }}
+                            {% for error in form.tariff.errors %}
+                                <p class="alert alert-danger mt-2">{{ error }}</p>
+                            {% endfor %}
                         </div>
+
+                        <div class="mb-5">
+                            {{ form.student_class.label(class="") }}
+                            {{ form.student_class(class="form-control") }}
+                            {% for error in form.student_class.errors %}
+                                <p class="alert alert-danger mt-2">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+
+                        <div class="mb-5">
+                            {{ form.school.label(class="") }}
+                            {{ form.school(class="form-control") }}
+                        </div>
+
+{#                        <div class="mb-2">#}
+{#                            {{ form.image_link.label }}#}
+{#                            {{ form.image_link(class='form-control', placeholder='not necessary') }}#}
+{#                        </div>#}
 
                         <div class="mb-5">
                             {{ form.image.label }}
                             {{ form.image(class="form-control", type='file', accept='image/*') }}
                         </div>
+
                         <div class="mb-5">
                             <span>Subject</span>
                             {% for i in form.all_subjects %}
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="subject" id="radio"
-                                           value="{{ i }}">
+                                    <input class="form-check-input" type="checkbox" name="subjects" id="radio"
+                                           value="{{ i.name }}">
                                     <label class="form-check-label" for="radio">{{ i.name }}</label>
                                 </div>
                             {% endfor %}
                         </div>
 
-                        <div class="mb-5">
-                            {{ form.school.label }}
-                            {{ form.school(class='form-control') }}
+                        <div class="mb-3">
+                            <span>Achievements</span>
+                            {% for i in form.all_achievements %}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="achievements" id="radio"
+                                           value="{{ i.name }}">
+                                    <label class="form-check-label"
+                                           for="radio">{{ ' '.join(i.name.split('_')) }}</label>
+                                </div>
+                            {% endfor %}
                         </div>
+
+                        <div class="mb-5">
+                            {{ form.achievements_text.label }}
+                            {{ form.achievements_text(class='form-control', rows=5, placeholder='Achievements...') }}
+                        </div>
+
+                        <div class="mb-3">
+                            <span>Hobbies</span>
+                            {% for i in form.all_hobbies %}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="hobbies" id="radio"
+                                           value="{{ i.name }}">
+                                    <label class="form-check-label"
+                                           for="radio">{{ ' '.join(i.name.split('_')) }}</label>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="mb-5">
+                            {{ form.hobbies_text.label }}
+                            {{ form.hobbies_text(class='form-control', rows=5, placeholder='Hobbies...') }}
+                        </div>
+
+                        <div class="mb-5">
+                            {{ form.feedback.label }}
+                            {{ form.feedback(class='form-range', min=1, max=5, step=1) }}
+
+                        </div>
+
 
                         <div class="mb-5">
                             {{ form.about_text.label }}

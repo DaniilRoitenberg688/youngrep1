@@ -17,6 +17,13 @@ login.login_view = 'admin.login'
 data_base = ExcelConnector()
 end_age = 18
 
+from app import models
+
+with app.app_context():
+    subjects = models.Subject.query.all()
+    achievements = models.Achievement.query.all()
+    hobbies = models.Hobby.query.all()
+
 from app.errors import bp as errors_bp
 app.register_blueprint(errors_bp)
 
@@ -28,10 +35,5 @@ from app.admin import bp as admin_bp
 app.register_blueprint(admin_bp, url_prefix='/admin')
 
 
-from app import models
 
-with app.app_context():
-    subjects = models.Subject.query.all()
-    achievements = models.Achievement.query.all()
-    hobbies = models.Hobby.query.all()
 
