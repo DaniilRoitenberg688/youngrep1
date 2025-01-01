@@ -14,7 +14,7 @@ login = LoginManager(app)
 login.login_view = 'admin.login'
 
 
-data_base = ExcelConnector()
+data_base = None
 end_age = 18
 
 from app import models

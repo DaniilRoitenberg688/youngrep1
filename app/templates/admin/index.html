@@ -1,6 +1,163 @@
 {% extends 'admin/base.html' %}
 {% block content %}
-    Hello
+
+
+    <div class="position-relative mt-5 col-lg-12 col-sm-5 col-12 " id="start" style="padding: 0">
+        <form class="d-flex flex-column flex-lg-row me-3 ms-2 mb-5" method="post" action="{{ url_for('admin.search_form') }}">
+            <nav class="nav d-flex flex-row col-sm-1 col-lg-7 col-12 ">
+                {#subject#}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Целевой предмет
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                        {% for subject in all_subjects %}
+                            <li class="dropdown-item">
+                                <input class="form-check-input" type="checkbox" name="subject"
+                                       id="flexRadioDefault" value="{{ subject.name }}">
+                                <label class="form-check-label" for="flexRadioDefault">
+                                    {{ subject.name }}
+                                </label>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </li>
+                {# age #}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Возраст
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        {% for i in range(8, 12) %}
+                            <li class="dropdown-item">
+                                <input class="form-check-input" type="radio" name="age"
+                                       id="flexRadioDefault6" value="{{ i }}">
+                                <label class="form-check-label" for="flexRadioDefault6">
+                                    {{ i }}
+                                </label>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </li>
+                {# achievements #}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink2" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Достижения
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        {% for achievement in all_achievements %}
+                            <li class="dropdown-item">
+                                <input class="form-check-input" type="checkbox" name="achievements"
+                                       id="flexRadioDefault11" value="{{ achievement.name }}">
+                                <label class="form-check-label" for="flexRadioDefault11">
+                                    {{ ' '.join(achievement.name.split('_')) }}
+                                </label>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </li>
+                {# tariff #}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink3" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Тариф
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
+                        {% for i in range(1200, 2401, 300) %}
+                            <li class="dropdown-item">
+                                <input class="form-check-input" type="radio" name="tariff"
+                                       id="flexRadioDefault12" value="{{ i }}">
+                                <label class="form-check-label" for="flexRadioDefault11">
+                                    {{ i }} руб/нед
+                                </label>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </li>
+                {# hobbies #}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink4" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Хобби
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink4">
+                        {% for hobby in all_hobbies %}
+                            <li class="dropdown-item">
+                                <input class="form-check-input" type="checkbox" name="hobbies"
+                                       id="flexRadioDefault13" value="{{ hobby.name }}">
+                                <label class="form-check-label" for="flexRadioDefault11">
+                                    {{ ' '.join(hobby.name.split('_')) }}
+                                </label>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </li>
+            </nav>
+            <br>
+            <div class="col-lg-3 col-md-12 col-sm-1 col-12 d-inline-flex">
+                <input class="form-control me-3 " type="search" placeholder="Фамилия" aria-label="Search"
+                       name="param">
+                <button class="btn btn-outline-success me-3" type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                    </svg>
+                </button>
+                <a class="btn btn-outline-danger"
+                   href="{{ url_for('admin.index') }}">Сбросить</a>
+            </div>
+        </form>
+        <div class="me-3">
+            <div class="row me-3 ms-2">
+                {% for teacher in teachers %}
+
+                    <div class="col-lg-3 col-md-4 col-sm-10 col-12 m-lg-3">
+                        <div class="card mb-3">
+                            <img class="card-img-top img-fluid" style=""
+                                 src="/static/teachers_images/{{ teacher.image }}">
+                            <div class="card-body">
+                                <p class="card-title mb-3 fs-3">{{ teacher.surname }} {{ teacher.name }}</p>
+                                <p class="card-text mb-2 fs-4"><b>{{ teacher.subjects[0].name }}</b></p>
+                                {% if teacher.achievements_text|length < 90 %}
+                                    <p class="card-text mb-3">{{ teacher.achievements_text.capitalize() }}</p>
+                                {% else %}
+                                    <p>{{ teacher.achievements_text[:90].capitalize() }}...</p>
+                                {% endif %}
+                                <p class="card-text mb-3 fs-4">{{ teacher.tariff }}</p>
+                                <div>
+                                    {% for i in range(teacher.feedback) %}
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                             fill="currentColor"
+                                             class="bi bi-star-fill fs-2" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+                                    {% endfor %}
+                                </div>
+                                <div class="mt-5">
+                                    <a class="btn btn-warning" href="#">Edit</a>
+                                    <a class="btn btn-danger"
+                                       href="{{ url_for('admin.delete_teacher', id=teacher.id) }}">Delete</a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
     <div class="position-fixed bottom-0 end-0 mx-5 my-4">
         <a class="btn btn-secondary fs-3 px-3" href="{{ url_for('admin.new_teacher') }}">+</a>
     </div>

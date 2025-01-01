@@ -11,16 +11,16 @@ def load_user(id):
     return db.session.get(User, id)
 
 teacher_subject = db.Table('teacher_subject',
-                           db.Column('teacher_id', db.Integer, db.ForeignKey('teacher.id', ondelete='CASCADE'), primary_key=True),
-                           db.Column('subject_id', db.Integer, db.ForeignKey('subject.id', ondelete='CASCADE'), primary_key=True))
+                           db.Column('teacher_id', db.Integer, db.ForeignKey('teacher.id', ondelete='CASCADE')),
+                           db.Column('subject_id', db.Integer, db.ForeignKey('subject.id', ondelete='CASCADE')))
 
 teacher_achievement = db.Table('teacher_achievement',
-                           db.Column('teacher_id', db.Integer, db.ForeignKey('teacher.id', ondelete='CASCADE'), primary_key=True),
-                           db.Column('achievement_id', db.Integer, db.ForeignKey('achievement.id', ondelete='CASCADE'), primary_key=True))
+                           db.Column('teacher_id', db.Integer, db.ForeignKey('teacher.id', ondelete='CASCADE')),
+                           db.Column('achievement_id', db.Integer, db.ForeignKey('achievement.id', ondelete='CASCADE')))
 
 teacher_hobby = db.Table('teacher_hobby',
-                           db.Column('teacher_id', db.Integer, db.ForeignKey('teacher.id', ondelete='CASCADE'), primary_key=True),
-                           db.Column('hobby_id', db.Integer, db.ForeignKey('hobby.id', ondelete='CASCADE'), primary_key=True))
+                           db.Column('teacher_id', db.Integer, db.ForeignKey('teacher.id', ondelete='CASCADE')),
+                           db.Column('hobby_id', db.Integer, db.ForeignKey('hobby.id', ondelete='CASCADE')))
 
 
 class Teacher(db.Model):
