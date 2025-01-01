@@ -1,10 +1,12 @@
 from urllib.parse import urlsplit
+import os
 
+from app import app
 from app.admin import bp
 from flask import render_template, redirect, url_for, flash, request
-from app.admin.forms import LoginForm
+from app.admin.forms import LoginForm, AddTeacherForm
 from flask_login import current_user, login_user, login_required, logout_user
-from app.models import User
+from app.models import User, Teacher
 
 
 @bp.route('/')
@@ -34,3 +36,29 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('admin.index'))
+
+@bp.route('/teacher', methods=['GET', 'POST'])
+def new_teacher():
+    form = AddTeacherForm()
+    if form.validate_on_submit():
+
+        teacher = Teacher(
+            name=form.name.data,
+            surname=form.surname.data,
+            students_class=form.student_class.data,
+            school=form.school.data,
+            about_text=form.about_text.data
+        )
+
+        image = form.image.data
+        if image is not None:
+            image.save(os.path.join(app.config['UPLOAD_PATH'], str(teacher.id) + '.png'))
+            teacher.image = str(teacher.id) + '.png'
+
+
+
+
+        return redirect(url_for('admin.index'))
+
+
+    return render_template('admin/add_teacher.html', form=form)

@@ -1,0 +1,57 @@
+{% extends "admin/base.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="container position-relative">
+                <div class="card col-12 col-lg-5 col-md-6 col-sm-6 px-4 py-4 my-5 position-absolute start-50 translate-middle-x">
+                    <h1 class="mb-4">Add Teacher</h1>
+                    <form method="post" novalidate action="" enctype="multipart/form-data">
+                        {{ form.hidden_tag() }}
+
+                        <div class="mb-2">
+                            {{ form.name.label(class="") }}
+                            {{ form.name(class="form-control") }}
+                        </div>
+                        <div class="mb-5">
+                            {{ form.surname.label(class="") }}
+                            {{ form.surname(class="form-control") }}
+                        </div>
+
+                        <div class="mb-2">
+                            {{ form.image_link.label }}
+                            {{ form.image_link(class='form-control', placeholder='not necessary') }}
+                        </div>
+
+                        <div class="mb-5">
+                            {{ form.image.label }}
+                            {{ form.image(class="form-control", type='file', accept='image/*') }}
+                        </div>
+                        <div class="mb-5">
+                            <span>Subject</span>
+                            {% for i in form.all_subjects %}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="subject" id="radio"
+                                           value="{{ i }}">
+                                    <label class="form-check-label" for="radio">{{ i.name }}</label>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="mb-5">
+                            {{ form.school.label }}
+                            {{ form.school(class='form-control') }}
+                        </div>
+
+                        <div class="mb-5">
+                            {{ form.about_text.label }}
+                            {{ form.about_text(class='form-control', rows=5, placeholder='about person...') }}
+                        </div>
+
+                        {{ form.submit(class='btn btn-primary fs-5') }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

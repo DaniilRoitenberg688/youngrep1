@@ -9,25 +9,38 @@ from app import login
 def load_user(id):
     return db.session.get(User, id)
 
+teacher_subject = db.Table('teacher_subject',
+                           db.Column('teacher_id', db.Integer, db.ForeignKey('teacher.id', ondelete='CASCADE'), primary_key=True),
+                           db.Column('subject_id', db.Integer, db.ForeignKey('subject.id', ondelete='CASCADE'), primary_key=True))
+
+teacher_achievement = db.Table('teacher_achievement',
+                           db.Column('teacher_id', db.Integer, db.ForeignKey('teacher.id', ondelete='CASCADE'), primary_key=True),
+                           db.Column('achievement_id', db.Integer, db.ForeignKey('achievement.id', ondelete='CASCADE'), primary_key=True))
+
+teacher_hobby = db.Table('teacher_hobby',
+                           db.Column('teacher_id', db.Integer, db.ForeignKey('teacher.id', ondelete='CASCADE'), primary_key=True),
+                           db.Column('hobby_id', db.Integer, db.ForeignKey('hobby.id', ondelete='CASCADE'), primary_key=True))
+
 
 class Teacher(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(), nullable=True)
     surname = db.Column(db.String(), nullable=True)
-    students_class = db.Column(db.Integer, nullable=True)
+    students_class = db.Column(db.Integer, nullable=True, index=True)
     school = db.Column(db.Integer, nullable=True)
     feedback = db.Column(db.Integer, nullable=True)
     about_text = db.Column(db.Text, nullable=True)
     image = db.Column(db.String(), nullable=True)
 
-    subject_id = db.Column(db.Integer, db.ForeignKey('subject.id', ondelete='CASCADE'))
-    subject = db.relationship('Subject', backref=db.backref('teachers'))
+    achievements_text = db.Column(db.Text, nullable=True)
+    hobbies_text = db.Column(db.Text, nullable=True)
 
-    achievement_id = db.Column(db.Integer, db.ForeignKey('achievement.id', ondelete='CASCADE'))
-    achievement = db.relationship('Achievement', backref=db.backref('teachers'))
 
-    hobby_id = db.Column(db.Integer, db.ForeignKey('hobby.id', ondelete='CASCADE'))
-    hobby = db.relationship('Hobby', backref=db.backref('teachers'))
+    subjects = db.relationship('Subject', secondary=teacher_subject, backref=db.backref('teachers'))
+
+    achievements = db.relationship('Achievement', secondary=teacher_achievement, backref=db.backref('teachers'))
+
+    hobbies = db.relationship('Hobby', secondary=teacher_hobby, backref=db.backref('teachers'))
 
 
 class Subject(db.Model):

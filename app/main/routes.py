@@ -1,15 +1,14 @@
 from app.main import bp
-from app import app, data_base, end_age
+from app import app, data_base, end_age, achievements, subjects, hobbies
 from flask import redirect, render_template, request, url_for
 from app.write_log import write_log
-from app.models import Subject, Teacher, Achievement, Hobby
 
-with (((app.app_context()))):
-    all_achievements = [i.name for i in Achievement.query.all()]
+with app.app_context():
+    all_achievements = [i.name for i in achievements]
     all_achievements.append('другие...')
-    all_subjects = [i.name for i in Subject.query.all()]
+    all_subjects = [i.name for i in subjects]
     all_subjects.append('другие...')
-    all_hobbies = [i.name for i in Hobby.query.all()]
+    all_hobbies = [i.name for i in hobbies]
     all_hobbies.append('другие...')
 
 def parameters_to_dict(line):
