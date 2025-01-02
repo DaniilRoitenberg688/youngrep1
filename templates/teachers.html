@@ -19,7 +19,7 @@
 {% block content %}
 
 
-    <div class="position-relative mt-5 col-lg-12 col-sm-5 col-12 " id="start" style="padding: 0">
+    <div class="position-relative mt-5 start-50 top-0 translate-middle-x ms-md-5 ms-0 ms-lg-0" id="start" style="padding: 0">
         <form class="d-flex flex-column flex-lg-row me-3 ms-2 mb-5" method="post" action="/search_form">
             <nav class="nav d-flex flex-row col-sm-1 col-lg-7 col-12 ">
                 <li class="nav-item dropdown">
@@ -132,7 +132,7 @@
             <div class="row me-3 ms-2">
                 {% for teacher in teachers %}
 
-                    <div class="col-lg-3 col-md-4 col-sm-10 col-12 m-lg-3">
+                    <div class="col-lg-3 col-md-12 col-sm-10 col-12 m-lg-3">
                         <div class="card mb-3" onclick="location.href='/teacher_profile/{{ teacher[0] }}'">
                             <img class="card-img-top img-fluid" style="width: auto; height: 300px"
                                  src="/static/teachers_images/{{ teacher[0] }}.png">
