@@ -137,12 +137,10 @@
                          src="/static/teachers_images/{{teacher[0]}}.png">
                     <div class="card-body">
                         <p class="card-title mb-3 fs-3">{{teacher[1].capitalize()}} {{teacher[2]}}</p>
-                        <p class="card-text mb-2 fs-4"><b>{{teacher[3]}}</b></p>
-                        {%  if teacher[7]|length < 90 %}
-                            <p class="card-text mb-3">{{teacher[7].capitalize()}}</p>
-                        {% else %}
-                            <p>{{teacher[7][:90].capitalize()}}...</p>
-                        {% endif %}
+                                <p style="  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;">{{ teacher[7] }}</p>
                         <p class="card-text mb-3 fs-4">{{teacher[6]}}</p>
                         <div>
                             {%for i in range(teacher[8]) %}
