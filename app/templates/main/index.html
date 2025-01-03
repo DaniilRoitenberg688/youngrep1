@@ -14,7 +14,7 @@
     <meta property="og:type" content="website"/>
 
     <meta name="yandex-verification" content="96272397f080b088" />
-    <link rel="icon" href="/favicons/favicon.ico">
+    <link rel="icon" href="/static/favicons/favicon.ico">
 
 
     <meta property="og:image" content="static/images/tild3835-3065-4339-b362-623334386265___21082024_1903.jpeg"/>
@@ -138,7 +138,41 @@
                  data-menu="yes">
                 <div class="t228__maincontainer " style="">
                     <div class="t228__padding40px"></div>
-                    {% include 'base_nav.html' %}
+                    <div class="t228__leftside">
+                        <div class="t228__leftcontainer"><a href="{{ url_for('index') }}" class="t228__imgwrapper">
+                            <div class="t228__logo t-title" field="title">YoungRep</div>
+                        </a></div>
+                    </div>
+                    <div class="t228__centerside ">
+                        <nav class="t228__centercontainer">
+                            <ul role="list" class="t228__list t-menu__list t228__list_hidden">
+                                <li class="t228__list_item"
+                                    style="padding:0 15px 0 0;"><a class="t-menu__link-item"
+                                                                   href="{{ url_for('about') }}"
+                                                                   data-menu-submenu-hook="" data-menu-item-number="1">
+                                    О нас
+                                </a></li>
+                                <li class="t228__list_item"
+                                    style="padding:0 15px;"><a class="t-menu__link-item"
+                                                               href="{{ url_for('teachers') }}"
+                                                               data-menu-submenu-hook="" data-menu-item-number="2">
+                                    Каталог менторов
+                                </a></li>
+                                <li class="t228__list_item"
+                                    style="padding:0 15px;"><a class="t-menu__link-item"
+                                                               href="{{ url_for('checking_system') }}"
+                                                               data-menu-submenu-hook="" data-menu-item-number="3">
+                                    Checking Система
+                                </a></li>
+                                <li class="t228__list_item"
+                                    style="padding:0 0 0 15px;"><a class="t-menu__link-item"
+                                                                   href="{{ url_for('invite') }}"
+                                                                   data-menu-submenu-hook="" data-menu-item-number="4">
+                                    Преподавать у нас
+                                </a></li>
+                            </ul>
+                        </nav>
+                    </div>
                     <div class="t228__rightside">
                         <div class="t228__rightcontainer">
                             <div class="t228__right_buttons">
@@ -515,7 +549,7 @@
     <div id="rec759473093" class="r t-rec t-rec_pt_0 t-rec_pb_0" style="padding-top:0px;padding-bottom:0px; "
          data-animationappear="off" data-record-type="204"> <!-- cover -->
         <div class="t-cover" id="recorddiv759473093" bgimgfield="img"
-             style="height:100vh;background-image:url('../../static/images/tild3161-6236-4530-b038-626539396364__-__resize__20x___19.jpeg');">
+             style="height:100vh;background-image:url('static/images/tild3161-6236-4530-b038-626539396364__-__resize__20x___19.jpeg');">
             <div class="t-cover__carrier" id="coverCarry759473093" data-content-cover-id="759473093"
                  data-content-cover-bg="static/images/tild3161-6236-4530-b038-626539396364___19.jpeg"
                  data-display-changed="true" data-content-cover-height="100vh" data-content-cover-parallax="fixed"
@@ -536,10 +570,10 @@
                                         одаренные школьники, которые решили использовать свои способности и увлечения,
                                         чтобы помочь раскрыть потенциал ученикам 4-7х классов, посвящая свободное от
                                         учебы время преподаванию математики, физики и программирования (<a
-                                                href="{{ url_for('main.checking_system') }}"
+                                                href="{{ url_for('checking_system') }}"
                                                 style="color: rgb(255, 35, 0); border-bottom-color: rgb(77, 28, 202); border-bottom-style: solid; box-shadow: none; text-decoration: none;">Checking
                                             Система</a>), а также других предметов (<a
-                                                href="{{ url_for('main.teachers') }}"
+                                                href="{{ url_for('teachers') }}"
                                                 style="color: rgb(255, 35, 0); border-bottom-color: rgb(77, 28, 202); border-bottom-style: solid; box-shadow: none; text-decoration: none;">Каталог
                                             менторов</a>)
                                     </div>
@@ -741,14 +775,14 @@
             color: #ffffff;
         }</style>
     </div>
-    <div id="rec842912563" class="r t-rec" style=" " data-animationappear="off" data-record-type="969"> <!-- T969 -->
-        <div class="t969"></div>
-        <script type="text/javascript">t_onReady(function () {
-            t_onFuncLoad('t969_init', function () {
-                t969_init('842912563');
-            });
-        });</script>
-    </div>
+{#    <div id="rec842912563" class="r t-rec" style=" " data-animationappear="off" data-record-type="969"> <!-- T969 -->#}
+{#        <div class="t969"></div>#}
+{#        <script type="text/javascript">t_onReady(function () {#}
+{#            t_onFuncLoad('t969_init', function () {#}
+{#                t969_init('842912563');#}
+{#            });#}
+{#        });</script>#}
+{#    </div>#}
     <div id="rec820373645" class="r t-rec" style=" " data-animationappear="off" data-record-type="635"> <!-- t635 -->
         <div
                 class="t635__textholder" data-recid="759473093" data-text1="один путь" data-text2="единая мысль"
@@ -785,20 +819,20 @@
                                             data-divider-fieldset="widthpx,heightpx,color,opacity"></div>
                                     <div class="t475__descr t-descr t-descr_md t-margin_auto t-animate"
                                          data-animate-style="zoomin" data-animate-group="yes" field="descr">В YoungRep
-                                        есть 2 образовательных направления нацеленных на учеников 4-7х классов
+                                        есть 2 образовательных направления, нацеленных на учеников 4-7х классов
                                         (допустимы исключения): <br/>
                                         <ul>
                                             <li data-list="bullet" style="color: rgb(255, 35, 0);"><a
-                                                    href="{{ url_for('main.checking_system') }}"
+                                                    href="{{ url_for('checking_system') }}"
                                                     style="color: rgb(255, 35, 0); border-bottom-color: rgb(255, 35, 0); border-bottom-style: solid; box-shadow: none; text-decoration: none;">Checking
                                                 система</a><span style="color: rgb(255, 35, 0);"> </span><span
                                                     style="color: rgb(255, 255, 255);">- инструмент для самостоятельного прорешивания материала и последующей его сдачи в тестирующую систему, также возможна сдача в устной форме (Checking PRO)</span>
                                             </li>
                                             <li data-list="bullet" style="color: rgb(255, 35, 0);"><a
-                                                    href="{{ url_for('main.teachers') }}"
+                                                    href="{{ url_for('teachers') }}"
                                                     style="color: rgb(255, 35, 0); border-bottom-color: rgb(255, 35, 0); border-bottom-style: solid; box-shadow: none; text-decoration: none;">Менторство</a><span
                                                     style="color: rgb(255, 35, 0);"> </span><span
-                                                    style="color: rgb(255, 255, 255);">- формат обучения, где старшеклассники из топ-школ выполняют роль"старшего брата", давая ученику квалифицированную помощь по предмету, а также следит за его прогрессом в обучении.</span>
+                                                    style="color: rgb(255, 255, 255);">- формат обучения, где старшеклассники из топ-школ выполняют роль"старшего брата", давая ученику квалифицированную помощь по предмету, а также следят за его прогрессом в обучении.</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -849,21 +883,21 @@
                              data-animate-chain="yes"
                              data-original="static/images/tild3662-3632-4630-a532-623533343730___21082024_1903.jpeg"
                              bgimgfield="img"
-                             style="background: url('../../static/images/tild3662-3632-4630-a532-623533343730__-__resizeb__20x___21082024_1903.jpeg') center center no-repeat; background-size:cover;"></div>
+                             style="background: url('static/images/tild3662-3632-4630-a532-623533343730__-__resizeb__20x___21082024_1903.jpeg') center center no-repeat; background-size:cover;"></div>
                     </div>
                     <div class="t-col t-col_4">
                         <div class="t472__blockimg t-bgimg t-animate" data-animate-style="fadeinup"
                              data-animate-chain="yes"
                              data-original="static/images/tild3836-6439-4533-a438-336634636637___02112024_1146.jpeg"
                              bgimgfield="img2"
-                             style="background: url('../../static/images/tild3836-6439-4533-a438-336634636637__-__resizeb__20x___02112024_1146.jpeg') center center no-repeat; background-size:cover;"></div>
+                             style="background: url('static/images/tild3836-6439-4533-a438-336634636637__-__resizeb__20x___02112024_1146.jpeg') center center no-repeat; background-size:cover;"></div>
                     </div>
                     <div class="t-col t-col_4">
                         <div class="t472__blockimg t-bgimg t-animate" data-animate-style="fadeinup"
                              data-animate-chain="yes"
                              bgimgfield="img3"
                              data-original="static/images/tild6234-3533-4435-b637-363164396539___21102024_0921.jpeg"
-                             style="background: url('../../static/images/tild6234-3533-4435-b637-363164396539__-__resizeb__20x___21102024_0921.jpeg') center center no-repeat; background-size:cover;"></div>
+                             style="background: url('static/images/tild6234-3533-4435-b637-363164396539__-__resizeb__20x___21102024_0921.jpeg') center center no-repeat; background-size:cover;"></div>
                     </div>
                 </div>
             </div>
@@ -1056,7 +1090,7 @@
                              data-animate-chain="yes"
                              data-original="static/images/tild3662-3632-4630-a532-623533343730___21082024_1903.jpeg"
                              bgimgfield="img"
-                             style="background: url('../../static/images/tild3662-3632-4630-a532-623533343730__-__resizeb__20x___21082024_1903.jpeg') center center no-repeat; background-size:cover;"></div>
+                             style="background: url('static/images/tild3662-3632-4630-a532-623533343730__-__resizeb__20x___21082024_1903.jpeg') center center no-repeat; background-size:cover;"></div>
                     </div>
                 </div>
             </div>
@@ -1182,7 +1216,7 @@
                              data-animate-chain="yes"
                              data-original="static/images/tild3836-6439-4533-a438-336634636637___02112024_1146.jpeg"
                              bgimgfield="img2"
-                             style="background: url('../../static/images/tild3836-6439-4533-a438-336634636637__-__resizeb__20x___02112024_1146.jpeg') center center no-repeat; background-size:cover;"></div>
+                             style="background: url('static/images/tild3836-6439-4533-a438-336634636637__-__resizeb__20x___02112024_1146.jpeg') center center no-repeat; background-size:cover;"></div>
                     </div>
                 </div>
             </div>
@@ -1308,7 +1342,7 @@
                              data-animate-chain="yes"
                              bgimgfield="img3"
                              data-original="static/images/tild6234-3533-4435-b637-363164396539___21102024_0921.jpeg"
-                             style="background: url('../../static/images/tild6234-3533-4435-b637-363164396539__-__resizeb__20x___21102024_0921.jpeg') center center no-repeat; background-size:cover;"></div>
+                             style="background: url('static/images/tild6234-3533-4435-b637-363164396539__-__resizeb__20x___21102024_0921.jpeg') center center no-repeat; background-size:cover;"></div>
                     </div>
                 </div>
             </div>
@@ -1879,7 +1913,7 @@
                                 <div class="t613__left t-valign_middle" style="min-width: 260px;width: 260px;"></div>
                                 <div class="t613__col t613__width_33 t-align_center t-valign_middle"
                                      style="border-color: #ffffff;">
-                                    <div class="t613__buttonwrapper"><a href="{{ url_for('main.teachers') }}" target=""
+                                    <div class="t613__buttonwrapper"><a href="{{ url_for('teachers') }}" target=""
                                                                         class="t613__btn t-btn t-btn_sm"
                                                                         style="color:#ffffff;background-color:#fc2200;border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px;"
                                                                         data-buttonfieldset="button"> <span
@@ -1887,7 +1921,7 @@
                                 </div>
                                 <div class="t613__col t613__width_33 t-align_center t-valign_middle"
                                      style="border-color: #ffffff;">
-                                    <div class="t613__buttonwrapper"><a href="{{ url_for('main.checking_system') }}" target=""
+                                    <div class="t613__buttonwrapper"><a href="{{ url_for('checking_system') }}" target=""
                                                                         class="t613__btn t-btn t-btn_sm"
                                                                         style="color:#ffffff;background-color:#fc2200;border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px;"
                                                                         data-buttonfieldset="button2"> <span
@@ -1895,7 +1929,7 @@
                                 </div>
                                 <div class="t613__col t613__width_33 t-align_center t-valign_middle"
                                      style="border-color: #ffffff;">
-                                    <div class="t613__buttonwrapper"><a href="{{ url_for('main.checking_system') }}" target=""
+                                    <div class="t613__buttonwrapper"><a href="{{ url_for('checking_system') }}" target=""
                                                                         class="t613__btn t-btn t-btn_sm"
                                                                         style="color:#ffffff;background-color:#fc2200;border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px;"
                                                                         data-buttonfieldset="button3"> <span
@@ -2110,7 +2144,7 @@
                     <div
                             class="t-section__descr t-descr t-descr_xl t-align_center t-margin_auto"
                             field="bdescr">
-                        Все остальное сделаем мы: свяжемся с вами,при необходимости объясним как все работает
+                        Все остальное сделаем мы: свяжемся с вами, при необходимости объясним как все работает
                     </div>
                 </div>
             </div>
@@ -2165,7 +2199,7 @@
                                         <div class="t1066__bgimg t-bgimg"
                                              data-original="static/images/lib__emoji__fluent__motorway_3d.png"
                                              bgimgfield="li_img__1734671679014"
-                                             style="width:50px; height:50px; background-image: url('../../static/images/lib__emoji__fluent__motorway_3d.png');"
+                                             style="width:50px; height:50px; background-image: url('static/images/lib__emoji__fluent__motorway_3d.png');"
                                              itemscope itemtype="http://schema.org/ImageObject">
                                             <meta itemprop="image"
                                                   content="static/images/lib__emoji__fluent__motorway_3d.png">
@@ -2176,7 +2210,7 @@
                                              field="li_title__1734671679014">Выбрать направление обучения
                                         </div>
                                         <div class="t1066__descr t-descr t-descr_xs " field="li_descr__1734671679014">
-                                            Выберите менторов в Каталоге менторов, или предмет и вариант подписки в
+                                            Выберите менторов в Каталоге менторов или предмет и вариант подписки в
                                             Checking Системе.
                                         </div>
                                     </div>
@@ -2187,7 +2221,7 @@
                                         <div class="t1066__bgimg t-bgimg"
                                              data-original="static/images/lib__emoji__fluent__robot_3d.png"
                                              bgimgfield="li_img__0074859014011"
-                                             style="width:50px; height:50px; background-image: url('../../static/images/lib__emoji__fluent__robot_3d.png');"
+                                             style="width:50px; height:50px; background-image: url('static/images/lib__emoji__fluent__robot_3d.png');"
                                              itemscope itemtype="http://schema.org/ImageObject">
                                             <meta itemprop="image"
                                                   content="static/images/lib__emoji__fluent__robot_3d.png">
@@ -2211,7 +2245,7 @@
                                         <div class="t1066__bgimg t-bgimg"
                                              data-original="static/images/lib__emoji__fluent__clipboard_3d.png"
                                              bgimgfield="li_img__0074859014010"
-                                             style="width:50px; height:50px; background-image: url('../../static/images/lib__emoji__fluent__clipboard_3d.png');"
+                                             style="width:50px; height:50px; background-image: url('static/images/lib__emoji__fluent__clipboard_3d.png');"
                                              itemscope itemtype="http://schema.org/ImageObject">
                                             <meta itemprop="image"
                                                   content="static/images/lib__emoji__fluent__clipboard_3d.png">
@@ -2232,7 +2266,7 @@
                                         <div class="t1066__bgimg t-bgimg"
                                              data-original="static/images/lib__emoji__fluent__satellite_antenna_3d.png"
                                              bgimgfield="li_img__0074859014012"
-                                             style="width:50px; height:50px; background-image: url('../../static/images/lib__emoji__fluent__satellite_antenna_3d.png');"
+                                             style="width:50px; height:50px; background-image: url('static/images/lib__emoji__fluent__satellite_antenna_3d.png');"
                                              itemscope itemtype="http://schema.org/ImageObject">
                                             <meta itemprop="image"
                                                   content="static/images/lib__emoji__fluent__satellite_antenna_3d.png">
@@ -2373,7 +2407,7 @@
                                             конкурентов?</em></strong><br/>
                                         <ul>
                                             <li data-list="bullet">На нашей платформе преподают только целеустремленные
-                                                ШКОЛЬНИКИ, чьи зарплатные, как вы догадываетесь, относительно низкие
+                                                ШКОЛЬНИКИ, чьи зарплатные ожидания, как вы догадываетесь, относительно низкие
                                             </li>
                                         </ul>
                                     </div>

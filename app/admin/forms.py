@@ -53,5 +53,16 @@ class AddTeacherForm(FlaskForm):
 
 
 
+class EditTeacherForm(AddTeacherForm):
+    subjects: list
+    achievements: list
+    hobbies: list
+    image_path: str
+    submit = SubmitField('Edit')
+
+
+
+
+
 
 

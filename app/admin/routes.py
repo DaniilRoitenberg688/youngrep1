@@ -4,7 +4,7 @@ import os
 from app import app, db, subjects, hobbies, achievements
 from app.admin import bp
 from flask import render_template, redirect, url_for, flash, request
-from app.admin.forms import LoginForm, AddTeacherForm
+from app.admin.forms import LoginForm, AddTeacherForm, EditTeacherForm
 from flask_login import current_user, login_user, login_required, logout_user
 
 from app.models import User, Teacher, Subject, Achievement, Hobby
@@ -38,9 +38,32 @@ def index():
                                                 ).first())
 
     if data.get('tariff'):
-        teachers.extend(Teacher.query.filter(Teacher.tariff<=int(data.get('tariff'))).all())
+        teachers.extend(Teacher.query.filter(Teacher.tariff <= int(data.get('tariff'))).all())
 
+    print(data.get('names'))
+    if data.get('names'):
+        names = data.get('names').split()
+        result = []
+        if len(names) == 1:
+            result = Teacher.query.filter(
+                names[0] == Teacher.surname
+            ).all()
 
+            if not result:
+                result = Teacher.query.filter(
+                    names[0] == Teacher.name
+                ).all()
+        if len(names) == 2:
+            result = Teacher.query.filter(
+                names[0] == Teacher.surname or names[1] == Teacher.name
+            ).all()
+            if not result:
+                result = Teacher.query.filter(
+                    names[1] == Teacher.surname or names[0] == Teacher.name
+                ).all()
+        print(result)
+
+        teachers.extend(result)
 
     teachers = list(set(teachers))
 
@@ -101,7 +124,6 @@ def new_teacher():
 
         for achievement in achievements:
             achievement: Achievement = Achievement.query.filter_by(name=achievement).first()
-            print(achievement.teachers)
             teacher.achievements.append(achievement)
 
         for hobby in hobbies:
@@ -121,7 +143,7 @@ def new_teacher():
     return render_template('admin/add_teacher.html', form=form)
 
 
-@bp.route('/teacher/<int:id>', methods=['GET', 'DELETE'])
+@bp.route('/delete_teacher/<int:id>', methods=['GET', 'DELETE'])
 @login_required
 def delete_teacher(id):
     teacher = db.session.get(Teacher, id)
@@ -132,6 +154,69 @@ def delete_teacher(id):
     return redirect(url_for('admin.index'))
 
 
+@bp.route('/edit_teacher/<int:id>', methods=['GET', 'POST'])
+@login_required
+def edit_teacher(id):
+    form = EditTeacherForm()
+    teacher = db.session.get(Teacher, id)
+    if form.validate_on_submit():
+        teacher.name = form.name.data
+        teacher.surname = form.surname.data
+        teacher.tariff = form.tariff.data
+        teacher.students_class = form.student_class.data
+        teacher.school = form.school.data
+        teacher.about_text = form.about_text.data
+        teacher.feedback = form.feedback.data
+        teacher.achievements_text = form.achievements_text.data
+        teacher.hobbies_text = form.hobbies_text.data
+
+        teacher.subjects.clear()
+        teacher.hobbies.clear()
+        teacher.achievements.clear()
+
+        subjects = request.form.getlist('subjects')
+        achievements = request.form.getlist('achievements')
+        hobbies = request.form.getlist('hobbies')
+        for subject in subjects:
+            subject: Subject = Subject.query.filter_by(name=subject).first()
+            teacher.subjects.append(subject)
+
+        for achievement in achievements:
+            achievement: Achievement = Achievement.query.filter_by(name=achievement).first()
+            teacher.achievements.append(achievement)
+
+        for hobby in hobbies:
+            hobby: Hobby = Hobby.query.filter_by(name=hobby).first()
+            teacher.hobbies.append(hobby)
+
+        image = form.image.data
+        if image is not None:
+            image.save(os.path.join(app.config['UPLOAD_PATH'], str(teacher.id) + '.png'))
+
+        db.session.commit()
+        return redirect(url_for('admin.index'))
+
+    elif request.method == 'GET':
+        form.name.data = teacher.name
+        form.surname.data = teacher.surname
+        form.tariff.data = teacher.tariff
+        form.student_class.data = teacher.students_class
+        form.school.data = teacher.school
+        form.about_text.data = teacher.about_text
+        form.image_path = os.path.join('/static/teachers_images', teacher.image)
+        form.feedback.data = teacher.feedback
+
+        form.subjects = [i.name for i in teacher.subjects]
+
+        form.achievements = [i.name for i in teacher.achievements]
+        form.achievements_text.data = teacher.achievements_text
+
+        form.hobbies = [i.name for i in teacher.hobbies]
+        form.hobbies_text.data = teacher.hobbies_text
+
+    return render_template('admin/edit_teacher.html', form=form, title='Edit teacher')
+
+
 @bp.route('/search_form', methods=['POST'])
 @login_required
 def search_form():
@@ -140,5 +225,11 @@ def search_form():
     achievements = request.form.getlist('achievements')
     tariff = request.form.get('tariff')
     hobbies = request.form.get('hobbies')
+    names = request.form.get('names')
     return redirect(url_for('admin.index', subjects=subjects, age=age, achievements=achievements, tariff=tariff,
-                            hobbies=hobbies))
+                            hobbies=hobbies, names=names))
+
+@bp.route('/teacher_profile/<int:id>', methods=['GET'])
+def teachers_profile(id):
+    teacher = db.session.get(Teacher, id)
+    return render_template('admin/teacher_profile.html', teacher=teacher)

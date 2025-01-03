@@ -125,7 +125,41 @@
                  data-menu="yes">
                 <div class="t228__maincontainer " style="">
                     <div class="t228__padding40px"></div>
-                    {% include 'base_nav.html' %}
+                    <div class="t228__leftside">
+                        <div class="t228__leftcontainer"><a href="{{ url_for('index') }}" class="t228__imgwrapper">
+                            <div class="t228__logo t-title" field="title">YoungRep</div>
+                        </a></div>
+                    </div>
+                    <div class="t228__centerside ">
+                        <nav class="t228__centercontainer">
+                            <ul role="list" class="t228__list t-menu__list t228__list_hidden">
+                                <li class="t228__list_item"
+                                    style="padding:0 15px 0 0;"><a class="t-menu__link-item"
+                                                                   href="{{ url_for('about') }}"
+                                                                   data-menu-submenu-hook="" data-menu-item-number="1">
+                                    О нас
+                                </a></li>
+                                <li class="t228__list_item"
+                                    style="padding:0 15px;"><a class="t-menu__link-item"
+                                                               href="{{ url_for('teachers') }}"
+                                                               data-menu-submenu-hook="" data-menu-item-number="2">
+                                    Каталог менторов
+                                </a></li>
+                                <li class="t228__list_item"
+                                    style="padding:0 15px;"><a class="t-menu__link-item"
+                                                               href="{{ url_for('checking_system') }}"
+                                                               data-menu-submenu-hook="" data-menu-item-number="3">
+                                    Checking Система
+                                </a></li>
+                                <li class="t228__list_item"
+                                    style="padding:0 0 0 15px;"><a class="t-menu__link-item"
+                                                                   href="{{ url_for('invite') }}"
+                                                                   data-menu-submenu-hook="" data-menu-item-number="4">
+                                    Преподавать у нас
+                                </a></li>
+                            </ul>
+                        </nav>
+                    </div>
                     <div class="t228__rightside">
                         <div class="t228__rightcontainer">
                             <div class="t228__right_buttons">
@@ -502,7 +536,7 @@
     </header> <!--/header-->
     <div id="rec822969072" class="r t-rec" style=" " data-animationappear="off" data-record-type="205"> <!-- cover -->
         <div class="t-cover" id="recorddiv822969072" bgimgfield="img"
-             style="height:100vh;background-image:url('../../static/images/tild3234-3064-4732-b930-383030346663__-__resize__20x__photo.jpeg');">
+             style="height:100vh;background-image:url('static/images/tild3234-3064-4732-b930-383030346663__-__resize__20x__photo.jpeg');">
             <div class="t-cover__carrier" id="coverCarry822969072" data-content-cover-id="822969072"
                  data-content-cover-bg="static/images/tild3234-3064-4732-b930-383030346663__photo.jpeg"
                  data-display-changed="true" data-content-cover-height="100vh" data-content-cover-parallax="dynamic"
@@ -598,7 +632,7 @@
                             Постоянное развитие
                         </div>
                         <div class="t-card__descr t-descr t-descr_sm" field="li_descr__6324642165530">
-                            Становясь лучше на 1% каждый день,<br/>сделает тебя в 37,8 раз лучше через год
+                            Становясь лучше на 1% каждый день,<br/> ты будешь лучше в 37,8 раз через год
                         </div>
                     </div>
                 </div>
@@ -657,7 +691,7 @@
                         </div>
                         <div class="t-card__descr t-descr t-descr_sm" field="li_descr__6324642165534">
                             В YoungRep ценят каждого сотрудника и помогают ему пройти через все сложности. Мы знаем, что
-                            в долгосрочной перспективе, самый ценный ресурс - люди!
+                            в долгосрочной перспективе самый ценный ресурс - люди!
                         </div>
                     </div>
                 </div>
@@ -743,7 +777,7 @@
                     </div>
                     <div class="t510__textwrapper t-cell t-valign_top" style="">
                         <div class="t-descr t-descr_sm" field="li_descr__9287513368620">Если ты специализируешься на
-                            математике, программировании и физике, то ты сможешь стать частью нашей Checking Системы или
+                            математике, программировании или физике, то ты сможешь стать частью нашей Checking Системы или
                             ментором<br/><br/><br/></div>
                     </div>
                 </li>
@@ -765,7 +799,7 @@
     </div>
     <div id="rec822969076" class="r t-rec" style=" " data-record-type="581"> <!-- cover -->
         <div class="t-cover" id="recorddiv822969076" bgimgfield="img"
-             style="height:560px;background-image:url('../../static/images/tild6134-6131-4337-a435-633062323434__-__resize__20x___.jpg');">
+             style="height:560px;background-image:url('static/images/tild6134-6131-4337-a435-633062323434__-__resize__20x___.jpg');">
             <div class="t-cover__carrier" id="coverCarry822969076" data-content-cover-id="822969076"
                  data-content-cover-bg="static/images/tild6134-6131-4337-a435-633062323434___.jpg"
                  data-display-changed="true" data-content-cover-height="560px" data-content-cover-parallax="fixed"
@@ -878,7 +912,7 @@
                         <div class="t508__bgimg t-bgimg"
                              imgfield="li_img__1476889049104"
                              data-original="static/images/lib__emoji__fluent__money_bag_3d.png" data-color="#f5914f"
-                             style=" background-image: url('../../static/images/lib__emoji__fluent__money_bag_3d.png');"
+                             style=" background-image: url('static/images/lib__emoji__fluent__money_bag_3d.png');"
                              itemscope itemtype="http://schema.org/ImageObject">
                             <meta itemprop="image" content="static/images/lib__emoji__fluent__money_bag_3d.png">
                         </div>
@@ -900,7 +934,7 @@
                              imgfield="li_img__1476889075209"
                              data-original="static/images/lib__emoji__fluent__graduation_cap_3d.png"
                              data-color="#f5914f"
-                             style=" background-image: url('../../static/images/lib__emoji__fluent__graduation_cap_3d.png');"
+                             style=" background-image: url('static/images/lib__emoji__fluent__graduation_cap_3d.png');"
                              itemscope itemtype="http://schema.org/ImageObject">
                             <meta itemprop="image" content="static/images/lib__emoji__fluent__graduation_cap_3d.png">
                         </div>
@@ -911,7 +945,7 @@
                         </div>
                         <div class="t508__descr t-descr t-descr_sm" field="li_descr__1476889075209">Культура
                             непрерывного обучения. В YoungRep каждый сотрудник проходит курсы по повышению квалификации
-                            за счет компании, независимо от департамента в котором он работает - education или же back
+                            за счет компании, независимо от департамента, в котором он работает - education или же back
                             office. Целью развития являются не только hard skills, но и soft skills.
                         </div>
                     </div>
@@ -922,7 +956,7 @@
                         <div class="t508__bgimg t-bgimg"
                              imgfield="li_img__1476889079427"
                              data-original="static/images/lib__emoji__fluent__bank_3d.png" data-color="#f5914f"
-                             style=" background-image: url('../../static/images/lib__emoji__fluent__bank_3d.png');"
+                             style=" background-image: url('static/images/lib__emoji__fluent__bank_3d.png');"
                              itemscope itemtype="http://schema.org/ImageObject">
                             <meta itemprop="image" content="static/images/lib__emoji__fluent__bank_3d.png">
                         </div>
