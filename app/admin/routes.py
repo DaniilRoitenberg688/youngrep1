@@ -30,17 +30,16 @@ def index():
 
     if data.getlist('subjects'):
         for subject in data.getlist('subjects'):
-            subject: Achievement = Achievement.query.filter_by(name=subject).first()
+            subject: Subject = Subject.query.filter_by(name=subject).first()
             teachers.extend(subject.teachers)
 
     if data.get('age'):
-        teachers.append(Teacher.query.filter_by(students_age=int(data.get('age'))
-                                                ).first())
+        teachers.extend(Teacher.query.filter_by(students_class=int(data.get('age'))
+                                                ).all())
 
     if data.get('tariff'):
         teachers.extend(Teacher.query.filter(Teacher.tariff <= int(data.get('tariff'))).all())
 
-    print(data.get('names'))
     if data.get('names'):
         names = data.get('names').split()
         result = []
@@ -61,11 +60,11 @@ def index():
                 result = Teacher.query.filter(
                     names[1] == Teacher.surname or names[0] == Teacher.name
                 ).all()
-        print(result)
 
         teachers.extend(result)
 
     teachers = list(set(teachers))
+    teachers = sorted(teachers, key=lambda x: x.feedback)
 
     return render_template('admin/index.html', title='Teachers', teachers=teachers, all_subjects=subjects,
                            all_achievements=achievements, all_hobbies=hobbies)

@@ -2,121 +2,84 @@ from app.main import bp
 from app import app, data_base, end_age, achievements, subjects, hobbies
 from flask import redirect, render_template, request, url_for
 from app.write_log import write_log
+from app.models import Teacher, Hobby, Achievement, Subject
+from app import db
 
-with app.app_context():
-    all_achievements = [i.name for i in achievements]
-    all_achievements.append('другие...')
-    all_subjects = [i.name for i in subjects]
-    all_subjects.append('другие...')
-    all_hobbies = [i.name for i in hobbies]
-    all_hobbies.append('другие...')
 
-def parameters_to_dict(line):
-    params = line.split('&')
-    result = {}
-    for i in params:
-        param, value = i.split('=')
-        result[param] = value
-
-    return result
 
 
 @bp.route('/teachers')
 def teachers():
-    teachers = sorted(data_base.all_teachers(), key=lambda x: -int(x[8]))
-    return render_template('main/teachers.html', teachers=teachers, all_subjects=all_subjects, max_age=end_age,
-                           all_achievements=all_achievements, hobbies=all_hobbies)
+    teachers = []
+    data = request.args
+    search = data.get('search', False)
+
+    if search and len(data) == 1 or not data:
+        teachers = Teacher.query.all()
+
+    if data.getlist('hobbies'):
+        for hobby in data.getlist('hobbies'):
+            hobby: Hobby = Hobby.query.filter_by(name=hobby).first()
+            teachers.extend(hobby.teachers)
+
+    if data.getlist('achievements'):
+        for achievement in data.getlist('achievements'):
+            achievement: Achievement = Achievement.query.filter_by(name=achievement).first()
+            teachers.extend(achievement.teachers)
+
+    if data.getlist('subjects'):
+        for subject in data.getlist('subjects'):
+            subject: Subject = Subject.query.filter_by(name=subject).first()
+            teachers.extend(subject.teachers)
+
+    if data.get('age'):
+        teachers.extend(Teacher.query.filter_by(students_class=int(data.get('age'))
+                                                ).all())
+
+    if data.get('tariff'):
+        teachers.extend(Teacher.query.filter(Teacher.tariff <= int(data.get('tariff'))).all())
+
+    if data.get('names'):
+        names = data.get('names').split()
+        result = []
+        if len(names) == 1:
+            result = Teacher.query.filter(
+                names[0] == Teacher.surname
+            ).all()
+
+            if not result:
+                result = Teacher.query.filter(
+                    names[0] == Teacher.name
+                ).all()
+        if len(names) == 2:
+            result = Teacher.query.filter(
+                names[0] == Teacher.surname or names[1] == Teacher.name
+            ).all()
+            if not result:
+                result = Teacher.query.filter(
+                    names[1] == Teacher.surname or names[0] == Teacher.name
+                ).all()
+
+        teachers.extend(result)
+
+    teachers = list(set(teachers))
+    if teachers:
+        teachers = sorted(teachers, key=lambda x: x.feedback)
+
+    return render_template('main/teachers.html', teachers=teachers, all_subjects=subjects,
+                           all_achievements=achievements, all_hobbies=hobbies, search=search)
 
 
-@bp.route('/search/<search_parameters>')
-def search(search_parameters):
-    try:
-        parameters = parameters_to_dict(search_parameters)
-        all_teachers = data_base.all_teachers()
-
-        if not parameters.get('subject', '') and not int(parameters.get('age', 0)) and not parameters.get('achieve',
-                                                                                                          '') and not parameters.get(
-            'param', '') and not parameters.get('tariff', '') and not parameters.get('hobby', ''):
-            return render_template('main/teachers.html', teachers=teachers, all_subjects=all_subjects, max_age=end_age,
-                                   all_achievements=all_achievements, hobbies=all_hobbies, search=1)
-
-        if parameters.get('subject', ''):
-            if parameters.get('subject') == 'другие...':
-                all_teachers = data_base.search_by_other_subject(teachers=all_teachers, subjects=all_subjects)
-            else:
-                all_teachers = data_base.search_by_subject(parameters['subject'], all_teachers)
-
-        if int(parameters.get('age', 0)):
-            all_teachers = data_base.search_by_age(int(parameters['age']), all_teachers)
-
-        if int(parameters.get('tariff', 0)):
-            all_teachers = data_base.search_by_tariff(int(parameters['tariff']), all_teachers)
-
-        if parameters.get('achieve', ''):
-            if parameters.get('achieve') == 'другие...':
-                all_teachers = data_base.search_by_other_achievements(teachers=all_teachers, achievements=all_achievements)
-            else:
-                all_teachers = data_base.search_by_achievements(parameters['achieve'].split(','), all_teachers)
-
-        if parameters.get('hobby', ''):
-            if parameters.get('hobby') == 'другие...':
-                all_teachers = data_base.search_by_other_hobbies(teachers=all_teachers, hobbies=all_hobbies)
-            else:
-                all_teachers = data_base.search_by_hobbies(parameters['hobby'].split(','), all_teachers)
-
-        if parameters.get('param', ''):
-            a = parameters.get('param').split()
-            if len(a) == 2:
-                first = a[0]
-                second = a[1]
-                test1 = data_base.search_by_name(first, all_teachers)
-                test2 = data_base.search_by_surname(second, all_teachers)
-
-                if test1 or test2:
-                    if test1:
-                        all_teachers = test1
-                    if test2:
-                        all_teachers = test2
-
-                else:
-                    first, second = first, second
-                    test1 = data_base.search_by_name(first, all_teachers)
-                    test2 = data_base.search_by_surname(second, all_teachers)
-
-                    if test1 or test2:
-                        if test1:
-                            all_teachers = test1
-                        if test2:
-                            all_teachers = test2
-
-            elif len(a) == 1:
-                first = a[0]
-                all_teachers = data_base.search_by_name(first, all_teachers)
-
-        return render_template('main/teachers.html', teachers=all_teachers, all_subjects=all_subjects, max_age=end_age,
-                               all_achievements=all_achievements, hobbies=all_hobbies, search=True)
-
-    except Exception as e:
-        write_log(e)
-
-
-@bp.route('/search_form', methods=['post', 'get'])
+@bp.route('/search_form', methods=['POST'])
 def search_form():
-    data = request.form
-    subject = data.get('subject', '')
-    age = data.get('age', 0)
-    hobbies_ = []
-    for i in data:
-        if 'hobby' in i:
-            hobbies_.append(data[i])
-
-    achievements = []
-    for i in data:
-        if 'achieve' in i:
-            achievements.append(data[i])
-
-    return redirect(url_for('search', search_parameters=f'subject={subject}&achieve={",".join(achievements)}&age={age}&param={data.get("param")}&tariff={data.get("tariff", 0)}&hobby={",".join(hobbies_)}'))
-
+    subjects = request.form.getlist('subjects')
+    age = request.form.getlist('age')
+    achievements = request.form.getlist('achievements')
+    tariff = request.form.get('tariff')
+    hobbies = request.form.get('hobbies')
+    names = request.form.get('names')
+    return redirect(url_for('main.teachers', subjects=subjects, age=age, achievements=achievements, tariff=tariff,
+                            hobbies=hobbies, names=names, search=True))
 
 @bp.route('/')
 @bp.route('/index')
@@ -124,13 +87,10 @@ def index():
     return render_template('main/index.html')
 
 
-@bp.route('/teacher_profile/<int:id>')
-def teacher_profile(id):
-    teacher = data_base.teacher_by_id(id)
-    print(teacher[10])
-    replies = teacher[10].split('; ')
-    print(replies)
-    return render_template('main/teachers_profile.html', teacher=teacher, replies=replies)
+@bp.route('/teacher_profile/<int:id>', methods=['GET'])
+def teachers_profile(id):
+    teacher = db.session.get(Teacher, id)
+    return render_template('main/teacher_profile.html', teacher=teacher)
 
 
 
@@ -142,11 +102,6 @@ def about():
 @bp.route('/checking_system')
 def checking_system():
     return render_template('main/checking_system.html')
-
-
-@bp.route('/subjects')
-def subjects():
-    return render_template('main/subjects.html')
 
 
 @bp.route('/invite')
