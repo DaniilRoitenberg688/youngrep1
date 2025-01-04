@@ -138,41 +138,7 @@
                  data-menu="yes">
                 <div class="t228__maincontainer " style="">
                     <div class="t228__padding40px"></div>
-                    <div class="t228__leftside">
-                        <div class="t228__leftcontainer"><a href="{{ url_for('index') }}" class="t228__imgwrapper">
-                            <div class="t228__logo t-title" field="title">YoungRep</div>
-                        </a></div>
-                    </div>
-                    <div class="t228__centerside ">
-                        <nav class="t228__centercontainer">
-                            <ul role="list" class="t228__list t-menu__list t228__list_hidden">
-                                <li class="t228__list_item"
-                                    style="padding:0 15px 0 0;"><a class="t-menu__link-item"
-                                                                   href="{{ url_for('about') }}"
-                                                                   data-menu-submenu-hook="" data-menu-item-number="1">
-                                    О нас
-                                </a></li>
-                                <li class="t228__list_item"
-                                    style="padding:0 15px;"><a class="t-menu__link-item"
-                                                               href="{{ url_for('teachers') }}"
-                                                               data-menu-submenu-hook="" data-menu-item-number="2">
-                                    Каталог менторов
-                                </a></li>
-                                <li class="t228__list_item"
-                                    style="padding:0 15px;"><a class="t-menu__link-item"
-                                                               href="{{ url_for('checking_system') }}"
-                                                               data-menu-submenu-hook="" data-menu-item-number="3">
-                                    Checking Система
-                                </a></li>
-                                <li class="t228__list_item"
-                                    style="padding:0 0 0 15px;"><a class="t-menu__link-item"
-                                                                   href="{{ url_for('invite') }}"
-                                                                   data-menu-submenu-hook="" data-menu-item-number="4">
-                                    Преподавать у нас
-                                </a></li>
-                            </ul>
-                        </nav>
-                    </div>
+                    {% include 'base_nav.html' %}
                     <div class="t228__rightside">
                         <div class="t228__rightcontainer">
                             <div class="t228__right_buttons">
@@ -570,10 +536,10 @@
                                         одаренные школьники, которые решили использовать свои способности и увлечения,
                                         чтобы помочь раскрыть потенциал ученикам 4-7х классов, посвящая свободное от
                                         учебы время преподаванию математики, физики и программирования (<a
-                                                href="{{ url_for('checking_system') }}"
+                                                href="{{ url_for('main.checking_system') }}"
                                                 style="color: rgb(255, 35, 0); border-bottom-color: rgb(77, 28, 202); border-bottom-style: solid; box-shadow: none; text-decoration: none;">Checking
                                             Система</a>), а также других предметов (<a
-                                                href="{{ url_for('teachers') }}"
+                                                href="{{ url_for('main.teachers') }}"
                                                 style="color: rgb(255, 35, 0); border-bottom-color: rgb(77, 28, 202); border-bottom-style: solid; box-shadow: none; text-decoration: none;">Каталог
                                             менторов</a>)
                                     </div>
@@ -823,13 +789,13 @@
                                         (допустимы исключения): <br/>
                                         <ul>
                                             <li data-list="bullet" style="color: rgb(255, 35, 0);"><a
-                                                    href="{{ url_for('checking_system') }}"
+                                                    href="{{ url_for('main.checking_system') }}"
                                                     style="color: rgb(255, 35, 0); border-bottom-color: rgb(255, 35, 0); border-bottom-style: solid; box-shadow: none; text-decoration: none;">Checking
                                                 система</a><span style="color: rgb(255, 35, 0);"> </span><span
                                                     style="color: rgb(255, 255, 255);">- инструмент для самостоятельного прорешивания материала и последующей его сдачи в тестирующую систему, также возможна сдача в устной форме (Checking PRO)</span>
                                             </li>
                                             <li data-list="bullet" style="color: rgb(255, 35, 0);"><a
-                                                    href="{{ url_for('teachers') }}"
+                                                    href="{{ url_for('main.teachers') }}"
                                                     style="color: rgb(255, 35, 0); border-bottom-color: rgb(255, 35, 0); border-bottom-style: solid; box-shadow: none; text-decoration: none;">Менторство</a><span
                                                     style="color: rgb(255, 35, 0);"> </span><span
                                                     style="color: rgb(255, 255, 255);">- формат обучения, где старшеклассники из топ-школ выполняют роль"старшего брата", давая ученику квалифицированную помощь по предмету, а также следят за его прогрессом в обучении.</span>
@@ -1913,7 +1879,7 @@
                                 <div class="t613__left t-valign_middle" style="min-width: 260px;width: 260px;"></div>
                                 <div class="t613__col t613__width_33 t-align_center t-valign_middle"
                                      style="border-color: #ffffff;">
-                                    <div class="t613__buttonwrapper"><a href="{{ url_for('teachers') }}" target=""
+                                    <div class="t613__buttonwrapper"><a href="{{ url_for('main.teachers') }}" target=""
                                                                         class="t613__btn t-btn t-btn_sm"
                                                                         style="color:#ffffff;background-color:#fc2200;border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px;"
                                                                         data-buttonfieldset="button"> <span
@@ -1921,7 +1887,7 @@
                                 </div>
                                 <div class="t613__col t613__width_33 t-align_center t-valign_middle"
                                      style="border-color: #ffffff;">
-                                    <div class="t613__buttonwrapper"><a href="{{ url_for('checking_system') }}" target=""
+                                    <div class="t613__buttonwrapper"><a href="{{ url_for('main.checking_system') }}" target=""
                                                                         class="t613__btn t-btn t-btn_sm"
                                                                         style="color:#ffffff;background-color:#fc2200;border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px;"
                                                                         data-buttonfieldset="button2"> <span
@@ -1929,7 +1895,7 @@
                                 </div>
                                 <div class="t613__col t613__width_33 t-align_center t-valign_middle"
                                      style="border-color: #ffffff;">
-                                    <div class="t613__buttonwrapper"><a href="{{ url_for('checking_system') }}" target=""
+                                    <div class="t613__buttonwrapper"><a href="{{ url_for('main.checking_system') }}" target=""
                                                                         class="t613__btn t-btn t-btn_sm"
                                                                         style="color:#ffffff;background-color:#fc2200;border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px;"
                                                                         data-buttonfieldset="button3"> <span

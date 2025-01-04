@@ -92,7 +92,7 @@ def login():
 @bp.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('admin.index'))
+    return redirect(url_for('main.index'))
 
 
 @bp.route('/teacher', methods=['GET', 'POST'])
