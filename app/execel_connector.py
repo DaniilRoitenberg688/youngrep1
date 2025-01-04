@@ -2,7 +2,7 @@ import gspread
 
 from requests import get
 
-from write_log import write_log
+from app.write_log import write_log
 
 
 class ExcelConnector:

@@ -15,31 +15,31 @@
     <meta property="og:description"
           content="Школа с репетиторами - учениками 9-11 классов, уже достигнувшие успехов в своих предметах "/>
     <meta property="og:type" content="website"/>
-    <meta property="og:image" content="static/images/tild3835-3065-4339-b362-623334386265___21082024_1903.jpeg"/>
+    <meta property="og:image" content="/static/images/tild3835-3065-4339-b362-623334386265___21082024_1903.jpeg"/>
     <link rel="canonical" href="templates"> <!--/metatextblock-->
     <meta name="format-detection" content="telephone=no"/>
     <meta http-equiv="x-dns-prefetch-control" content="on">
     <meta name="yandex-verification" content="96272397f080b088"/>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
 
-    <link rel="manifest" href="/static/favicons/site.webmanifest">
+    <link rel="manifest" href="/favicons/site.webmanifest">
 
     <link rel="dns-prefetch" href="https://ws.tildacdn.com">
     <link rel="icon" type="image/jpeg" sizes="32x32"
-          href="/static/images/tild6365-3432-4663-b431-313638353136___21082024_1903.jpeg"
+          href="/images/tild6365-3432-4663-b431-313638353136___21082024_1903.jpeg"
           media="(prefers-color-scheme: light)"/>
     <link rel="icon" type="image/jpeg" sizes="32x32"
-          href="/static/images/tild3961-3638-4239-b637-343038376461___21082024_1903.jpeg"
+          href="/images/tild3961-3638-4239-b637-343038376461___21082024_1903.jpeg"
           media="(prefers-color-scheme: dark)"/>
     <link rel="apple-touch-icon" type="image/png"
-          href="/static/images/tild6633-3331-4061-a564-313939633465__tempimagerav7tq.png">
+          href="/images/tild6633-3331-4061-a564-313939633465__tempimagerav7tq.png">
     <link rel="icon" type="image/png" sizes="192x192"
-          href="/static/images/tild6633-3331-4061-a564-313939633465__tempimagerav7tq.png">
+          href="/images/tild6633-3331-4061-a564-313939633465__tempimagerav7tq.png">
     <link rel="alternate" type="application/rss+xml" title="YoungRep"
-          href="/static/images/http____youngrep.tilda.ws__rss.xml"/> <!-- Assets -->
+          href="/images/http____youngrep.tilda.ws__rss.xml"/> <!-- Assets -->
     <script src="https://neo.tildacdn.com/js/tilda-fallback-1.0.min.js" async charset="utf-8"></script>
     <link rel="stylesheet" href="/static/css/tilda-grid-3.0.min.css" type="text/css" media="all"
           onerror="this.loaderr='y';"/>
@@ -150,41 +150,7 @@
                  data-menu="yes">
                 <div class="t228__maincontainer " style="">
                     <div class="t228__padding40px"></div>
-                    <div class="t228__leftside">
-                        <div class="t228__leftcontainer"><a href="/" class="t228__imgwrapper">
-                            <div class="t228__logo t-title" field="title">YoungRep</div>
-                        </a></div>
-                    </div>
-                    <div class="t228__centerside ">
-                        <nav class="t228__centercontainer">
-                            <ul role="list" class="t228__list t-menu__list t228__list_hidden">
-                                <li class="t228__list_item"
-                                    style="padding:0 15px 0 0;"><a class="t-menu__link-item"
-                                                                   href="/about"
-                                                                   data-menu-submenu-hook="" data-menu-item-number="1">
-                                    О нас
-                                </a></li>
-                                <li class="t228__list_item"
-                                    style="padding:0 15px;"><a class="t-menu__link-item"
-                                                               href="/teachers"
-                                                               data-menu-submenu-hook="" data-menu-item-number="2">
-                                    Каталог менторов
-                                </a></li>
-                                <li class="t228__list_item"
-                                    style="padding:0 15px;"><a class="t-menu__link-item"
-                                                               href="/checking_system"
-                                                               data-menu-submenu-hook="" data-menu-item-number="3">
-                                    Checking Система
-                                </a></li>
-                                <li class="t228__list_item"
-                                    style="padding:0 0 0 15px;"><a class="t-menu__link-item"
-                                                                   href="/invite"
-                                                                   data-menu-submenu-hook="" data-menu-item-number="4">
-                                    Преподавать у нас
-                                </a></li>
-                            </ul>
-                        </nav>
-                    </div>
+                    {% include 'base_nav.html' %}
                     <div class="t228__rightside">
                         <div class="t228__rightcontainer">
                             <div class="t228__right_buttons">
@@ -500,22 +466,22 @@
             </style>
         </div>
     </header> <!--/header--> <!--/header-->
-    <main class="mb-5" style="padding-left: 0;">
+    <main class="" style="padding-left: 0;">
         <div class="pb-lg-5 pt-lg-5" style="height: 0px; background-color: black"></div>
-        <div class="mx-3">
-            <h1 class="fs-1 mb-4 mt-3 text-center">{{ teacher[1] }} {{ teacher[2] }}</h1>
+        <div class="mx-3 mb-5">
+            <h1 class="fs-1 mb-4 mt-3 text-center">{{ teacher.surname }} {{ teacher.name }}</h1>
             <div class="container text-center text-lg-start mt-3 d-lg-inline-flex mx-lg-5 me-5" style="padding-left: 0">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                    <img class="mb-5 row-lg-7 row-12" src="/static/teachers_images/{{ teacher[0] }}.png"
+                    <img class="mb-5 row-lg-7 row-12" src="/static/teachers_images/{{ teacher.image }}"
                          style="border-radius: 30px; width: 350px; height: auto">
                     <div class="px-3 pt-3" style="border-radius: 30px; background-color: #bbbbbb">
                         <h2 class="fs-2 mb-3">Общая информация:</h2>
                         <div class="ps-3 pb-3">
-                            <h5 class="fs-5 mb-2">Предмет: <strong>{{ teacher[3] }}</strong></h5>
-                            <h5 class="fs-5 mb-2">Класс: <strong>{{ teacher[4] }}</strong></h5>
-                            <h5 class="fs-5 mb-2">Достижения: <strong>{{ teacher[7] }}</strong></h5>
-                            <h5 class="fs-5 mb-2">Тариф: <strong>{{ teacher[6] }} руб/нед</strong></h5>
-                            <h5 class="fs-5 mb-2">Хобби: <strong>{{ teacher[12] }}</strong></h5>
+                            <h5 class="fs-5 mb-2">Предмет: <strong>{{ teacher.subjects[0].name }}</strong></h5>
+                            <h5 class="fs-5 mb-2">Класс: <strong>{{ teacher.students_class }}</strong></h5>
+                            <h5 class="fs-5 mb-2">Достижения: <strong>{{ teacher.achievements_text }}</strong></h5>
+                            <h5 class="fs-5 mb-2">Тариф: <strong>{{ teacher.tariff }} руб/нед</strong></h5>
+                            <h5 class="fs-5 mb-2">Хобби: <strong>{{ teacher.hobbies_text }}</strong></h5>
 
                         </div>
                     </div>
@@ -524,26 +490,25 @@
                 <div class="about mt-4 col-lg-5 col-sm-12 col-md-12 col-12 ms-lg-5 ms-1">
                     <div>
                         <h2 class="mb-3">Рассказ о себе:</h2>
-                        <span class="fs-5 mb-5" style="">{{ teacher[10] }}</span>
+                        <span class="fs-5 mb-5" style="">{{ teacher.about_text }}</span>
                     </div>
                     <div>
                         <h2 class="mt-5 mb-3">Отзывы:</h2>
-                        {% for i in range(teacher[8]) %}
+                        {% for i in range(teacher.feedback) %}
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                  class="bi bi-star-fill fs-1" viewBox="0 0 16 16" style="color: #FFD27D">
                                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                             </svg>
                         {% endfor %}
                         <div class="mt-4 mb-5">
-                            {% for reply in replies %}
 
-                                <p class="mb-3 fs-5 pe-4">{{ reply }}</p>
-                            {% endfor %}
+                            <p class="mb-3 fs-5 pe-4">{{ teacher.about_text }}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div id="rec827660306" class="r t-rec" style=" " data-record-type="390">
             <div class="t390">
                 <div
@@ -571,7 +536,7 @@
                     </div>
                     <div class="t-popup__container t-width t-width_6" style="background-color:#fbfbf9;"><img
                             class="t390__img t-img"
-                            src="/static/images/tild3233-6130-4630-a166-343334623731__-__empty___02112024_1146.jpeg"
+                            src="/images/tild3233-6130-4630-a166-343334623731__-__empty___02112024_1146.jpeg"
                             data-original="/static/images/tild3233-6130-4630-a166-343334623731___02112024_1146.jpeg"
                             imgfield="img"
                             alt="">
