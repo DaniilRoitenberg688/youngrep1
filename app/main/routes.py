@@ -1,9 +1,8 @@
 from app.main import bp
-from app import app, data_base, end_age, achievements, subjects, hobbies
 from flask import redirect, render_template, request, url_for
-from app.write_log import write_log
 from app.models import Teacher, Hobby, Achievement, Subject
 from app import db
+from app import models
 
 
 
@@ -66,8 +65,8 @@ def teachers():
     if teachers:
         teachers = sorted(teachers, key=lambda x: x.feedback)
 
-    return render_template('main/teachers.html', teachers=teachers, all_subjects=subjects,
-                           all_achievements=achievements, all_hobbies=hobbies, search=search)
+    return render_template('main/teachers.html', teachers=teachers, all_subjects=models.Subject.query.all(),
+                           all_achievements=models.Achievement.query.all(), all_hobbies=models.Hobby.query.all(), search=search)
 
 
 @bp.route('/search_form', methods=['POST'])
@@ -107,8 +106,3 @@ def checking_system():
 @bp.route('/invite')
 def invite():
     return render_template('main/invite.html')
-
-@bp.route('/update_photos')
-def update_photos():
-    data_base.load_images()
-    return redirect('/')

@@ -3,8 +3,10 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, SelectField, widgets, IntegerRangeField, ValidationError
 from wtforms.fields.choices import SelectMultipleField
 from wtforms.validators import DataRequired
-from app import subjects, achievements, hobbies
 from flask_wtf.file import FileField
+
+from app import models
+from flask import current_app
 
 
 
@@ -29,17 +31,14 @@ class AddTeacherForm(FlaskForm):
     image_link = StringField('Image link')
     image = FileField('Image')
 
-    all_subjects = subjects
-
-    all_achievements = achievements
     achievements_text = TextAreaField('Achievements text')
 
-    all_hobbies = hobbies
     hobbies_text = TextAreaField('Hobbies')
 
     feedback = IntegerRangeField('Feedback')
 
     submit = SubmitField('Add')
+
 
     def validate_student_class(self, student_class):
         if student_class.data and not student_class.data.isdigit():

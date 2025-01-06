@@ -1,15 +1,15 @@
 from urllib.parse import urlsplit
 import os
 
-from app import app, db, subjects, hobbies, achievements
+from app import db
 from app.admin import bp
-from flask import render_template, redirect, url_for, flash, request
+from flask import render_template, redirect, url_for, flash, request, current_app
 from app.admin.forms import LoginForm, AddTeacherForm, EditTeacherForm
 from flask_login import current_user, login_user, login_required, logout_user
 
 from app.models import User, Teacher, Subject, Achievement, Hobby
-import sqlalchemy
 
+from app import models
 
 @bp.route('/')
 @login_required
@@ -67,8 +67,8 @@ def index():
     teachers = list(set(teachers))
     teachers = sorted(teachers, key=lambda x: x.feedback)
 
-    return render_template('admin/index.html', title='Teachers', teachers=teachers, all_subjects=subjects,
-                           all_achievements=achievements, all_hobbies=hobbies)
+    return render_template('admin/index.html', title='Teachers', teachers=teachers, all_subjects=models.Subject.query.all(),
+                           all_achievements=models.Achievement.query.all(), all_hobbies=models.Hobby.query.all())
 
 
 @bp.route('/login', methods=['GET', 'POST'])
@@ -138,14 +138,15 @@ def new_teacher():
 
         image = form.image.data
         if image is not None:
-            image.save(os.path.join(app.config['UPLOAD_PATH'], str(teacher.id) + '.png'))
+            image.save(os.path.join(current_app.config['UPLOAD_PATH'], str(teacher.id) + '.png'))
             teacher.image = str(teacher.id) + '.png'
             db.session.commit()
 
 
         return redirect(url_for('admin.index'))
 
-    return render_template('admin/add_teacher.html', form=form)
+    return render_template('admin/add_teacher.html', form=form, all_subjects=models.Subject.query.all(),
+                           all_achievements=models.Achievement.query.all(), all_hobbies=models.Hobby.query.all())
 
 
 @bp.route('/delete_teacher/<int:id>', methods=['GET', 'DELETE'])
@@ -153,7 +154,7 @@ def new_teacher():
 def delete_teacher(id):
     teacher = db.session.get(Teacher, id)
     if teacher.image:
-        os.remove(os.path.join(app.config['UPLOAD_PATH'], teacher.image))
+        os.remove(os.path.join(current_app.config['UPLOAD_PATH'], teacher.image))
     db.session.delete(teacher)
     db.session.commit()
     return redirect(url_for('admin.index'))
@@ -196,7 +197,7 @@ def edit_teacher(id):
 
         image = form.image.data
         if image is not None:
-            image.save(os.path.join(app.config['UPLOAD_PATH'], str(teacher.id) + '.png'))
+            image.save(os.path.join(current_app.config['UPLOAD_PATH'], str(teacher.id) + '.png'))
 
         db.session.commit()
         return redirect(url_for('admin.index'))
@@ -220,7 +221,8 @@ def edit_teacher(id):
         form.hobbies = [i.name for i in teacher.hobbies]
         form.hobbies_text.data = teacher.hobbies_text
 
-    return render_template('admin/edit_teacher.html', form=form, title='Edit teacher')
+    return render_template('admin/edit_teacher.html', form=form, title='Edit teacher', all_subjects=models.Subject.query.all(),
+                           all_achievements=models.Achievement.query.all(), all_hobbies=models.Hobby.query.all())
 
 
 @bp.route('/search_form', methods=['POST'])
