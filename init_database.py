@@ -20,11 +20,11 @@ with app.app_context():
         s = Subject(name=i)
         db.session.add(s)
 
-    for i in all_subjects:
+    for i in all_achievements:
         s = Achievement(name=i)
         db.session.add(s)
 
-    for i in all_subjects:
+    for i in all_hobbies:
         s = Hobby(name=i)
         db.session.add(s)
 
