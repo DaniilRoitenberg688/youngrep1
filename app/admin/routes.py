@@ -65,7 +65,7 @@ def index():
         teachers.extend(result)
 
     teachers = list(set(teachers))
-    teachers = sorted(teachers, key=lambda x: x.feedback)
+    teachers = sorted(teachers, key=lambda x: -x.feedback)
 
     return render_template('admin/index.html', title='Teachers', teachers=teachers, all_subjects=models.Subject.query.all(),
                            all_achievements=models.Achievement.query.all(), all_hobbies=models.Hobby.query.all())

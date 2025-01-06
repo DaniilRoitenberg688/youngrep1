@@ -63,7 +63,7 @@ def teachers():
 
     teachers = list(set(teachers))
     if teachers:
-        teachers = sorted(teachers, key=lambda x: x.feedback)
+        teachers = sorted(teachers, key=lambda x: -x.feedback)
 
     return render_template('main/teachers.html', teachers=teachers, all_subjects=models.Subject.query.all(),
                            all_achievements=models.Achievement.query.all(), all_hobbies=models.Hobby.query.all(), search=search)
