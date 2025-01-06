@@ -128,7 +128,8 @@
                                  onclick="location.href='/admin/teacher_profile/{{ teacher.id }}'">
                             <div class="card-body" onclick="location.href='/admin/teacher_profile/{{ teacher.id }}'">
                                 <p class="card-title mb-3 fs-3">{{ teacher.surname }} {{ teacher.name }}</p>
-                                <p class="card-text mb-2 fs-4"><b>{{ teacher.subjects[0].name }}</b></p>
+                                <p class="card-text mb-2 fs-4"><b>{% for i in teacher.subjects %}
+                                    {{ i.name }}{% endfor %}</b></p>
                                 <p style="  display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -149,50 +150,14 @@
                                 <a class="btn btn-warning"
                                    href="{{ url_for('admin.edit_teacher', id=teacher.id) }}">Edit</a>
                                 <a class="btn btn-danger"
+                                   href="{{ url_for('admin.delete_teacher', id=teacher.id) }}"
                                    onclick="document.getElementById('message').style.display='block'
                                             document.getElementById('p').style.display='block'">Delete</a>
                             </div>
                         </div>
 
                     </div>
-                    <style>
-                        #message {
-                            margin: 0;
-                            position: absolute;
-                            top: 50%;
-                            left: 50%;
-                            margin-right: -50%;
-                            transform: translate(-50%, -50%);
-                            border-radius: 25px;
-                            display: none;
-                            background-color: rgba(255, 255, 255, 0.75);
 
-                        }
-
-                        #p {
-                            background: rgba(102, 102, 102, 0.5);
-                            width: 100%;
-                            height: 100%;
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            display: none;
-                        }
-                    </style>
-                    <div id="p">
-                        <div class="card col-lg-3 col-12 text-center " id="message" style="border-radius: 25px;">
-                            <div class="card-body">
-                                <h1 class="fs-1 my-3">Are you sure?</h1>
-                                <div>
-                                    <a class="btn btn-danger fs-4"
-                                       href="{{ url_for('admin.delete_teacher', id=teacher.id) }}">Delete</a>
-                                    <a class="btn btn-success fs-4"
-                                       onclick="document.getElementById('message').style.display='none'
-                                        document.getElementById('p').style.display='none'">Back</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 {% endfor %}
             </div>
         </div>

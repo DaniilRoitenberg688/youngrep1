@@ -8,14 +8,13 @@
                     <h1 class="mb-4">Edit Teacher</h1>
                     <form method="post" novalidate action="" enctype="multipart/form-data">
                         {{ form.hidden_tag() }}
-
                         <div class="mb-2">
-                            {{ form.name.label(class="") }}
-                            {{ form.name(class="form-control") }}
-                        </div>
-                        <div class="mb-5">
                             {{ form.surname.label(class="") }}
                             {{ form.surname(class="form-control") }}
+                        </div>
+                        <div class="mb-5">
+                            {{ form.name.label(class="") }}
+                            {{ form.name(class="form-control") }}
                         </div>
 
                         <div class="mb-5">

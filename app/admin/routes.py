@@ -8,6 +8,7 @@ from app.admin.forms import LoginForm, AddTeacherForm, EditTeacherForm
 from flask_login import current_user, login_user, login_required, logout_user
 
 from app.models import User, Teacher, Subject, Achievement, Hobby
+import sqlalchemy
 
 
 @bp.route('/')
@@ -113,21 +114,25 @@ def new_teacher():
         )
 
         db.session.add(teacher)
+        db.session.commit()
 
-        subjects = request.form.getlist('subjects')
-        achievements = request.form.getlist('achievements')
-        hobbies = request.form.getlist('hobbies')
-        for subject in subjects:
-            subject: Subject = Subject.query.filter_by(name=subject).first()
+        hobbies_to_add = request.form.getlist('hobbies')
+        for i in hobbies_to_add:
+            hobby = Hobby.query.filter(Hobby.name == i).first()
+            hobby.teachers
+            teacher.hobbies.append(hobby)
+
+        subjects_to_add = request.form.getlist('subjects')
+        for i in subjects_to_add:
+            subject = Subject.query.filter(Subject.name == i).first()
+            subject.teachers
             teacher.subjects.append(subject)
 
-        for achievement in achievements:
-            achievement: Achievement = Achievement.query.filter_by(name=achievement).first()
+        achievements_to_add = request.form.getlist('achievements')
+        for i in achievements_to_add:
+            achievement = Achievement.query.filter(Achievement.name == i).first()
+            achievement.teachers
             teacher.achievements.append(achievement)
-
-        for hobby in hobbies:
-            hobby: Hobby = Hobby.query.filter_by(name=hobby).first()
-            teacher.hobbies.append(hobby)
 
         db.session.commit()
 
@@ -136,6 +141,7 @@ def new_teacher():
             image.save(os.path.join(app.config['UPLOAD_PATH'], str(teacher.id) + '.png'))
             teacher.image = str(teacher.id) + '.png'
             db.session.commit()
+
 
         return redirect(url_for('admin.index'))
 
@@ -202,7 +208,8 @@ def edit_teacher(id):
         form.student_class.data = teacher.students_class
         form.school.data = teacher.school
         form.about_text.data = teacher.about_text
-        form.image_path = os.path.join('/static/teachers_images', teacher.image)
+        if teacher.image:
+            form.image_path = os.path.join('/static/teachers_images', teacher.image)
         form.feedback.data = teacher.feedback
 
         form.subjects = [i.name for i in teacher.subjects]

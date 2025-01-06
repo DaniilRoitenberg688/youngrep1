@@ -3,3 +3,4 @@ conf.json
 /app/templates/files/
 __pycache__
 .venv
+teachers.db
