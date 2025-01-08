@@ -124,12 +124,11 @@
 
                         <div class="col-lg-3 col-md-4 col-sm-10 col-12 m-lg-3">
                             <div class="card mb-3">
-                                <img class="card-img-top img-fluid" style="height: 350px; width: auto"
+                                <img class="card-img-top img-fluid" style="height: 325px; width: auto"
                                      src="/static/teachers_images/{{ teacher.image }}"
                                      onclick="location.href='/teacher_profile/{{ teacher.id }}'">
                                 <div class="card-body" onclick="location.href='/teacher_profile/{{ teacher.id }}'">
-                                    <span class="card-title mb-1 fs-3">{{ teacher.surname }}</span>
-                                    <span class="card-title mb-3 fs-3">{{ teacher.name }}</span>
+                                    <p class="card-title mb-4 fs-2">{{ teacher.surname }}<br>{{ teacher.name }}</p>
                                     <p class="card-text mb-2 fs-4"><b>{{ teacher.subjects[0].name }}</b></p>
                                     <p style="  display: -webkit-box;
   -webkit-line-clamp: 2;
