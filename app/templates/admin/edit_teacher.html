@@ -51,7 +51,7 @@
 
                         <div class="mb-5">
                             <span>Subject</span>
-                            {% for i in all_subjects %}
+                            {% for i in form.   all_subjects %}
                                 <div class="form-check">
                                     {% if i.name in form.subjects %}
                                         <input class="form-check-input" type="checkbox" name="subjects" id="radio"
@@ -67,7 +67,7 @@
 
                         <div class="mb-3">
                             <span>Achievements</span>
-                            {% for i in all_achievements %}
+                            {% for i in form.all_achievements %}
                                 <div class="form-check">
                                     {% if i.name in form.achievements %}
                                         <input class="form-check-input" type="checkbox" name="achievements" id="radio"
@@ -89,7 +89,7 @@
 
                         <div class="mb-3">
                             <span>Hobbies</span>
-                            {% for i in all_hobbies %}
+                            {% for i in form.all_hobbies %}
                                 <div class="form-check">
                                     {% if i.name in form.hobbies %}
                                         <input class="form-check-input" type="checkbox" name="hobbies" id="radio"

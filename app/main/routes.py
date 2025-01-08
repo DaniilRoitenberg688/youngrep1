@@ -5,8 +5,6 @@ from app import db
 from app import models
 
 
-
-
 @bp.route('/teachers')
 def teachers():
     teachers = []
@@ -65,8 +63,16 @@ def teachers():
     if teachers:
         teachers = sorted(teachers, key=lambda x: -x.feedback)
 
-    return render_template('main/teachers.html', teachers=teachers, all_subjects=models.Subject.query.all(),
-                           all_achievements=models.Achievement.query.all(), all_hobbies=models.Hobby.query.all(), search=search)
+    all_achievements = models.Achievement.query.filter(Achievement.enabled).all()
+    all_achievements = list(filter(lambda x: x.name != 'другие...', all_achievements))
+    all_achievements.append(models.Achievement(name='другие...'))
+
+    all_hobbies = models.Hobby.query.filter(Hobby.enabled).all()
+    all_hobbies = list(filter(lambda x: x.name != 'другие...', all_hobbies))
+    all_hobbies.append(models.Hobby(name='другие...'))
+
+    return render_template('main/teachers.html', teachers=teachers, all_subjects=models.Subject.query.filter(Subject.enabled).all(),
+                           all_achievements=all_achievements, all_hobbies=all_hobbies, search=search)
 
 
 @bp.route('/search_form', methods=['POST'])

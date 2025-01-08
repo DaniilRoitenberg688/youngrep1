@@ -4,12 +4,13 @@ import os
 from app import db
 from app.admin import bp
 from flask import render_template, redirect, url_for, flash, request, current_app
-from app.admin.forms import LoginForm, AddTeacherForm, EditTeacherForm
+from app.admin.forms import LoginForm, AddTeacherForm, EditTeacherForm, EditSearchForm, AddSearchForm
 from flask_login import current_user, login_user, login_required, logout_user
 
 from app.models import User, Teacher, Subject, Achievement, Hobby
 
 from app import models
+
 
 @bp.route('/')
 @login_required
@@ -67,8 +68,10 @@ def index():
     teachers = list(set(teachers))
     teachers = sorted(teachers, key=lambda x: -x.feedback)
 
-    return render_template('admin/index.html', title='Teachers', teachers=teachers, all_subjects=models.Subject.query.all(),
-                           all_achievements=models.Achievement.query.all(), all_hobbies=models.Hobby.query.all())
+    return render_template('admin/index.html', title='Teachers', teachers=teachers,
+                           all_subjects=models.Subject.query.filter(Subject.enabled).all(),
+                           all_achievements=models.Achievement.query.filter(Achievement.enabled).all(),
+                           all_hobbies=models.Hobby.query.filter(Hobby.enabled).all())
 
 
 @bp.route('/login', methods=['GET', 'POST'])
@@ -99,6 +102,9 @@ def logout():
 @login_required
 def new_teacher():
     form = AddTeacherForm()
+    form.all_achievements = Achievement.query.all()
+    form.all_hobbies = Hobby.query.all()
+    form.all_subjects = Subject.query.all()
     if form.validate_on_submit():
 
         teacher = Teacher(
@@ -142,11 +148,9 @@ def new_teacher():
             teacher.image = str(teacher.id) + '.png'
             db.session.commit()
 
-
         return redirect(url_for('admin.index'))
 
-    return render_template('admin/add_teacher.html', form=form, all_subjects=models.Subject.query.all(),
-                           all_achievements=models.Achievement.query.all(), all_hobbies=models.Hobby.query.all())
+    return render_template('admin/add_teacher.html', form=form, title='Add teacher')
 
 
 @bp.route('/delete_teacher/<int:id>', methods=['GET', 'DELETE'])
@@ -164,6 +168,9 @@ def delete_teacher(id):
 @login_required
 def edit_teacher(id):
     form = EditTeacherForm()
+    form.all_achievements = Achievement.query.all()
+    form.all_hobbies = Hobby.query.all()
+    form.all_subjects = Subject.query.all()
     teacher = db.session.get(Teacher, id)
     if form.validate_on_submit():
         teacher.name = form.name.data
@@ -221,8 +228,7 @@ def edit_teacher(id):
         form.hobbies = [i.name for i in teacher.hobbies]
         form.hobbies_text.data = teacher.hobbies_text
 
-    return render_template('admin/edit_teacher.html', form=form, title='Edit teacher', all_subjects=models.Subject.query.all(),
-                           all_achievements=models.Achievement.query.all(), all_hobbies=models.Hobby.query.all())
+    return render_template('admin/edit_teacher.html', form=form, title='Edit teacher')
 
 
 @bp.route('/search_form', methods=['POST'])
@@ -237,7 +243,77 @@ def search_form():
     return redirect(url_for('admin.index', subjects=subjects, age=age, achievements=achievements, tariff=tariff,
                             hobbies=hobbies, names=names))
 
+
 @bp.route('/teacher_profile/<int:id>', methods=['GET'])
 def teachers_profile(id):
     teacher = db.session.get(Teacher, id)
     return render_template('admin/teacher_profile.html', teacher=teacher)
+
+
+@bp.route('/edit_search', methods=['GET', 'POST'])
+def edit_search():
+    form = EditSearchForm()
+    form.subjects = Subject.query.all()
+    form.achievements = Achievement.query.all()
+    form.hobbies = Hobby.query.all()
+    if form.validate_on_submit():
+        print('sadad')
+        print(request.form.getlist('subjects'))
+        for i in form.subjects:
+            if i.name in request.form.getlist('subjects'):
+                i.enabled = True
+            else:
+                i.enabled = False
+        for i in form.achievements:
+            if i.name in request.form.getlist('achievements'):
+                i.enabled = True
+            else:
+                i.enabled = False
+        for i in form.hobbies:
+            if i.name in request.form.getlist('hobbies'):
+                i.enabled = True
+            else:
+                i.enabled = False
+        db.session.commit()
+
+        # return redirect(url_for('admin.index'))
+
+    return render_template('admin/edit_search.html', title='Edit search data', form=form)
+
+
+@bp.route('/add_search', methods=['GET', 'POST'])
+@login_required
+def add_search():
+    form = AddSearchForm()
+    if form.validate_on_submit():
+        category = form.category.data
+        if category == 'Предмет':
+            if Subject.query.filter_by(name=form.name.data).first():
+                flash('Not uniq name')
+                return redirect(url_for('admin.add_search'))
+            else:
+                n = Subject(name=form.name.data)
+                db.session.add(n)
+                db.session.commit()
+                return redirect(url_for('admin.edit_search'))
+
+        if category == 'Достижение':
+            if Achievement.query.filter_by(name=form.name.data).first():
+                flash('Not uniq name')
+                return redirect(url_for('admin.add_search'))
+            else:
+                n = Achievement(name=form.name.data)
+                db.session.add(n)
+                db.session.commit()
+                return redirect(url_for('admin.edit_search'))
+
+        if category == 'Хобби':
+            if Hobby.query.filter_by(name=form.name.data).first():
+                flash('Not uniq name')
+                return redirect(url_for('admin.add_search'))
+            else:
+                n = Hobby(name=form.name.data)
+                db.session.add(n)
+                db.session.commit()
+                return redirect(url_for('admin.edit_search'))
+    return render_template('admin/add_search.html', title='Add something', form=form)

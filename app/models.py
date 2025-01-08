@@ -1,3 +1,4 @@
+from email.policy import default
 from enum import unique
 
 from app import db
@@ -14,25 +15,37 @@ def load_user(id):
 class Subject(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(), nullable=False, unique=True)
+    enabled = db.Column(db.Boolean, default=True)
 
     def __repr__(self):
         return f'Subject <{self.name}>'
+
+    def change_value(self):
+        self.enabled = not self.enabled
 
 
 class Achievement(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(), nullable=False, unique=True)
+    enabled = db.Column(db.Boolean, default=True)
 
     def __repr__(self):
         return f'Achievement <{self.name}>'
+
+    def change_value(self):
+        self.enabled = not self.enabled
 
 
 class Hobby(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(), nullable=False, unique=True)
+    enabled = db.Column(db.Boolean, default=True)
 
     def __repr__(self):
         return f'Hobby <{self.name}>'
+
+    def change_value(self):
+        self.enabled = not self.enabled
 
 
 teacher_subject = db.Table('teacher_subject',

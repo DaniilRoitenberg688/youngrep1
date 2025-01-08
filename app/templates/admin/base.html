@@ -10,7 +10,7 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
 
-    <link rel="icon" href="/favicons/favicon.ico">
+    <link rel="icon" href="/static/favicons/favicon.ico">
 </head>
 <body>
 <header>
@@ -19,6 +19,7 @@
             <div>
                 <a class="navbar-brand mt-3" href="{{ url_for('admin.index') }}">Teachers</a>
                 <a class="navbar-brand ms-3" href="{{ url_for('main.index') }}">back to youngrep</a>
+                <a class="navbar-brand ms-3" href="{{ url_for('admin.edit_search') }}">edit search</a>
             </div>
             <div>
                 <a class="btn btn-danger me-5" href="{{ url_for('admin.logout') }}">logout</a>

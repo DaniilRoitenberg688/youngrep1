@@ -1,7 +1,6 @@
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, SelectField, widgets, IntegerRangeField, ValidationError
-from wtforms.fields.choices import SelectMultipleField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, SelectField, IntegerRangeField, ValidationError
 from wtforms.validators import DataRequired
 from flask_wtf.file import FileField
 
@@ -16,10 +15,6 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Remember me')
     submit = SubmitField('Login')
 
-class MultiCheckboxField(SelectMultipleField):
-    widget = widgets.ListWidget(prefix_label=True)
-    option_widget = widgets.CheckboxInput()
-
 
 class AddTeacherForm(FlaskForm):
     name = StringField('Name')
@@ -30,6 +25,10 @@ class AddTeacherForm(FlaskForm):
     about_text = TextAreaField('About')
     image_link = StringField('Image link')
     image = FileField('Image')
+
+    all_achievements: list
+    all_hobbies: list
+    all_subjects: list
 
     achievements_text = TextAreaField('Achievements text')
 
@@ -58,6 +57,24 @@ class EditTeacherForm(AddTeacherForm):
     hobbies: list
     image_path: str
     submit = SubmitField('Edit')
+
+
+class EditSearchForm(FlaskForm):
+    subjects: list
+    hobbies: list
+    achievements: list
+
+    submit = SubmitField('Save')
+
+
+class AddSearchForm(FlaskForm):
+    a = {'Предмет': 'Предмет', "Достижение": 'Достижение', "Хобби": 'Хобби'}
+    category = SelectField('Category', choices=['Предмет', 'Достижение', 'Хобби'])
+    name = StringField('Name', validators=[DataRequired()])
+    submit = SubmitField('Add')
+
+
+
 
 
 
