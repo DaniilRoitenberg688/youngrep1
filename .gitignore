@@ -4,3 +4,4 @@ conf.json
 __pycache__
 .venv
 teachers.db
+/app/static/teachers_images
