@@ -63,13 +63,16 @@ def teachers():
     if teachers:
         teachers = sorted(teachers, key=lambda x: -x.feedback)
 
+
     all_achievements = models.Achievement.query.filter(Achievement.enabled).all()
-    all_achievements = list(filter(lambda x: x.name != 'другие...', all_achievements))
-    all_achievements.append(models.Achievement(name='другие...'))
+    if Achievement(name='другие...') in all_achievements:
+        all_achievements = list(filter(lambda x: x.name != 'другие...', all_achievements))
+        all_achievements.append(models.Achievement(name='другие...'))
 
     all_hobbies = models.Hobby.query.filter(Hobby.enabled).all()
-    all_hobbies = list(filter(lambda x: x.name != 'другие...', all_hobbies))
-    all_hobbies.append(models.Hobby(name='другие...'))
+    if Hobby(name='другие...') in all_hobbies:
+        all_hobbies = list(filter(lambda x: x.name != 'другие...', all_hobbies))
+        all_hobbies.append(models.Hobby(name='другие...'))
 
     return render_template('main/teachers.html', teachers=teachers, all_subjects=models.Subject.query.filter(Subject.enabled).all(),
                            all_achievements=all_achievements, all_hobbies=all_hobbies, search=search)

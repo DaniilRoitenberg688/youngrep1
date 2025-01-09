@@ -122,9 +122,9 @@
                 <div class="row me-3 ms-2">
                     {% for teacher in teachers %}
 
-                        <div class="col-lg-3 col-md-4 col-sm-10 col-12 m-lg-3">
+                        <div class="col-lg-3 col-md-4 col-sm-10 col-12 m-lg-3 mb-3">
                             <div class="card mb-3 h-100">
-                                <img class="card-img-top img-fluid" style="height: 100%; width: 100%"
+                                <img class="card-img-top img-fluid" style="object-fit: cover; height: 300px"
                                      src="/static/teachers_images/{{ teacher.image }}"
                                      onclick="location.href='/teacher_profile/{{ teacher.id }}'">
                                 <div class="card-body" onclick="location.href='/teacher_profile/{{ teacher.id }}'">
