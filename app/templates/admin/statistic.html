@@ -1,0 +1,9 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+    <div class="m-3">
+	{% for i in pages %}
+    <p class="fs-3">{{ i.name }} - {{ i.quantity }}</p>
+    {% endfor %}
+    </div>
+{% endblock %}

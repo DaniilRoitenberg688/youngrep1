@@ -2,7 +2,7 @@
 {% block content %}
 
 
-    <div class="position-relative mt-5 col-lg-12 col-sm-5 col-12 " id="start" style="">
+    <div class="position-relative mt-5 col-lg-12 col-md-12 col-sm-5 col-12 " id="start" style="">
         <form class="d-flex flex-column flex-lg-row mb-5" method="post"
               action="{{ url_for('main.search_form') }}">
             <nav class="nav d-flex flex-row col-sm-1 col-lg-7 col-12 ">
@@ -122,7 +122,7 @@
                 <div class="row me-3 ms-2">
                     {% for teacher in teachers %}
 
-                        <div class="col-lg-3 col-md-4 col-sm-10 col-12 m-lg-3 mb-3">
+                        <div class="col-lg-3 col-md-6 col-sm-10 col-12 m-lg-3 mb-3">
                             <div class="card mb-3 h-100">
                                 <img class="card-img-top img-fluid" style="object-fit: cover; height: 300px"
                                      src="/static/teachers_images/{{ teacher.image }}"

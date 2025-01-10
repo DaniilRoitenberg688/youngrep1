@@ -1,12 +1,21 @@
 from app.main import bp
 from flask import redirect, render_template, request, url_for
-from app.models import Teacher, Hobby, Achievement, Subject
+from app.models import Teacher, Hobby, Achievement, Subject, Page
 from app import db
 from app import models
 
 
 @bp.route('/teachers')
 def teachers():
+    page = Page.query.filter_by(name='teacher').first()
+    if page is None:
+        page = Page(name='teacher')
+        db.session.add(page)
+        db.session.commit()
+    if not request.args.get('search'):
+        print(page.name)
+        page.quantity += 1
+        db.session.commit()
     teachers = []
     data = request.args
     search = data.get('search', False)
@@ -92,11 +101,25 @@ def search_form():
 @bp.route('/')
 @bp.route('/index')
 def index():
+    page = Page.query.filter_by(name='index').first()
+    if not page:
+        page = Page(name='index')
+        db.session.add(page)
+        db.session.commit()
+    page.quantity += 1
+    db.session.commit()
     return render_template('main/index.html')
 
 
 @bp.route('/teacher_profile/<int:id>', methods=['GET'])
 def teachers_profile(id):
+    page = Page.query.filter_by(name='teacher_profile').first()
+    if not page:
+        page = Page(name='teacher_profile')
+        db.session.add(page)
+        db.session.commit()
+    page.quantity += 1
+    db.session.commit()
     teacher = db.session.get(Teacher, id)
     return render_template('main/teacher_profile.html', teacher=teacher)
 
@@ -104,14 +127,35 @@ def teachers_profile(id):
 
 @bp.route('/about')
 def about():
+    page = Page.query.filter_by(name='about').first()
+    if not page:
+        page = Page(name='about')
+        db.session.add(page)
+        db.session.commit()
+    page.quantity += 1
+    db.session.commit()
     return render_template('main/about.html')
 
 
 @bp.route('/checking_system')
 def checking_system():
+    page = Page.query.filter_by(name='checking_system').first()
+    if not page:
+        page = Page(name='checking_system')
+        db.session.add(page)
+        db.session.commit()
+    page.quantity += 1
+    db.session.commit()
     return render_template('main/checking_system.html')
 
 
 @bp.route('/invite')
 def invite():
+    page = Page.query.filter_by(name='invite').first()
+    if not page:
+        page = Page(name='invite')
+        db.session.add(page)
+        db.session.commit()
+    page.quantity += 1
+    db.session.commit()
     return render_template('main/invite.html')

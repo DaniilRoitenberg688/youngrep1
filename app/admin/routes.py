@@ -7,7 +7,7 @@ from flask import render_template, redirect, url_for, flash, request, current_ap
 from app.admin.forms import LoginForm, AddTeacherForm, EditTeacherForm, EditSearchForm, AddSearchForm
 from flask_login import current_user, login_user, login_required, logout_user
 
-from app.models import User, Teacher, Subject, Achievement, Hobby
+from app.models import User, Teacher, Subject, Achievement, Hobby, Page
 
 from app import models
 
@@ -317,3 +317,10 @@ def add_search():
                 db.session.commit()
                 return redirect(url_for('admin.edit_search'))
     return render_template('admin/add_search.html', title='Add something', form=form)
+
+
+@bp.route('/statistic')
+def statistic():
+    pages = Page.query.all()
+    print(pages)
+    return render_template('admin/statistic.html', title='statistic', pages=pages)
