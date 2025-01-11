@@ -322,5 +322,4 @@ def add_search():
 @bp.route('/statistic')
 def statistic():
     pages = Page.query.all()
-    print(pages)
     return render_template('admin/statistic.html', title='statistic', pages=pages)

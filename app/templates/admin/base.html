@@ -14,18 +14,29 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-dark bg-dark py-3">
-        <div class="container-fluid">
-            <div>
-                <a class="navbar-brand mt-3" href="{{ url_for('admin.index') }}">Teachers</a>
-                <a class="navbar-brand ms-3" href="{{ url_for('main.index') }}">back to youngrep</a>
-                <a class="navbar-brand ms-3" href="{{ url_for('admin.edit_search') }}">edit search</a>
-                <a class="navbar-brand ms-3" href="{{ url_for('admin.statistic') }}">statistic</a>
+    <nav class="navbar navbar-dark bg-dark py-3 navbar-expand-lg ">
+        <div class="container-fluid collapse ">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#data"
+                    aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-center" id="data">
+                <a class="navbar-brand" href="{{ url_for('admin.index') }}">Teachers</a>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.index') }}">back to youngrep</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('admin.edit_search') }}">edit search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('admin.statistic') }}">statistic</a>
+                    </li>
+                </ul>
+                <a class="btn btn-danger" href="{{ url_for('admin.logout') }}">logout</a>
 
             </div>
-            <div>
-                <a class="btn btn-danger me-5" href="{{ url_for('admin.logout') }}">logout</a>
-            </div>
+
         </div>
     </nav>
 </header>

@@ -133,8 +133,8 @@
                                     <p style="  display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  overflow: hidden;">{{ teacher.achievements_text }}</p>
-                                    <p class="card-text mb-3 fs-4">{{ teacher.tariff }}</p>
+  overflow: hidden;" class="mb-3">{{ teacher.achievements_text }}</p>
+                                    <p class="card-text mb-4 fs-4"><span class="fs-4">{{ teacher.tariff }}</span>₽/нед</p>
                                     <div>
                                         {% for i in range(teacher.feedback) %}
                                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"

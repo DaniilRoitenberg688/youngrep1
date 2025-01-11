@@ -1,8 +1,33 @@
 {% extends 'admin/base.html' %}
 {% block content %}
+    <style>
+        #message {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%);
+            border-radius: 25px;
+            display: none;
+            background-color: rgba(255, 255, 255, 1);
+            z-index: 2;
 
+        }
 
-    <div class="position-relative mt-5 col-lg-12 col-sm-12 col-md-12 col-12 start-50 translate-middle-x" id="start" style="">
+    </style>
+
+    <script>
+        function delete_teacher(id) {
+            let answer = confirm('Are you sure')
+            if (answer) {
+                location = 'delete_teacher/' + id
+            }
+        }
+    </script>
+
+    <div class="position-relative mt-5 col-lg-12 col-sm-12 col-md-12 col-12 start-50 translate-middle-x" id="start"
+         style="">
         <form class="d-flex flex-column flex-lg-row me-3 ms-2 mb-5" method="post"
               action="{{ url_for('admin.search_form') }}">
             <nav class="nav d-flex flex-row col-sm-1 col-lg-7 col-12 ">
@@ -120,10 +145,9 @@
         <div class="me-3">
             <div class="row me-3 ms-2">
                 {% for teacher in teachers %}
-
-                    <div class="col-lg-3 col-md-4 col-sm-10 col-12 m-lg-3">
-                        <div class="card mb-3">
-                            <img class="card-img-top img-fluid" style=""
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-12 m-lg-3">
+                        <div class="card mb-3 h-100">
+                            <img class="card-img-top img-fluid" style="object-fit: cover; height: 450px"
                                  src="/static/teachers_images/{{ teacher.image }}"
                                  onclick="location.href='/admin/teacher_profile/{{ teacher.id }}'">
                             <div class="card-body" onclick="location.href='/admin/teacher_profile/{{ teacher.id }}'">
@@ -150,9 +174,8 @@
                                 <a class="btn btn-warning"
                                    href="{{ url_for('admin.edit_teacher', id=teacher.id) }}">Edit</a>
                                 <a class="btn btn-danger"
-                                   href="{{ url_for('admin.delete_teacher', id=teacher.id) }}"
-                                   onclick="document.getElementById('message').style.display='block'
-                                            document.getElementById('p').style.display='block'">Delete</a>
+                                        {#                                   href="{{ url_for('admin.delete_teacher', id=teacher.id) }}"#}
+                                   onclick="delete_teacher({{ teacher.id }})">Delete</a>
                             </div>
                         </div>
 
