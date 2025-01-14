@@ -116,7 +116,8 @@ def new_teacher():
             tariff=form.tariff.data,
             feedback=form.feedback.data,
             achievements_text=form.achievements_text.data,
-            hobbies_text=form.hobbies_text.data
+            hobbies_text=form.hobbies_text.data,
+            is_free=int(request.form.get('is_free', 0))
         )
 
         db.session.add(teacher)
@@ -183,6 +184,8 @@ def edit_teacher(id):
         teacher.achievements_text = form.achievements_text.data
         teacher.hobbies_text = form.hobbies_text.data
 
+        teacher.is_free = int(request.form.get('is_free', 0))
+
         teacher.subjects.clear()
         teacher.hobbies.clear()
         teacher.achievements.clear()
@@ -227,6 +230,8 @@ def edit_teacher(id):
 
         form.hobbies = [i.name for i in teacher.hobbies]
         form.hobbies_text.data = teacher.hobbies_text
+
+        form.is_free = teacher.is_free
 
     return render_template('admin/edit_teacher.html', form=form, title='Edit teacher')
 

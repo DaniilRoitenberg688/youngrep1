@@ -17,6 +17,18 @@
                             {{ form.name(class="form-control") }}
                         </div>
 
+                        <span>First week is free</span><br>
+                        <div class="form-check mb-5">
+                            {% if form.is_free %}
+                            <input class="form-check-input" type="checkbox" name="is_free" id="radio"
+                                   value="{{ 1 }}" checked>
+                            {% else %}
+                            <input class="form-check-input" type="checkbox" name="is_free" id="radio"
+                                   value="{{ 1 }}" >
+                            {% endif %}
+                            <label class="form-check-label" for="radio">yes</label>
+                        </div>
+
                         <div class="mb-5">
                             {{ form.tariff.label(class="") }}
                             {{ form.tariff(class="form-control") }}

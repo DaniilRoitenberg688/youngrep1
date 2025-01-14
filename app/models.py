@@ -82,8 +82,10 @@ class Teacher(db.Model):
 
     hobbies = db.relationship('Hobby', secondary=teacher_hobby, backref=db.backref('teachers'))
 
+    is_free = db.Column(db.Boolean, nullable=True, default=False)
+
     def __init__(self, name, surname, students_class, tariff, school, feedback, about_text, achievements_text,
-                 hobbies_text):
+                 hobbies_text, is_free):
         self.name = name
         self.surname = surname
         self.students_class = students_class
@@ -93,6 +95,7 @@ class Teacher(db.Model):
         self.about_text = about_text
         self.achievements_text = achievements_text
         self.hobbies_text = hobbies_text
+        self.is_free = is_free
 
 
 class User(UserMixin, db.Model):

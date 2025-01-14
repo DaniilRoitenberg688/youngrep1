@@ -129,6 +129,7 @@
                                          id="image"
                                          src="/static/teachers_images/{{ teacher.image }}"
                                          onclick="location.href='/teacher_profile/{{ teacher.id }}'">
+                                    {% if teacher.is_free %}
                                     <div style="position: absolute; top: 0; right: 0; margin-top: 150px">
                                         <svg width="150" height="150" viewBox="0 0 150 150" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -137,6 +138,7 @@
                                                   fill="white"/>
                                         </svg>
                                     </div>
+                                    {% endif %}
 
 
                                 </div>

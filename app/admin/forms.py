@@ -63,7 +63,7 @@ class EditSearchForm(FlaskForm):
     subjects: list
     hobbies: list
     achievements: list
-
+    is_free: bool
     submit = SubmitField('Save')
 
 
