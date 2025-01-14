@@ -6,8 +6,14 @@
         <h1 class="fs-1 mb-4 mt-3 text-center">{{ teacher.surname }} {{ teacher.name }}</h1>
         <div class="container text-center text-lg-start mt-3 d-lg-inline-flex mx-lg-5 me-5" style="padding-left: 0">
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                <img class="mb-5 row-lg-7 row-12" src="/static/teachers_images/{{ teacher.image }}"
-                     style="border-radius: 30px; width: 350px; height: auto">
+                <div class="mb-5 d-lg-inline-flex">
+                    <img class="" src="/static/teachers_images/{{ teacher.image }}"
+                         style="border-radius: 30px; width: 350px; height: auto">
+                    {% if teacher.is_free %}
+                        <img class="ms-lg-5 ms-0 mt-lg-0 mt-4" src="/static/images/free_week.jpg"
+                             style="width: 350px; height: 100%">
+                    {% endif %}
+                </div>
                 <div class="px-3 pt-3" style="border-radius: 30px; background-color: #bbbbbb">
                     <h2 class="fs-2 mb-3">Общая информация:</h2>
                     <div class="ps-3 pb-3">
@@ -36,7 +42,7 @@
                     {% endfor %}
                     <div class="mt-4 mb-5">
 
-                            <p class="mb-3 fs-5 pe-4">{{ teacher.about_text }}</p>
+                        <p class="mb-3 fs-5 pe-4">{{ teacher.about_text }}</p>
                     </div>
                 </div>
             </div>
