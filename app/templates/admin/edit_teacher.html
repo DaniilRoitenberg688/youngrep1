@@ -20,11 +20,11 @@
                         <span>First week is free</span><br>
                         <div class="form-check mb-5">
                             {% if form.is_free %}
-                            <input class="form-check-input" type="checkbox" name="is_free" id="radio"
-                                   value="{{ 1 }}" checked>
+                                <input class="form-check-input" type="checkbox" name="is_free" id="radio"
+                                       value="{{ 1 }}" checked>
                             {% else %}
-                            <input class="form-check-input" type="checkbox" name="is_free" id="radio"
-                                   value="{{ 1 }}" >
+                                <input class="form-check-input" type="checkbox" name="is_free" id="radio"
+                                       value="{{ 1 }}">
                             {% endif %}
                             <label class="form-check-label" for="radio">yes</label>
                         </div>
@@ -132,6 +132,11 @@
                             {{ form.about_text.label }}
                             {{ form.about_text(class='form-control', rows=5, placeholder='about person...') }}
                         </div>
+
+{#                        <div class="mb-5">#}
+{#                            {{ form.free_text.label }}#}
+{#                            {{ form.free_text(class='form-control', rows=5, placeholder='free text...') }}#}
+{#                        </div>#}
 
                         {{ form.submit(class='btn btn-primary fs-5') }}
                     </form>

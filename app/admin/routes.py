@@ -4,7 +4,7 @@ import os
 from app import db
 from app.admin import bp
 from flask import render_template, redirect, url_for, flash, request, current_app
-from app.admin.forms import LoginForm, AddTeacherForm, EditTeacherForm, EditSearchForm, AddSearchForm
+from app.admin.forms import LoginForm, AddTeacherForm, EditTeacherForm, EditSearchForm, AddSearchForm, EditFreeText
 from flask_login import current_user, login_user, login_required, logout_user
 
 from app.models import User, Teacher, Subject, Achievement, Hobby, Page
@@ -117,7 +117,9 @@ def new_teacher():
             feedback=form.feedback.data,
             achievements_text=form.achievements_text.data,
             hobbies_text=form.hobbies_text.data,
-            is_free=int(request.form.get('is_free', 0))
+            is_free=int(request.form.get('is_free', 0)),
+            free_text=form.free_text.data
+
         )
 
         db.session.add(teacher)
@@ -183,6 +185,7 @@ def edit_teacher(id):
         teacher.feedback = form.feedback.data
         teacher.achievements_text = form.achievements_text.data
         teacher.hobbies_text = form.hobbies_text.data
+        teacher.free_text = form.free_text.data
 
         teacher.is_free = int(request.form.get('is_free', 0))
 
@@ -219,6 +222,7 @@ def edit_teacher(id):
         form.student_class.data = teacher.students_class
         form.school.data = teacher.school
         form.about_text.data = teacher.about_text
+        form.free_text.data = teacher.free_text
         if teacher.image:
             form.image_path = os.path.join('/static/teachers_images', teacher.image)
         form.feedback.data = teacher.feedback
@@ -252,7 +256,9 @@ def search_form():
 @bp.route('/teacher_profile/<int:id>', methods=['GET'])
 def teachers_profile(id):
     teacher = db.session.get(Teacher, id)
-    return render_template('admin/teacher_profile.html', teacher=teacher)
+    with open('app/static/free_text/free_text.txt', 'r') as file:
+        text = file.read()
+    return render_template('admin/teacher_profile.html', teacher=teacher, text=text)
 
 
 @bp.route('/edit_search', methods=['GET', 'POST'])
@@ -325,6 +331,32 @@ def add_search():
 
 
 @bp.route('/statistic')
+@login_required
 def statistic():
     pages = Page.query.all()
     return render_template('admin/statistic.html', title='statistic', pages=pages)
+
+
+@bp.route('/free_text')
+def free_text():
+    with open('app/static/free_text/free_text.txt', 'r') as file:
+        text = file.read()
+    return render_template('admin/free_text.html', text=text)
+
+
+
+
+@bp.route('/edit_free_text', methods=['POST', 'GET'])
+def edit_free_text():
+    form = EditFreeText()
+    if request.method == 'GET':
+        with open('app/static/free_text/free_text.txt', 'r') as file:
+            text = file.read()
+        form.text.data = text
+        return render_template('admin/edit_free_text.html', form=form, title='Edit free text')
+
+    if form.validate_on_submit():
+        with open('app/static/free_text/free_text.txt', 'w') as file:
+            file.write(form.text.data)
+
+        return redirect(url_for('admin.free_text'))

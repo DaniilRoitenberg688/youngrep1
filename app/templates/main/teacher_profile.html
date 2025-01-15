@@ -625,7 +625,7 @@
     </header> <!--/header--> <!--/header-->
     <main class="" style="padding-left: 0;">
         <div class="pb-lg-5 pt-lg-5" style="height: 0px; background-color: black"></div>
-        <div class="mx-lg-3 mx-1 mb-5">
+        <div class="mx-lg-3 mx-1 mb-5" style="font-family: 'Ubuntu">
             <h1 class="fs-1 mb-4 mt-3 text-center">{{ teacher.surname }} {{ teacher.name }}</h1>
             <div class="container text-center text-lg-start mt-3 d-lg-inline-flex mx-lg-5 me-5" style="padding-left: 0">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
@@ -633,7 +633,9 @@
                         <img class="" src="/static/teachers_images/{{ teacher.image }}"
                              style="border-radius: 30px; width: 350px; height: auto">
                         {% if teacher.is_free %}
-                        <img class="ms-lg-5 ms-0 mt-lg-0 mt-4" src="/static/images/free_week.jpg" style="width: 350px; height: 100%">
+                            <div class="px-4 py-5 text-center ms-0 ms-lg-5 fs-5 mt-4 mt-lg-0" style="border-radius: 30px; background-color: #4d1cca; color: white; height: 100%; width: 100%">
+                            {{ text }}
+                            </div>
                         {% endif %}
                     </div>
                     <div class="px-3 pt-3" style="border-radius: 30px; background-color: #bbbbbb">

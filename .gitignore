@@ -5,3 +5,4 @@ __pycache__
 .venv
 teachers.db
 /app/static/teachers_images
+/app/static/free_text

@@ -84,8 +84,10 @@ class Teacher(db.Model):
 
     is_free = db.Column(db.Boolean, nullable=True, default=False)
 
+    free_text = db.Column(db.Text, nullable=True)
+
     def __init__(self, name, surname, students_class, tariff, school, feedback, about_text, achievements_text,
-                 hobbies_text, is_free):
+                 hobbies_text, is_free, free_text):
         self.name = name
         self.surname = surname
         self.students_class = students_class
@@ -96,6 +98,7 @@ class Teacher(db.Model):
         self.achievements_text = achievements_text
         self.hobbies_text = hobbies_text
         self.is_free = is_free
+        self.free_text = free_text
 
 
 class User(UserMixin, db.Model):

@@ -36,6 +36,9 @@ class AddTeacherForm(FlaskForm):
 
     feedback = IntegerRangeField('Feedback')
 
+    free_text = TextAreaField('Free text')
+
+
     submit = SubmitField('Add')
 
 
@@ -72,6 +75,11 @@ class AddSearchForm(FlaskForm):
     category = SelectField('Category', choices=['Предмет', 'Достижение', 'Хобби'])
     name = StringField('Name', validators=[DataRequired()])
     submit = SubmitField('Add')
+
+
+class EditFreeText(FlaskForm):
+    text = TextAreaField('Free text')
+    submit = SubmitField('Edit')
 
 
 
