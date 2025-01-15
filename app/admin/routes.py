@@ -183,7 +183,6 @@ def edit_teacher(id):
         teacher.feedback = form.feedback.data
         teacher.achievements_text = form.achievements_text.data
         teacher.hobbies_text = form.hobbies_text.data
-        teacher.free_text = form.free_text.data
 
         teacher.is_free = int(request.form.get('is_free', 0))
 
@@ -220,7 +219,6 @@ def edit_teacher(id):
         form.student_class.data = teacher.students_class
         form.school.data = teacher.school
         form.about_text.data = teacher.about_text
-        form.free_text.data = teacher.free_text
         if teacher.image:
             form.image_path = os.path.join('/static/teachers_images', teacher.image)
         form.feedback.data = teacher.feedback
