@@ -118,8 +118,6 @@ def new_teacher():
             achievements_text=form.achievements_text.data,
             hobbies_text=form.hobbies_text.data,
             is_free=int(request.form.get('is_free', 0)),
-            free_text=form.free_text.data
-
         )
 
         db.session.add(teacher)
