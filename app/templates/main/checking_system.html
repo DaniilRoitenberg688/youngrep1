@@ -51,8 +51,8 @@
                 host: '//quiz.marquiz.ru',
                 region: 'ru',
                 id: '67853234b17dd200194744ca',
-                autoOpen: 0,
-                autoOpenFreq: 'always',
+                autoOpen: false,
+                autoOpenFreq: 'once',
                 openOnExit: false,
                 disableOnMobile: false
             }
@@ -724,21 +724,21 @@
             color: #ffffff;
         }</style>
     </div>
-    <div data-marquiz-id="67853234b17dd200194744ca" style="background-color: #5d00fc "></div>
-{#    <script>(function (t, p) {#}
-{#        window.Marquiz ? Marquiz.add([t, p]) : document.addEventListener('marquizLoaded', function () {#}
-{#            Marquiz.add([t, p])#}
-{#        })#}
-{#    })('Inline', {#}
-{#        id: '67853234b17dd200194744ca',#}
-{#        buttonText: '«Старт»',#}
-{#        bgColor: '#ff2200',#}
-{#        textColor: '#fff',#}
-{#        rounded: true,#}
-{#        shadow: 'rgba(255, 34, 0, 0.5)',#}
-{#        blicked: true,#}
-{#        buttonOnMobile: true#}
-{#    })</script>#}
+    <div data-marquiz-id="67853234b17dd200194744ca"></div>
+    <script>(function (t, p) {
+        window.Marquiz ? Marquiz.add([t, p]) : document.addEventListener('marquizLoaded', function () {
+            Marquiz.add([t, p])
+        })
+    })('Button', {
+        id: '67853234b17dd200194744ca',
+        buttonText: 'Пройти спринт',
+        bgColor: '#ff2200',
+        textColor: '#fff',
+        rounded: true,
+        shadow: 'rgba(255, 34, 0, 0.5)',
+        blicked: true,
+        fixed: 'left'
+    })</script>
     <div id="rec824518576" class="r t-rec t-rec_pt_0 t-rec_pb_0"
          style="padding-top:0px;padding-bottom:0px;background-color:#4d1cca; " data-record-type="363"
          data-bg-color="#4d1cca"> <!-- T029 100 -->
@@ -821,15 +821,16 @@
                             <div class="t959__card-content t959__animation_fast">
                                 <div class="t-card__title t-name t-name_lg t-align_left"
                                      field="li_title__1520419895308"><a
-                                        href="https://t.me/YoungRepChannel"
+                                        href="#rec851580115"
                                         class="t-card__link"
                                         id="cardtitle1_824518263"
-                                        target="_blank">
+                                >
                                     Математика
                                 </a></div>
                                 <div class="t-card__descr t-text t-text_sm t-align_left"
                                      field="li_descr__1520419895308">
-                                    Примеры ниже
+                                    Ставим упор на отборы в ТОП школы и соревнования, готовя ребят к задачам
+                                    олимпиадного уровня.
                                 </div>
                                 <style> #rec824518263 .t-card__title {
                                     color: #ffffff;
@@ -859,15 +860,16 @@
                             <div class="t959__card-content t959__animation_fast">
                                 <div class="t-card__title t-name t-name_lg t-align_left"
                                      field="li_title__1521103691910"><a
-                                        href="https://t.me/YoungRepChannel"
+                                        href="#rec851604294"
                                         class="t-card__link"
                                         id="cardtitle2_824518263"
-                                        target="_blank">
+                                >
                                     Программирование
                                 </a></div>
                                 <div class="t-card__descr t-text t-text_sm t-align_left"
                                      field="li_descr__1521103691910">
-                                    Примеры ниже
+                                    Развиваем критический интеллект ребят нестандартными задачками и алгоритмами, часто
+                                    добавляя задачи реального, промышленного программирования.
                                 </div>
                                 <style> #rec824518263 .t-card__title {
                                     color: #ffffff;
@@ -897,15 +899,16 @@
                             <div class="t959__card-content t959__animation_fast">
                                 <div class="t-card__title t-name t-name_lg t-align_left"
                                      field="li_title__1520419870620"><a
-                                        href="https://t.me/YoungRepChannel"
+                                        href="#rec851567008"
                                         class="t-card__link"
                                         id="cardtitle3_824518263"
-                                        target="_blank">
+                                        target="">
                                     Физика
                                 </a></div>
                                 <div class="t-card__descr t-text t-text_sm t-align_left"
                                      field="li_descr__1520419870620">
-                                    Примеры ниже
+                                    Здесь мы приветствуем задачи на понимание процессов природы, так как считаем, что в
+                                    таком возрасте, главное - заинтересовать ребенка предметом.
                                 </div>
                                 <style> #rec824518263 .t-card__title {
                                     color: #ffffff;
@@ -964,7 +967,6 @@
                     <div
                             class="t-section__descr t-descr t-descr_xl t-align_center t-margin_auto"
                             field="bdescr">
-                        Ставим упор на отборы в ТОП школы и соревнования, готовя ребят к задачам олимпиадного уровня.
                     </div>
                 </div>
             </div>
@@ -1076,8 +1078,6 @@
                     <div
                             class="t-section__descr t-descr t-descr_xl t-align_center t-margin_auto"
                             field="bdescr">
-                        Здесь мы приветствуем задачи на понимание процессов природы, так как считаем, что в таком
-                        возрасте, главное - заинтересовать ребенка предметом.
                     </div>
                 </div>
             </div>
@@ -1173,6 +1173,7 @@
             </div>
         </div>
     </div>
+
     <div id="rec851604294" class="r t-rec t-rec_pt_15 t-rec_pb_0"
          style="padding-top:15px;padding-bottom:0px;background-color:#4d1cca; " data-animationappear="off"
          data-record-type="816" data-bg-color="#4d1cca"> <!-- t816 --> <!-- @classes: t-descr t-descr_xxs -->
@@ -1187,8 +1188,6 @@
                     <div
                             class="t-section__descr t-descr t-descr_xl t-align_center t-margin_auto"
                             field="bdescr">
-                        Развиваем критический интеллект ребят нестандартными задачками и алгоритмами, часто добавляя
-                        задачи реального, промышленного программирования.
                     </div>
                 </div>
             </div>
@@ -1274,6 +1273,319 @@
                 t816_init('851604294', '10');
             });
         });</script>
+    </div>
+    <div id="rec820624740" class="r t-rec t-rec_pt_0 t-rec_pb_0"
+         style="padding-top:0px;padding-bottom:0px;background-color:#4d1cca; " data-record-type="363"
+         data-bg-color="#4d1cca"> <!-- T029 100 -->
+        <div class="t029">
+            <div class="t029__container t-container">
+                <div class="t029__col t-col t-col_8">
+                    <div class="t029__linewrapper" style="opacity:1;">
+                        <div class="t029__opacity t029__opacity_left"
+                             style="background-image: -moz-linear-gradient(right, #ffffff, rgba(255,255,255, 0)); background-image: -webkit-linear-gradient(right, #ffffff, rgba(255,255,255, 0)); background-image: -o-linear-gradient(right, #ffffff, rgba(255,255,255, 0)); background-image: -ms-linear-gradient(right, #ffffff, rgba(255,255,255, 0));"></div>
+                        <div class="t-divider t029__line" style="background: #ffffff;"></div>
+                        <div class="t029__opacity t029__opacity_right"
+                             style="background-image: -moz-linear-gradient(left, #ffffff, rgba(255,255,255, 0)); background-image: -webkit-linear-gradient(left, #ffffff, rgba(255,255,255, 0)); background-image: -o-linear-gradient(left, #ffffff, rgba(255,255,255, 0)); background-image: -ms-linear-gradient(left, #ffffff, rgba(255,255,255, 0));"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="rec820767391" class="r t-rec t-rec_pt_30 t-rec_pb_60"
+         style="padding-top:30px;padding-bottom:60px;background-color:#4d1cca; " data-animationappear="off"
+         data-record-type="1068" data-bg-color="#4d1cca"> <!-- t1068 -->
+        <div class="t1068">
+            <div class="t-section__container t-container t-container_flex">
+                <div class="t-col t-col_12 ">
+                    <div
+                            class="t-section__title t-title t-title_xs t-align_center t-margin_auto"
+                            field="btitle">
+                        Тарифы
+                    </div>
+                </div>
+            </div>
+            <style>
+                .t-section__descr {
+                    max-width: 560px;
+                }
+
+                #rec820767391 .t-section__title {
+                    margin-bottom: 105px;
+                }
+
+                #rec820767391 .t-section__descr {
+                }
+
+                @media screen and (max-width: 960px) {
+                    #rec820767391
+                    .t-section__title {
+                        margin-bottom: 40px;
+                    }
+
+                }</style>
+            <style> #rec820767391 .t-section__title {
+                color: #ffffff;
+            }</style>
+            <div class="t-container t-card__container">
+                <div class="t1068__row">
+                    <div class="t1068__col t-card__col t-col t-col_6 t-align_center t-animate t-animate__chain_first-in-row t-animate_started t-animate__chain_showed"
+                         data-animate-style="fadeinright" data-animate-chain="yes"
+                         data-animate-start-time="1736195401579" style="transition-delay: 0s;">
+                        <div class="t1068__content">
+                            <div class="t1068__imgwrapper" style=""><img
+                                    class="t1068__img t1068__img_circle t-margin_auto t-img"
+                                    src="https://static.tildacdn.com/lib/emoji/fluent/ring_3d.png"
+                                    imgfield="li_img__7274859863351" alt=""></div>
+                            <div class="t-card__title t-name t-name_xl" field="li_title__7274859863351">
+                                Checking
+                            </div>
+                            <div class="t-card__descr t-descr t-descr_xs" field="li_descr__7274859863351">
+                                <ul>
+                                    <li data-list="bullet">Доступ к материалу</li>
+                                    <li data-list="bullet">Вводная теория</li>
+                                    <li data-list="bullet">Проверка задач</li>
+                                    <li data-list="bullet">Обратная связь</li>
+                                    <li data-list="bullet">Письменная сдача</li>
+                                    <li data-list="bullet">-</li>
+                                    <li data-list="bullet">-</li>
+                                </ul>
+                            </div>
+                            <div class="t1068__price t-name t-name_md" field="li_price__7274859863351"
+                                 data-redactor-toolbar="no" style="">800₽/нед
+                            </div>
+                        </div>
+                    </div>
+                    <div class="t1068__col t-card__col t-col t-col_6 t-align_center t-animate t-animate_started"
+                         data-animate-style="fadeinright" data-animate-chain="yes"
+                         data-animate-start-time="1736195401739" style="transition-delay: 0.16s;">
+                        <div class="t-divider t1068__line_mobile" style="background-color: #ff2300;"
+                             data-divider-fieldset="bordercolor,bordersize"></div>
+                        <div class="t1068__content">
+                            <div class="t1068__imgwrapper" style=""><img
+                                    class="t1068__img t1068__img_circle t-margin_auto t-img"
+                                    src="https://static.tildacdn.com/lib/emoji/fluent/gem_stone_3d.png"
+                                    imgfield="li_img__7274859863352" alt=""></div>
+                            <div class="t-card__title t-name t-name_xl" field="li_title__7274859863352">
+                                Checking PRO
+                            </div>
+                            <div class="t-card__descr t-descr t-descr_xs" field="li_descr__7274859863352">
+                                <ul>
+                                    <li data-list="bullet">Доступ к материалу</li>
+                                    <li data-list="bullet">Вводная теория</li>
+                                    <li data-list="bullet">Проверка задач</li>
+                                    <li data-list="bullet">Обратная связь</li>
+                                    <li data-list="bullet">Письменная сдача</li>
+                                    <li data-list="bullet">Устная сдача</li>
+                                    <li data-list="bullet">Разбор усложненных задач</li>
+                                </ul>
+                            </div>
+                            <div class="t1068__price t-name t-name_md" field="li_price__7274859863352"
+                                 data-redactor-toolbar="no" style="">1000₽/нед
+                            </div>
+                        </div>
+                        <div class="t-divider t1068__line" style="background-color: #ff2300;"
+                             data-divider-fieldset="bordercolor,bordersize"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="rec824409422" class="r t-rec t-rec_pt_0 t-rec_pb_15"
+                 style="margin-top: 50px; padding-top:0px;padding-bottom:15px;background-color:#4d1cca; "
+                 data-record-type="191"
+                 data-bg-color="#eeeeee"> <!-- T142 -->
+                <div class="t142">
+                    <div class="t-container_100">
+                        <div class="t142__wrapone">
+                            <div class="t142__wraptwo"><a class="t-btn t142__submit t142__submit_size_lg t-animate"
+                                                          href="#popup:infoblock" target="_blank"
+                                                          data-animate-style="fadeinup"
+                                                          style="color:#fffcfc;border:0px solid #eeeeee;background-color:#ff2300;border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px;box-shadow:0px 10px 40px -2px rgba(0,11,48,0.3);"
+                                                          data-buttonfieldset="button"
+                                                          data-btneffects-first="btneffects-light">
+                                <span class="t142__text">Записаться в систему </span> </a></div>
+                        </div>
+                    </div>
+                </div>
+                <script>t_onReady(function () {
+                    t_onFuncLoad('t142_checkSize', function () {
+                        t142_checkSize('824409422');
+                    });
+                });
+                window.addEventListener('load', function () {
+                    t_onFuncLoad('t142_checkSize', function () {
+                        t142_checkSize('824409422');
+                    });
+                });</script>
+                <style>@media (hover: hover),(min-width: 0\0
+                ) {
+                    #rec824409422
+                    .t-btn:not(.t-animate_no-hover):hover {
+                        background-color: #0077ff !important;
+                    }
+
+                    #rec824409422 .t-btn:not(.t-animate_no-hover):focus-visible {
+                        background-color: #0077ff !important;
+                    }
+
+                    #rec824409422 .t-btn:not(.t-animate_no-hover) {
+                        transition-property: background-color, color, border-color, box-shadow;
+                        transition-duration: 0.2s;
+                        transition-timing-function: ease-in-out;
+                    }
+
+                }</style>
+                <style>#rec824409422 .t-btn[data-btneffects-first], #rec824409422 .t-btn[data-btneffects-second], #rec824409422 .t-btn[data-btneffects-third], #rec824409422 .t-submit[data-btneffects-first], #rec824409422 .t-submit[data-btneffects-second], #rec824409422 .t-submit[data-btneffects-third] {
+                    position: relative;
+                    overflow: hidden;
+                    isolation: isolate;
+                }
+
+                #rec824409422 .t-btn[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects, #rec824409422 .t-submit[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    -webkit-transform: translateX(-60px);
+                    -ms-transform: translateX(-60px);
+                    transform: translateX(-60px);
+                    -webkit-animation-name: light;
+                    animation-name: light;
+                    -webkit-animation-duration: 4s;
+                    animation-duration: 4s;
+                    -webkit-animation-timing-function: ease;
+                    animation-timing-function: ease;
+                    -webkit-animation-iteration-count: infinite;
+                    animation-iteration-count: infinite;
+                }
+
+                #rec824409422 .t-btn[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects_md, #rec824409422 .t-submit[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects_md {
+                    -webkit-animation-name: light-md;
+                    animation-name: light-md;
+                }
+
+                #rec824409422 .t-btn[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects_lg, #rec824409422 .t-submit[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects_lg {
+                    -webkit-animation-name: light-lg;
+                    animation-name: light-lg;
+                }
+
+                #rec824409422 .t-btn[data-btneffects-first="btneffects-light"] .t-btn_effects, #rec824409422 .t-submit[data-btneffects-first="btneffects-light"] .t-btn_effects {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 60px;
+                    height: 100%;
+                    background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(50%, rgba(255, 255, 255, 0.5)), to(rgba(255, 255, 255, 0)));
+                    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0));
+                    background: -o-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0));
+                    background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0));
+                }
+
+                @-webkit-keyframes light {
+                    20% {
+                        -webkit-transform: translateX(100%);
+                        transform: translateX(100%);
+                    }
+                    100% {
+                        -webkit-transform: translateX(100%);
+                        transform: translateX(100%);
+                    }
+                }
+
+                @keyframes light {
+                    20% {
+                        -webkit-transform: translateX(100%);
+                        transform: translateX(100%);
+                    }
+                    100% {
+                        -webkit-transform: translateX(100%);
+                        transform: translateX(100%);
+                    }
+                }
+
+                @-webkit-keyframes light-md {
+                    30% {
+                        -webkit-transform: translateX(100%);
+                        transform: translateX(100%);
+                    }
+                    100% {
+                        -webkit-transform: translateX(100%);
+                        transform: translateX(100%);
+                    }
+                }
+
+                @keyframes light-md {
+                    30% {
+                        -webkit-transform: translateX(100%);
+                        transform: translateX(100%);
+                    }
+                    100% {
+                        -webkit-transform: translateX(100%);
+                        transform: translateX(100%);
+                    }
+                }
+
+                @-webkit-keyframes light-lg {
+                    40% {
+                        -webkit-transform: translateX(100%);
+                        transform: translateX(100%);
+                    }
+                    100% {
+                        -webkit-transform: translateX(100%);
+                        transform: translateX(100%);
+                    }
+                }
+
+                @keyframes light-lg {
+                    40% {
+                        -webkit-transform: translateX(100%);
+                        transform: translateX(100%);
+                    }
+                    100% {
+                        -webkit-transform: translateX(100%);
+                        transform: translateX(100%);
+                    }
+                }</style>
+                <script>t_onReady(function () {
+                    var rec = document.getElementById('rec824409422');
+                    if (!rec) return;
+                    var firstButton = rec.querySelectorAll('.t-btn[data-btneffects-first], .t-submit[data-btneffects-first]');
+                    Array.prototype.forEach.call(firstButton, function (button) {
+                        button.insertAdjacentHTML('beforeend', '<div class="t-btn_wrap-effects"><div class="t-btn_effects"></div></div>');
+                        var buttonEffect = button.querySelector('.t-btn_wrap-effects');
+                        if (button.offsetWidth > 230) {
+                            buttonEffect.classList.add('t-btn_wrap-effects_md');
+                        }
+                        ;
+                        if (button.offsetWidth > 300) {
+                            buttonEffect.classList.remove('t-btn_wrap-effects_md');
+                            buttonEffect.classList.add('t-btn_wrap-effects_lg');
+                        }
+                    });
+                });</script>
+            </div>
+        </div>
+        <style>#rec820767391 .t1068__descr li {
+            border-color: #ff2300 !important;
+        }
+
+        #rec820767391 .t1068__price {
+        }</style>
+        <script>t_onReady(function () {
+            t_onFuncLoad('t1068_init', function () {
+                t1068_init('820767391');
+            });
+        });</script>
+        <style> #rec820767391 .t-card__title {
+            color: #ffffff;
+        }
+
+        #rec820767391 .t-card__descr {
+            color: #ffffff;
+        }
+
+        #rec820767391 .t1068__price {
+            color: #ffffff;
+        }</style>
     </div>
     <div id="rec820624740" class="r t-rec t-rec_pt_0 t-rec_pb_0"
          style="padding-top:0px;padding-bottom:0px;background-color:#4d1cca; " data-record-type="363"
@@ -1663,319 +1975,6 @@
                 }</style>
             </div>
         </div>
-    </div>
-    <div id="rec820627417" class="r t-rec t-rec_pt_0 t-rec_pb_0"
-         style="padding-top:0px;padding-bottom:0px;background-color:#4d1cca; " data-record-type="363"
-         data-bg-color="#4d1cca"> <!-- T029 100 -->
-        <div class="t029">
-            <div class="t029__container t-container">
-                <div class="t029__col t-col t-col_8">
-                    <div class="t029__linewrapper" style="opacity:1;">
-                        <div class="t029__opacity t029__opacity_left"
-                             style="background-image: -moz-linear-gradient(right, #ffffff, rgba(255,255,255, 0)); background-image: -webkit-linear-gradient(right, #ffffff, rgba(255,255,255, 0)); background-image: -o-linear-gradient(right, #ffffff, rgba(255,255,255, 0)); background-image: -ms-linear-gradient(right, #ffffff, rgba(255,255,255, 0));"></div>
-                        <div class="t-divider t029__line" style="background: #ffffff;"></div>
-                        <div class="t029__opacity t029__opacity_right"
-                             style="background-image: -moz-linear-gradient(left, #ffffff, rgba(255,255,255, 0)); background-image: -webkit-linear-gradient(left, #ffffff, rgba(255,255,255, 0)); background-image: -o-linear-gradient(left, #ffffff, rgba(255,255,255, 0)); background-image: -ms-linear-gradient(left, #ffffff, rgba(255,255,255, 0));"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="rec820767391" class="r t-rec t-rec_pt_30 t-rec_pb_60"
-         style="padding-top:30px;padding-bottom:60px;background-color:#4d1cca; " data-animationappear="off"
-         data-record-type="1068" data-bg-color="#4d1cca"> <!-- t1068 -->
-        <div class="t1068">
-            <div class="t-section__container t-container t-container_flex">
-                <div class="t-col t-col_12 ">
-                    <div
-                            class="t-section__title t-title t-title_xs t-align_center t-margin_auto"
-                            field="btitle">
-                        Тарифы
-                    </div>
-                </div>
-            </div>
-            <style>
-                .t-section__descr {
-                    max-width: 560px;
-                }
-
-                #rec820767391 .t-section__title {
-                    margin-bottom: 105px;
-                }
-
-                #rec820767391 .t-section__descr {
-                }
-
-                @media screen and (max-width: 960px) {
-                    #rec820767391
-                    .t-section__title {
-                        margin-bottom: 40px;
-                    }
-
-                }</style>
-            <style> #rec820767391 .t-section__title {
-                color: #ffffff;
-            }</style>
-            <div class="t-container t-card__container">
-                <div class="t1068__row">
-                    <div class="t1068__col t-card__col t-col t-col_6 t-align_center t-animate t-animate__chain_first-in-row t-animate_started t-animate__chain_showed"
-                         data-animate-style="fadeinright" data-animate-chain="yes"
-                         data-animate-start-time="1736195401579" style="transition-delay: 0s;">
-                        <div class="t1068__content">
-                            <div class="t1068__imgwrapper" style=""><img
-                                    class="t1068__img t1068__img_circle t-margin_auto t-img"
-                                    src="https://static.tildacdn.com/lib/emoji/fluent/ring_3d.png"
-                                    imgfield="li_img__7274859863351" alt=""></div>
-                            <div class="t-card__title t-name t-name_xl" field="li_title__7274859863351">
-                                Checking
-                            </div>
-                            <div class="t-card__descr t-descr t-descr_xs" field="li_descr__7274859863351">
-                                <ul>
-                                    <li data-list="bullet">Доступ к материалу</li>
-                                    <li data-list="bullet">Вводная теория</li>
-                                    <li data-list="bullet">Проверка задач</li>
-                                    <li data-list="bullet">Обратная связь</li>
-                                    <li data-list="bullet">Письменная сдача</li>
-                                    <li data-list="bullet">-</li>
-                                    <li data-list="bullet">-</li>
-                                </ul>
-                            </div>
-                            <div class="t1068__price t-name t-name_md" field="li_price__7274859863351"
-                                 data-redactor-toolbar="no" style="">800₽/нед
-                            </div>
-                        </div>
-                    </div>
-                    <div class="t1068__col t-card__col t-col t-col_6 t-align_center t-animate t-animate_started"
-                         data-animate-style="fadeinright" data-animate-chain="yes"
-                         data-animate-start-time="1736195401739" style="transition-delay: 0.16s;">
-                        <div class="t-divider t1068__line_mobile" style="background-color: #ff2300;"
-                             data-divider-fieldset="bordercolor,bordersize"></div>
-                        <div class="t1068__content">
-                            <div class="t1068__imgwrapper" style=""><img
-                                    class="t1068__img t1068__img_circle t-margin_auto t-img"
-                                    src="https://static.tildacdn.com/lib/emoji/fluent/gem_stone_3d.png"
-                                    imgfield="li_img__7274859863352" alt=""></div>
-                            <div class="t-card__title t-name t-name_xl" field="li_title__7274859863352">
-                                Checking PRO
-                            </div>
-                            <div class="t-card__descr t-descr t-descr_xs" field="li_descr__7274859863352">
-                                <ul>
-                                    <li data-list="bullet">Доступ к материалу</li>
-                                    <li data-list="bullet">Вводная теория</li>
-                                    <li data-list="bullet">Проверка задач</li>
-                                    <li data-list="bullet">Обратная связь</li>
-                                    <li data-list="bullet">Письменная сдача</li>
-                                    <li data-list="bullet">Устная сдача</li>
-                                    <li data-list="bullet">Разбор усложненных задач</li>
-                                </ul>
-                            </div>
-                            <div class="t1068__price t-name t-name_md" field="li_price__7274859863352"
-                                 data-redactor-toolbar="no" style="">1000₽/нед
-                            </div>
-                        </div>
-                        <div class="t-divider t1068__line" style="background-color: #ff2300;"
-                             data-divider-fieldset="bordercolor,bordersize"></div>
-                    </div>
-                </div>
-            </div>
-            <div id="rec824409422" class="r t-rec t-rec_pt_0 t-rec_pb_15"
-                 style="margin-top: 50px; padding-top:0px;padding-bottom:15px;background-color:#4d1cca; "
-                 data-record-type="191"
-                 data-bg-color="#eeeeee"> <!-- T142 -->
-                <div class="t142">
-                    <div class="t-container_100">
-                        <div class="t142__wrapone">
-                            <div class="t142__wraptwo"><a class="t-btn t142__submit t142__submit_size_lg t-animate"
-                                                          href="#popup:infoblock" target="_blank"
-                                                          data-animate-style="fadeinup"
-                                                          style="color:#fffcfc;border:0px solid #eeeeee;background-color:#ff2300;border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px;box-shadow:0px 10px 40px -2px rgba(0,11,48,0.3);"
-                                                          data-buttonfieldset="button"
-                                                          data-btneffects-first="btneffects-light">
-                                <span class="t142__text">Записаться в систему </span> </a></div>
-                        </div>
-                    </div>
-                </div>
-                <script>t_onReady(function () {
-                    t_onFuncLoad('t142_checkSize', function () {
-                        t142_checkSize('824409422');
-                    });
-                });
-                window.addEventListener('load', function () {
-                    t_onFuncLoad('t142_checkSize', function () {
-                        t142_checkSize('824409422');
-                    });
-                });</script>
-                <style>@media (hover: hover),(min-width: 0\0
-                ) {
-                    #rec824409422
-                    .t-btn:not(.t-animate_no-hover):hover {
-                        background-color: #0077ff !important;
-                    }
-
-                    #rec824409422 .t-btn:not(.t-animate_no-hover):focus-visible {
-                        background-color: #0077ff !important;
-                    }
-
-                    #rec824409422 .t-btn:not(.t-animate_no-hover) {
-                        transition-property: background-color, color, border-color, box-shadow;
-                        transition-duration: 0.2s;
-                        transition-timing-function: ease-in-out;
-                    }
-
-                }</style>
-                <style>#rec824409422 .t-btn[data-btneffects-first], #rec824409422 .t-btn[data-btneffects-second], #rec824409422 .t-btn[data-btneffects-third], #rec824409422 .t-submit[data-btneffects-first], #rec824409422 .t-submit[data-btneffects-second], #rec824409422 .t-submit[data-btneffects-third] {
-                    position: relative;
-                    overflow: hidden;
-                    isolation: isolate;
-                }
-
-                #rec824409422 .t-btn[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects, #rec824409422 .t-submit[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    -webkit-transform: translateX(-60px);
-                    -ms-transform: translateX(-60px);
-                    transform: translateX(-60px);
-                    -webkit-animation-name: light;
-                    animation-name: light;
-                    -webkit-animation-duration: 4s;
-                    animation-duration: 4s;
-                    -webkit-animation-timing-function: ease;
-                    animation-timing-function: ease;
-                    -webkit-animation-iteration-count: infinite;
-                    animation-iteration-count: infinite;
-                }
-
-                #rec824409422 .t-btn[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects_md, #rec824409422 .t-submit[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects_md {
-                    -webkit-animation-name: light-md;
-                    animation-name: light-md;
-                }
-
-                #rec824409422 .t-btn[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects_lg, #rec824409422 .t-submit[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects_lg {
-                    -webkit-animation-name: light-lg;
-                    animation-name: light-lg;
-                }
-
-                #rec824409422 .t-btn[data-btneffects-first="btneffects-light"] .t-btn_effects, #rec824409422 .t-submit[data-btneffects-first="btneffects-light"] .t-btn_effects {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 60px;
-                    height: 100%;
-                    background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(50%, rgba(255, 255, 255, 0.5)), to(rgba(255, 255, 255, 0)));
-                    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0));
-                    background: -o-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0));
-                    background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0));
-                }
-
-                @-webkit-keyframes light {
-                    20% {
-                        -webkit-transform: translateX(100%);
-                        transform: translateX(100%);
-                    }
-                    100% {
-                        -webkit-transform: translateX(100%);
-                        transform: translateX(100%);
-                    }
-                }
-
-                @keyframes light {
-                    20% {
-                        -webkit-transform: translateX(100%);
-                        transform: translateX(100%);
-                    }
-                    100% {
-                        -webkit-transform: translateX(100%);
-                        transform: translateX(100%);
-                    }
-                }
-
-                @-webkit-keyframes light-md {
-                    30% {
-                        -webkit-transform: translateX(100%);
-                        transform: translateX(100%);
-                    }
-                    100% {
-                        -webkit-transform: translateX(100%);
-                        transform: translateX(100%);
-                    }
-                }
-
-                @keyframes light-md {
-                    30% {
-                        -webkit-transform: translateX(100%);
-                        transform: translateX(100%);
-                    }
-                    100% {
-                        -webkit-transform: translateX(100%);
-                        transform: translateX(100%);
-                    }
-                }
-
-                @-webkit-keyframes light-lg {
-                    40% {
-                        -webkit-transform: translateX(100%);
-                        transform: translateX(100%);
-                    }
-                    100% {
-                        -webkit-transform: translateX(100%);
-                        transform: translateX(100%);
-                    }
-                }
-
-                @keyframes light-lg {
-                    40% {
-                        -webkit-transform: translateX(100%);
-                        transform: translateX(100%);
-                    }
-                    100% {
-                        -webkit-transform: translateX(100%);
-                        transform: translateX(100%);
-                    }
-                }</style>
-                <script>t_onReady(function () {
-                    var rec = document.getElementById('rec824409422');
-                    if (!rec) return;
-                    var firstButton = rec.querySelectorAll('.t-btn[data-btneffects-first], .t-submit[data-btneffects-first]');
-                    Array.prototype.forEach.call(firstButton, function (button) {
-                        button.insertAdjacentHTML('beforeend', '<div class="t-btn_wrap-effects"><div class="t-btn_effects"></div></div>');
-                        var buttonEffect = button.querySelector('.t-btn_wrap-effects');
-                        if (button.offsetWidth > 230) {
-                            buttonEffect.classList.add('t-btn_wrap-effects_md');
-                        }
-                        ;
-                        if (button.offsetWidth > 300) {
-                            buttonEffect.classList.remove('t-btn_wrap-effects_md');
-                            buttonEffect.classList.add('t-btn_wrap-effects_lg');
-                        }
-                    });
-                });</script>
-            </div>
-        </div>
-        <style>#rec820767391 .t1068__descr li {
-            border-color: #ff2300 !important;
-        }
-
-        #rec820767391 .t1068__price {
-        }</style>
-        <script>t_onReady(function () {
-            t_onFuncLoad('t1068_init', function () {
-                t1068_init('820767391');
-            });
-        });</script>
-        <style> #rec820767391 .t-card__title {
-            color: #ffffff;
-        }
-
-        #rec820767391 .t-card__descr {
-            color: #ffffff;
-        }
-
-        #rec820767391 .t1068__price {
-            color: #ffffff;
-        }</style>
     </div>
     <div id="rec814029163" class="r t-rec" style=" " data-record-type="394">
         <style>#allrecords .t-text a:not(.t-card__link), #allrecords .t-descr a:not(.t-card__link), #allrecords .t-heading a:not(.t-card__link):not(.t-feed__link), #allrecords .t-title a:not(.t-card__link), #allrecords .t-impact-text a:not(.t-card__link), #allrecords .t-text-impact a:not(.t-card__link), #allrecords .t-name:not(.t-feed__parts-switch-btn) a:not(.t794__typo):not(.t-menusub__link-item):not(.t-card__link):not(.t-feed__link), #allrecords .t-uptitle a:not(.t-card__link) {
