@@ -33,7 +33,7 @@
                         Возраст
                     </a>
                     <ul class="dropdown-menu px-0" aria-labelledby="navbarDropdownMenuLink">
-                        {% for i in range(8, 12) %}
+                        {% for i in range(14, 18) %}
                             <li class="dropdown-item" style="width: auto">
                                 <input class="form-check-input" type="radio" name="age"
                                        id="flexRadioDefault6" value="{{ i }}">
@@ -71,12 +71,12 @@
                         Тариф
                     </a>
                     <ul class="dropdown-menu px-0" aria-labelledby="navbarDropdownMenuLink3">
-                        {% for i in range(1200, 2401, 300) %}
+                        {% for i in range(600, 1201, 150) %}
                             <li class="dropdown-item" style="width: auto">
                                 <input class="form-check-input" type="radio" name="tariff"
                                        id="flexRadioDefault12" value="{{ i }}">
                                 <label class="form-check-label" for="flexRadioDefault11">
-                                    {{ i }} руб/нед
+                                    {{ i }}₽/ч
                                 </label>
                             </li>
                         {% endfor %}
@@ -150,7 +150,7 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;" class="mb-3">{{ teacher.achievements_text }}</p>
-                                    <p class="card-text mb-4 fs-4"><span class="fs-4">{{ teacher.tariff }}</span>₽/нед
+                                    <p class="card-text mb-4 fs-4"><span class="fs-4">{{ teacher.tariff }}</span>₽/час
                                     </p>
                                     <div>
                                         {% for i in range(teacher.feedback) %}
