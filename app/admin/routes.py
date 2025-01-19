@@ -254,7 +254,9 @@ def teachers_profile(id):
     teacher = db.session.get(Teacher, id)
     with open('app/static/free_text/free_text.txt', 'r') as file:
         text = file.read()
-    return render_template('admin/teacher_profile.html', teacher=teacher, text=text)
+    days = ['Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat', 'Sun']
+    schedule = teacher.parse_schedule()
+    return render_template('admin/teacher_profile.html', teacher=teacher, text=text, days=days, schedule=schedule)
 
 
 @bp.route('/edit_search', methods=['GET', 'POST'])
@@ -356,3 +358,28 @@ def edit_free_text():
             file.write(form.text.data)
 
         return redirect(url_for('admin.free_text'))
+
+
+@bp.route('/edit_schedule/<int:id>', methods=['POST', 'GET'])
+def edit_schedule(id):
+    teacher = db.session.get(Teacher, id)
+    if request.method == 'GET':
+        days = ['Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat', 'Sun']
+        print(teacher.schedule)
+        schedule = teacher.parse_schedule()
+        print(schedule)
+        return render_template('admin/edit_schedule.html', days=days, schedule=schedule)
+
+    if request.method == 'POST':
+        data = request.form.getlist('time')
+        result = {}
+        for i in data:
+            day, time = i.split(':')
+            if day not in result:
+                result[day] = [time]
+            else:
+                result[day].append(time)
+        print(result)
+        teacher.set_schedule(result)
+        db.session.commit()
+        return redirect(url_for('admin.edit_schedule', id=id))

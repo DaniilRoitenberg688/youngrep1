@@ -72,7 +72,6 @@ def teachers():
     if teachers:
         teachers = sorted(teachers, key=lambda x: -x.feedback)
 
-
     all_achievements = models.Achievement.query.filter(Achievement.enabled).all()
     if Achievement(name='другие...') in all_achievements:
         all_achievements = list(filter(lambda x: x.name != 'другие...', all_achievements))
@@ -83,7 +82,8 @@ def teachers():
         all_hobbies = list(filter(lambda x: x.name != 'другие...', all_hobbies))
         all_hobbies.append(models.Hobby(name='другие...'))
 
-    return render_template('main/teachers.html', teachers=teachers, all_subjects=models.Subject.query.filter(Subject.enabled).all(),
+    return render_template('main/teachers.html', teachers=teachers,
+                           all_subjects=models.Subject.query.filter(Subject.enabled).all(),
                            all_achievements=all_achievements, all_hobbies=all_hobbies, search=search)
 
 
@@ -97,6 +97,7 @@ def search_form():
     names = request.form.get('names')
     return redirect(url_for('main.teachers', subjects=subjects, age=age, achievements=achievements, tariff=tariff,
                             hobbies=hobbies, names=names, search=True))
+
 
 @bp.route('/')
 @bp.route('/index')
@@ -123,8 +124,9 @@ def teachers_profile(id):
     teacher = db.session.get(Teacher, id)
     with open('app/static/free_text/free_text.txt', 'r') as file:
         text = file.read()
-    return render_template('main/teacher_profile.html', teacher=teacher, text=text)
-
+    days = ['Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat', 'Sun']
+    schedule = teacher.parse_schedule()
+    return render_template('main/teacher_profile.html', teacher=teacher, text=text, days=days, schedule=schedule)
 
 
 @bp.route('/about')

@@ -1,0 +1,32 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+    <form method="post" action="">
+        <table class="table text-center">
+            <thead>
+            <tr>
+                <th></th>
+                {% for day in days %}
+                    <th>{{ day }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            {% for time in range(13, 22) %}
+                <tr>
+                    <th>{{ time }}</th>
+                    {% for day in days %}
+                        {% if time|string in schedule[day] %}
+                            <th><input type="checkbox" checked value="{{ day }}:{{ time }}" name="time"></th>
+                        {% else %}
+                            <th><input type="checkbox" value="{{ day }}:{{ time }}" name="time"></th>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+        <button class="btn btn-primary">Save</button>
+    </form>
+
+
+    </table>
+{% endblock %}

@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
-        <meta name="yandex-verification" content="96272397f080b088"/>
+    <meta name="yandex-verification" content="96272397f080b088"/>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function (m, e, t, r, i, k, a) {
@@ -44,7 +44,7 @@
           content="Школа с репетиторами - учениками 9-11 классов, уже достигнувшие успехов в своих предметах "/>
     <meta property="og:type" content="website"/>
     <meta property="og:image" content="/static/images/tild3835-3065-4339-b362-623334386265___21082024_1903.jpeg"/>
-{#    <link rel="canonical" href="templates"> <!--/metatextblock-->#}
+    {#    <link rel="canonical" href="templates"> <!--/metatextblock-->#}
     <meta name="format-detection" content="telephone=no"/>
     <meta http-equiv="x-dns-prefetch-control" content="on">
     <meta name="yandex-verification" content="96272397f080b088"/>
@@ -533,7 +533,7 @@
                                   fill="#1d98dc"/>
                         </svg>
                     </div>
-                </a>  <a href="https://wa.me/79169503208" class="t898__icon t898__icon-whatsapp_wrapper t898__icon_link"
+                </a> <a href="https://wa.me/79169503208" class="t898__icon t898__icon-whatsapp_wrapper t898__icon_link"
                         target="_blank" rel="nofollow noopener noreferrer"><span
                         class="t898__btn-text t-name t-name_xs">WhatsApp</span>
                     <div class="t898__svg__wrapper">
@@ -622,8 +622,9 @@
                         <img class="" src="/static/teachers_images/{{ teacher.image }}"
                              style="border-radius: 30px; width: 350px; height: auto">
                         {% if teacher.is_free %}
-                            <div class="px-4 py-5 text-center ms-0 ms-lg-5 fs-5 mt-4 mt-lg-0" style="border-radius: 30px; background-color: #4d1cca; color: white; height: 100%">
-                            {{ text }}
+                            <div class="px-4 py-5 text-center ms-0 ms-lg-5 fs-5 mt-4 mt-lg-0"
+                                 style="border-radius: 30px; background-color: #4d1cca; color: white; height: 100%">
+                                {{ text }}
                             </div>
                         {% endif %}
                     </div>
@@ -641,9 +642,45 @@
                 </div>
                 <div class="col-12 col-lg-1"></div>
                 <div class="about mt-4 col-lg-5 col-sm-12 col-md-12 col-12 ms-lg-5 ms-1">
-                    <div>
+                    <div class="mb-5">
                         <h2 class="mb-3">Рассказ о себе:</h2>
                         <span class="fs-5 mb-5" style="">{{ teacher.about_text }}</span>
+                    </div>
+                    <div>
+                        <h2>Расписание</h2>
+                        <table class="table text-center" style="color: black">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                {% for day in days %}
+                                    <th>{{ day }}</th>
+                                {% endfor %}
+                            </tr>
+                            </thead>
+                            {% for time in range(13, 22) %}
+                                <tr>
+                                    <th>{{ time }}</th>
+                                    {% for day in days %}
+                                        {% if time|string in schedule[day] %}
+                                            <th>
+                                                <svg role="img" width="24px" height="24px" viewBox="0 0 24 24"
+                                                     version="1.1"
+                                                     xmlns="http://www.w3.org/2000/svg"
+                                                     xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <circle fill="#25B309" cx="12" cy="12" r="12"></circle>
+                                                        <polygon fill="#FFFFFF"
+                                                                 points="10.776 16.32 5.184 10.728 5.688 10.2 10.776 15.288 18.792 7.272 19.296 7.8"></polygon>
+                                                    </g>
+                                                </svg>
+                                            </th>
+                                        {% else %}
+                                            <th></th>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </table>
                     </div>
                     <div>
                         <h2 class="mt-5 mb-3">Отзывы:</h2>

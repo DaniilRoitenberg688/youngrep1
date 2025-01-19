@@ -86,6 +86,8 @@ class Teacher(db.Model):
 
     # free_text = db.Column(db.Text, nullable=True)
 
+    schedule = db.Column(db.String())
+
     def __init__(self, name, surname, students_class, tariff, school, feedback, about_text, achievements_text,
                  hobbies_text, is_free):
         self.name = name
@@ -99,6 +101,38 @@ class Teacher(db.Model):
         self.hobbies_text = hobbies_text
         self.is_free = is_free
         # self.free_text = free_text
+
+    def parse_schedule(self):
+        result = {}
+        if self.schedule:
+            days = self.schedule.split(';')
+            for day in days:
+                day = day.split()
+                result[day[0]] = day[1:]
+        else:
+            pass
+
+
+        return result
+
+    def set_schedule(self, schedule: dict):
+        result = []
+        print(result)
+        if not schedule:
+            for day in ['Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat', 'Sun']:
+                print(day)
+                result.append(' '.join([day]))
+        else:
+            for day, times in schedule.items():
+                a = [day]
+                a.extend(times)
+                print(a)
+                result.append(' '.join(a))
+
+        print(result)
+        self.schedule = ';'.join(result)
+
+
 
 
 class User(UserMixin, db.Model):

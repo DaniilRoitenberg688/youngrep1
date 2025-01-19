@@ -30,9 +30,45 @@
             </div>
             <div class="col-12 col-lg-1"></div>
             <div class="about mt-4 col-lg-5 col-sm-12 col-md-12 col-12 ms-lg-5 ms-1">
-                <div>
+                <div class="mb-5">
                     <h2 class="mb-3">Рассказ о себе:</h2>
                     <span class="fs-5 mb-5" style="">{{ teacher.about_text }}</span>
+                </div>
+
+                <div>
+                    <h2>Расписание</h2>
+                    <table class="table text-center table-bordered">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            {% for day in days %}
+                                <th>{{ day }}</th>
+                            {% endfor %}
+                        </tr>
+                        </thead>
+                        {% for time in range(13, 22) %}
+                            <tr>
+                                <th>{{ time }}</th>
+                                {% for day in days %}
+                                    {% if time|string in schedule[day] %}
+                                        <th>
+                                            <svg role="img" width="24px" height="24px" viewBox="0 0 24 24" version="1.1"
+                                                 xmlns="http://www.w3.org/2000/svg"
+                                                 xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <circle fill="#25B309" cx="12" cy="12" r="12"></circle>
+                                                    <polygon fill="#FFFFFF"
+                                                             points="10.776 16.32 5.184 10.728 5.688 10.2 10.776 15.288 18.792 7.272 19.296 7.8"></polygon>
+                                                </g>
+                                            </svg>
+                                        </th>
+                                    {% else %}
+                                        <th></th>
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </table>
                 </div>
                 <div>
                     <h2 class="mt-5 mb-3">Отзывы:</h2>
