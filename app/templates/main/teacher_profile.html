@@ -648,35 +648,32 @@
                     </div>
                     <div>
                         <h2>Расписание</h2>
-                        <table class="table text-center" style="color: black">
+                        <table class="table text-center " style="">
                             <thead>
-                            <tr>
+                            <tr style="border: 1px solid grey">
                                 <th></th>
                                 {% for day in days %}
-                                    <th>{{ day }}</th>
+                                    <th style="border: 1px solid grey">{{ day }}</th>
                                 {% endfor %}
                             </tr>
                             </thead>
                             {% for time in range(15, 22) %}
-                                <tr>
-                                    <th>{{ time }}</th>
+                                <tr style="border: 1px solid grey">
+                                    <th style="border: 1px solid grey">{{ time }}</th>
                                     {% for day in days %}
-                                        {% if time|string in schedule[day] %}
-                                            <th>
-                                                <svg role="img" width="24px" height="24px" viewBox="0 0 24 24"
-                                                     version="1.1"
-                                                     xmlns="http://www.w3.org/2000/svg"
-                                                     xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                        <circle fill="#25B309" cx="12" cy="12" r="12"></circle>
-                                                        <polygon fill="#FFFFFF"
-                                                                 points="10.776 16.32 5.184 10.728 5.688 10.2 10.776 15.288 18.792 7.272 19.296 7.8"></polygon>
-                                                    </g>
+                                        <th style="border: 1px solid grey">
+                                            {% if time|string in schedule[day] %}
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                     fill="currentColor" class="bi bi-clipboard2-heart-fill"
+                                                     viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd"
+                                                          d="M10.058.501a.5.5 0 0 0-.5-.501h-2.98c-.276 0-.5.225-.5.501A.5.5 0 0 1 5.582 1a.497.497 0 0 0-.497.497V2a.5.5 0 0 0 .5.5h4.968a.5.5 0 0 0 .5-.5v-.503A.497.497 0 0 0 10.555 1a.5.5 0 0 1-.497-.499"/>
+                                                    <path fill-rule="evenodd"
+                                                          d="M4.174 1h-.57a1.5 1.5 0 0 0-1.5 1.5v12a1.5 1.5 0 0 0 1.5 1.5h9a1.5 1.5 0 0 0 1.5-1.5v-12a1.5 1.5 0 0 0-1.5-1.5h-.642q.084.236.085.5V2c0 .828-.668 1.5-1.492 1.5H5.581A1.496 1.496 0 0 1 4.09 2v-.5q.001-.264.085-.5Zm3.894 5.482c1.656-1.673 5.795 1.254 0 5.018-5.795-3.764-1.656-6.69 0-5.018"/>
+
                                                 </svg>
-                                            </th>
-                                        {% else %}
-                                            <th></th>
-                                        {% endif %}
+                                            {% endif %}
+                                        </th>
                                     {% endfor %}
                                 </tr>
                             {% endfor %}
@@ -731,7 +728,8 @@
                             imgfield="img"
                             alt="">
                         <div class="t390__wrapper t-align_center">
-                            <div class="t390__uptitle t-uptitle t-uptitle_xs">Для регистрации и последующего обслуживания
+                            <div class="t390__uptitle t-uptitle t-uptitle_xs">Для регистрации и последующего
+                                обслуживания
                             </div>
                             <div class="t390__title t-heading t-heading_lg" id="popuptitle_827660306">Telegram бот</div>
                             <div class="t390__descr t-descr t-descr_xs">Этот бот умеет: выводить расписание,
