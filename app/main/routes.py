@@ -124,7 +124,7 @@ def teachers_profile(id):
     teacher = db.session.get(Teacher, id)
     with open('app/static/free_text/free_text.txt', 'r') as file:
         text = file.read()
-    days = ['Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat', 'Sun']
+    days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
     schedule = teacher.parse_schedule()
     return render_template('main/teacher_profile.html', teacher=teacher, text=text, days=days, schedule=schedule)
 

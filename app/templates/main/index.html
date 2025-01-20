@@ -447,13 +447,12 @@
                             imgfield="img"
                             alt="">
                         <div class="t390__wrapper t-align_center">
-                            <div class="t390__uptitle t-uptitle t-uptitle_xs">Для регистрации и Построения
-                                индивидуальной траектории
+                            <div class="t390__uptitle t-uptitle t-uptitle_xs">Для регистрации и последующего
+                                обслуживания
                             </div>
                             <div class="t390__title t-heading t-heading_lg" id="popuptitle_827660306">Telegram бот</div>
-                            <div class="t390__descr t-descr t-descr_xs">После регистрации:<br/>Свяжет вас с менеджером,
-                                который запишет вас на первое занятие. <br/>Этот бот умеет: выводить расписание,
-                                предупреждать о занятиях, производить оплату и сообщать важные для вас новости
+                            <div class="t390__descr t-descr t-descr_xs">Этот бот умеет: выводить расписание,
+                                предупреждать о занятиях, производить оплату и сообщать важные для вас НОВОСТИ
                             </div>
                             <div class="t390__btn-wrapper"><a href="https://t.me/YoungRepBot" target="_blank"
                                                               class="t390__btn t390__btn_first t-btn t-btn_md "
@@ -552,7 +551,7 @@
                                     </div>
                                     <div class="t181__button-wrapper" style="margin-top:30px;">
                                         <div class="t-btnwrapper t-animate" data-animate-style="zoomin"
-                                             data-animate-group="yes"><a href="#popup:infoblock" target=""
+                                             data-animate-group="yes"><a href="#popup:manager" target=""
                                                                          class="t-btn t-btn_md "
                                                                          data-btneffects-first="btneffects-flash"
                                                                          style="color:#ffffff;background-color:#4d1cca;border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px;box-shadow:0px 10px 40px -2px rgba(0,11,48,0.3);"
@@ -570,7 +569,71 @@
                         </div>
                     </div>
                 </div>
-            </div> <!-- arrow -->
+            </div>
+            <div id="rec827660307" class="r t-rec" style=" " data-record-type="390">
+                <div class="t390">
+                    <div
+                            class="t-popup" data-tooltip-hook="#popup:manager"
+                            role="dialog"
+                            aria-modal="true"
+                            tabindex="-1"
+                            aria-label="Telegram бот">
+                        <div class="t-popup__close t-popup__block-close">
+                            <button
+                                    type="button"
+                                    class="t-popup__close-wrapper t-popup__block-close-button"
+                                    aria-label="Закрыть диалоговое окно">
+                                <svg role="presentation" class="t-popup__close-icon" width="23px" height="23px"
+                                     viewBox="0 0 23 23" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                     xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <g stroke="none" stroke-width="1" fill="#fff" fill-rule="evenodd">
+                                        <rect transform="translate(11.313708, 11.313708) rotate(-45.000000) translate(-11.313708, -11.313708) "
+                                              x="10.3137085" y="-3.6862915" width="2" height="30"></rect>
+                                        <rect transform="translate(11.313708, 11.313708) rotate(-315.000000) translate(-11.313708, -11.313708) "
+                                              x="10.3137085" y="-3.6862915" width="2" height="30"></rect>
+                                    </g>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="t-popup__container t-width t-width_6" style="background-color:#fbfbf9;"><img
+                                class="t390__img t-img"
+                                src="static/images/red.jpg"
+                                data-original="static/images/red.jpg"
+                                imgfield="img"
+                                alt="">
+                            <div class="t390__wrapper t-align_center">
+                                <div class="t390__uptitle t-uptitle t-uptitle_xs">Для регистрации и Построения
+                                    индивидуальной траектории
+                                </div>
+                                <div class="t390__title t-heading t-heading_lg" id="popuptitle_827660306">Manager
+                                </div>
+                                <div class="t390__descr t-descr t-descr_xs">Ответит на ВСЕ ваши вопросы, связанные с
+                                    YoungRep
+                                </div>
+                                <div class="t390__btn-wrapper"><a href="https://t.me/youngrep6" target="_blank"
+                                                                  class="t390__btn t390__btn_first t-btn t-btn_md "
+                                                                  style=" color:#ffffff;border:2px solid #fffcfc;background-color:#0077ff;border-radius:100px; -moz-border-radius:100px; -webkit-border-radius:100px;">
+                                    <table role="presentation" style="width:100%; height:100%;">
+                                        <tr>
+                                            <td>Написать</td>
+                                        </tr>
+                                    </table>
+                                </a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">t_onReady(function () {
+                    var rec = document.querySelector('#rec827660307');
+                    if (!rec) return;
+                    rec.setAttribute('data-animationappear', 'off');
+                    rec.style.opacity = 1;
+                    t_onFuncLoad('t390_initPopup', function () {
+                        t390_initPopup('827660307');
+                    });
+                });</script>
+            </div>
+            <!-- arrow -->
             <div class="t-cover__arrow">
                 <div class="t-cover__arrow-wrapper t-cover__arrow-wrapper_animated">
                     <div class="t-cover__arrow_mobile">
@@ -802,7 +865,8 @@
                                             </li>
                                             <li data-list="bullet" style="color: rgb(255, 35, 0);"><a
                                                     href="{{ url_for('main.teachers') }}"
-                                                    style="color: rgb(255, 35, 0); border-bottom-color: rgb(255, 35, 0); border-bottom-style: solid; box-shadow: none; text-decoration: none;">Предметное кураторство</a><span
+                                                    style="color: rgb(255, 35, 0); border-bottom-color: rgb(255, 35, 0); border-bottom-style: solid; box-shadow: none; text-decoration: none;">Предметное
+                                                кураторство</a><span
                                                     style="color: rgb(255, 35, 0);"> </span><span
                                                     style="color: rgb(255, 255, 255);">- формат обучения, где старшеклассники из топ-школ выполняют роль"старшего брата", давая ученику квалифицированную помощь по предмету, а также следят за его прогрессом в обучении.</span>
                                             </li>
@@ -956,40 +1020,40 @@
                 </div>
             </div>
         </div>
-                <script type="text/javascript">t_onReady(function () {
-                    var rec = document.getElementById('rec823379939');
-                    if (!rec) return;
-                    t_onFuncLoad('t1032_init', function () {
-                        t1032_init('823379939');
-                    });
+        <script type="text/javascript">t_onReady(function () {
+            var rec = document.getElementById('rec823379939');
+            if (!rec) return;
+            t_onFuncLoad('t1032_init', function () {
+                t1032_init('823379939');
+            });
+            t_onFuncLoad('t1032_unifyHeights', function () {
+                t1032_unifyHeights('823379939');
+            });
+            if (typeof jQuery !== 'undefined') {
+                $('.t1032').on('displayChanged', function () {
+                    t1032_unifyHeights('823379939');
+                });
+            } else {
+                var wrapperBlock = rec.querySelector('.t1032');
+                if (wrapperBlock) {
                     t_onFuncLoad('t1032_unifyHeights', function () {
-                        t1032_unifyHeights('823379939');
-                    });
-                    if (typeof jQuery !== 'undefined') {
-                        $('.t1032').on('displayChanged', function () {
-                            t1032_unifyHeights('823379939');
-                        });
-                    } else {
-                        var wrapperBlock = rec.querySelector('.t1032');
-                        if (wrapperBlock) {
-                            t_onFuncLoad('t1032_unifyHeights', function () {
-                                wrapperBlock.addEventListener('displayChanged', function () {
-                                    t1032_unifyHeights('823379939');
-                                });
-                            });
-                        }
-                    }
-                    window.addEventListener('resize', function () {
-                        t_onFuncLoad('t1032_unifyHeights', function () {
+                        wrapperBlock.addEventListener('displayChanged', function () {
                             t1032_unifyHeights('823379939');
                         });
                     });
-                    window.addEventListener('load', function () {
-                        t_onFuncLoad('t1032_unifyHeights', function () {
-                            t1032_unifyHeights('823379939');
-                        });
-                    });
-                });</script>
+                }
+            }
+            window.addEventListener('resize', function () {
+                t_onFuncLoad('t1032_unifyHeights', function () {
+                    t1032_unifyHeights('823379939');
+                });
+            });
+            window.addEventListener('load', function () {
+                t_onFuncLoad('t1032_unifyHeights', function () {
+                    t1032_unifyHeights('823379939');
+                });
+            });
+        });</script>
     </div>
     <div id="rec820577695" class="r t-rec t-rec_pt_0 t-rec_pb_0 t-screenmin-980px"
          style="padding-top:0px;padding-bottom:0px;background-color:#4d1cca; " data-record-type="1036"
@@ -2115,11 +2179,7 @@
                             field="btitle">
                         Что нужно для начала занятий?
                     </div>
-                    <div
-                            class="t-section__descr t-descr t-descr_xl t-align_center t-margin_auto"
-                            field="bdescr">
-                        Все остальное сделаем мы: свяжемся с вами, при необходимости объясним как все работает
-                    </div>
+
                 </div>
             </div>
             <style>.t-section__descr {
@@ -2242,6 +2302,42 @@
                 </div>
             </div>
         </div>
+        <div
+                class="t-section__descr t-descr t-descr_xl t-align_center t-margin_auto"
+                field="bdescr" style="margin-top: 50px">
+            Все остальное сделаем мы: свяжемся с вами, при необходимости объясним как все работает
+        </div>
+        <style>.t-section__descr {
+            max-width: 560px;
+        }
+
+        #rec759473098 .t-section__title {
+            margin-bottom: 40px;
+        }
+
+        #rec759473098 .t-section__descr {
+            margin-bottom: 105px;
+        }
+
+        @media screen and (max-width: 960px) {
+            #rec759473098
+            .t-section__title {
+                margin-bottom: 20px;
+            }
+
+            #rec759473098 .t-section__descr {
+                margin-bottom: 45px;
+            }
+
+        }</style>
+        <style> #rec759473098 .t-section__title {
+            color: #000000;
+        }
+
+        #rec759473098 .t-section__descr {
+            color: #000000;
+            opacity: 1;
+        }</style>
         <style> #rec759473098 .t1066__heading {
             font-size: 22px;
             line-height: 1.4;
@@ -2455,7 +2551,8 @@
                                             <li data-list="bullet">Checking Система может помочь вам в олимпиадах и при
                                                 поступлении в ТОП школы.
                                             </li>
-                                            <li data-list="bullet">Предметное кураторство - многоцелевой метод образования: от
+                                            <li data-list="bullet">Предметное кураторство - многоцелевой метод
+                                                образования: от
                                                 подтягивания по школьной программе, до игры в развивающие компьютерные
                                                 игры.
                                             </li>
