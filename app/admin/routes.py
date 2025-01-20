@@ -254,7 +254,7 @@ def teachers_profile(id):
     teacher = db.session.get(Teacher, id)
     with open('app/static/free_text/free_text.txt', 'r') as file:
         text = file.read()
-    days = ['Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat', 'Sun']
+    days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
     schedule = teacher.parse_schedule()
     return render_template('admin/teacher_profile.html', teacher=teacher, text=text, days=days, schedule=schedule)
 
@@ -364,7 +364,7 @@ def edit_free_text():
 def edit_schedule(id):
     teacher = db.session.get(Teacher, id)
     if request.method == 'GET':
-        days = ['Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat', 'Sun']
+        days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
         print(teacher.schedule)
         schedule = teacher.parse_schedule()
         print(schedule)
