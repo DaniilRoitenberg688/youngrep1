@@ -634,7 +634,7 @@
                             <h5 class="fs-5 mb-2">Предмет: <strong>{{ teacher.subjects[0].name }}</strong></h5>
                             <h5 class="fs-5 mb-2">Класс: <strong>{{ teacher.students_class }}</strong></h5>
                             <h5 class="fs-5 mb-2">Достижения: <strong>{{ teacher.achievements_text }}</strong></h5>
-                            <h5 class="fs-5 mb-2">Тариф: <strong>{{ teacher.tariff }}₽/нед</strong></h5>
+                            <h5 class="fs-5 mb-2">Тариф: <strong>{{ teacher.tariff }}₽/ч</strong></h5>
                             <h5 class="fs-5 mb-2">Хобби: <strong>{{ teacher.hobbies_text }}</strong></h5>
 
                         </div>
@@ -657,7 +657,7 @@
                                 {% endfor %}
                             </tr>
                             </thead>
-                            {% for time in range(15, 22) %}
+                            {% for time in range(14, 22) %}
                                 <tr style="border: 1px solid grey">
                                     <th style="border: 1px solid grey">{{ time }}</th>
                                     {% for day in days %}
