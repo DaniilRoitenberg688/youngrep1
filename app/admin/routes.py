@@ -3,7 +3,7 @@ import os
 
 from app import db
 from app.admin import bp
-from flask import render_template, redirect, url_for, flash, request, current_app
+from flask import render_template, redirect, url_for, flash, request, current_app, jsonify
 from app.admin.forms import LoginForm, AddTeacherForm, EditTeacherForm, EditSearchForm, AddSearchForm, EditFreeText
 from flask_login import current_user, login_user, login_required, logout_user
 
@@ -383,3 +383,15 @@ def edit_schedule(id):
         teacher.set_schedule(result)
         db.session.commit()
         return redirect(url_for('admin.edit_schedule', id=id))
+
+
+@bp.route('/change_visibility/<int:id>', methods=['POST'])
+def change_visibility(id):
+    teacher = db.session.get(Teacher, id)
+    teacher.is_shown = not teacher.is_shown
+    if teacher.is_shown is None:
+        teacher.is_shown = True
+    print(teacher.is_shown)
+    db.session.commit()
+    return redirect(url_for('admin.index'))
+    # return jsonify({'result': 'OK'}), 200

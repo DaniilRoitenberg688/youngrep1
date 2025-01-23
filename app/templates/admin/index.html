@@ -182,13 +182,44 @@
                                 </div>
 
                             </div>
+                            {% if not teacher.is_shown %}
+                                <span class="text-center fs-6 badge bg-danger" id="badge_{{ teacher.id }}">is not shown on site</span>
+                            {% else %}
+                                <span class="text-center fs-6 badge bg-danger" id="badge_{{ teacher.id }}"
+                                      style="display: none">is not shown on site</span>
+                            {% endif %}
                             <div class="mt-3 mb-4 ms-3">
                                 <a class="btn btn-warning"
                                    href="{{ url_for('admin.edit_teacher', id=teacher.id) }}">Edit</a>
                                 <a class="btn btn-danger"
                                         {#                                   href="{{ url_for('admin.delete_teacher', id=teacher.id) }}"#}
                                    onclick="delete_teacher({{ teacher.id }})">Delete</a>
-                                <a class="mt-3 mb-4 ms-3" href="{{ url_for('admin.edit_schedule', id=teacher.id) }}">Edit schedule</a>
+                                <a class="btn btn-success" href="{{ url_for('admin.edit_schedule', id=teacher.id) }}">Schedule</a>
+                                <script>
+                                    function changeVisibility(id) {
+                                        fetch('change_visibility/' + id, {
+                                            method: 'POST'
+                                        })
+                                        button = document.getElementById(id)
+                                        badge = document.getElementById('badge_' + id)
+                                        console.log(badge)
+                                        if (button.innerText === 'hide') {
+                                            button.innerText = 'show'
+                                            badge.style.display = 'block'
+                                        } else {
+                                            button.innerText = 'hide'
+                                            badge.style.display = 'none'
+                                        }
+
+                                    }
+                                </script>
+                                {% if teacher.is_shown %}
+                                    <a class="btn btn-secondary" onclick="changeVisibility({{ teacher.id }})"
+                                       id="{{ teacher.id }}">hide</a>
+                                {% else %}
+                                    <a class="btn btn-secondary" onclick="changeVisibility({{ teacher.id }})"
+                                       id="{{ teacher.id }}">show</a>
+                                {% endif %}
                             </div>
                         </div>
 

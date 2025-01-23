@@ -121,7 +121,7 @@
             <div class="me-3">
                 <div class="row me-3 ms-2">
                     {% for teacher in teachers %}
-
+                        {% if teacher.is_shown %}
                         <div class="col-lg-3 col-md-6 col-sm-10 col-12 m-lg-3 mb-3">
                             <div class="card mb-3 h-100">
                                 <div class="">
@@ -168,7 +168,7 @@
                             </div>
 
                         </div>
-
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>
