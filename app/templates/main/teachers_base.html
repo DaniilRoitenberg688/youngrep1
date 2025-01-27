@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+        <script src="static/js/send_stat.js"></script>
     <meta name="yandex-verification" content="96272397f080b088"/>
     <meta charset="utf-8"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -159,7 +160,8 @@
                                     <div class="t228__right_buttons_but"><a href="#popup:infoblock" target=""
                                                                             class="t-btn t-btn_md "
                                                                             style="color:#fffefe;background-color:#ff2300;border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px;box-shadow:0px 10px 40px -2px rgba(0,11,48,0.3);"
-                                                                            data-buttonfieldset="button">
+                                                                            data-buttonfieldset="button"
+                                    onclick="onClick('pop_up_bot')">
                                         НАЧАТЬ ЗАНИМАТЬСЯ
                                     </a></div>
                                 </div>
@@ -448,7 +450,7 @@
                                                               style=" color:#ffffff;border:2px solid #fffcfc;background-color:#0077ff;border-radius:100px; -moz-border-radius:100px; -webkit-border-radius:100px;">
                                 <table role="presentation" style="width:100%; height:100%;">
                                     <tr>
-                                        <td>Подписаться</td>
+                                        <td onclick="onClick('bot_popup')">Подписаться</td>
                                     </tr>
                                 </table>
                             </a></div>
@@ -1202,8 +1204,9 @@
                     <div class="t142__wraptwo"><a class="t-btn t142__submit t142__submit_size_lg t-animate"
                                                   href="#popup:infoblock" target="_blank" data-animate-style="fadeinup"
                                                   style="color:#fffcfc;border:0px solid #eeeeee;background-color:#ff2300;border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px;box-shadow:0px 10px 40px -2px rgba(0,11,48,0.3);"
+                                                  onclick="onClick('pop_up_bot')"
                                                   data-buttonfieldset="button" data-btneffects-first="btneffects-light">
-                        <span class="t142__text">Записаться на занятие </span> </a></div>
+                        <span class="t142__text" >Записаться на занятие </span> </a></div>
                 </div>
             </div>
         </div>

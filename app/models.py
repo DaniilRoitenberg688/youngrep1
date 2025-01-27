@@ -152,3 +152,4 @@ class Page(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String())
     quantity = db.Column(db.Integer, default=0)
+    description = db.Column(db.String())

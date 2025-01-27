@@ -1,5 +1,7 @@
+from statistics import quantiles
+
 from app.main import bp
-from flask import redirect, render_template, request, url_for
+from flask import redirect, render_template, request, url_for, jsonify
 from app.models import Teacher, Hobby, Achievement, Subject, Page
 from app import db
 from app import models
@@ -12,6 +14,8 @@ def teachers():
         page = Page(name='teacher')
         db.session.add(page)
         db.session.commit()
+    if not page.description:
+        page.description = 'Страница учителей'
     if not request.args.get('search'):
         print(page.name)
         page.quantity += 1
@@ -100,13 +104,14 @@ def search_form():
 
 
 @bp.route('/')
-@bp.route('/index')
 def index():
     page = Page.query.filter_by(name='index').first()
     if not page:
         page = Page(name='index')
         db.session.add(page)
         db.session.commit()
+    if not page.description:
+        page.description = 'Главная страница'
     page.quantity += 1
     db.session.commit()
     return render_template('main/index.html')
@@ -119,6 +124,8 @@ def teachers_profile(id):
         page = Page(name='teacher_profile')
         db.session.add(page)
         db.session.commit()
+    if not page.description:
+        page.description = 'Профили учителей'
     page.quantity += 1
     db.session.commit()
     teacher = db.session.get(Teacher, id)
@@ -136,6 +143,8 @@ def about():
         page = Page(name='about')
         db.session.add(page)
         db.session.commit()
+    if not page.description:
+        page.description = 'О нас'
     page.quantity += 1
     db.session.commit()
     return render_template('main/about.html')
@@ -148,6 +157,8 @@ def checking_system():
         page = Page(name='checking_system')
         db.session.add(page)
         db.session.commit()
+    if not page.description:
+        page.description = 'Checking система'
     page.quantity += 1
     db.session.commit()
     return render_template('main/checking_system.html')
@@ -160,6 +171,37 @@ def invite():
         page = Page(name='invite')
         db.session.add(page)
         db.session.commit()
+    if not page.description:
+        page.description = 'Работа у нас'
     page.quantity += 1
     db.session.commit()
     return render_template('main/invite.html')
+
+@bp.route('/add_statistic/<name>', methods=['POST'])
+def add_statistic(name):
+    names = {'pop_up_bot': 'нажатие попапа с ботом',
+             'pop_up_manager': 'нажатие попапа с менеджером',
+             'bot_popup': 'переход в бота с попапа',
+             'manager': 'переход в менеджера',
+             'bot_checking_system': 'переход на бота чекинг системы',
+             'chanel': 'переход в канал',
+             'manager_invite': 'переход в менеджера с "работать у нас"',
+             'bot': 'переход в бота с кнопок'}
+
+    if name in names:
+        page: Page = Page.query.filter_by(name=name).first()
+        if page:
+            if not page.description:
+                page.description = names.get(name)
+
+            page.quantity += 1
+
+        else:
+            page = Page(name=name, description=names.get(name), quantity=1)
+            db.session.add(page)
+
+        db.session.commit()
+        return jsonify({'status': 'ok'}), 200
+
+    return jsonify({'status': 'not found'}), 404
+
