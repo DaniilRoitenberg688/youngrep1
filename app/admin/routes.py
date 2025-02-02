@@ -331,7 +331,8 @@ def add_search():
 @bp.route('/statistic')
 @login_required
 def statistic():
-    pages = Page.query.all()
+    pages: list[Page] = Page.query.all()
+    pages = [{'description': i.description.capitalize(), 'quantity': i.quantity} for i in pages]
     return render_template('admin/statistic.html', title='statistic', pages=pages)
 
 
