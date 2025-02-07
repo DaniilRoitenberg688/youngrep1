@@ -27,15 +27,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('main.index') }}">back to youngrep</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('admin.edit_search') }}">edit search</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('admin.statistic') }}">statistic</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="{{ url_for('admin.free_text') }}">free text</a>
-                    </li>
+                    {% if not current_user.teacher %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('admin.edit_search') }}">edit search</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('admin.statistic') }}">statistic</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{{ url_for('admin.free_text') }}">free text</a>
+                        </li>
+
+                    {% endif %}
                 </ul>
                 <a class="btn btn-danger" href="{{ url_for('admin.logout') }}">logout</a>
 

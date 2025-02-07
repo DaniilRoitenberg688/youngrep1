@@ -15,6 +15,8 @@ from app import models
 @bp.route('/')
 @login_required
 def index():
+    if current_user.teacher:
+        return render_template('admin/index.html', title='Teachers', teachers=[current_user.teacher])
     teachers = []
     data = request.args
     if not data:
@@ -101,6 +103,8 @@ def logout():
 @bp.route('/teacher', methods=['GET', 'POST'])
 @login_required
 def new_teacher():
+    if current_user.teacher:
+        return redirect(url_for('admin.index'))
     form = AddTeacherForm()
     form.all_achievements = Achievement.query.all()
     form.all_hobbies = Hobby.query.all()
@@ -239,6 +243,8 @@ def edit_teacher(id):
 @bp.route('/search_form', methods=['POST'])
 @login_required
 def search_form():
+    if current_user.teacher:
+        return redirect(url_for('admin.index'))
     subjects = request.form.getlist('subjects')
     age = request.form.getlist('age')
     achievements = request.form.getlist('achievements')
@@ -250,8 +256,12 @@ def search_form():
 
 
 @bp.route('/teacher_profile/<int:id>', methods=['GET'])
+@login_required
 def teachers_profile(id):
     teacher = db.session.get(Teacher, id)
+    if current_user.teacher:
+        if current_user.teacher != teacher:
+            return redirect(url_for('admin.index'))
     with open('app/static/free_text/free_text.txt', 'r') as file:
         text = file.read()
     days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
@@ -260,7 +270,10 @@ def teachers_profile(id):
 
 
 @bp.route('/edit_search', methods=['GET', 'POST'])
+@login_required
 def edit_search():
+    if current_user.teacher:
+        return redirect(url_for('admin.index'))
     form = EditSearchForm()
     form.subjects = Subject.query.all()
     form.achievements = Achievement.query.all()
@@ -293,6 +306,8 @@ def edit_search():
 @bp.route('/add_search', methods=['GET', 'POST'])
 @login_required
 def add_search():
+    if current_user.teacher:
+        return redirect(url_for('admin.index'))
     form = AddSearchForm()
     if form.validate_on_submit():
         category = form.category.data
@@ -331,22 +346,27 @@ def add_search():
 @bp.route('/statistic')
 @login_required
 def statistic():
+    if current_user.teacher:
+        return redirect(url_for('admin.index'))
     pages: list[Page] = Page.query.all()
     pages = [{'description': i.description.capitalize(), 'quantity': i.quantity} for i in pages]
     return render_template('admin/statistic.html', title='statistic', pages=pages)
 
 
 @bp.route('/free_text')
+@login_required
 def free_text():
+    if current_user.teacher:
+        return redirect(url_for('admin.index'))
     with open('app/static/free_text/free_text.txt', 'r') as file:
         text = file.read()
     return render_template('admin/free_text.html', text=text)
 
 
-
-
 @bp.route('/edit_free_text', methods=['POST', 'GET'])
 def edit_free_text():
+    if current_user.teacher:
+        return redirect(url_for('admin.index'))
     form = EditFreeText()
     if request.method == 'GET':
         with open('app/static/free_text/free_text.txt', 'r') as file:
@@ -362,6 +382,7 @@ def edit_free_text():
 
 
 @bp.route('/edit_schedule/<int:id>', methods=['POST', 'GET'])
+@login_required
 def edit_schedule(id):
     teacher = db.session.get(Teacher, id)
     if request.method == 'GET':

@@ -140,6 +140,8 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     login = db.Column(db.String, unique=True)
     password_hash = db.Column(db.String)
+    teacher_id = db.Column(db.Integer, db.ForeignKey('teacher.id', ondelete='CASCADE'))
+    teacher = db.relationship('Teacher')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)

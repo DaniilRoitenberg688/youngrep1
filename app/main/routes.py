@@ -1,5 +1,3 @@
-from statistics import quantiles
-
 from app.main import bp
 from flask import redirect, render_template, request, url_for, jsonify
 from app.models import Teacher, Hobby, Achievement, Subject, Page
