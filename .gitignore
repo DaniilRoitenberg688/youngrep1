@@ -8,3 +8,4 @@ teachers.db
 /app/static/free_text
 .flaskenv
 set_teacher_passwords.py
+config.py
