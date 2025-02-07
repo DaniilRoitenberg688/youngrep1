@@ -156,8 +156,8 @@ def new_teacher():
         user = User()
         user.login = f'teacher_{teacher.id}'
         user.teacher = teacher
-        user.set_password(os.environ.get('BASE_PASSWORD'))
-        db.session.add(teacher)
+        user.set_password(current_app.config['BASE_PASSWORD'])
+        db.session.add(user)
         db.session.commit()
 
         return redirect(url_for('admin.index'))

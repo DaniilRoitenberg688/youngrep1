@@ -7,3 +7,5 @@ class Config:
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
                               'sqlite:///' + os.path.join(basedir, 'teachers.db')
     UPLOAD_PATH = 'app/static/teachers_images'
+    BASE_PASSWORD = os.environ.get('BASE_PASSWORD')
+    print(BASE_PASSWORD)

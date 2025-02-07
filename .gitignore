@@ -7,3 +7,4 @@ teachers.db
 /app/static/teachers_images
 /app/static/free_text
 .flaskenv
+set_teacher_passwords.py
