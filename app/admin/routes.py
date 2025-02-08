@@ -273,7 +273,9 @@ def teachers_profile(id):
         text = file.read()
     days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
     schedule = teacher.parse_schedule()
-    return render_template('admin/teacher_profile.html', teacher=teacher, text=text, days=days, schedule=schedule)
+    page: Page = Page.query.filter_by(name='teacher_profile').first()
+    percent = int(round(teacher.shown_times / page.quantity, 2) * 100)
+    return render_template('admin/teacher_profile.html', teacher=teacher, text=text, days=days, schedule=schedule, percent=percent)
 
 
 @bp.route('/edit_search', methods=['GET', 'POST'])
@@ -360,7 +362,6 @@ def statistic():
 
     pages = [{'description': i.description.capitalize(), 'quantity': i.quantity} for i in pages]
     teachers = Teacher.query.all()
-    print(page.quantity)
     teachers = [
         {'name': i.name, 'surname': i.surname, 'shown_times': i.shown_times, 'percent': int(round(i.shown_times / page.quantity, 2) * 100)}
         for i in teachers]
