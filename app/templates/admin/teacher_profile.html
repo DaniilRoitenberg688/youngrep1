@@ -7,7 +7,7 @@
             <h1 class="fs-1 mb-4">{{ teacher.surname }} {{ teacher.name }}</h1>
             <h1>Логин: teacher_{{ teacher.id }}</h1>
             {% if current_user.teacher %}
-                <h1>Заходы в профиль - <b>{{ teacher.shown_times }}</b> раз%</h1>
+                <h1>Заходы в профиль - <b>{{ teacher.shown_times }}</b> раз</h1>
                 <h1>Процент - <b>{{ percent }}</b>%</h1>
             {% endif %}
         </div>
