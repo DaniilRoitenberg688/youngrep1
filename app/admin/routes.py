@@ -356,8 +356,16 @@ def statistic():
     if current_user.teacher:
         return redirect(url_for('admin.index'))
     pages: list[Page] = Page.query.all()
+    page: Page = Page.query.filter_by(name='teacher_profile').first()
+
     pages = [{'description': i.description.capitalize(), 'quantity': i.quantity} for i in pages]
-    return render_template('admin/statistic.html', title='statistic', pages=pages)
+    teachers = Teacher.query.all()
+    print(page.quantity)
+    teachers = [
+        {'name': i.name, 'surname': i.surname, 'shown_times': i.shown_times, 'percent': int(round(i.shown_times / page.quantity, 2) * 100)}
+        for i in teachers]
+    return render_template('admin/statistic.html', title='statistic', pages=pages, teachers=teachers,
+                           sum_teachers=page.quantity)
 
 
 @bp.route('/free_text')

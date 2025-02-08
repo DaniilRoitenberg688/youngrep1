@@ -2,8 +2,11 @@
 
 {% block content %}
     <div class="m-3">
-	{% for i in pages %}
-    <p class="fs-3">{{ i['description'] }} - {{ i['quantity'] }}</p>
-    {% endfor %}
+        {% for i in pages %}
+            <p class="fs-3">{{ i['description'] }} - {{ i['quantity'] }}</p>
+        {% endfor %}
+        {% for i in teachers %}
+            <p class="fs-3">{{ i['surname'] }} {{ i['name'] }} - {{ i['shown_times'] }}/{{ i['percent'] }}%</p>
+        {% endfor %}
     </div>
 {% endblock %}

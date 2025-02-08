@@ -4,8 +4,11 @@
 
     <div class="mx-3">
         <div class="mb-4 mt-3 text-center">
-            <h1 class="fs-1">{{ teacher.surname }} {{ teacher.name }}</h1>
+            <h1 class="fs-1 mb-4">{{ teacher.surname }} {{ teacher.name }}</h1>
             <h1>Логин: teacher_{{ teacher.id }}</h1>
+            {% if current_user.teacher %}
+                <h1>Заходы в профиль - {{ teacher.shown_times }}</h1>
+            {% endif %}
         </div>
         <div class="container text-center text-lg-start mt-3 d-lg-inline-flex mx-lg-5 me-5" style="padding-left: 0">
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">

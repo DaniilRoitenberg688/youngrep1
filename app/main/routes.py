@@ -127,6 +127,10 @@ def teachers_profile(id):
     page.quantity += 1
     db.session.commit()
     teacher = db.session.get(Teacher, id)
+    if teacher.shown_times is None:
+        teacher.shown_times = 0
+    teacher.shown_times += 1
+    db.session.commit()
     with open('app/static/free_text/free_text.txt', 'r') as file:
         text = file.read()
     days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']

@@ -89,6 +89,8 @@ class Teacher(db.Model):
     schedule = db.Column(db.String())
     is_shown = db.Column(db.Boolean, nullable=True, default=True)
 
+    shown_times = db.Column(db.Integer, default=0)
+
     def __init__(self, name, surname, students_class, tariff, school, feedback, about_text, achievements_text,
                  hobbies_text, is_free):
         self.name = name
