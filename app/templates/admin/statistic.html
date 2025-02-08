@@ -6,7 +6,8 @@
             <p class="fs-3">{{ i['description'] }} - {{ i['quantity'] }}</p>
         {% endfor %}
         {% for i in teachers %}
-            <p class="fs-3">{{ i['surname'] }} {{ i['name'] }} - {{ i['shown_times'] }}/{{ i['percent'] }}%</p>
+            <p class="fs-3">{{ i['surname'] }} {{ i['name'] }} - {{ i['shown_times'] }}</p>
+            <p class="fs-3">{{ i['surname'] }} {{ i['name'] }} - {{ i['percent'] }}%</p>
         {% endfor %}
     </div>
 {% endblock %}
