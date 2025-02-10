@@ -78,15 +78,48 @@
                 </div>
                 <div>
                     <h2 class="mt-5 mb-3">Отзывы:</h2>
-                    {% for i in range(teacher.feedback) %}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
-                             class="bi bi-star-fill fs-1" viewBox="0 0 16 16" style="color: #FFD27D">
-                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                        </svg>
-                    {% endfor %}
-                    <div class="mt-4 mb-5">
+                    {% if teacher.feedback %}
+                        {% for i in range(teacher.feedback) %}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                                 class="bi bi-star-fill fs-1" viewBox="0 0 16 16" style="color: #FFD27D">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                        {% endfor %}
+                        <div class="mt-4 mb-5">
+                        <div class="mb-4">
+                            {% for comment in teacher.comments %}
+                                <div class="card p-3 mb-3">
+                                    <h4>{{ comment.user_name }}</h4>
+                                    <p class="fs-6">{{ comment.text }}</p>
+                                    <div class="mb-3">
+                                        {% for i in range(comment.feedback) %}
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                                 fill="currentColor"
+                                                 class="bi bi-star-fill fs-3" viewBox="0 0 16 16"
+                                                 style="color: #FFD27D">
+                                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                            </svg>
+                                        {% endfor %}
+                                    </div>
+                                    <div>
+                                        {% if not current_user.teacher %}
+                                            <a class="btn btn-danger"
+                                               href="{{ url_for('admin.delete_comment', comment_id=comment.id) }}">delete</a>
+                                            <a class="btn btn-warning"
+                                            href="{{ url_for('admin.edit_comment', comment_id=comment.id) }}">edit</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
 
-                        <p class="mb-3 fs-5 pe-4">{{ teacher.about_text }}</p>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <h3>Отзывов пока нет</h3>
+                    {% endif %}
+                    {% if not current_user.teacher %}
+                        <a class="btn btn-primary fs-5"
+                           href="{{ url_for('admin.add_comment', teacher_id=teacher.id) }}">Add comment</a>
+                    {% endif %}
                     </div>
                 </div>
             </div>

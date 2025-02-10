@@ -4,10 +4,11 @@ import os
 from app import db
 from app.admin import bp
 from flask import render_template, redirect, url_for, flash, request, current_app, jsonify
-from app.admin.forms import LoginForm, AddTeacherForm, EditTeacherForm, EditSearchForm, AddSearchForm, EditFreeText
+from app.admin.forms import LoginForm, AddTeacherForm, EditTeacherForm, EditSearchForm, AddSearchForm, EditFreeText, \
+    AddCommentForm, EditCommentForm
 from flask_login import current_user, login_user, login_required, logout_user
 
-from app.models import User, Teacher, Subject, Achievement, Hobby, Page
+from app.models import User, Teacher, Subject, Achievement, Hobby, Page, Comment
 
 from app import models
 
@@ -275,7 +276,8 @@ def teachers_profile(id):
     schedule = teacher.parse_schedule()
     page: Page = Page.query.filter_by(name='teacher_profile').first()
     percent = int(round(teacher.shown_times / page.quantity, 2) * 100)
-    return render_template('admin/teacher_profile.html', teacher=teacher, text=text, days=days, schedule=schedule, percent=percent)
+    return render_template('admin/teacher_profile.html', teacher=teacher, text=text, days=days, schedule=schedule,
+                           percent=percent)
 
 
 @bp.route('/edit_search', methods=['GET', 'POST'])
@@ -363,7 +365,8 @@ def statistic():
     pages = [{'description': i.description.capitalize(), 'quantity': i.quantity} for i in pages]
     teachers = Teacher.query.all()
     teachers = [
-        {'name': i.name, 'surname': i.surname, 'shown_times': i.shown_times, 'percent': int(round(i.shown_times / page.quantity, 2) * 100)}
+        {'name': i.name, 'surname': i.surname, 'shown_times': i.shown_times,
+         'percent': int(round(i.shown_times / page.quantity, 2) * 100)}
         for i in teachers]
     return render_template('admin/statistic.html', title='statistic', pages=pages, teachers=teachers,
                            sum_teachers=page.quantity)
@@ -433,3 +436,67 @@ def change_visibility(id):
     db.session.commit()
     return redirect(url_for('admin.index'))
     # return jsonify({'result': 'OK'}), 200
+
+
+@bp.route('/add_comment/<teacher_id>', methods=['POST', 'GET'])
+@login_required
+def add_comment(teacher_id):
+    teacher = db.session.get(Teacher, teacher_id)
+    if not teacher:
+        return redirect(url_for('admin.index'))
+
+    form = AddCommentForm()
+    if form.validate_on_submit():
+        comment = Comment()
+        comment.user_name = form.user_name.data
+        comment.text = form.comment.data
+        comment.feedback = form.feedback.data
+        comment.teacher = teacher
+        db.session.add(comment)
+        db.session.commit()
+        teacher.feedback = round(sum(map(lambda x: x.feedback, teacher.comments)) / len(teacher.comments))
+        db.session.commit()
+        return redirect(url_for('admin.teachers_profile', id=teacher.id))
+
+    return render_template('admin/add_comment.html', form=form, teacher=teacher)
+
+
+@bp.route('/delete_comment/<comment_id>')
+@login_required
+def delete_comment(comment_id):
+    comment = db.session.get(Comment, comment_id)
+    teacher: Teacher = comment.teacher
+
+    db.session.delete(comment)
+    db.session.commit()
+
+    if teacher.comments:
+        teacher.feedback = round(sum(map(lambda x: x.feedback, teacher.comments)) / len(teacher.comments))
+    else:
+        teacher.feedback = 0
+    db.session.commit()
+    return redirect(url_for('admin.teachers_profile', id=teacher.id))
+
+@bp.route('/edit_comment/<comment_id>', methods=['GET', 'POST'])
+def edit_comment(comment_id):
+    form = EditCommentForm()
+    comment = db.session.get(Comment, comment_id)
+    teacher = comment.teacher
+    if request.method == 'GET':
+        form.user_name.data = comment.user_name
+        form.comment.data = comment.text
+        form.feedback.data = comment.feedback
+        return render_template('admin/edit_comment.html', form=form, teacher=teacher)
+
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            comment.user_name = form.user_name.data
+            comment.feedback = form.feedback.data
+            comment.text = form.comment.data
+            db.session.commit()
+            teacher.feedback = round(sum(map(lambda x: x.feedback, teacher.comments)) / len(teacher.comments))
+            db.session.commit()
+            return redirect(url_for('admin.teachers_profile', id=teacher.id))
+
+
+

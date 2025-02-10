@@ -82,6 +82,27 @@ class EditFreeText(FlaskForm):
     submit = SubmitField('Edit')
 
 
+class AddCommentForm(FlaskForm):
+    user_name = StringField('Name')
+    comment = TextAreaField('Comment')
+    submit = SubmitField('New comment')
+    feedback = IntegerRangeField('Feedback')
+
+
+
+    def validate_user_name(self, user_name):
+        if not user_name.data:
+            raise ValidationError('No user name')
+
+    def validate_comment(self, comment):
+        if not comment.data:
+            raise ValidationError('No comment text')
+
+
+class EditCommentForm(AddCommentForm):
+    submit = SubmitField('Edit comment')
+
+
 
 
 

@@ -69,7 +69,7 @@ class Teacher(db.Model):
     students_class = db.Column(db.Integer, nullable=True, index=True)
     tariff = db.Column(db.Integer, nullable=True, index=True)
     school = db.Column(db.String(), nullable=True)
-    feedback = db.Column(db.Integer, nullable=True)
+    feedback = db.Column(db.Integer, nullable=True, default=True)
     about_text = db.Column(db.Text, nullable=True)
     image = db.Column(db.String(), nullable=True)
 
@@ -157,3 +157,12 @@ class Page(db.Model):
     name = db.Column(db.String())
     quantity = db.Column(db.Integer, default=0)
     description = db.Column(db.String())
+
+
+class Comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_name = db.Column(db.String())
+    text = db.Column(db.Text)
+    feedback = db.Column(db.Integer)
+    teacher_id = db.Column(db.Integer, db.ForeignKey('teacher.id', ondelete='CASCADE'))
+    teacher = db.relationship('Teacher', backref=db.backref('comments'))
