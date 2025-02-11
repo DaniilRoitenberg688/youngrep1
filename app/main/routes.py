@@ -1,6 +1,7 @@
 from app.main import bp
 from flask import redirect, render_template, request, url_for, jsonify
-from app.models import Teacher, Hobby, Achievement, Subject, Page
+from app.models import Teacher, Hobby, Achievement, Subject, Page, Comment
+from app.main.forms import AddCommentForm
 from app import db
 from app import models
 
@@ -207,3 +208,24 @@ def add_statistic(name):
 
     return jsonify({'status': 'not found'}), 404
 
+
+@bp.route('/add_comment/<teacher_id>', methods=['POST', 'GET'])
+def add_comment(teacher_id):
+    teacher = db.session.get(Teacher, teacher_id)
+    if not teacher:
+        return redirect(url_for('admin.index'))
+
+    form = AddCommentForm()
+    if form.validate_on_submit():
+        comment = Comment()
+        comment.user_name = form.user_name.data
+        comment.text = form.comment.data
+        comment.feedback = form.feedback.data
+        comment.teacher = teacher
+        db.session.add(comment)
+        db.session.commit()
+        teacher.feedback = round(sum(map(lambda x: x.feedback, teacher.comments)) / len(teacher.comments))
+        db.session.commit()
+        return redirect(url_for('main.teachers_profile', id=teacher.id))
+
+    return render_template('main/add_comment.html', form=form, teacher=teacher)
