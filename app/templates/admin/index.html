@@ -150,9 +150,15 @@
                     <div class="col-lg-3 col-md-6 col-sm-12 col-12 m-lg-3">
                         <div class="card mb-3 h-100">
                             <div>
-                                <img class="card-img-top img-fluid" style="object-fit: cover; height: 450px"
-                                     src="/static/teachers_images/{{ teacher.image }}"
-                                     onclick="location.href='/admin/teacher_profile/{{ teacher.id }}'">
+                                {% if teacher.image %}
+                                    <img class="card-img-top img-fluid" style="object-fit: cover; height: 450px"
+                                         src="/static/teachers_images/{{ teacher.image }}"
+                                         onclick="location.href='/admin/teacher_profile/{{ teacher.id }}'">
+                                {% else %}
+                                    <img class="card-img-top img-fluid" style="object-fit: cover; height: 450px"
+                                         src="/static/images/empty_avatar.png"
+                                         onclick="location.href='/admin/teacher_profile/{{ teacher.id }}'">
+                                {% endif %}
                                 {% if teacher.is_free %}
                                     <div style="position: absolute; top: 0; right: 0; margin-top: 300px">
                                         <svg width="150" height="150" viewBox="0 0 150 150" fill="none"
@@ -233,9 +239,9 @@
     </div>
 
 
-            {% if not current_user.teacher %}
-    <div class="position-fixed bottom-0 end-0 mx-5 my-4">
-        <a class="btn btn-secondary fs-3 px-3" href="{{ url_for('admin.new_teacher') }}">+</a>
-    </div>
+    {% if not current_user.teacher %}
+        <div class="position-fixed bottom-0 end-0 mx-5 my-4">
+            <a class="btn btn-secondary fs-3 px-3" href="{{ url_for('admin.new_teacher') }}">+</a>
+        </div>
     {% endif %}
 {% endblock %}

@@ -154,6 +154,7 @@ def new_teacher():
             teacher.image = str(teacher.id) + '.png'
             db.session.commit()
 
+
         user = User()
         user.login = f'teacher_{teacher.id}'
         user.teacher = teacher
@@ -220,6 +221,8 @@ def edit_teacher(id):
         image = form.image.data
         if image is not None:
             image.save(os.path.join(current_app.config['UPLOAD_PATH'], str(teacher.id) + '.png'))
+            teacher.image = str(teacher.id) + '.png'
+            db.session.commit()
 
         db.session.commit()
         return redirect(url_for('admin.index'))

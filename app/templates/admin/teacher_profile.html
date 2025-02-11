@@ -14,8 +14,15 @@
         <div class="container text-center text-lg-start mt-3 d-lg-inline-flex mx-lg-5 me-5" style="padding-left: 0">
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                 <div class="mb-5 d-lg-inline-flex">
-                    <img class="" src="/static/teachers_images/{{ teacher.image }}"
-                         style="border-radius: 30px; width: 350px; height: auto">
+                    {% if teacher.image %}
+                        <img class="card-img-top img-fluid" style="object-fit: cover; height: 450px"
+                             src="/static/teachers_images/{{ teacher.image }}"
+                             onclick="location.href='/admin/teacher_profile/{{ teacher.id }}'">
+                    {% else %}
+                        <img class="card-img-top img-fluid" style="object-fit: cover; height: 450px"
+                             src="/static/images/empty_avatar.png"
+                             onclick="location.href='/admin/teacher_profile/{{ teacher.id }}'">
+                    {% endif %}
                     {% if teacher.is_free %}
                         <div class="px-4 py-5 text-center ms-0 ms-lg-5 fs-5 mt-4 mt-lg-0"
                              style="border-radius: 30px; background-color: #4d1cca; color: white; height: 100%; width: 100%">
@@ -106,7 +113,7 @@
                                             <a class="btn btn-danger"
                                                href="{{ url_for('admin.delete_comment', comment_id=comment.id) }}">delete</a>
                                             <a class="btn btn-warning"
-                                            href="{{ url_for('admin.edit_comment', comment_id=comment.id) }}">edit</a>
+                                               href="{{ url_for('admin.edit_comment', comment_id=comment.id) }}">edit</a>
                                         {% endif %}
                                     </div>
                                 </div>

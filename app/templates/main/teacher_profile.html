@@ -621,8 +621,16 @@
             <div class="container text-center text-lg-start mt-3 d-lg-inline-flex mx-lg-5 me-5" style="padding-left: 0">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="mb-5 d-lg-inline-flex">
-                        <img class="" src="/static/teachers_images/{{ teacher.image }}"
-                             style="border-radius: 30px; width: 350px; height: auto; object-fit: cover;">
+                        {% if teacher.image %}
+                            <img class="card-img-top img-fluid" style="border-radius: 30px; width: 350px; height: auto; object-fit: cover;"
+                                 src="/static/teachers_images/{{ teacher.image }}"
+                                 onclick="location.href='/admin/teacher_profile/{{ teacher.id }}'">
+                        {% else %}
+                            <img class="card-img-top img-fluid"
+                                 style="border-radius: 30px; width: 350px; height: auto; object-fit: cover;"
+                                 src="/static/images/empty_avatar.png"
+                                 onclick="location.href='/admin/teacher_profile/{{ teacher.id }}'">
+                        {% endif %}
                         {% if teacher.is_free %}
                             <div class="px-4 py-5 text-center ms-0 ms-lg-5 fs-5 mt-4 mt-lg-0"
                                  style="border-radius: 30px; background-color: #4d1cca; color: white; height: 100%">
@@ -718,7 +726,8 @@
                                 <div class="t142__wrapone">
                                     <div class="t142__wraptwo"><a
                                             class="t-btn t142__submit t142__submit_size_lg t-animate fs-5"
-                                            href="{{ url_for('main.add_comment', teacher_id=teacher.id) }}" target="_blank"
+                                            href="{{ url_for('main.add_comment', teacher_id=teacher.id) }}"
+                                            target="_blank"
                                             data-animate-style="fadeinup"
                                             style="background-color:#4d1cca; color:#fffcfc;border:0px solid #eeeeee;border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px;box-shadow:0px 10px 40px -2px rgba(0,11,48,0.3);"
                                             data-buttonfieldset="button"
