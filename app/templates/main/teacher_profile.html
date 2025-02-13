@@ -622,7 +622,8 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="mb-5 d-lg-inline-flex">
                         {% if teacher.image %}
-                            <img class="card-img-top img-fluid" style="border-radius: 30px; width: 350px; height: auto; object-fit: cover;"
+                            <img class="card-img-top img-fluid"
+                                 style="border-radius: 30px; width: 350px; height: auto; object-fit: cover;"
                                  src="/static/teachers_images/{{ teacher.image }}"
                                  onclick="location.href='/admin/teacher_profile/{{ teacher.id }}'">
                         {% else %}
@@ -721,15 +722,15 @@
                         {% else %}
                             <h3 class="mb-3">Отзывов пока нет</h3>
                         {% endif %}
-                        <div class="t142">
+                        <div class="t142" style="">
                             <div class="t-container_100" style="background-color: white">
-                                <div class="t142__wrapone">
-                                    <div class="t142__wraptwo"><a
+                                <div class="">
+                                    <div class=""><a
                                             class="t-btn t142__submit t142__submit_size_lg t-animate fs-5"
                                             href="{{ url_for('main.add_comment', teacher_id=teacher.id) }}"
                                             target="_blank"
                                             data-animate-style="fadeinup"
-                                            style="background-color:#4d1cca; color:#fffcfc;border:0px solid #eeeeee;border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px;box-shadow:0px 10px 40px -2px rgba(0,11,48,0.3);"
+                                            style="background-color:#4d1cca; color:#fffcfc;border:0px solid #eeeeee;border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px;box-shadow:0px 10px 40px -2px rgba(0,11,48,0.3); margin-left: 0"
                                             data-buttonfieldset="button"
                                             data-btneffects-first="btneffects-light">
                                         <span class="t142__text">Оставить отзыв </span> </a></div>
