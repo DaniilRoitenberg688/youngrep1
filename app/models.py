@@ -91,6 +91,8 @@ class Teacher(db.Model):
 
     shown_times = db.Column(db.Integer, default=0)
 
+    position = db.Column(db.Integer)
+
     def __init__(self, name, surname, students_class, tariff, school, feedback, about_text, achievements_text,
                  hobbies_text, is_free):
         self.name = name
@@ -104,6 +106,15 @@ class Teacher(db.Model):
         self.hobbies_text = hobbies_text
         self.is_free = is_free
         # self.free_text = free_text
+
+
+    def as_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'surname': self.surname,
+            'position': self.position
+        }
 
     def parse_schedule(self):
         result = {}

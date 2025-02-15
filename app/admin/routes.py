@@ -3,7 +3,7 @@ import os
 
 from app import db
 from app.admin import bp
-from flask import render_template, redirect, url_for, flash, request, current_app, jsonify
+from flask import render_template, redirect, url_for, flash, request, current_app, jsonify, send_file
 from app.admin.forms import LoginForm, AddTeacherForm, EditTeacherForm, EditSearchForm, AddSearchForm, EditFreeText, \
     AddCommentForm, EditCommentForm
 from flask_login import current_user, login_user, login_required, logout_user
@@ -69,7 +69,7 @@ def index():
         teachers.extend(result)
 
     teachers = list(set(teachers))
-    teachers = sorted(teachers, key=lambda x: -x.feedback)
+    teachers = sorted(teachers, key=lambda x: x.position)
 
     return render_template('admin/index.html', title='Teachers', teachers=teachers,
                            all_subjects=models.Subject.query.filter(Subject.enabled).all(),
@@ -502,4 +502,36 @@ def edit_comment(comment_id):
             return redirect(url_for('admin.teachers_profile', id=teacher.id))
 
 
+
+@bp.route('/oder')
+@login_required
+def oder():
+    if current_user.teacher:
+        return redirect(url_for('admin.index'))
+    return send_file('templates/admin/oder.html')
+
+
+@bp.route('/api/teachers')
+def api_teachers():
+    teachers = Teacher.query.all()
+    teachers = sorted(teachers, key=lambda x: x.position)
+    print(teachers)
+    return jsonify([i.as_dict() for i in teachers]), 200
+
+@bp.route('/api/teachers', methods=['PATCH'])
+def patch_teachers():
+    data = request.json
+    print(data)
+    teacher_0_data = data[0]
+    teacher_1_data = data[1]
+    teacher_0 = db.session.get(Teacher, int(teacher_0_data.get('id')))
+    teacher_0.position = teacher_0_data.get('position')
+
+    teacher_1 = db.session.get(Teacher, int(teacher_1_data.get('id')))
+    teacher_1.position = teacher_1_data.get('position')
+    db.session.commit()
+    teachers = Teacher.query.all()
+    teachers = sorted(teachers, key=lambda x: x.position)
+    print(teachers)
+    return jsonify([i.as_dict() for i in teachers]), 200
 

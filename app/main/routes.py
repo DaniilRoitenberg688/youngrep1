@@ -73,7 +73,7 @@ def teachers():
 
     teachers = list(set(teachers))
     if teachers:
-        teachers = sorted(teachers, key=lambda x: -x.feedback)
+        teachers = sorted(teachers, key=lambda x: x.position)
 
     all_achievements = models.Achievement.query.filter(Achievement.enabled).all()
     if Achievement(name='другие...') in all_achievements:
