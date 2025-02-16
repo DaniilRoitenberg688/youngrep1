@@ -119,7 +119,6 @@ def new_teacher():
             school=form.school.data,
             about_text=form.about_text.data,
             tariff=form.tariff.data,
-            feedback=form.feedback.data,
             achievements_text=form.achievements_text.data,
             hobbies_text=form.hobbies_text.data,
             is_free=int(request.form.get('is_free', 0)),
@@ -129,22 +128,40 @@ def new_teacher():
         db.session.commit()
 
         hobbies_to_add = request.form.getlist('hobbies')
-        for i in hobbies_to_add:
-            hobby = Hobby.query.filter(Hobby.name == i).first()
-            hobby.teachers
-            teacher.hobbies.append(hobby)
+        if not hobbies_to_add:
+            empty_hobby = Hobby.query.filter(Hobby.name == '').first()
+            print(empty_hobby)
+            teacher.hobbies.append(empty_hobby)
+            teacher.is_shown = False
+        else:
+            for i in hobbies_to_add:
+                hobby = Hobby.query.filter(Hobby.name == i).first()
+                hobby.teachers
+                teacher.hobbies.append(hobby)
 
         subjects_to_add = request.form.getlist('subjects')
-        for i in subjects_to_add:
-            subject = Subject.query.filter(Subject.name == i).first()
-            subject.teachers
-            teacher.subjects.append(subject)
+        if not subjects_to_add:
+            empty = Subject.query.filter(Subject.name == '').first()
+            print(empty)
+            teacher.subjects.append(empty)
+            teacher.is_shown = False
+        else:
+            for i in subjects_to_add:
+                subject = Subject.query.filter(Subject.name == i).first()
+                subject.teachers
+                teacher.subjects.append(subject)
 
         achievements_to_add = request.form.getlist('achievements')
-        for i in achievements_to_add:
-            achievement = Achievement.query.filter(Achievement.name == i).first()
-            achievement.teachers
-            teacher.achievements.append(achievement)
+        if not achievements_to_add:
+            empty = Achievement.query.filter(Achievement.name == '').first()
+            print(empty)
+            teacher.achievements.append(empty)
+            teacher.is_shown = False
+        else:
+            for i in achievements_to_add:
+                achievement = Achievement.query.filter(Achievement.name == i).first()
+                achievement.teachers
+                teacher.achievements.append(achievement)
 
         db.session.commit()
 
@@ -155,7 +172,6 @@ def new_teacher():
             db.session.commit()
 
         teacher.position = teacher.id
-
 
         user = User()
         user.login = f'teacher_{teacher.id}'
@@ -195,7 +211,7 @@ def edit_teacher(id):
         teacher.students_class = form.student_class.data
         teacher.school = form.school.data
         teacher.about_text = form.about_text.data
-        teacher.feedback = form.feedback.data
+        # teacher.feedback = form.feedback.data
         teacher.achievements_text = form.achievements_text.data
         teacher.hobbies_text = form.hobbies_text.data
 
@@ -205,20 +221,41 @@ def edit_teacher(id):
         teacher.hobbies.clear()
         teacher.achievements.clear()
 
-        subjects = request.form.getlist('subjects')
-        achievements = request.form.getlist('achievements')
-        hobbies = request.form.getlist('hobbies')
-        for subject in subjects:
-            subject: Subject = Subject.query.filter_by(name=subject).first()
-            teacher.subjects.append(subject)
+        hobbies_to_add = request.form.getlist('hobbies')
+        if not hobbies_to_add:
+            empty_hobby = Hobby.query.filter(Hobby.name == '').first()
+            print(empty_hobby)
+            teacher.hobbies.append(empty_hobby)
+            teacher.is_shown = False
+        else:
+            for i in hobbies_to_add:
+                hobby = Hobby.query.filter(Hobby.name == i).first()
+                hobby.teachers
+                teacher.hobbies.append(hobby)
 
-        for achievement in achievements:
-            achievement: Achievement = Achievement.query.filter_by(name=achievement).first()
-            teacher.achievements.append(achievement)
+        subjects_to_add = request.form.getlist('subjects')
+        if not subjects_to_add:
+            empty = Subject.query.filter(Subject.name == '').first()
+            print(empty)
+            teacher.subjects.append(empty)
+            teacher.is_shown = False
+        else:
+            for i in subjects_to_add:
+                subject = Subject.query.filter(Subject.name == i).first()
+                subject.teachers
+                teacher.subjects.append(subject)
 
-        for hobby in hobbies:
-            hobby: Hobby = Hobby.query.filter_by(name=hobby).first()
-            teacher.hobbies.append(hobby)
+        achievements_to_add = request.form.getlist('achievements')
+        if not achievements_to_add:
+            empty = Achievement.query.filter(Achievement.name == '').first()
+            print(empty)
+            teacher.achievements.append(empty)
+            teacher.is_shown = False
+        else:
+            for i in achievements_to_add:
+                achievement = Achievement.query.filter(Achievement.name == i).first()
+                achievement.teachers
+                teacher.achievements.append(achievement)
 
         image = form.image.data
         if image is not None:
@@ -434,13 +471,14 @@ def edit_schedule(id):
 @bp.route('/change_visibility/<int:id>', methods=['POST'])
 def change_visibility(id):
     teacher = db.session.get(Teacher, id)
+    if teacher.subjects[0].name == '' or teacher.achievements[0].name == '' or teacher.hobbies[0].name == '':
+        return jsonify({'id': id, 'changed': False})
     teacher.is_shown = not teacher.is_shown
     if teacher.is_shown is None:
         teacher.is_shown = True
     print(teacher.is_shown)
     db.session.commit()
-    return redirect(url_for('admin.index'))
-    # return jsonify({'result': 'OK'}), 200
+    return jsonify({'id': id, 'changed': True})
 
 
 @bp.route('/add_comment/<teacher_id>', methods=['POST', 'GET'])
@@ -482,6 +520,7 @@ def delete_comment(comment_id):
     db.session.commit()
     return redirect(url_for('admin.teachers_profile', id=teacher.id))
 
+
 @bp.route('/edit_comment/<comment_id>', methods=['GET', 'POST'])
 def edit_comment(comment_id):
     form = EditCommentForm()
@@ -504,7 +543,6 @@ def edit_comment(comment_id):
             return redirect(url_for('admin.teachers_profile', id=teacher.id))
 
 
-
 @bp.route('/oder')
 @login_required
 def oder():
@@ -519,6 +557,7 @@ def api_teachers():
     teachers = sorted(teachers, key=lambda x: x.position)
     print(teachers)
     return jsonify([i.as_dict() for i in teachers]), 200
+
 
 @bp.route('/api/teachers', methods=['PATCH'])
 def patch_teachers():
@@ -536,4 +575,3 @@ def patch_teachers():
     teachers = sorted(teachers, key=lambda x: x.position)
     print(teachers)
     return jsonify([i.as_dict() for i in teachers]), 200
-

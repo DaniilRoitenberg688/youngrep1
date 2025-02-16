@@ -58,23 +58,27 @@
                         <div class="mb-5">
                             <span>Subject</span>
                             {% for i in form.all_subjects %}
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="subjects" id="radio"
-                                           value="{{ i.name }}">
-                                    <label class="form-check-label" for="radio">{{ i.name }}</label>
-                                </div>
+                                {% if i.name %}
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="subjects" id="radio"
+                                               value="{{ i.name }}">
+                                        <label class="form-check-label" for="radio">{{ i.name }}</label>
+                                    </div>
+                                {% endif %}
                             {% endfor %}
                         </div>
 
                         <div class="mb-3">
                             <span>Achievements</span>
                             {% for i in form.all_achievements %}
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="achievements" id="radio"
-                                           value="{{ i.name }}">
-                                    <label class="form-check-label"
-                                           for="radio">{{ ' '.join(i.name.split('_')) }}</label>
-                                </div>
+                                {% if i.name %}
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="achievements" id="radio"
+                                               value="{{ i.name }}">
+                                        <label class="form-check-label"
+                                               for="radio">{{ ' '.join(i.name.split('_')) }}</label>
+                                    </div>
+                                {% endif %}
                             {% endfor %}
                         </div>
 
@@ -86,12 +90,14 @@
                         <div class="mb-3">
                             <span>Hobbies</span>
                             {% for i in form.all_hobbies %}
+                                {% if i.name %}
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="hobbies" id="radio"
                                            value="{{ i.name }}">
                                     <label class="form-check-label"
                                            for="radio">{{ ' '.join(i.name.split('_')) }}</label>
                                 </div>
+                                {% endif %}
                             {% endfor %}
                         </div>
 
@@ -112,10 +118,10 @@
                             {{ form.about_text(class='form-control', rows=5, placeholder='about person...') }}
                         </div>
 
-{#                        <div class="mb-5">#}
-{#                            {{ form.free_text.label }}#}
-{#                            {{ form.free_text(class='form-control', rows=5, placeholder='free text...') }}#}
-{#                        </div>#}
+                        {#                        <div class="mb-5">#}
+                        {#                            {{ form.free_text.label }}#}
+                        {#                            {{ form.free_text(class='form-control', rows=5, placeholder='free text...') }}#}
+                        {#                        </div>#}
 
                         {{ form.submit(class='btn btn-primary fs-5') }}
                     </form>

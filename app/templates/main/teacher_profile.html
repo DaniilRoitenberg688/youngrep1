@@ -625,12 +625,12 @@
                             <img class="card-img-top img-fluid"
                                  style="border-radius: 30px; width: 350px; height: auto; object-fit: cover;"
                                  src="/static/teachers_images/{{ teacher.image }}"
-                                 onclick="location.href='/admin/teacher_profile/{{ teacher.id }}'">
+                                 >
                         {% else %}
                             <img class="card-img-top img-fluid"
                                  style="border-radius: 30px; width: 350px; height: auto; object-fit: cover;"
                                  src="/static/images/empty_avatar.png"
-                                 onclick="location.href='/admin/teacher_profile/{{ teacher.id }}'">
+                                 >
                         {% endif %}
                         {% if teacher.is_free %}
                             <div class="px-4 py-5 text-center ms-0 ms-lg-5 fs-5 mt-4 mt-lg-0"

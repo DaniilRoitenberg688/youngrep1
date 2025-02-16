@@ -14,7 +14,7 @@ def load_user(id):
 
 class Subject(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(), nullable=False, unique=True)
+    name = db.Column(db.String(), unique=True)
     enabled = db.Column(db.Boolean, default=True)
 
     def __repr__(self):
@@ -26,7 +26,7 @@ class Subject(db.Model):
 
 class Achievement(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(), nullable=False, unique=True)
+    name = db.Column(db.String(), unique=True)
     enabled = db.Column(db.Boolean, default=True)
 
     def __repr__(self):
@@ -38,7 +38,7 @@ class Achievement(db.Model):
 
 class Hobby(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(), nullable=False, unique=True)
+    name = db.Column(db.String(), unique=True)
     enabled = db.Column(db.Boolean, default=True)
 
     def __repr__(self):
@@ -69,7 +69,7 @@ class Teacher(db.Model):
     students_class = db.Column(db.Integer, nullable=True, index=True)
     tariff = db.Column(db.Integer, nullable=True, index=True)
     school = db.Column(db.String(), nullable=True)
-    feedback = db.Column(db.Integer, nullable=True, default=True)
+    feedback = db.Column(db.Integer, nullable=True)
     about_text = db.Column(db.Text, nullable=True)
     image = db.Column(db.String(), nullable=True)
 
@@ -93,14 +93,13 @@ class Teacher(db.Model):
 
     position = db.Column(db.Integer)
 
-    def __init__(self, name, surname, students_class, tariff, school, feedback, about_text, achievements_text,
+    def __init__(self, name, surname, students_class, tariff, school, about_text, achievements_text,
                  hobbies_text, is_free):
         self.name = name
         self.surname = surname
         self.students_class = students_class
         self.tariff = tariff
         self.school = school
-        self.feedback = feedback
         self.about_text = about_text
         self.achievements_text = achievements_text
         self.hobbies_text = hobbies_text
@@ -151,7 +150,7 @@ class Teacher(db.Model):
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    login = db.Column(db.String, unique=True)
+    login = db.Column(db.String)
     password_hash = db.Column(db.String)
     teacher_id = db.Column(db.Integer, db.ForeignKey('teacher.id', ondelete='CASCADE'))
     teacher = db.relationship('Teacher')
