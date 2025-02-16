@@ -154,6 +154,8 @@ def new_teacher():
             teacher.image = str(teacher.id) + '.png'
             db.session.commit()
 
+        teacher.position = teacher.id
+
 
         user = User()
         user.login = f'teacher_{teacher.id}'
