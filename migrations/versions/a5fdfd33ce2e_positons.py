@@ -1,6 +1,6 @@
 """positons
 
-Revision ID: 931c6e647ffc
+Revision ID: a5fdfd33ce2e
 Revises: c786b62ef4ce
 Create Date: 2025-02-16 18:54:07.939640
 
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '931c6e647ffc'
+revision = 'a5fdfd33ce2e'
 down_revision = 'c786b62ef4ce'
 branch_labels = None
 depends_on = None
