@@ -657,7 +657,7 @@
                         <h2 class="mb-3">Рассказ о себе:</h2>
                         <span class="fs-5 mb-5" style="">{{ teacher.about_text }}</span>
                     </div>
-                    <div>
+                    <div class="mb-5">
                         <h2 class="mb-3">Расписание</h2>
                         <table class="table text-center " style="">
                             <thead>
@@ -702,6 +702,7 @@
                         </span>
                     </div>
                     <div>
+                        {% if teacher.feedback %}
                         <h2 class="mt-5 mb-3">Отзывы:</h2>
                         {% if teacher.feedback %}
                             {% for i in range(teacher.feedback) %}
@@ -732,6 +733,7 @@
                             </div>
                         {% else %}
                             <h3 class="mb-3">Отзывов пока нет</h3>
+                        {% endif %}
                         {% endif %}
                         <div class="t142" style="">
                             <div class="t-container_100" style="background-color: white">
