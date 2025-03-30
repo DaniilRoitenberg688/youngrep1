@@ -122,20 +122,20 @@
                 <div class="row me-3 ms-2">
                     {% for teacher in teachers %}
                         {% if teacher.is_shown %}
-                            <div class="col-lg-3 col-md-6 col-sm-10 col-12 m-lg-3 mb-3">
+                            <div class="col-lg-3 col-md-5 col-sm-10 col-12 me-lg-3 mb-5">
                                 <div class="card mb-3 h-100">
                                     <div class="">
                                         {% if teacher.image %}
-                                            <img class="card-img-top img-fluid" style="object-fit: cover; height: 300px"
+                                            <img class="card-img-top img-fluid" style="object-fit: cover; height: 450px"
                                                  src="/static/teachers_images/{{ teacher.image }}"
                                                  onclick="location.href='/teacher_profile/{{ teacher.id }}'">
                                         {% else %}
-                                            <img class="card-img-top img-fluid" style="object-fit: cover; height: 300px"
+                                            <img class="card-img-top img-fluid" style="object-fit: cover; height: 450px"
                                                  src="/static/images/empty_avatar.png"
                                                  onclick="location.href='/teacher_profile/{{ teacher.id }}'">
                                         {% endif %}
                                         {% if teacher.is_free %}
-                                            <div style="position: absolute; top: 0; right: 0; margin-top: 150px">
+                                            <div style="position: absolute; top: 0; right: 0; margin-top: 300px">
                                                 <svg width="150" height="150" viewBox="0 0 150 150" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M150 0V150H0L150 0Z" fill="#5400FE"/>
@@ -150,7 +150,8 @@
                                     </div>
                                     <div class="card-body" onclick="location.href='/teacher_profile/{{ teacher.id }}'">
                                         <p class="card-title mb-4 fs-2">{{ teacher.surname }}<br>{{ teacher.name }}</p>
-                                        <p class="card-text mb-2 fs-4"><b>{{ teacher.subjects[0].name }}</b></p>
+                                        <p class="card-text mb-2 fs-4"><b>{% for i in teacher.subjects %}
+                                            {{ i.name }}{% endfor %}</b></p>
                                         <p style="  display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
