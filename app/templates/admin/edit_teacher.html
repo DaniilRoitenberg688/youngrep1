@@ -62,7 +62,9 @@
                         </div>
 
                         <div class="mb-5">
-                            <span>Subject</span>
+                            <span>Subject</span><br>
+                            <span><strong>Тут должно быть выбрано хотя бы одно поле, иначе вас не будет видно на сайте</strong></span>
+
                             {% for i in form.all_subjects %}
                                 {% if i.name %}
                                 <div class="form-check">
@@ -80,7 +82,8 @@
                         </div>
 
                         <div class="mb-3">
-                            <span>Achievements</span>
+                            <span>Achievements</span><br>
+                            <span><strong>Тут должно быть выбрано хотя бы одно поле, иначе вас не будет видно на сайте</strong></span>
                             {% for i in form.all_achievements %}
                                 {% if i.name %}
                                 <div class="form-check">
@@ -104,7 +107,9 @@
                         </div>
 
                         <div class="mb-3">
-                            <span>Hobbies</span>
+                            <span>Hobbies</span><br>
+                            <span><strong>Тут должно быть выбрано хотя бы одно поле, иначе вас не будет видно на сайте</strong></span>
+
                             {% for i in form.all_hobbies %}
                                 {% if i.name %}
                                 <div class="form-check">

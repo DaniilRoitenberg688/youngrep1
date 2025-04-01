@@ -30,6 +30,38 @@
                                                data-menu-submenu-hook="" data-menu-item-number="4">
                 Преподавать у нас
             </a></li>
+
+            <li class="t228__list_item"
+                style="padding:0 0 0 25px;"><a class="t-menu__link-item "
+                                               href="/#rec842851845"
+                                               onclick="a()"
+
+                                                   data-menu-submenu-hook="" data-menu-item-number="5">
+                Вопросы&Ответы
+            </a></li>
         </ul>
     </nav>
 </div>
+
+<script>
+    async function a() {
+        // window.location.replace("/").then(change)
+        // location.hash = ('#rec842851845')
+
+
+
+    }
+
+    async function sleep (time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+    }
+
+    async function change() {
+        elem = document.getElementById('rec842851845')
+        const y = elem.getBoundingClientRect().top + window.scrollY;
+        window.scroll({
+            top: y,
+            behavior: 'smooth'
+        });
+    }
+</script>
