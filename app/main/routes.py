@@ -96,11 +96,13 @@ def search_form():
     subject = request.args.get('subject')
     subjects = [subject]
     if subject == 'Социальные':
-        subjects = ['История', 'Обществознание']
+        subjects.extend(['История', 'Обществознание'])
     if subject == 'Иностранные':
-        subjects = ['Немецкий', 'Французский']
+        subjects.extend(['Немецкий', 'Французский'])
     if subject == 'Другие':
-        subjects = ['Астрономия']
+        subjects.extend(['Астрономия'])
+    if subject == 'Химбио':
+        subjects.extend(['Химия', 'Биология'])
     age = request.form.getlist('age')
     achievements = request.form.getlist('achievements')
     tariff = request.form.get('tariff')
