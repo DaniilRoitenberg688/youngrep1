@@ -2,9 +2,9 @@
 {% block content %}
 
 
-<div class="position-relative mt-5 col-lg-12 col-md-12 col-sm-5 col-12 " id="start" style="">
+<div class="position-relative mt-5 col-lg-12 col-md-12 col-sm-5 col-12 " id="start" style="font-family: Ubuntu">
 
-    <form class="d-flex flex-column flex-lg-row mb-5" method="post"
+    <form class="d-flex flex-column flex-lg-row mb-5"  method="post"
           action="{{ url_for('main.search_form') }}">
         <nav class="nav d-flex flex-row col-sm-1 col-lg-7 col-12 ">
             {#subject#}
@@ -118,22 +118,22 @@
                href="{{ url_for('main.teachers', search=True) }}">Сбросить</a>
         </div>
     </form>
-    <ul class="nav nav-tabs mb-5" id="myTab" role="tablist">
+    <ul class="nav nav-tabs mb-5 col-lg-10" id="myTab" role="tablist" style="font-family: Ubuntu">
         <li class="nav-item">
 
             {% if not subjects %}
-            <a class="nav-link active" href="{{ url_for('main.search_form') }}">Все</a>
+            <a class="nav-link active" href="{{ url_for('main.search_form') }}" style="background-color: #ff2300; color: white">Все</a>
             {% else %}
-            <a class="nav-link" href="{{ url_for('main.search_form') }}">Все</a>
+            <a class="nav-link" href="{{ url_for('main.search_form') }}" style="color: #ff2300">Все</a>
             {% endif %}
         </li>
         {% for subject in all_subjects %}
         <li class="nav-item" style="width: auto;">
             {% if subject.name in subjects %}
-            <a class="nav-link active"
+            <a class="nav-link active" style="background-color: #ff2300; color: white"
                href="{{ url_for('main.search_form', subject=subject.name, __METHOD_OVERRIDE__='POST') }}">{{subject.name}}</a>
             {% else %}
-            <a class="nav-link"
+            <a class="nav-link" style="color: #ff2300"
                href="{{ url_for('main.search_form', subject=subject.name, __METHOD_OVERRIDE__='POST') }}">{{subject.name}}</a>
             {% endif %}
         </li>
