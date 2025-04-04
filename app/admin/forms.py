@@ -76,6 +76,10 @@ class AddSearchForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     submit = SubmitField('Add')
 
+class EditSearchParamForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    submit = SubmitField('Edit')
+
 
 class EditFreeText(FlaskForm):
     text = TextAreaField('Free text')

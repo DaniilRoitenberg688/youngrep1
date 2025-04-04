@@ -1,3 +1,4 @@
+from unicodedata import category
 from urllib.parse import urlsplit
 import os
 
@@ -5,7 +6,7 @@ from app import db
 from app.admin import bp
 from flask import render_template, redirect, url_for, flash, request, current_app, jsonify, send_file
 from app.admin.forms import LoginForm, AddTeacherForm, EditTeacherForm, EditSearchForm, AddSearchForm, EditFreeText, \
-    AddCommentForm, EditCommentForm
+    AddCommentForm, EditCommentForm, EditSearchParamForm
 from flask_login import current_user, login_user, login_required, logout_user
 
 from app.models import User, Teacher, Subject, Achievement, Hobby, Page, Comment
@@ -394,7 +395,24 @@ def add_search():
                 db.session.commit()
                 return redirect(url_for('admin.edit_search'))
     return render_template('admin/add_search.html', title='Add something', form=form)
+@bp.route('/edit_search_param/<type>/<id>', methods=['GET', 'POST'])
+@login_required
+def edit_search_param(type, id):
+    if current_user.teacher:
+        return redirect(url_for('admin.index'))
+    form = EditSearchParamForm()
+    categories = {'subject': Subject, 'achievement': Achievement, 'hobby': Hobby}
+    to_edit: Subject | Achievement | Hobby = db.session.get(categories.get(type), id)
 
+    if request.method == 'GET':
+        form.name.data = to_edit.name
+        return render_template('admin/edit_search_param.html', form=form)
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            to_edit.name = form.name.data
+            db.session.commit()
+            return redirect(url_for('admin.edit_search'))
+        return render_template('admin/edit_search_param.html', form=form)
 
 @bp.route('/statistic')
 @login_required

@@ -1,0 +1,29 @@
+{% extends "admin/base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="container position-relative">
+            <div class="card col-12 col-lg-5 col-md-6 col-sm-6 px-4 py-4 my-5 position-absolute start-50 translate-middle-x">
+                <h1 class="mb-3">Edit</h1>
+                <form method="post" novalidate action="" enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
+                    <div class="mb-4">
+                        {{ form.name.label }}
+                        {{ form.name(class='form-control') }}
+                    </div>
+                    {{ form.submit(class='btn btn-primary') }}
+                </form>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <p class="alert alert-danger mt-3">{{ message }}</p>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
