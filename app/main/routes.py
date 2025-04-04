@@ -36,6 +36,7 @@ def teachers():
             achievement: Achievement = Achievement.query.filter_by(name=achievement).first()
             teachers.extend(achievement.teachers)
 
+    subjects = data.getlist('subjects')
     if data.getlist('subjects'):
         for subject in data.getlist('subjects'):
             subject: Subject = Subject.query.filter_by(name=subject).first()
@@ -80,26 +81,26 @@ def teachers():
         all_achievements = list(filter(lambda x: x.name != 'другие...', all_achievements))
         all_achievements.append(models.Achievement(name='другие...'))
 
-    all_hobbies = models.Hobby.query.filter(Hobby.enabled).all()
-    if Hobby(name='другие...') in all_hobbies:
-        all_hobbies = list(filter(lambda x: x.name != 'другие...', all_hobbies))
-        all_hobbies.append(models.Hobby(name='другие...'))
+    # all_hobbies = models.Hobby.query.filter(Hobby.enabled).all()
+    # if Hobby(name='другие...') in all_hobbies:
+    #     all_hobbies = list(filter(lambda x: x.name != 'другие...', all_hobbies))
+    #     all_hobbies.append(models.Hobby(name='другие...'))
 
     return render_template('main/teachers.html', teachers=teachers,
                            all_subjects=models.Subject.query.filter(Subject.enabled).all(),
-                           all_achievements=all_achievements, all_hobbies=all_hobbies, search=search)
+                           all_achievements=all_achievements, search=search, subjects=subjects)
 
 
-@bp.route('/search_form', methods=['POST'])
+@bp.route('/search_form', methods=['POST', 'GET'])
 def search_form():
-    subjects = request.form.getlist('subjects')
+    subjects = [request.args.get('subject')]
     age = request.form.getlist('age')
     achievements = request.form.getlist('achievements')
     tariff = request.form.get('tariff')
-    hobbies = request.form.get('hobbies')
+    # hobbies = request.form.get('hobbies')
     names = request.form.get('names')
     return redirect(url_for('main.teachers', subjects=subjects, age=age, achievements=achievements, tariff=tariff,
-                            hobbies=hobbies, names=names, search=True))
+                            names=names, search=True))
 
 
 @bp.route('/')
