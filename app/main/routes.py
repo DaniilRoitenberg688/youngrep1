@@ -93,7 +93,14 @@ def teachers():
 
 @bp.route('/search_form', methods=['POST', 'GET'])
 def search_form():
-    subjects = [request.args.get('subject')]
+    subject = request.args.get('subject')
+    subjects = [subject]
+    if subject == 'Социальные':
+        subjects = ['История', 'Обществознание']
+    if subject == 'Иностранные':
+        subjects = ['Немецкий', 'Французский']
+    if subject == 'Другие':
+        subjects = ['Астрономия']
     age = request.form.getlist('age')
     achievements = request.form.getlist('achievements')
     tariff = request.form.get('tariff')

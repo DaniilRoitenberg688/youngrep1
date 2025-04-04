@@ -36,6 +36,7 @@ def index():
 
     if data.getlist('subjects'):
         for subject in data.getlist('subjects'):
+
             subject: Subject = Subject.query.filter_by(name=subject).first()
             teachers.extend(subject.teachers)
 
