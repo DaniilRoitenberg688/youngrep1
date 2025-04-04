@@ -5,8 +5,8 @@
 <div class="position-relative mt-5 col-lg-12 col-md-12 col-sm-5 col-12 " id="start" style="font-family: Ubuntu">
 
     <form class="d-flex flex-column flex-lg-row mb-5"  method="post"
-          action="{{ url_for('main.search_form') }}">
-        <nav class="nav d-flex flex-row col-sm-1 col-lg-7 col-12 ">
+          action="{{ url_for('main.search_form') }}" style="color: #ff2300">
+        <nav class="nav d-flex flex-row col-sm-1 col-lg-7 col-12 " style="color: #ff2300">
             {#subject#}
             <!--                <li class="nav-item dropdown">-->
             <!--                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"-->
@@ -30,7 +30,7 @@
             {# age #}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" role="button"
-                   data-bs-toggle="dropdown" aria-expanded="false">
+                   data-bs-toggle="dropdown" aria-expanded="false" style="color: #ff2300">
                     Класс
                 </a>
                 <ul class="dropdown-menu px-0" aria-labelledby="navbarDropdownMenuLink">
@@ -49,7 +49,7 @@
             {# achievements #}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink2" role="button"
-                   data-bs-toggle="dropdown" aria-expanded="false">
+                   data-bs-toggle="dropdown" aria-expanded="false" style="color: #ff2300">
                     Достижения
                 </a>
                 <ul class="dropdown-menu px-0" aria-labelledby="navbarDropdownMenuLink">
@@ -68,7 +68,7 @@
             {# tariff #}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink3" role="button"
-                   data-bs-toggle="dropdown" aria-expanded="false">
+                   data-bs-toggle="dropdown" aria-expanded="false" style="color: #ff2300">
                     Тариф
                 </a>
                 <ul class="dropdown-menu px-0" aria-labelledby="navbarDropdownMenuLink3">
@@ -115,9 +115,9 @@
                 </svg>
             </button>
             <a class="btn btn-outline-danger"
-               href="{{ url_for('main.teachers', search=True) }}">Сбросить</a>
+               href="{{ url_for('main.teachers', search=True) }}" style="color: #ff2300">Сбросить</a>
         </div>
-    </form>
+    </form >
     <ul class="nav nav-tabs mb-5 col-lg-10" id="myTab" role="tablist" style="font-family: Ubuntu">
         <li class="nav-item">
 
