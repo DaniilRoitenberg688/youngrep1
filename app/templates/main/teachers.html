@@ -173,7 +173,7 @@
                     <div class="card-body" onclick="location.href='/teacher_profile/{{ teacher.id }}'">
                         <p class="card-title mb-4 fs-2">{{ teacher.surname }}<br>{{ teacher.name }}</p>
                         <p class="card-text mb-2 fs-4"><b>{% for i in teacher.subjects %}
-                            {{ i.name }}{% endfor %}</b></p>
+                            {{ i.name }}<br>{% endfor %}</b></p>
                         <p style="  display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
