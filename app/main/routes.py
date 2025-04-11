@@ -53,7 +53,7 @@ def teachers():
             print("Filtering by tariff <= 800")
             filtered_by_tarrif = Teacher.query.filter(Teacher.tariff <= 800).all()
         elif filter_param == 1:
-            filtered_by_tarrif = Teacher.query.filter(1200 > Teacher.tariff > 800).all()
+            filtered_by_tarrif = Teacher.query.filter(1200 > Teacher.tariff, Teacher.tariff > 800).all()
         elif filter_param == 2:
             filtered_by_tarrif = Teacher.query.filter(Teacher.tariff >= 1200).all()
         print(filtered_by_tarrif)
