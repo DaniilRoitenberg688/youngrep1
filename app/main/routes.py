@@ -95,7 +95,7 @@ def teachers():
 def search_form():
     subject = request.args.get('subject')
     subjects = [subject]
-    if subject == 'Социальные':
+    if subject == 'Социальные' or subject == 'Соц-гум':
         subjects.extend(['История', 'Обществознание'])
     if subject == 'Иностранные':
         subjects.extend(['Немецкий', 'Французский'])
