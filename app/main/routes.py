@@ -47,7 +47,16 @@ def teachers():
                                                 ).all())
 
     if data.get('tariff'):
-        teachers.extend(Teacher.query.filter(Teacher.tariff <= int(data.get('tariff'))).all())
+        filtered_by_tarrif = []
+        filter_param = data.get('tariff')
+        if filter_param == 0:
+            filtered_by_tarrif = Teacher.query.filter(Teacher.tariff <= 800).all()
+        elif filter_param == 1:
+            filtered_by_tarrif = Teacher.query.filter(1200 > Teacher.tariff > 800).all()
+        elif filter_param == 2:
+            filtered_by_tarrif = Teacher.query.filter(Teacher.tariff >= 1200).all()
+            
+        teachers.extend(filtered_by_tarrif)
 
     if data.get('names'):
         names = data.get('names').split()

@@ -72,16 +72,27 @@
                     Тариф
                 </a>
                 <ul class="dropdown-menu px-0" aria-labelledby="navbarDropdownMenuLink3">
-                    {% for i in range(600, 1201, 150) %}
                     <li class="dropdown-item" style="width: auto">
                         <input class="form-check-input" type="radio" name="tariff"
-                               id="flexRadioDefault12" value="{{ i }}">
+                               id="flexRadioDefault12" value="0">
                         <label class="form-check-label" for="flexRadioDefault11">
-                            {{ i }}₽/ч
+                            до 800
                         </label>
                     </li>
-                    {% endfor %}
-
+                    <li class="dropdown-item" style="width: auto">
+                        <input class="form-check-input" type="radio" name="tariff"
+                               id="flexRadioDefault13" value="1">
+                        <label class="form-check-label" for="flexRadioDefault12">
+                            801 - 1199
+                        </label>
+                    </li>
+                    <li class="dropdown-item" style="width: auto">
+                        <input class="form-check-input" type="radio" name="tariff"
+                               id="flexRadioDefault14" value="2">
+                        <label class="form-check-label" for="flexRadioDefault13">
+                            от 1200
+                        </label>
+                    </li>
                 </ul>
             </li>
             <!--                {# hobbies #}-->
