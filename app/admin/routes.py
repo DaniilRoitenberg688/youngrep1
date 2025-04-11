@@ -572,7 +572,7 @@ def oder():
 
 @bp.route('/api/teachers')
 def api_teachers():
-    teachers = Teacher.query.all()
+    teachers = Teacher.query.filter_by(is_shown=True).all()
     teachers = sorted(teachers, key=lambda x: x.position)
     print(teachers)
     return jsonify([i.as_dict() for i in teachers]), 200
@@ -590,7 +590,7 @@ def patch_teachers():
     teacher_1 = db.session.get(Teacher, int(teacher_1_data.get('id')))
     teacher_1.position = teacher_1_data.get('position')
     db.session.commit()
-    teachers = Teacher.query.all()
+    teachers = Teacher.query.filter_by(is_shown=True).all()
     teachers = sorted(teachers, key=lambda x: x.position)
     print(teachers)
     return jsonify([i.as_dict() for i in teachers]), 200
