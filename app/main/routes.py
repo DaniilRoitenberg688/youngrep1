@@ -44,7 +44,8 @@ def teachers():
 
     if data.get('age'):
         print(data.getlist('age'))
-        ages = map(int, data.getlist('age'))
+        ages = list(map(int, data.getlist('age')))
+        print(ages)
         teachers.extend(Teacher.query.filter(Teacher.students_class in ages).all())
         print(teachers)
 
