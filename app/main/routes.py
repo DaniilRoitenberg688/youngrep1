@@ -44,7 +44,7 @@ def teachers():
 
     if data.get('age'):
         print(data.getlist('age'))
-        teachers.extend(Teacher.query.filter(str(Teacher.students_class) in data.getlist('age')).all())
+        teachers.extend(Teacher.query.filter(Teacher.students_class in data.getlist('age')).all())
 
     if data.getlist('tariff'):
         filtered_by_tarrif = []
