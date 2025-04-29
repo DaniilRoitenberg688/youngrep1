@@ -46,7 +46,8 @@ def teachers():
         print(data.getlist('age'))
         ages = list(map(int, data.getlist('age')))
         print(ages)
-        teachers.extend(Teacher.query.filter(Teacher.students_class in ages).all())
+
+        teachers.extend(Teacher.query.filter(Teacher.students_class.in_(ages)).all())
         print(teachers)
 
     if data.getlist('tariff'):
