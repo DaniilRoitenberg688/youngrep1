@@ -597,3 +597,22 @@ def patch_teachers():
     teachers = sorted(teachers, key=lambda x: x.position)
     print(teachers)
     return jsonify([i.as_dict() for i in teachers]), 200
+
+
+@bp.route('/api/teacher/<id>', methods=['PATCH'])
+def make_first(id):
+    teacher: Teacher = db.session.get(Teacher, id)
+    all_teachers: list[Teacher] = sorted(Teacher.query.filter_by(is_shown=True).all(), key=lambda x: x.position)
+    first = all_teachers[0].position
+    print(all_teachers)
+    index_before = all_teachers.index(teacher)
+    for i in range(index_before + 1):
+        if i == index_before:
+            all_teachers[i].position = first
+        else:
+            all_teachers[i].position = all_teachers[i + 1].position
+        print(i)
+    db.session.commit()
+    print(sorted(Teacher.query.filter_by(is_shown=True).all(), key=lambda x: x.position))
+    return jsonify([i.as_dict() for i in sorted(Teacher.query.filter_by(is_shown=True).all(), key=lambda x: x.position)]), 200
+
