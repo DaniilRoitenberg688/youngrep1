@@ -115,7 +115,7 @@ def search_form():
     if subject == 'Иностранные':
         subjects.extend(['Немецкий', 'Французский'])
     if subject == 'Другие':
-        subjects.extend(['Астрономия', "Право", "право"])
+        subjects.extend(['Астрономия', "Право"])
     if subject == 'Химбио':
         subjects.extend(['Химия', 'Биология'])
     age = request.form.getlist('age')
