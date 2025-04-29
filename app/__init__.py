@@ -3,7 +3,6 @@ from flask import Flask
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from app.execel_connector import ExcelConnector
 from flask_login import LoginManager
 
 db = SQLAlchemy()

@@ -36,7 +36,6 @@ def index():
 
     if data.getlist('subjects'):
         for subject in data.getlist('subjects'):
-
             subject: Subject = Subject.query.filter_by(name=subject).first()
             teachers.extend(subject.teachers)
 
@@ -217,7 +216,8 @@ def edit_teacher(id):
         teacher.achievements_text = form.achievements_text.data
         teacher.hobbies_text = form.hobbies_text.data
 
-        teacher.is_free = int(request.form.get('is_free', 0))
+        if not current_user.teacher:
+            teacher.is_free = int(request.form.get('is_free', 0))
 
         teacher.subjects.clear()
         teacher.hobbies.clear()
@@ -396,6 +396,8 @@ def add_search():
                 db.session.commit()
                 return redirect(url_for('admin.edit_search'))
     return render_template('admin/add_search.html', title='Add something', form=form)
+
+
 @bp.route('/edit_search_param/<type>/<id>', methods=['GET', 'POST'])
 @login_required
 def edit_search_param(type, id):
@@ -414,6 +416,7 @@ def edit_search_param(type, id):
             db.session.commit()
             return redirect(url_for('admin.edit_search'))
         return render_template('admin/edit_search_param.html', form=form)
+
 
 @bp.route('/statistic')
 @login_required

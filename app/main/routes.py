@@ -43,18 +43,19 @@ def teachers():
             teachers.extend(subject.teachers)
 
     if data.get('age'):
-        teachers.extend(Teacher.query.filter_by(students_class=int(data.get('age'))
-                                                ).all())
+        print(data.getlist('age'))
+        teachers.extend(Teacher.query.filter(str(Teacher.students_class) in data.getlist('age')).all())
 
-    if data.get('tariff'):
+    if data.getlist('tariff'):
         filtered_by_tarrif = []
-        filter_param = int(data.get('tariff'))
-        if filter_param == 0:
+        filter_params = data.getlist('tariff')
+        print(filter_params)
+        if '0' in filter_params:
             print("Filtering by tariff <= 800")
             filtered_by_tarrif = Teacher.query.filter(Teacher.tariff <= 800).all()
-        elif filter_param == 1:
+        if '1' in filter_params:
             filtered_by_tarrif = Teacher.query.filter(1200 > Teacher.tariff, Teacher.tariff > 800).all()
-        elif filter_param == 2:
+        if '2' in filter_params:
             filtered_by_tarrif = Teacher.query.filter(Teacher.tariff >= 1200).all()
         print(filtered_by_tarrif)
         teachers.extend(filtered_by_tarrif)
@@ -110,12 +111,12 @@ def search_form():
     if subject == 'Иностранные':
         subjects.extend(['Немецкий', 'Французский'])
     if subject == 'Другие':
-        subjects.extend(['Астрономия'])
+        subjects.extend(['Астрономия', "Право", "право"])
     if subject == 'Химбио':
         subjects.extend(['Химия', 'Биология'])
     age = request.form.getlist('age')
     achievements = request.form.getlist('achievements')
-    tariff = request.form.get('tariff')
+    tariff = request.form.getlist('tariff')
     # hobbies = request.form.get('hobbies')
     names = request.form.get('names')
     return redirect(url_for('main.teachers', subjects=subjects, age=age, achievements=achievements, tariff=tariff,
