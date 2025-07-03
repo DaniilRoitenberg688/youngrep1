@@ -1246,29 +1246,70 @@
               document.getElementById('twelve-hours-hint').textContent = rate + '₽ × 80% × 12 = ' + twelveHoursPrice + '₽';
             });
         </script>
-    </div>
+        <div style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px;
+">
+            <a
+                    href="https://t.me/YoungRepBot"
+                    target="_blank"
+                    style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 424px;
+        height: 48px;
+        background-color: #1d98dc;
+        border-radius: 6px;
+        text-decoration: none;
+    "
+            >
+                <svg
+                        class="t-sociallinks__svg"
+                        role="presentation"
+                        width="28px"
+                        height="28px"
+                        viewBox="0 0 100 100"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                            d="M83.1797 17.5886C83.1797 17.5886 90.5802 14.7028 89.9635 21.711C89.758 24.5968 87.9079 34.6968 86.4688 45.6214L81.5351 77.9827C81.5351 77.9827 81.124 82.7235 77.4237 83.548C73.7233 84.3724 68.173 80.6623 67.145 79.8378C66.3227 79.2195 51.7273 69.9438 46.5878 65.4092C45.1488 64.1724 43.5042 61.6989 46.7934 58.8132L68.3785 38.201C70.8454 35.7274 73.3122 29.956 63.0336 36.9642L34.2535 56.5459C34.2535 56.5459 30.9644 58.6071 24.7973 56.752L11.4351 52.6295C11.4351 52.6295 6.50135 49.5377 14.9298 46.4457C35.4871 36.7579 60.7724 26.864 83.1797 17.5886Z"
+                            fill="#fff"
+                    />
+                </svg
+                >
+            </a>
+        </div>
 
-    <div id="rec824413470" class="r t-rec t-rec_pt_0 t-rec_pb_0"
-         style="padding-top:0px;padding-bottom:0px;background-color:white; " data-record-type="363"
-         data-bg-color="#eeeeee"> <!-- T029 100 -->
-        <div class="t029">
-            <div class="t029__container t-container">
-                <div class="t029__col t-col t-col_8">
-                    <div class="t029__linewrapper" style="opacity:1;">
-                        <div class="t029__opacity t029__opacity_left"
-                             style="background-image: -moz-linear-gradient(right, #000000, rgba(0,0,0, 0)); background-image: -webkit-linear-gradient(right, #000000, rgba(0,0,0, 0)); background-image: -o-linear-gradient(right, #000000, rgba(0,0,0, 0)); background-image: -ms-linear-gradient(right, #000000, rgba(0,0,0, 0));"></div>
-                        <div class="t-divider t029__line" style="background: #000000;"></div>
-                        <div class="t029__opacity t029__opacity_right"
-                             style="background-image: -moz-linear-gradient(left, #000000, rgba(0,0,0, 0)); background-image: -webkit-linear-gradient(left, #000000, rgba(0,0,0, 0)); background-image: -o-linear-gradient(left, #000000, rgba(0,0,0, 0)); background-image: -ms-linear-gradient(left, #000000, rgba(0,0,0, 0));"></div>
-                    </div>
+
+    </div>
+</div>
+
+<div id="rec824413470" class="r t-rec t-rec_pt_0 t-rec_pb_0"
+     style="padding-top:0px;padding-bottom:0px;background-color:white; " data-record-type="363"
+     data-bg-color="#eeeeee"> <!-- T029 100 -->
+    <div class="t029">
+        <div class="t029__container t-container">
+            <div class="t029__col t-col t-col_8">
+                <div class="t029__linewrapper" style="opacity:1;">
+                    <div class="t029__opacity t029__opacity_left"
+                         style="background-image: -moz-linear-gradient(right, #000000, rgba(0,0,0, 0)); background-image: -webkit-linear-gradient(right, #000000, rgba(0,0,0, 0)); background-image: -o-linear-gradient(right, #000000, rgba(0,0,0, 0)); background-image: -ms-linear-gradient(right, #000000, rgba(0,0,0, 0));"></div>
+                    <div class="t-divider t029__line" style="background: #000000;"></div>
+                    <div class="t029__opacity t029__opacity_right"
+                         style="background-image: -moz-linear-gradient(left, #000000, rgba(0,0,0, 0)); background-image: -webkit-linear-gradient(left, #000000, rgba(0,0,0, 0)); background-image: -o-linear-gradient(left, #000000, rgba(0,0,0, 0)); background-image: -ms-linear-gradient(left, #000000, rgba(0,0,0, 0));"></div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div id="" class="" data-animationappear="off" data-record-type="">
-        <div class="" style="position: relative;"> <!-- Родитель должен иметь position -->
-            <div class="container" id="a" style="
+<div id="" class="" data-animationappear="off" data-record-type="">
+    <div class="" style="position: relative;"> <!-- Родитель должен иметь position -->
+        <div class="container" id="a" style="
             position: relative;
             left: 50%;
             transform: translateX(-50%);
@@ -1276,17 +1317,17 @@
             box-sizing: border-box;
             width: fit-content;
         ">
-                {% block content %}{% endblock content %}
-            </div>
-            {% if search %}
-            <script>
-                elem = document.getElementById('a')
-                elem.scrollIntoView(true)
-            </script>
-            {% endif %}
+            {% block content %}{% endblock content %}
         </div>
+        {% if search %}
+        <script>
+            elem = document.getElementById('a')
+            elem.scrollIntoView(true)
+        </script>
+        {% endif %}
     </div>
-    <style>#rec758999686 .t-slds__bullet_active .t-slds__bullet_body {
+</div>
+<style>#rec758999686 .t-slds__bullet_active .t-slds__bullet_body {
         background-color: #222 !important;
     }
 
@@ -1301,54 +1342,54 @@
     #rec758999686 .t-store__filter__item-title, #rec758999686 .t-store__filter__opts-mob-btn {
         font-weight: 700;
     }
-    </style>
-    <style> #rec758999686 .t-store__card .t-store__card__price {
+</style>
+<style> #rec758999686 .t-store__card .t-store__card__price {
         font-weight: 400;
     }
 
     #rec758999686 .t-store__card .t-store__card__price_old {
         font-weight: 400;
     }
-    </style>
-    <style> #rec758999686 .t-popup .t-store__prod-popup__price {
+</style>
+<style> #rec758999686 .t-popup .t-store__prod-popup__price {
         font-weight: 400;
     }
 
     #rec758999686 .t-popup .t-store__prod-popup__price_old {
         font-weight: 400;
     }
-    </style>
-    <div id="rec824413470" class="r t-rec t-rec_pt_0 t-rec_pb_0"
-         style="padding-top:0px;padding-bottom:0px;background-color:white; " data-record-type="363"
-         data-bg-color="#eeeeee"> <!-- T029 100 -->
-        <div class="t029">
-            <div class="t029__container t-container">
-                <div class="t029__col t-col t-col_8">
-                    <div class="t029__linewrapper" style="opacity:1;">
-                        <div class="t029__opacity t029__opacity_left"
-                             style="background-image: -moz-linear-gradient(right, #000000, rgba(0,0,0, 0)); background-image: -webkit-linear-gradient(right, #000000, rgba(0,0,0, 0)); background-image: -o-linear-gradient(right, #000000, rgba(0,0,0, 0)); background-image: -ms-linear-gradient(right, #000000, rgba(0,0,0, 0));"></div>
-                        <div class="t-divider t029__line" style="background: #000000;"></div>
-                        <div class="t029__opacity t029__opacity_right"
-                             style="background-image: -moz-linear-gradient(left, #000000, rgba(0,0,0, 0)); background-image: -webkit-linear-gradient(left, #000000, rgba(0,0,0, 0)); background-image: -o-linear-gradient(left, #000000, rgba(0,0,0, 0)); background-image: -ms-linear-gradient(left, #000000, rgba(0,0,0, 0));"></div>
-                    </div>
+</style>
+<div id="rec824413470" class="r t-rec t-rec_pt_0 t-rec_pb_0"
+     style="padding-top:0px;padding-bottom:0px;background-color:white; " data-record-type="363"
+     data-bg-color="#eeeeee"> <!-- T029 100 -->
+    <div class="t029">
+        <div class="t029__container t-container">
+            <div class="t029__col t-col t-col_8">
+                <div class="t029__linewrapper" style="opacity:1;">
+                    <div class="t029__opacity t029__opacity_left"
+                         style="background-image: -moz-linear-gradient(right, #000000, rgba(0,0,0, 0)); background-image: -webkit-linear-gradient(right, #000000, rgba(0,0,0, 0)); background-image: -o-linear-gradient(right, #000000, rgba(0,0,0, 0)); background-image: -ms-linear-gradient(right, #000000, rgba(0,0,0, 0));"></div>
+                    <div class="t-divider t029__line" style="background: #000000;"></div>
+                    <div class="t029__opacity t029__opacity_right"
+                         style="background-image: -moz-linear-gradient(left, #000000, rgba(0,0,0, 0)); background-image: -webkit-linear-gradient(left, #000000, rgba(0,0,0, 0)); background-image: -o-linear-gradient(left, #000000, rgba(0,0,0, 0)); background-image: -ms-linear-gradient(left, #000000, rgba(0,0,0, 0));"></div>
                 </div>
             </div>
         </div>
     </div>
-    <div id="rec820345789" class="r t-rec t-rec_pt_30 t-rec_pb_60"
-         style="padding-top:30px;padding-bottom:60px;background-color:white; " data-record-type="491"
-         data-bg-color="#eeeeee"> <!-- t491 -->
-        <div class="t491">
-            <div class="t-section__container t-container t-container_flex">
-                <div class="t-col t-col_12 ">
-                    <div
-                            class="t-section__title t-title t-title_xs t-align_center t-margin_auto"
-                            field="btitle">
-                        Функции наших репетиторов
-                    </div>
+</div>
+<div id="rec820345789" class="r t-rec t-rec_pt_30 t-rec_pb_60"
+     style="padding-top:30px;padding-bottom:60px;background-color:white; " data-record-type="491"
+     data-bg-color="#eeeeee"> <!-- t491 -->
+    <div class="t491">
+        <div class="t-section__container t-container t-container_flex">
+            <div class="t-col t-col_12 ">
+                <div
+                        class="t-section__title t-title t-title_xs t-align_center t-margin_auto"
+                        field="btitle">
+                    Функции наших репетиторов
                 </div>
             </div>
-            <style>.t-section__descr {
+        </div>
+        <style>.t-section__descr {
                 max-width: 560px;
             }
 
@@ -1366,239 +1407,239 @@
                 }
 
             }
-            </style>
-            <style> @media screen and (min-width: 480px) {
+        </style>
+        <style> @media screen and (min-width: 480px) {
                 #rec820345789
                 .t-section__title {
                     font-size: 30px;
                 }
 
             }
-            </style>
-            <div class="t491__container t-card__container t-container">
-                <div class="t-card__col t-card__col_withoutbtn t491__col t-col t-col_4 t-item t-animate"
-                     data-animate-style="zoomin" data-animate-chain="yes">
-                    <div class="t491__content">
-                        <div class="t491__wrapper"><img class="t491__img t-img"
-                                                        src="/static/images/lib__emoji__fluent__laptop_3d.png"
-                                                        imgfield="li_img__0402100789024"
-                                                        alt="">
-                            <div class="t-card__title t-name t-name_sm" field="li_title__0402100789024">
-                                Онлайн-занятия с учеником
-                            </div>
-                        </div>
-                        <div class="t-card__descr t-descr t-descr_xs" field="li_descr__0402100789024">
-                            Мы рекомендуем заниматься, не менее чем 2-3 раза по 60 минут для продуктивности ученика. Но
-                            не исключаем составление расписания индивидуально под вас.
+        </style>
+        <div class="t491__container t-card__container t-container">
+            <div class="t-card__col t-card__col_withoutbtn t491__col t-col t-col_4 t-item t-animate"
+                 data-animate-style="zoomin" data-animate-chain="yes">
+                <div class="t491__content">
+                    <div class="t491__wrapper"><img class="t491__img t-img"
+                                                    src="/static/images/lib__emoji__fluent__laptop_3d.png"
+                                                    imgfield="li_img__0402100789024"
+                                                    alt="">
+                        <div class="t-card__title t-name t-name_sm" field="li_title__0402100789024">
+                            Онлайн-занятия с учеником
                         </div>
                     </div>
-                </div>
-                <div class="t-card__col t-card__col_withoutbtn t491__col t-col t-col_4 t-item t-animate"
-                     data-animate-style="zoomin" data-animate-chain="yes">
-                    <div class="t491__content">
-                        <div class="t491__wrapper"><img class="t491__img t-img"
-                                                        src="/static/images/lib__emoji__fluent__memo_3d.png"
-                                                        imgfield="li_img__0402100789025"
-                                                        alt="">
-                            <div class="t-card__title t-name t-name_sm" field="li_title__0402100789025">
-                                Доработка школьной учебы
-                            </div>
-                        </div>
-                        <div class="t-card__descr t-descr t-descr_xs" field="li_descr__0402100789025">
-                            В задачи репетитора входит курирование школьной учебы ученика, он проведёт работу
-                            над ошибками,
-                            объяснит новую тему и подскажет, на что следует ставить упор.
-                        </div>
+                    <div class="t-card__descr t-descr t-descr_xs" field="li_descr__0402100789024">
+                        Мы рекомендуем заниматься, не менее чем 2-3 раза по 60 минут для продуктивности ученика. Но
+                        не исключаем составление расписания индивидуально под вас.
                     </div>
                 </div>
-                <!--                <div class="t-card__col t-card__col_withoutbtn t491__col t-col t-col_4 t-item t-animate"-->
-                <!--                     data-animate-style="zoomin" data-animate-chain="yes">-->
-                <!--                    <div class="t491__content">-->
-                <!--                        <div class="t491__wrapper"><img class="t491__img t-img"-->
-                <!--                                                        src="/static/images/lib__emoji__fluent__selfie_3d.png"-->
-                <!--                                                        imgfield="li_img__0402100789021"--Репетитор>
-                <!--                                                        alt="">-->
-                <!--                            <div class="t-card__title t-name t-name_sm" field="li_title__0402100789021">-->
-                <!--                                Поддержка-->
-                <!--                            </div>-->
-                <!--                        </div>-->
-                <!--                        <div class="t-card__descr t-descr t-descr_xs" field="li_descr__0402100789021">-->
-                <!--                            К нашим кураторам можно обращаться круглосуточно, они разъяснят вам любые ваши вопросы.-->
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-                <div class="t-card__col t-card__col_withoutbtn t491__col t-col t-col_4 t-item t-animate"
-                     data-animate-style="zoomin" data-animate-chain="yes">
-                    <div class="t491__content">
-                        <div class="t491__wrapper"><img class="t491__img t-img"
-                                                        src="static/images/lib__emoji__fluent__man_surfing_3d.png"
-                                                        imgfield="li_img__0402100789022"
-                                                        alt="">
-                            <div class="t-card__title t-name t-name_sm" field="li_title__0402100789022">
-                                На одной волне
-                            </div>
-                        </div>
-                        <div class="t-card__descr t-descr t-descr_xs" field="li_descr__0402100789022">
-                            Ученик и репетитор могут подружиться, если найдут общие интересы. Играть в
-                            видеоигры,
-                            дискутировать по внепредметным вопросам, перекидываться мемами - все это приветствуется.
-                        </div>
-                    </div>
-                </div>
-                <div class="t-clear t491__separator" style=""></div>
-
-                <div class="t-card__col t-card__col_withoutbtn t491__col t-col t-col_4 t-item t-animate"
-                     data-animate-style="zoomin" data-animate-chain="yes">
-                    <div class="t491__content">
-                        <div class="t491__wrapper"><img class="t491__img t-img"
-                                                        src="/static/images/lib__emoji__fluent__teacher_3d.png"
-                                                        imgfield="li_img__0402100789020"
-                                                        alt="">
-                            <div class="t-card__title t-name t-name_sm" field="li_title__0402100789020">
-                                Разбор непонятных тем
-                            </div>
-                        </div>
-                        <div class="t-card__descr t-descr t-descr_xs" field="li_descr__0402100789020">
-                            Репетитор объяснит тему, подберет практический материал для её отработки, и
-                            разберёт его вместе
-                            с учеником. Он не отпустит непонятую тему, а проследит за её пониманием.
-                        </div>
-                    </div>
-                </div>
-                <div class="t-card__col t-card__col_withoutbtn t491__col t-col t-col_4 t-item t-animate"
-                     data-animate-style="zoomin" data-animate-chain="yes">
-                    <div class="t491__content">
-                        <div class="t491__wrapper"><img class="t491__img t-img"
-                                                        src="/static/images/lib__emoji__fluent__postbox_3d.png"
-                                                        imgfield="li_img__0402100789023"
-                                                        alt="">
-                            <div class="t-card__title t-name t-name_sm" field="li_title__0402100789023">
-                                Обратная связь
-                            </div>
-                        </div>
-                        <div class="t-card__descr t-descr t-descr_xs" field="li_descr__0402100789023">
-                            Репетитор обязательно будет информировать родителя о продвижениях в учёбе и
-                            согласовывать
-                            учебный план.
-                        </div>
-                    </div>
-                </div>
-                <div class="t-card__col t-card__col_withoutbtn t491__col t-col t-col_4 t-item t-animate"
-                     data-animate-style="zoomin" data-animate-chain="yes">
-                    <div class="t491__content">
-                        <div class="t491__wrapper"><img class="t491__img t-img"
-                                                        src="/static/images/lib__emoji__fluent__gear_3d.png"
-                                                        imgfield="li_img__1734558354286"
-                                                        alt="">
-                            <div class="t-card__title t-name t-name_sm" field="li_title__1734558354286">
-                                Техническая подкованность
-                            </div>
-                        </div>
-                        <div class="t-card__descr t-descr t-descr_xs" field="li_descr__1734558354286">
-                            Понимаем важность ИИ в образовании, пытаясь интегрировать его в занятия. Также используем
-                            современные сервисы: Quizlet, Пифагория и другие.
-                        </div>
-                    </div>
-                </div>
-                <!--                <div class="t-clear t491__separator" style=""></div>-->
-
-                <!--                <div class="t-card__col t-card__col_withoutbtn t491__col t-col t-col_4 t-item t-animate"-->
-                <!--                     data-animate-style="zoomin" data-animate-chain="yes">-->
-                <!--                    <div class="t491__content">-->
-                <!--                        <div class="t491__wrapper"><img class="t491__img t-img"-->
-                <!--                                                        src="/static/images/lib__emoji__fluent__open_book_3d.png"-->
-                <!--                                                        imgfield="li_img__1734558413563"-->
-                <!--                                                        alt="">-->
-                <!--                            <div class="t-card__title t-name t-name_sm" field="li_title__1734558413563">-->
-                <!--                                Подбор литературы-->
-                <!--                            </div>-->
-                <!--                        </div>-->
-                <!--                        <div class="t-card__descr t-descr t-descr_xs" field="li_descr__1734558413563">-->
-                <!--                            Предметный куратор посоветует книги как художественного, так и научно-популярного-->
-                <!--                            характера,-->
-                <!--                            проанализируя интересы ребенка.-->
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-                <!--                <div class="t-card__col t-card__col_withoutbtn t491__col t-col t-col_4 t-item t-animate"-->
-                <!--                     data-animate-style="zoomin" data-animate-chain="yes">-->
-                <!--                    <div class="t491__content">-->
-                <!--                        <div class="t491__wrapper"><img class="t491__img t-img"-->
-                <!--                                                        src="/static/images/lib__emoji__fluent__new_button_3d.png"-->
-                <!--                                                        imgfield="li_img__1734558428084"-->
-                <!--                                                        alt="">-->
-                <!--                            <div class="t-card__title t-name t-name_sm" field="li_title__1734558428084">-->
-                <!--                                Новый подход к образованию-->
-                <!--                            </div>-->
-                <!--                        </div>-->
-                <!--                        <div class="t-card__descr t-descr t-descr_xs" field="li_descr__1734558428084">-->
-                <!--                            В образовательный процесс мы интегрируем современные сервисы, такие как: Quizlet, Пифагория-->
-                <!--                            и другие.-->
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                </div>-->
             </div>
+            <div class="t-card__col t-card__col_withoutbtn t491__col t-col t-col_4 t-item t-animate"
+                 data-animate-style="zoomin" data-animate-chain="yes">
+                <div class="t491__content">
+                    <div class="t491__wrapper"><img class="t491__img t-img"
+                                                    src="/static/images/lib__emoji__fluent__memo_3d.png"
+                                                    imgfield="li_img__0402100789025"
+                                                    alt="">
+                        <div class="t-card__title t-name t-name_sm" field="li_title__0402100789025">
+                            Доработка школьной учебы
+                        </div>
+                    </div>
+                    <div class="t-card__descr t-descr t-descr_xs" field="li_descr__0402100789025">
+                        В задачи репетитора входит курирование школьной учебы ученика, он проведёт работу
+                        над ошибками,
+                        объяснит новую тему и подскажет, на что следует ставить упор.
+                    </div>
+                </div>
+            </div>
+            <!--                <div class="t-card__col t-card__col_withoutbtn t491__col t-col t-col_4 t-item t-animate"-->
+            <!--                     data-animate-style="zoomin" data-animate-chain="yes">-->
+            <!--                    <div class="t491__content">-->
+            <!--                        <div class="t491__wrapper"><img class="t491__img t-img"-->
+            <!--                                                        src="/static/images/lib__emoji__fluent__selfie_3d.png"-->
+            <!--                                                        imgfield="li_img__0402100789021"--Репетитор>
+            <!--                                                        alt="">-->
+            <!--                            <div class="t-card__title t-name t-name_sm" field="li_title__0402100789021">-->
+            <!--                                Поддержка-->
+            <!--                            </div>-->
+            <!--                        </div>-->
+            <!--                        <div class="t-card__descr t-descr t-descr_xs" field="li_descr__0402100789021">-->
+            <!--                            К нашим кураторам можно обращаться круглосуточно, они разъяснят вам любые ваши вопросы.-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <div class="t-card__col t-card__col_withoutbtn t491__col t-col t-col_4 t-item t-animate"
+                 data-animate-style="zoomin" data-animate-chain="yes">
+                <div class="t491__content">
+                    <div class="t491__wrapper"><img class="t491__img t-img"
+                                                    src="static/images/lib__emoji__fluent__man_surfing_3d.png"
+                                                    imgfield="li_img__0402100789022"
+                                                    alt="">
+                        <div class="t-card__title t-name t-name_sm" field="li_title__0402100789022">
+                            На одной волне
+                        </div>
+                    </div>
+                    <div class="t-card__descr t-descr t-descr_xs" field="li_descr__0402100789022">
+                        Ученик и репетитор могут подружиться, если найдут общие интересы. Играть в
+                        видеоигры,
+                        дискутировать по внепредметным вопросам, перекидываться мемами - все это приветствуется.
+                    </div>
+                </div>
+            </div>
+            <div class="t-clear t491__separator" style=""></div>
+
+            <div class="t-card__col t-card__col_withoutbtn t491__col t-col t-col_4 t-item t-animate"
+                 data-animate-style="zoomin" data-animate-chain="yes">
+                <div class="t491__content">
+                    <div class="t491__wrapper"><img class="t491__img t-img"
+                                                    src="/static/images/lib__emoji__fluent__teacher_3d.png"
+                                                    imgfield="li_img__0402100789020"
+                                                    alt="">
+                        <div class="t-card__title t-name t-name_sm" field="li_title__0402100789020">
+                            Разбор непонятных тем
+                        </div>
+                    </div>
+                    <div class="t-card__descr t-descr t-descr_xs" field="li_descr__0402100789020">
+                        Репетитор объяснит тему, подберет практический материал для её отработки, и
+                        разберёт его вместе
+                        с учеником. Он не отпустит непонятую тему, а проследит за её пониманием.
+                    </div>
+                </div>
+            </div>
+            <div class="t-card__col t-card__col_withoutbtn t491__col t-col t-col_4 t-item t-animate"
+                 data-animate-style="zoomin" data-animate-chain="yes">
+                <div class="t491__content">
+                    <div class="t491__wrapper"><img class="t491__img t-img"
+                                                    src="/static/images/lib__emoji__fluent__postbox_3d.png"
+                                                    imgfield="li_img__0402100789023"
+                                                    alt="">
+                        <div class="t-card__title t-name t-name_sm" field="li_title__0402100789023">
+                            Обратная связь
+                        </div>
+                    </div>
+                    <div class="t-card__descr t-descr t-descr_xs" field="li_descr__0402100789023">
+                        Репетитор обязательно будет информировать родителя о продвижениях в учёбе и
+                        согласовывать
+                        учебный план.
+                    </div>
+                </div>
+            </div>
+            <div class="t-card__col t-card__col_withoutbtn t491__col t-col t-col_4 t-item t-animate"
+                 data-animate-style="zoomin" data-animate-chain="yes">
+                <div class="t491__content">
+                    <div class="t491__wrapper"><img class="t491__img t-img"
+                                                    src="/static/images/lib__emoji__fluent__gear_3d.png"
+                                                    imgfield="li_img__1734558354286"
+                                                    alt="">
+                        <div class="t-card__title t-name t-name_sm" field="li_title__1734558354286">
+                            Техническая подкованность
+                        </div>
+                    </div>
+                    <div class="t-card__descr t-descr t-descr_xs" field="li_descr__1734558354286">
+                        Понимаем важность ИИ в образовании, пытаясь интегрировать его в занятия. Также используем
+                        современные сервисы: Quizlet, Пифагория и другие.
+                    </div>
+                </div>
+            </div>
+            <!--                <div class="t-clear t491__separator" style=""></div>-->
+
+            <!--                <div class="t-card__col t-card__col_withoutbtn t491__col t-col t-col_4 t-item t-animate"-->
+            <!--                     data-animate-style="zoomin" data-animate-chain="yes">-->
+            <!--                    <div class="t491__content">-->
+            <!--                        <div class="t491__wrapper"><img class="t491__img t-img"-->
+            <!--                                                        src="/static/images/lib__emoji__fluent__open_book_3d.png"-->
+            <!--                                                        imgfield="li_img__1734558413563"-->
+            <!--                                                        alt="">-->
+            <!--                            <div class="t-card__title t-name t-name_sm" field="li_title__1734558413563">-->
+            <!--                                Подбор литературы-->
+            <!--                            </div>-->
+            <!--                        </div>-->
+            <!--                        <div class="t-card__descr t-descr t-descr_xs" field="li_descr__1734558413563">-->
+            <!--                            Предметный куратор посоветует книги как художественного, так и научно-популярного-->
+            <!--                            характера,-->
+            <!--                            проанализируя интересы ребенка.-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <div class="t-card__col t-card__col_withoutbtn t491__col t-col t-col_4 t-item t-animate"-->
+            <!--                     data-animate-style="zoomin" data-animate-chain="yes">-->
+            <!--                    <div class="t491__content">-->
+            <!--                        <div class="t491__wrapper"><img class="t491__img t-img"-->
+            <!--                                                        src="/static/images/lib__emoji__fluent__new_button_3d.png"-->
+            <!--                                                        imgfield="li_img__1734558428084"-->
+            <!--                                                        alt="">-->
+            <!--                            <div class="t-card__title t-name t-name_sm" field="li_title__1734558428084">-->
+            <!--                                Новый подход к образованию-->
+            <!--                            </div>-->
+            <!--                        </div>-->
+            <!--                        <div class="t-card__descr t-descr t-descr_xs" field="li_descr__1734558428084">-->
+            <!--                            В образовательный процесс мы интегрируем современные сервисы, такие как: Quizlet, Пифагория-->
+            <!--                            и другие.-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                </div>-->
         </div>
-        <script>t_onReady(function () {
+    </div>
+    <script>t_onReady(function () {
             t_onFuncLoad('t491_init', function () {
                 t491_init('820345789');
             });
         });
-        </script>
-        <style> #rec820345789 .t-card__title {
+    </script>
+    <style> #rec820345789 .t-card__title {
             font-size: 20px;
         }
-        </style>
-    </div>
-    <div class="js-store-tpl-slider-arrows" style="display: none;">
-        <li class="t-slds__arrow_wrapper t-slds__arrow_wrapper-left" data-slide-direction="left">
-            <button
-                    type="button"
-                    class="t-slds__arrow t-slds__arrow-left t-slds__arrow-withbg"
-                    aria-controls="carousel_758999686"
-                    aria-disabled="false"
-                    aria-label="Предыдущий слайд"
-                    style="width: 40px; height: 40px;background-color: rgba(255,255,255,1);">
-                <div class="t-slds__arrow_body t-slds__arrow_body-left" style="width: 9px;">
-                    <svg role="presentation" focusable="false" style="display: block" viewBox="0 0 9.3 17"
-                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <polyline
-                                fill="none"
-                                stroke="#000000"
-                                stroke-linejoin="butt"
-                                stroke-linecap="butt"
-                                stroke-width="1"
-                                points="0.5,0.5 8.5,8.5 0.5,16.5"
-                        />
-                    </svg>
-                </div>
-            </button>
-        </li>
-        <li class="t-slds__arrow_wrapper t-slds__arrow_wrapper-right" data-slide-direction="right">
-            <button
-                    type="button"
-                    class="t-slds__arrow t-slds__arrow-right t-slds__arrow-withbg"
-                    aria-controls="carousel_758999686"
-                    aria-disabled="false"
-                    aria-label="Следующий слайд"
-                    style="width: 40px; height: 40px;background-color: rgba(255,255,255,1);">
-                <div class="t-slds__arrow_body t-slds__arrow_body-right" style="width: 9px;">
-                    <svg role="presentation" focusable="false" style="display: block" viewBox="0 0 9.3 17"
-                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <polyline
-                                fill="none"
-                                stroke="#000000"
-                                stroke-linejoin="butt"
-                                stroke-linecap="butt"
-                                stroke-width="1"
-                                points="0.5,0.5 8.5,8.5 0.5,16.5"
-                        />
-                    </svg>
-                </div>
-            </button>
-        </li>
-    </div>
-    <script>t_onReady(function () {
+    </style>
+</div>
+<div class="js-store-tpl-slider-arrows" style="display: none;">
+    <li class="t-slds__arrow_wrapper t-slds__arrow_wrapper-left" data-slide-direction="left">
+        <button
+                type="button"
+                class="t-slds__arrow t-slds__arrow-left t-slds__arrow-withbg"
+                aria-controls="carousel_758999686"
+                aria-disabled="false"
+                aria-label="Предыдущий слайд"
+                style="width: 40px; height: 40px;background-color: rgba(255,255,255,1);">
+            <div class="t-slds__arrow_body t-slds__arrow_body-left" style="width: 9px;">
+                <svg role="presentation" focusable="false" style="display: block" viewBox="0 0 9.3 17"
+                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <polyline
+                            fill="none"
+                            stroke="#000000"
+                            stroke-linejoin="butt"
+                            stroke-linecap="butt"
+                            stroke-width="1"
+                            points="0.5,0.5 8.5,8.5 0.5,16.5"
+                    />
+                </svg>
+            </div>
+        </button>
+    </li>
+    <li class="t-slds__arrow_wrapper t-slds__arrow_wrapper-right" data-slide-direction="right">
+        <button
+                type="button"
+                class="t-slds__arrow t-slds__arrow-right t-slds__arrow-withbg"
+                aria-controls="carousel_758999686"
+                aria-disabled="false"
+                aria-label="Следующий слайд"
+                style="width: 40px; height: 40px;background-color: rgba(255,255,255,1);">
+            <div class="t-slds__arrow_body t-slds__arrow_body-right" style="width: 9px;">
+                <svg role="presentation" focusable="false" style="display: block" viewBox="0 0 9.3 17"
+                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <polyline
+                            fill="none"
+                            stroke="#000000"
+                            stroke-linejoin="butt"
+                            stroke-linecap="butt"
+                            stroke-width="1"
+                            points="0.5,0.5 8.5,8.5 0.5,16.5"
+                    />
+                </svg>
+            </div>
+        </button>
+    </li>
+</div>
+<script>t_onReady(function () {
         var prodcard_optsObj = {
             blockId: '951',
             hasWrap: '',
@@ -1709,8 +1750,8 @@
             t_store_init('758999686', options);
         });
     });
-    </script> <!-- catalog setup end -->
-    <style>#rec758999686 .t-menu__link-item {
+</script> <!-- catalog setup end -->
+<style>#rec758999686 .t-menu__link-item {
     }
 
     @supports (overflow:-webkit-marquee) and (justify-content:inherit) {
@@ -1720,8 +1761,8 @@
         }
 
     }
-    </style>
-    <style>#rec758999686 .t951__cont-wrapper .t951__sidebar {
+</style>
+<style>#rec758999686 .t951__cont-wrapper .t951__sidebar {
         background-color: inherit;
         padding: initial;;
     }
@@ -1753,7 +1794,7 @@
         }
 
     }
-    </style> <!--Reset t951 specific variables--> <!-- / Reset t951 specific variables--> </div>
+</style> <!--Reset t951 specific variables--> <!-- / Reset t951 specific variables--> </div>
 <div id="rec758999687" class="r t-rec" style=" " data-record-type="215"><a name="contacts" style="font-size:0;"></a>
 </div> <!--footer-->
 {% include 'main/footer.html' %}
