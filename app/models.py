@@ -1,10 +1,14 @@
 from email.policy import default
 from enum import unique
 
+from sqlalchemy.orm import backref, relationship
+
 from app import db
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import login
+from cryptography.fernet import Fernet
+from flask import current_app
 
 
 @login.user_loader
@@ -93,6 +97,8 @@ class Teacher(db.Model):
 
     position = db.Column(db.Integer)
 
+    user = relationship('User', back_populates='teacher', uselist=False)
+
     def __init__(self, name, surname, students_class, tariff, school, about_text, achievements_text,
                  hobbies_text, is_free):
         self.name = name
@@ -152,14 +158,19 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     login = db.Column(db.String)
     password_hash = db.Column(db.String)
+    encrypted_password = db.Column(db.String)
     teacher_id = db.Column(db.Integer, db.ForeignKey('teacher.id', ondelete='CASCADE'))
-    teacher = db.relationship('Teacher')
+    teacher = db.relationship('Teacher', uselist=False, back_populates='user')
 
-    def set_password(self, password):
+    def set_password(self, password: str):
         self.password_hash = generate_password_hash(password)
+        self.encrypted_password = Fernet(current_app.config['CRYPTOGRAPHY_KEY']).encrypt(password.encode())
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+    def get_password(self):
+        return Fernet(current_app.config['CRYPTOGRAPHY_KEY']).decrypt(self.encrypted_password).decode()
 
 
 class Page(db.Model):

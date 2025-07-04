@@ -12,6 +12,7 @@ from flask_login import current_user, login_user, login_required, logout_user
 from app.models import User, Teacher, Subject, Achievement, Hobby, Page, Comment
 
 from app import models
+from secrets import token_urlsafe
 
 
 @bp.route('/')
@@ -177,7 +178,7 @@ def new_teacher():
         user = User()
         user.login = f'teacher_{teacher.id}'
         user.teacher = teacher
-        user.set_password(current_app.config['BASE_PASSWORD'])
+        user.set_password(token_urlsafe(8))
         db.session.add(user)
         db.session.commit()
 

@@ -9,6 +9,8 @@
             {% if current_user.teacher %}
                 <h1>Заходы в профиль - <b>{{ teacher.shown_times }}</b> раз</h1>
                 <h1>Процент - <b>{{ percent }}</b>%</h1>
+            {% else %}
+                <h1>password: {{teacher.user.get_password()}}</h1>
             {% endif %}
         </div>
         <div class="container text-center text-lg-start mt-3 d-lg-inline-flex mx-lg-5 me-5" style="padding-left: 0">
