@@ -1,14 +1,13 @@
 from email.policy import default
 from enum import unique
 
-from sqlalchemy.orm import backref, relationship
-
-from app import db
-from flask_login import UserMixin
-from werkzeug.security import generate_password_hash, check_password_hash
-from app import login
 from cryptography.fernet import Fernet
 from flask import current_app
+from flask_login import UserMixin
+from sqlalchemy.orm import backref, relationship
+from werkzeug.security import check_password_hash, generate_password_hash
+
+from app import db, login
 
 
 @login.user_loader
@@ -22,7 +21,7 @@ class Subject(db.Model):
     enabled = db.Column(db.Boolean, default=True)
 
     def __repr__(self):
-        return f'Subject <{self.name}>'
+        return f"Subject <{self.name}>"
 
     def change_value(self):
         self.enabled = not self.enabled
@@ -34,7 +33,7 @@ class Achievement(db.Model):
     enabled = db.Column(db.Boolean, default=True)
 
     def __repr__(self):
-        return f'Achievement <{self.name}>'
+        return f"Achievement <{self.name}>"
 
     def change_value(self):
         self.enabled = not self.enabled
@@ -46,24 +45,41 @@ class Hobby(db.Model):
     enabled = db.Column(db.Boolean, default=True)
 
     def __repr__(self):
-        return f'Hobby <{self.name}>'
+        return f"Hobby <{self.name}>"
 
     def change_value(self):
         self.enabled = not self.enabled
 
 
-teacher_subject = db.Table('teacher_subject',
-                           db.Column('teacher_id', db.Integer, db.ForeignKey('teacher.id', ondelete='CASCADE')),
-                           db.Column('subject_id', db.Integer, db.ForeignKey('subject.id', ondelete='CASCADE')))
+teacher_subject = db.Table(
+    "teacher_subject",
+    db.Column(
+        "teacher_id", db.Integer, db.ForeignKey("teacher.id", ondelete="CASCADE")
+    ),
+    db.Column(
+        "subject_id", db.Integer, db.ForeignKey("subject.id", ondelete="CASCADE")
+    ),
+)
 
-teacher_achievement = db.Table('teacher_achievement',
-                               db.Column('teacher_id', db.Integer, db.ForeignKey('teacher.id', ondelete='CASCADE')),
-                               db.Column('achievement_id', db.Integer,
-                                         db.ForeignKey('achievement.id', ondelete='CASCADE')))
+teacher_achievement = db.Table(
+    "teacher_achievement",
+    db.Column(
+        "teacher_id", db.Integer, db.ForeignKey("teacher.id", ondelete="CASCADE")
+    ),
+    db.Column(
+        "achievement_id",
+        db.Integer,
+        db.ForeignKey("achievement.id", ondelete="CASCADE"),
+    ),
+)
 
-teacher_hobby = db.Table('teacher_hobby',
-                         db.Column('teacher_id', db.Integer, db.ForeignKey('teacher.id', ondelete='CASCADE')),
-                         db.Column('hobby_id', db.Integer, db.ForeignKey('hobby.id', ondelete='CASCADE')))
+teacher_hobby = db.Table(
+    "teacher_hobby",
+    db.Column(
+        "teacher_id", db.Integer, db.ForeignKey("teacher.id", ondelete="CASCADE")
+    ),
+    db.Column("hobby_id", db.Integer, db.ForeignKey("hobby.id", ondelete="CASCADE")),
+)
 
 
 class Teacher(db.Model):
@@ -80,11 +96,17 @@ class Teacher(db.Model):
     achievements_text = db.Column(db.Text, nullable=True)
     hobbies_text = db.Column(db.Text, nullable=True)
 
-    subjects = db.relationship('Subject', secondary=teacher_subject, backref=db.backref('teachers'))
+    subjects = db.relationship(
+        "Subject", secondary=teacher_subject, backref=db.backref("teachers")
+    )
 
-    achievements = db.relationship('Achievement', secondary=teacher_achievement, backref=db.backref('teachers'))
+    achievements = db.relationship(
+        "Achievement", secondary=teacher_achievement, backref=db.backref("teachers")
+    )
 
-    hobbies = db.relationship('Hobby', secondary=teacher_hobby, backref=db.backref('teachers'))
+    hobbies = db.relationship(
+        "Hobby", secondary=teacher_hobby, backref=db.backref("teachers")
+    )
 
     is_free = db.Column(db.Boolean, nullable=True, default=False)
 
@@ -97,10 +119,20 @@ class Teacher(db.Model):
 
     position = db.Column(db.Integer)
 
-    user = relationship('User', back_populates='teacher', uselist=False)
+    user = relationship("User", back_populates="teacher", uselist=False)
 
-    def __init__(self, name, surname, students_class, tariff, school, about_text, achievements_text,
-                 hobbies_text, is_free):
+    def __init__(
+        self,
+        name,
+        surname,
+        students_class,
+        tariff,
+        school,
+        about_text,
+        achievements_text,
+        hobbies_text,
+        is_free,
+    ):
         self.name = name
         self.surname = surname
         self.students_class = students_class
@@ -112,25 +144,23 @@ class Teacher(db.Model):
         self.is_free = is_free
         # self.free_text = free_text
 
-
     def as_dict(self):
         return {
-            'id': self.id,
-            'name': self.name,
-            'surname': self.surname,
-            'position': self.position
+            "id": self.id,
+            "name": self.name,
+            "surname": self.surname,
+            "position": self.position,
         }
 
     def parse_schedule(self):
         result = {}
         if self.schedule:
-            days = self.schedule.split(';')
+            days = self.schedule.split(";")
             for day in days:
                 day = day.split()
                 result[day[0]] = day[1:]
         else:
             pass
-
 
         return result
 
@@ -138,20 +168,18 @@ class Teacher(db.Model):
         result = []
         print(result)
         if not schedule:
-            for day in ['Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat', 'Sun']:
+            for day in ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"]:
                 print(day)
-                result.append(' '.join([day]))
+                result.append(" ".join([day]))
         else:
             for day, times in schedule.items():
                 a = [day]
                 a.extend(times)
                 print(a)
-                result.append(' '.join(a))
+                result.append(" ".join(a))
 
         print(result)
-        self.schedule = ';'.join(result)
-
-
+        self.schedule = ";".join(result)
 
 
 class User(UserMixin, db.Model):
@@ -159,18 +187,24 @@ class User(UserMixin, db.Model):
     login = db.Column(db.String)
     password_hash = db.Column(db.String)
     encrypted_password = db.Column(db.String)
-    teacher_id = db.Column(db.Integer, db.ForeignKey('teacher.id', ondelete='CASCADE'))
-    teacher = db.relationship('Teacher', uselist=False, back_populates='user')
+    teacher_id = db.Column(db.Integer, db.ForeignKey("teacher.id", ondelete="CASCADE"))
+    teacher = db.relationship("Teacher", uselist=False, back_populates="user")
 
     def set_password(self, password: str):
         self.password_hash = generate_password_hash(password)
-        self.encrypted_password = Fernet(current_app.config['CRYPTOGRAPHY_KEY']).encrypt(password.encode())
+        self.encrypted_password = Fernet(
+            current_app.config["CRYPTOGRAPHY_KEY"]
+        ).encrypt(password.encode())
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
     def get_password(self):
-        return Fernet(current_app.config['CRYPTOGRAPHY_KEY']).decrypt(self.encrypted_password).decode()
+        return (
+            Fernet(current_app.config["CRYPTOGRAPHY_KEY"])
+            .decrypt(self.encrypted_password)
+            .decode()
+        )
 
 
 class Page(db.Model):
@@ -185,5 +219,5 @@ class Comment(db.Model):
     user_name = db.Column(db.String())
     text = db.Column(db.Text)
     feedback = db.Column(db.Integer)
-    teacher_id = db.Column(db.Integer, db.ForeignKey('teacher.id', ondelete='CASCADE'))
-    teacher = db.relationship('Teacher', backref=db.backref('comments'))
+    teacher_id = db.Column(db.Integer, db.ForeignKey("teacher.id", ondelete="CASCADE"))
+    teacher = db.relationship("Teacher", backref=db.backref("comments"))

@@ -1,5 +1,5 @@
 <div class="t228__leftside">
-    <div class="t228__leftcontainer"><a href="{{ url_for('main.index') }}" class="t228__imgwrapper">
+    <div class="t228__leftcontainer"><a href="{{ url_for('main.teachers') }}" class="t228__imgwrapper">
         <div class="t228__logo t-title" field="title">YoungRep</div>
     </a></div>
 </div>
@@ -12,12 +12,12 @@
                                                data-menu-submenu-hook="" data-menu-item-number="1">
                 О нас
             </a></li>
-            <li class="t228__list_item"
-                style="padding:0 15px;"><a class="t-menu__link-item"
-                                           href="{{ url_for('main.teachers') }}"
-                                           data-menu-submenu-hook="" data-menu-item-number="2">
-                Каталог репетиторов
-            </a></li>
+<!--            <li class="t228__list_item"-->
+<!--                style="padding:0 15px;"><a class="t-menu__link-item"-->
+<!--                                           href="{{ url_for('main.teachers') }}"-->
+<!--                                           data-menu-submenu-hook="" data-menu-item-number="2">-->
+<!--                Каталог репетиторов-->
+<!--            </a></li>-->
             <!-- <li class="t228__list_item"
                 style="padding:0 15px;"><a class="t-menu__link-item"
                                            href="{{ url_for('main.checking_system') }}"
@@ -33,10 +33,11 @@
 
             <li class="t228__list_item"
                 style="padding:0 0 0 25px;"><a class="t-menu__link-item "
-                                               href="/#rec842851845"
-                                               onclick="a()"
+                                               href="{{ url_for('main.answer_and_questions') }}"
+                                               data-menu-submenu-hook="" data-menu-item-number="5">
 
-                                                   data-menu-submenu-hook="" data-menu-item-number="5">
+                <!--                                               onclick="a()"-->
+
                 Вопросы&Ответы
             </a></li>
         </ul>
@@ -49,10 +50,9 @@
         // location.hash = ('#rec842851845')
 
 
-
     }
 
-    async function sleep (time) {
+    async function sleep(time) {
         return new Promise((resolve) => setTimeout(resolve, time));
     }
 

@@ -6,7 +6,7 @@ from app import db
 from app import models
 
 
-@bp.route('/teachers')
+@bp.route('/')
 def teachers():
     page = Page.query.filter_by(name='teacher').first()
     if page is None:
@@ -127,19 +127,31 @@ def search_form():
                             names=names, search=True))
 
 
-@bp.route('/')
-def index():
-    page = Page.query.filter_by(name='index').first()
+# @bp.route('/')
+# def index():
+#     page = Page.query.filter_by(name='index').first()
+#     if not page:
+#         page = Page(name='index')
+#         db.session.add(page)
+#         db.session.commit()
+#     if not page.description:
+#         page.description = 'Главная страница'
+#     page.quantity += 1
+#     db.session.commit()
+#     return render_template('main/index.html')
+
+@bp.route('/answer_and_questions')
+def answer_and_questions():
+    page = Page.query.filter_by(name='answer_and_questions').first()
     if not page:
-        page = Page(name='index')
+        page = Page(name='answer_and_questions')
         db.session.add(page)
         db.session.commit()
     if not page.description:
-        page.description = 'Главная страница'
+        page.description = 'Вопросы и ответы'
     page.quantity += 1
     db.session.commit()
-    return render_template('main/index.html')
-
+    return render_template('main/questions_and_answers.html')
 
 @bp.route('/teacher_profile/<int:id>', methods=['GET'])
 def teachers_profile(id):
