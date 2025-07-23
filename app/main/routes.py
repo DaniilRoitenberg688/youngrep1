@@ -4,6 +4,8 @@ from app.models import Teacher, Hobby, Achievement, Subject, Page, Comment
 from app.main.forms import AddCommentForm
 from app import db
 from app import models
+from app.models import ParentReply
+
 
 
 @bp.route('/')
@@ -187,7 +189,8 @@ def about():
         page.description = 'О нас'
     page.quantity += 1
     db.session.commit()
-    return render_template('main/about.html')
+    replies = ParentReply.query.all() 
+    return render_template('main/about.html', replies=replies)
 
 
 @bp.route('/checking_system')

@@ -221,3 +221,11 @@ class Comment(db.Model):
     feedback = db.Column(db.Integer)
     teacher_id = db.Column(db.Integer, db.ForeignKey("teacher.id", ondelete="CASCADE"))
     teacher = db.relationship("Teacher", backref=db.backref("comments"))
+
+
+
+class ParentReply(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    parent_name = db.Column(db.String())
+    reply_text = db.Column(db.Text())
+    bottom_text = db.Column(db.String())

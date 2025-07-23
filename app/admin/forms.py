@@ -3,7 +3,7 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileField
 from wtforms import (BooleanField, IntegerRangeField, PasswordField,
                      SelectField, StringField, SubmitField, TextAreaField,
-                     ValidationError)
+                     ValidationError, validators)
 from wtforms.validators import DataRequired
 
 from app import models
@@ -15,6 +15,12 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField("Remember me")
     submit = SubmitField("Login")
 
+
+class ReplyForm(FlaskForm):
+    parent_name = StringField("Имя родителя", validators=[DataRequired()])
+    reply_text = TextAreaField('Текст отзыва', validators=[DataRequired()])
+    bottom_text = TextAreaField('Текст про учителя и тд.', validators=[DataRequired()])
+    submit = SubmitField("Готово")
 
 class AddTeacherForm(FlaskForm):
     name = StringField("Name")

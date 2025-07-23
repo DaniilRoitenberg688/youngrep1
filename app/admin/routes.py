@@ -4,12 +4,12 @@ import os
 
 from app import db
 from app.admin import bp
-from flask import render_template, redirect, url_for, flash, request, current_app, jsonify, send_file
+from flask import render_template, redirect, session, url_for, flash, request, current_app, jsonify, send_file
 from app.admin.forms import LoginForm, AddTeacherForm, EditTeacherForm, EditSearchForm, AddSearchForm, EditFreeText, \
-    AddCommentForm, EditCommentForm, EditSearchParamForm
+    AddCommentForm, EditCommentForm, EditSearchParamForm, ReplyForm
 from flask_login import current_user, login_user, login_required, logout_user
 
-from app.models import User, Teacher, Subject, Achievement, Hobby, Page, Comment
+from app.models import User, Teacher, Subject, Achievement, Hobby, Page, Comment, ParentReply
 
 from app import models
 from secrets import token_urlsafe
@@ -101,6 +101,60 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('main.index'))
+
+@bp.route('/add_reply', methods=['POST', "GET"])
+@login_required
+def add_reply():
+    if current_user.teacher:
+        return redirect(url_for('admin.index'))
+    form = ReplyForm()
+    if form.validate_on_submit():
+        new_reply = ParentReply()
+        new_reply.parent_name = form.parent_name.data
+        new_reply.reply_text = form.reply_text.data
+        new_reply.bottom_text = form.bottom_text.data
+        db.session.add(new_reply)
+        db.session.commit()
+        return redirect(url_for('admin.replies'))
+
+    return render_template('admin/reply_form.html', form=form, title='Add teacher')
+
+@bp.route('/edit_reply/<id>', methods=['POST', "GET"])
+@login_required
+def edit_reply(id):
+    if current_user.teacher:
+        return redirect(url_for('admin.index'))
+    form = ReplyForm()
+    reply: ParentReply = db.session.get(ParentReply, id)
+    if form.validate_on_submit():
+        reply.parent_name = form.parent_name.data
+        reply.reply_text = form.reply_text.data
+        reply.bottom_text = form.bottom_text.data
+        db.session.commit()
+        return redirect(url_for('admin.replies'))
+
+    elif request.method == 'GET':
+        form.parent_name.data = reply.parent_name
+        form.bottom_text.data = reply.bottom_text
+        form.reply_text.data = reply.reply_text
+
+
+    return render_template('admin/reply_form.html', form=form, title='Add teacher')
+
+@bp.route('/delete_reply/<id>')
+def delete_reply(id):
+    reply = db.session.get(ParentReply, id)
+    db.session.delete(reply)
+    db.session.commit()
+    return redirect(url_for('admin.replies'))
+
+@bp.route('/reply')
+@login_required
+def replies():
+    if current_user.teacher:
+        return redirect(url_for('admin.index'))
+    all_replies = ParentReply.query.all()
+    return render_template('admin/all_replies.html', replies=all_replies, title='All replies')
 
 
 @bp.route('/teacher', methods=['GET', 'POST'])

@@ -1,0 +1,41 @@
+{% extends "admin/base.html" %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="">
+            <div class="container position-relative">
+                <div class="card col-12 col-lg-7 col-md-12 col-sm-10 px-4 py-4 my-5 position-absolute start-50 translate-middle-x">
+                    <h2 class="mb-4">Добавить отзыв</h2>
+                    <form method="post" novalidate action="" enctype="multipart/form-data">
+                        {{ form.hidden_tag() }}
+                        <div class="mb-3">
+                            {{ form.parent_name.label(class="") }}
+                            {{ form.parent_name(class="form-control") }}
+                            {% for error in form.parent_name.errors %}
+                                <p class="alert alert-danger mt-2">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form.reply_text.label }}
+                            {{ form.reply_text(class="form-control", rows=5) }}
+                            {% for error in form.reply_text.errors %}
+                                <p class="alert alert-danger mt-2">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form.bottom_text.label }}
+                            {{ form.bottom_text(class="form-control", rows=5) }}
+                            {% for error in form.bottom_text.errors %}
+                                <p class="alert alert-danger mt-2">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+
+                        {{ form.submit(class='btn btn-primary fs-5') }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

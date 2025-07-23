@@ -1181,130 +1181,58 @@
                                 <div class="t-cover__wrapper t-valign_middle" data-auto-correct-mobile-width="false"
                                      style="height:100vh;width: 100%;">
                                     <div class="t659__content" data-hook-content="covercontent">
-                                        <div class="t659__topsection">
-                                            <div class="t-section__topwrapper t-align_center">
-                                                <div class="t-section__title t-title t-title_xs" field="btitle">Отзывы
-                                                    родителей о нас
-                                                </div>
-                                            </div>
-                                        </div>
+<!--                                        <div class="t659__topsection">-->
+<!--                                            <div class="t-section__topwrapper t-align_center">-->
+<!--                                                <div class="t-section__title t-title t-title_xs" field="btitle">Отзывы-->
+<!--                                                    родителей о нас-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
                                         <div class="t-slds__items-wrapper t-slds_animated-none" id="carousel_920036173"
                                              data-slider-transition="300" data-slider-with-cycle="true"
                                              data-slider-correct-height="true" data-auto-correct-mobile-width="false"
                                              aria-roledescription="carousel" aria-live="off">
+                                            {% for reply in replies %} 
                                             <div class="t-slds__item t-slds__item_active" data-slide-index="1"
                                                  role="group" aria-roledescription="slide" aria-hidden="false"
                                                  aria-label="1 из 4">
                                                 <div class="t-slds__wrapper t-align_center t-width_8 t-margin_auto">
                                                     <div class="t659__text t-text t-text-impact_xs"
-                                                         field="li_text__6066426382590">Сам проект мне «зашёл». Я из
-                                                        старшего поколения, но активно приветствую дополнительное
-                                                        он-лайн обучение (именно как дополнительное, в помощь основному
-                                                        очному). В этом проекте мне очень импонируют две позиции:
-                                                        <br/>- старшим школьникам дают возможность заработать своими
-                                                        ЗНАНИЯМИ<br/>- младшим школьниками материал разъясняют
-                                                        максимально близкие им по возрасту старшие. <br/>Эти два пункта
-                                                        и стали решающими, почему мой сын пошёл в этот проект.
-                                                    </div>
+                                                            field="li_text__6066426382590">{{reply.reply_text}}                                                    </div>
                                                     <div class="t659__title t-name t-name_xs"
-                                                         field="li_title__6066426382590">Екатерина Степашкина
+                                                            field="li_title__6066426382590">{{reply.parent_name}}
                                                     </div>
                                                     <div class="t659__descr t-descr t-descr_xxs"
-                                                         field="li_descr__6066426382590">Преподаватель сына - Софья
-                                                        Малинина
+                                                            field="li_descr__6066426382590">{{reply.bottom_text}}
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="t-slds__item" data-slide-index="2" role="group"
-                                                 aria-roledescription="slide" aria-hidden="true" aria-label="2 из 4">
-                                                <div class="t-slds__wrapper t-align_center t-width_8 t-margin_auto">
-                                                    <div class="t659__text t-text t-text-impact_xs"
-                                                         field="li_text__6066426382591">Георгий-прекрасный преподаватель.
-                                                        Грамотный , терпеливый и ответственный! Отличные занятия ,
-                                                        настроены на продолжение! <br/>Интересный молодой проект. Было
-                                                        бы здорово охватить аудиторию по 11 класс включительно. Не
-                                                        сомневаюсь, что такие умные и талантливые ребята смогут
-                                                        преподавать не только младшим и средним школьникам, но и
-                                                        старшим.
-                                                    </div>
-                                                    <div class="t659__title t-name t-name_xs"
-                                                         field="li_title__6066426382591">Ольга
-                                                    </div>
-                                                    <div class="t659__descr t-descr t-descr_xxs"
-                                                         field="li_descr__6066426382591">Преподаватель сына - Георгий
-                                                        Харитонов
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="t-slds__item" data-slide-index="3" role="group"
-                                                 aria-roledescription="slide" aria-hidden="true" aria-label="3 из 4">
-                                                <div class="t-slds__wrapper t-align_center t-width_8 t-margin_auto">
-                                                    <div class="t659__text t-text t-text-impact_xs"
-                                                         field="li_text__1743364216439">Моему сыну очень нравятся
-                                                        занятия. Преподаватель много, подробно и понятно объясняет
-                                                        нового материала. <br/>*Сейчас уже почти месяц нет занятий, так
-                                                        как. педагог находится в Сириусе. Считаю, что можно было его
-                                                        заменить другим на время или дать большое домашнее задание с
-                                                        обратной связью.
-                                                    </div>
-                                                    <div class="t659__title t-name t-name_xs"
-                                                         field="li_title__1743364216439">Екатерина Масленникова
-                                                    </div>
-                                                    <div class="t659__descr t-descr t-descr_xxs"
-                                                         field="li_descr__1743364216439">Преподаватель сына - Александр
-                                                        Молдавчук
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="t-slds__item" data-slide-index="4" role="group"
-                                                 aria-roledescription="slide" aria-hidden="true" aria-label="4 из 4">
-                                                <div class="t-slds__wrapper t-align_center t-width_8 t-margin_auto">
-                                                    <div class="t659__text t-text t-text-impact_xs"
-                                                         field="li_text__6066426382592">Я думаю проект очень интересный.
-                                                        Ребята часто не хотят заниматься с репетитором - взрослым
-                                                        педагогом ( причины разные бывают) и для них ваш проект это
-                                                        спасение.
-                                                    </div>
-                                                    <div class="t659__title t-name t-name_xs"
-                                                         field="li_title__6066426382592">Сабина Новрузбекова
-                                                    </div>
-                                                    <div class="t659__descr t-descr t-descr_xxs"
-                                                         field="li_descr__6066426382592">Преподаватель дочки - Григорий
-                                                        Выливок
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <ul role="list" class="t-slds__bullet_wrapper">
-                            <li class="t-slds__bullet t-slds__bullet_active" data-slide-bullet-for="1">
+                            {% for reply in replies %}
+                                {% if loop.index == 1 %}
+                                <li class="t-slds__bullet t-slds__bullet_active" data-slide-bullet-for="{{loop.index}}">
                                 <button
-                                        type="button" class="t-slds__bullet_body" aria-label="Перейти к слайду 1"
+                                        type="button" class="t-slds__bullet_body" aria-label="Перейти к слайду {{loop.index}}"
                                         aria-current="true"
                                         style="width: 10px; height: 10px;background-color: transparent;border: 2px solid #ffffff;">
                                 </button>
                             </li>
-                            <li class="t-slds__bullet" data-slide-bullet-for="2">
-                                <button type="button"
-                                        class="t-slds__bullet_body" aria-label="Перейти к слайду 2"
+                                {% else %}
+                                <li class="t-slds__bullet " data-slide-bullet-for="{{loop.index}}">
+                                <button
+                                        type="button" class="t-slds__bullet_body" aria-label="Перейти к слайду {{loop.index}}"
+                                        aria-current="true"
                                         style="width: 10px; height: 10px;background-color: transparent;border: 2px solid #ffffff;">
                                 </button>
                             </li>
-                            <li class="t-slds__bullet" data-slide-bullet-for="3">
-                                <button type="button"
-                                        class="t-slds__bullet_body" aria-label="Перейти к слайду 3"
-                                        style="width: 10px; height: 10px;background-color: transparent;border: 2px solid #ffffff;">
-                                </button>
-                            </li>
-                            <li class="t-slds__bullet" data-slide-bullet-for="4">
-                                <button type="button"
-                                        class="t-slds__bullet_body" aria-label="Перейти к слайду 4"
-                                        style="width: 10px; height: 10px;background-color: transparent;border: 2px solid #ffffff;">
-                                </button>
-                            </li>
+                                {% endif %}
+                            {% endfor %}
                         </ul>
                     </div>
                     <script>t_onReady(function () {
