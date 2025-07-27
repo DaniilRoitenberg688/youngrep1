@@ -3,12 +3,14 @@ from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
-from config import Config
+from config import Config, config
+from aiogram import Bot
 
 db = SQLAlchemy()
 migrate = Migrate(render_as_batch=True)
 login = LoginManager()
 login.login_view = "admin.login"
+
 
 
 data_base = None
@@ -33,5 +35,9 @@ def init_app():
     from app.admin import bp as admin_bp
 
     app.register_blueprint(admin_bp, url_prefix="/admin")
+
+
+    from app.api import bp as api_bp
+    app.register_blueprint(api_bp, url_prefix="/api")
 
     return app
