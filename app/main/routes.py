@@ -106,7 +106,7 @@ def teachers():
 
     return render_template('main/teachers.html', teachers=teachers,
                            all_subjects=models.Subject.query.filter(Subject.enabled).all(),
-                           all_achievements=all_achievements, search=search, subjects=subjects, host=config.TEACHERS_HOST)
+                           all_achievements=all_achievements, search=search, subjects=subjects, host=config.TEACHERS_HOST, bot_host=config.BOT_HOST)
 
 
 @bp.route('/search_form', methods=['POST', 'GET'])
@@ -154,7 +154,7 @@ def answer_and_questions():
         page.description = 'Вопросы и ответы'
     page.quantity += 1
     db.session.commit()
-    return render_template('main/questions_and_answers.html', host=config.TEACHERS_HOST)
+    return render_template('main/questions_and_answers.html', host=config.TEACHERS_HOST, bot_host=config.BOT_HOST)
 
 @bp.route('/teacher_profile/<int:id>', methods=['GET'])
 def teachers_profile(id):
@@ -176,7 +176,7 @@ def teachers_profile(id):
         text = file.read()
     days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
     schedule = teacher.parse_schedule()
-    return render_template('main/teacher_profile.html', teacher=teacher, text=text, days=days, schedule=schedule, host=config.TEACHERS_HOST)
+    return render_template('main/teacher_profile.html', teacher=teacher, text=text, days=days, schedule=schedule, host=config.TEACHERS_HOST, bot_host=config.BOT_HOST)
 
 
 @bp.route('/about')
@@ -191,7 +191,7 @@ def about():
     page.quantity += 1
     db.session.commit()
     replies = ParentReply.query.all() 
-    return render_template('main/about.html', replies=replies, host=config.TEACHERS_HOST)
+    return render_template('main/about.html', replies=replies, host=config.TEACHERS_HOST, bot_host=config.BOT_HOST)
 
 
 @bp.route('/checking_system')
@@ -219,7 +219,7 @@ def invite():
         page.description = 'Работа у нас'
     page.quantity += 1
     db.session.commit()
-    return render_template('main/invite.html', host=config.TEACHERS_HOST)
+    return render_template('main/invite.html', host=config.TEACHERS_HOST, bot_host=config.BOT_HOST)
 
 @bp.route('/add_statistic/<name>', methods=['POST'])
 def add_statistic(name):

@@ -1101,7 +1101,7 @@
                             telegramUsername: document.getElementById('telegramUsername').value
                         };
 
-                        fetch('http://localhost:8000/api/send_not', {
+                        fetch('{{bot_host}}/api/send_not', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
