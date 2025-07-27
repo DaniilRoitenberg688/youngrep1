@@ -1288,7 +1288,7 @@
                                 return;
                             }
 
-                            fetch('http://localhost:5000/api/teachers')
+                            fetch('{{host}}/api/teachers')
                                 .then(response => {
                                     if (!response.ok) {
                                         throw new Error('Ошибка загрузки списка преподавателей');
