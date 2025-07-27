@@ -3,7 +3,7 @@ from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
-from config import Config, config
+from config import Config
 from aiogram import Bot
 
 db = SQLAlchemy()
