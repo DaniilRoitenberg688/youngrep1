@@ -4,7 +4,6 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
 from config import Config
-from aiogram import Bot
 
 db = SQLAlchemy()
 migrate = Migrate(render_as_batch=True)
