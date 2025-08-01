@@ -171,11 +171,11 @@
                 <div class="card mb-3 h-100">
                     <div class="">
                         {% if teacher.image %}
-                        <img class="card-img-top img-fluid" style="object-fit: cover; height: 450px; width: 100%"
+                        <img class="card-img-top img-fluid" style="object-fit: cover; height: 450px; flex: 0 0 auto"
                              src="/static/teachers_images/{{ teacher.image }}"
                              onclick="location.href='/teacher_profile/{{ teacher.id }}'">
                         {% else %}
-                        <img class="card-img-top img-fluid" style="object-fit: cover; height: 450px; width: 100%"
+                        <img class="card-img-top img-fluid" style="object-fit: cover; height: 450px; flex: 0 0 auto"
                              src="/static/images/empty_avatar.png"
                              onclick="location.href='/teacher_profile/{{ teacher.id }}'">
                         {% endif %}
