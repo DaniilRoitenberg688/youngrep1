@@ -171,11 +171,11 @@
                 <div class="card mb-3 h-100">
                     <div class="">
                         {% if teacher.image %}
-                        <img class="card-img-top img-fluid" style="object-fit: cover; height: 450px"
+                        <img class="card-img-top img-fluid" style="object-fit: cover; height: 450px; width: auto"
                              src="/static/teachers_images/{{ teacher.image }}"
                              onclick="location.href='/teacher_profile/{{ teacher.id }}'">
                         {% else %}
-                        <img class="card-img-top img-fluid" style="object-fit: cover; height: 450px"
+                        <img class="card-img-top img-fluid" style="object-fit: cover; height: 450px; width: auto"
                              src="/static/images/empty_avatar.png"
                              onclick="location.href='/teacher_profile/{{ teacher.id }}'">
                         {% endif %}
@@ -200,7 +200,7 @@
                         <p style="  display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  overflow: hidden;" class="mb-3">{{ teacher.achievements_text }}</p>
+  overflow: hidden; width: auto" class="mb-3">{{ teacher.achievements_text }}</p>
                         <p class="card-text mb-4 fs-4"><span class="fs-4">{{ teacher.tariff }}</span>₽/час
                         </p>
                         <div>
