@@ -2,11 +2,11 @@
 {% block content %}
 
 
-<div class="position-relative mt-5 col-lg-12 col-md-12 col-sm-5 col-12 " id="start" style="font-family: Ubuntu">
+<div class="position-relative mt-5" id="start" style="font-family: Ubuntu">
 
     <form class="d-flex flex-column flex-lg-row mb-5"  method="post"
           action="{{ url_for('main.search_form') }}" style="color: #ff2300">
-        <nav class="nav d-flex flex-row col-sm-1 col-lg-7 col-12 " style="color: #ff2300">
+        <nav class="nav d-flex flex-row" style="color: #ff2300">
             {#subject#}
             <!--                <li class="nav-item dropdown">-->
             <!--                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"-->
@@ -116,7 +116,7 @@
             <!--                </li>-->
         </nav>
         <br>
-        <div class="col-lg-3 col-md-12 col-sm-1 col-12 d-inline-flex">
+        <div class=" d-inline-flex" id="search-zalupa" style="">
             <input class="form-control me-3 " type="search" placeholder="Фамилия" aria-label="Search"
                    name="names">
             <button class="btn btn-outline-success me-3" type="submit">
@@ -128,8 +128,20 @@
             <a class="btn btn-outline-danger"
                href="{{ url_for('main.teachers', search=True) }}" style="color: #ff2300">Сбросить</a>
         </div>
+        <style>
+            #search-zalupa {
+                @media (min-width: 768px) {
+                    margin-left: auto;
+                }
+                @media (max-width: 768px) {
+                    margin-top: 20px;
+
+                }
+
+            }
+        </style>
     </form >
-    <ul class="nav nav-tabs mb-5 col-lg-10" id="myTab" role="tablist" style="font-family: Ubuntu">
+    <ul class="nav nav-tabs mb-5" id="myTab" role="tablist" style="font-family: Ubuntu">
         <li class="nav-item">
 
             {% if not subjects %}
@@ -151,11 +163,11 @@
         {% endfor %}
     </ul>
     {% if teachers %}
-    <div class="me-3">
-        <div class="row me-3 ms-2">
+    <div class="" style="">
+        <div class="yr-cont" style="width: auto">
             {% for teacher in teachers %}
             {% if teacher.is_shown %}
-            <div class="col-lg-3 col-md-5 col-sm-10 col-12 me-lg-3 mb-5">
+            <div class="" style="">
                 <div class="card mb-3 h-100">
                     <div class="">
                         {% if teacher.image %}
@@ -212,6 +224,28 @@
             {% endif %}
             {% endfor %}
         </div>
+        <style>
+            .yr-cont {
+                display: grid;
+                gap: 16px;
+                /* По умолчанию - 2 элемента в ряду */
+                grid-template-columns: repeat(2, 1fr);
+
+            }
+
+            @media (min-width: 768px) {
+                .yr-cont {
+                    /* Оставляем 2 элемента */
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+            @media (min-width: 1024px) {
+                .yr-cont {
+                    /* 3 элемента в ряду */
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+        </style>
     </div>
     {% else %}
     <div class="container-fluid mb-5 pb-5">
@@ -219,6 +253,13 @@
     </div>
     {% endif %}
 </div>
+<style>
+    @media (max-width: 1024px) {
+        #start {
+            margin: 0 20px;
+        }
+    }
+</style>
 
 
 {% endblock %}

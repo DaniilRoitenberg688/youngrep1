@@ -302,6 +302,9 @@
             color: 0x1173b1
         })
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds2.min.js"></script>
+
 </head>
 <body class="t-body" style="margin:0;"> <!--allrecords-->
 <div id="allrecords" data-tilda-export="yes" class="t-records" data-hook="blocks-collection-content-node"
@@ -611,7 +614,7 @@
                             <label for="telegramUsername">Ваш юзернейм в телеграмме:</label>
                             <input type="text" id="telegramUsername" name="telegramUsername" required placeholder="@durov">
                             <span class="yr-input-line"></span>
-                        </div>Ваша заявка принята, с Вами свяжется наш менеджер
+                        </div>
 
                         <button type="submit" class="yr-submit-btn">Отправить запрос</button>
                     </form>
@@ -1282,9 +1285,9 @@
     <div id="rec759473093" class="r t-rec t-rec_pt_0 t-rec_pb_0" style="padding-top:0px;padding-bottom:0px; "
          data-animationappear="off" data-record-type="204"> <!-- cover -->
         <div class="t-cover" id="recorddiv759473093" bgimgfield="img"
-             style="height:100vh;background-image:url('static/images/tild3161-6236-4530-b038-626539396364__-__resize__20x___19.jpeg');">
+             style="height:100vh;">
             <div class="t-cover__carrier" id="coverCarry759473093" data-content-cover-id="759473093"
-                 data-content-cover-bg="static/images/tild3161-6236-4530-b038-626539396364___19.jpeg"
+                 data-content-cover-bg=""
                  data-display-changed="true" data-content-cover-height="100vh" data-content-cover-parallax="fixed"
                  data-content-use-image-for-mobile-cover="" style="height:100vh; background-position:center top;"
                  itemscope itemtype="http://schema.org/ImageObject">
@@ -1392,6 +1395,16 @@
                     t_onFuncLoad('t390_initPopup', function () {
                         t390_initPopup('827660307');
                     });
+                    VANTA.CLOUDS2({
+                        el: "#coverCarry759473093",
+                        mouseControls: true,
+                        touchControls: true,
+                        gyroControls: false,
+                        minHeight: 200.00,
+                        minWidth: 200.00,
+                        scale: 1.00,
+                        texturePath: "./gallery/noise.png"
+                    })
                 });</script>
             </div>
             <!-- arrow -->
@@ -2320,13 +2333,14 @@
 
 <div id="fucking_teachers" class="" data-animationappear="off" data-record-type="">
     <div class="" style="position: relative;"> <!-- Родитель должен иметь position -->
-        <div class="container" id="a" style="
+        <div class="" id="a" style="
             position: relative;
-            left: 50%;
-            transform: translateX(-50%);
-            padding-left: 0;
+            padding: 0;
             box-sizing: border-box;
             width: fit-content;
+            margin: auto;
+
+
         ">
             {% block content %}{% endblock content %}
         </div>

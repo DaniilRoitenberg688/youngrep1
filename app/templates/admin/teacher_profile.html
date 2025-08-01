@@ -37,9 +37,9 @@
                     <div class="ps-3 pb-3">
                         <h5 class="fs-5 mb-2">Предмет: <strong>{{ teacher.subjects[0].name }}</strong></h5>
                         <h5 class="fs-5 mb-2">Класс: <strong>{{ teacher.students_class }}</strong></h5>
-                        <h5 class="fs-5 mb-2">Достижения: <strong>{{ teacher.achievements_text }}</strong></h5>
+                        <h5 class="fs-5 mb-2" style="white-space: pre-wrap;">Достижения: <strong>{{ teacher.achievements_text }}</strong></h5>
                         <h5 class="fs-5 mb-2">Тариф: <strong>{{ teacher.tariff }} руб/ч</strong></h5>
-                        <h5 class="fs-5 mb-2">Хобби: <strong>{{ teacher.hobbies_text }}</strong></h5>
+                        <h5 class="fs-5 mb-2" style="white-space: pre-wrap;">Хобби: <strong>{{ teacher.hobbies_text }}</strong></h5>
 
                     </div>
                 </div>
@@ -48,7 +48,7 @@
             <div class="about mt-4 col-lg-5 col-sm-12 col-md-12 col-12 ms-lg-5 ms-1">
                 <div class="mb-5">
                     <h2 class="mb-3">Рассказ о себе:</h2>
-                    <span class="fs-5 mb-5" style="">{{ teacher.about_text }}</span>
+                    <span class="fs-5 mb-5" style="white-space: pre-wrap;">{{ teacher.about_text }}</span>
                 </div>
 
                 <div>

@@ -6,7 +6,7 @@ from flask import current_app
 from flask_login import UserMixin
 from sqlalchemy.orm import backref, relationship
 from werkzeug.security import check_password_hash, generate_password_hash
-
+from sqlalchemy.orm import validates
 from app import db, login
 
 
@@ -143,6 +143,9 @@ class Teacher(db.Model):
         self.hobbies_text = hobbies_text
         self.is_free = is_free
         # self.free_text = free_text
+#    @validates('about_text')
+#    def validate_about_text(self, key, val: str):
+#        return val.replace('\n', '<br>')
 
     def as_dict(self):
         return {
@@ -180,6 +183,8 @@ class Teacher(db.Model):
 
         print(result)
         self.schedule = ";".join(result)
+
+
 
 
 class User(UserMixin, db.Model):

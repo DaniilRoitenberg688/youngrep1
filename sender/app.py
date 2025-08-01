@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from aiogram import Bot
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 from dotenv import load_dotenv
 import os
 
@@ -30,6 +30,15 @@ class Note(BaseModel):
     lesson_time: str = Field(alias='lessonTime')
     telegram_username: str = Field(alias='telegramUsername')
     phone_number: str = Field(alias='phoneNumber')
+    
+    @field_validator('telegram_username', mode='before')
+    @classmethod
+    def set_dog(cls, value: str) -> str:
+        if value[0] == '@':
+            return value
+        return '@' + value
+
+
 
 @app.post('/api/send_not')
 async def send_not(note: Note):
