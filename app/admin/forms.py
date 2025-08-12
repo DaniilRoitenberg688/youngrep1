@@ -6,7 +6,7 @@ from wtforms import (BooleanField, IntegerRangeField, PasswordField,
                      ValidationError, validators)
 from wtforms.validators import DataRequired
 
-from app import models
+from app.models import StudyPath
 
 
 class LoginForm(FlaskForm):
@@ -35,6 +35,7 @@ class AddTeacherForm(FlaskForm):
     all_achievements: list
     all_hobbies: list
     all_subjects: list
+    all_study_paths = list(StudyPath) 
 
     achievements_text = TextAreaField("Achievements text")
 
@@ -59,6 +60,7 @@ class EditTeacherForm(AddTeacherForm):
     subjects: list
     achievements: list
     hobbies: list
+    study_path: StudyPath 
     image_path: str
     submit = SubmitField("Edit")
 

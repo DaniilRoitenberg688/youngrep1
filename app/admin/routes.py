@@ -9,7 +9,7 @@ from app.admin.forms import LoginForm, AddTeacherForm, EditTeacherForm, EditSear
     AddCommentForm, EditCommentForm, EditSearchParamForm, ReplyForm
 from flask_login import current_user, login_user, login_required, logout_user
 
-from app.models import User, Teacher, Subject, Achievement, Hobby, Page, Comment, ParentReply
+from app.models import StudyPath, User, Teacher, Subject, Achievement, Hobby, Page, Comment, ParentReply
 
 from app import models
 from secrets import token_urlsafe
@@ -22,53 +22,59 @@ def index():
         return render_template('admin/index.html', title='Teachers', teachers=[current_user.teacher])
     teachers = []
     data = request.args
+    print(data.getlist('subjects'))
     if not data:
         teachers = Teacher.query.all()
 
-    if data.getlist('hobbies'):
-        for hobby in data.getlist('hobbies'):
-            hobby: Hobby = Hobby.query.filter_by(name=hobby).first()
-            teachers.extend(hobby.teachers)
-
-    if data.getlist('achievements'):
-        for achievement in data.getlist('achievements'):
-            achievement: Achievement = Achievement.query.filter_by(name=achievement).first()
-            teachers.extend(achievement.teachers)
+#    if data.getlist('hobbies'):
+#        for hobby in data.getlist('hobbies'):
+#            hobby: Hobby = Hobby.query.filter_by(name=hobby).first()
+#            teachers.extend(hobby.teachers)
+#
+#    if data.getlist('achievements'):
+#        for achievement in data.getlist('achievements'):
+#            achievement: Achievement = Achievement.query.filter_by(name=achievement).first()
+#            teachers.extend(achievement.teachers)
 
     if data.getlist('subjects'):
         for subject in data.getlist('subjects'):
             subject: Subject = Subject.query.filter_by(name=subject).first()
             teachers.extend(subject.teachers)
 
-    if data.get('age'):
-        teachers.extend(Teacher.query.filter_by(students_class=int(data.get('age'))
-                                                ).all())
-
-    if data.get('tariff'):
-        teachers.extend(Teacher.query.filter(Teacher.tariff <= int(data.get('tariff'))).all())
-
-    if data.get('names'):
-        names = data.get('names').split()
-        result = []
-        if len(names) == 1:
-            result = Teacher.query.filter(
-                names[0] == Teacher.surname
-            ).all()
-
-            if not result:
-                result = Teacher.query.filter(
-                    names[0] == Teacher.name
-                ).all()
-        if len(names) == 2:
-            result = Teacher.query.filter(
-                names[0] == Teacher.surname or names[1] == Teacher.name
-            ).all()
-            if not result:
-                result = Teacher.query.filter(
-                    names[1] == Teacher.surname or names[0] == Teacher.name
-                ).all()
-
-        teachers.extend(result)
+#    if data.get('age'):
+#        teachers.extend(Teacher.query.filter_by(students_class=int(data.get('age'))
+#                                                ).all())
+#
+#    if data.get('tariff'):
+#        teachers.extend(Teacher.query.filter(Teacher.tariff <= int(data.get('tariff'))).all())
+#
+#    if data.get('names'):
+#        names = data.get('names').split()
+#        result = []
+#        if len(names) == 1:
+#            result = Teacher.query.filter(
+#                names[0] == Teacher.surname
+#            ).all()
+#
+#            if not result:
+#                result = Teacher.query.filter(
+#                    names[0] == Teacher.name
+#                ).all()
+#        if len(names) == 2:
+#            result = Teacher.query.filter(
+#                names[0] == Teacher.surname or names[1] == Teacher.name
+#            ).all()
+#            if not result:
+#                result = Teacher.query.filter(
+#                    names[1] == Teacher.surname or names[0] == Teacher.name
+#                ).all()
+#
+#        teachers.extend(result)
+    
+    if data.get('study_path', 0):
+        print(data.get('study_path'))
+        teachers.extend(Teacher.query.filter_by(study_path=data.get('study_path'))) 
+        
 
     teachers = list(set(teachers))
     teachers = sorted(teachers, key=lambda x: x.position)
@@ -219,6 +225,9 @@ def new_teacher():
                 achievement.teachers
                 teacher.achievements.append(achievement)
 
+        study_path = request.form.get('study_paths', '')
+        teacher.study_path = StudyPath[study_path.split('.')[1]] 
+
         db.session.commit()
 
         image = form.image.data
@@ -259,7 +268,7 @@ def edit_teacher(id):
     form.all_achievements = Achievement.query.all()
     form.all_hobbies = Hobby.query.all()
     form.all_subjects = Subject.query.all()
-    teacher = db.session.get(Teacher, id)
+    teacher: Teacher = db.session.get(Teacher, id)
     if form.validate_on_submit():
         teacher.name = form.name.data
         teacher.surname = form.surname.data
@@ -273,6 +282,9 @@ def edit_teacher(id):
 
         if not current_user.teacher:
             teacher.is_free = int(request.form.get('is_free', 0))
+
+        study_path = request.form.get('study_paths', '')
+        teacher.study_path = StudyPath[study_path.split('.')[1]] 
 
         teacher.subjects.clear()
         teacher.hobbies.clear()
@@ -343,6 +355,8 @@ def edit_teacher(id):
         form.hobbies_text.data = teacher.hobbies_text
 
         form.is_free = teacher.is_free
+
+        form.study_path = teacher.study_path
 
     return render_template('admin/edit_teacher.html', form=form, title='Edit teacher')
 

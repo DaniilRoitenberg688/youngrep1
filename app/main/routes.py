@@ -1,13 +1,13 @@
 from random import shuffle
-from app.main import bp
-from flask import redirect, render_template, request, url_for, jsonify
-from app.models import Teacher, Hobby, Achievement, Subject, Page, Comment
-from app.main.forms import AddCommentForm
-from app import db
-from app import models
-from app.models import ParentReply
-from config import config
 
+from flask import jsonify, redirect, render_template, request, url_for
+
+from app import db, models
+from app.main import bp
+from app.main.forms import AddCommentForm
+from app.models import (Achievement, Comment, Hobby, Page, ParentReply, StudyPath,
+                        Subject, Teacher)
+from config import config
 
 
 @bp.route('/')
@@ -23,98 +23,129 @@ def teachers():
         print(page.name)
         page.quantity += 1
         db.session.commit()
+
+
+
+#    if data.getlist('hobbies'):
+#        for hobby in data.getlist('hobbies'):
+#            hobby: Hobby = Hobby.query.filter_by(name=hobby).first()
+#            teachers.extend(hobby.teachers)
+#
+#    if data.getlist('achievements'):
+#        for achievement in data.getlist('achievements'):
+#            achievement: Achievement = Achievement.query.filter_by(name=achievement).first()
+#            teachers.extend(achievement.teachers)
+
+
+#    if data.get('age'):
+#        print(data.getlist('age'))
+#        ages = list(map(int, data.getlist('age')))
+#        print(ages)
+#
+#        teachers.extend(Teacher.query.filter(Teacher.students_class.in_(ages)).all())
+#        print(teachers)
+#
+#    if data.getlist('tariff'):
+#        filtered_by_tarrif = []
+#        filter_params = data.getlist('tariff')
+#        print(filter_params)
+#        if '0' in filter_params:
+#            print("Filtering by tariff <= 800")
+#            filtered_by_tarrif = Teacher.query.filter(Teacher.tariff <= 800).all()
+#        if '1' in filter_params:
+#            filtered_by_tarrif = Teacher.query.filter(1200 > Teacher.tariff, Teacher.tariff > 800).all()
+#        if '2' in filter_params:
+#            filtered_by_tarrif = Teacher.query.filter(Teacher.tariff >= 1200).all()
+#        print(filtered_by_tarrif)
+#        teachers.extend(filtered_by_tarrif)
+#
+#    if data.get('names'):
+#        names = data.get('names').split()
+#        result = []
+#        if len(names) == 1:
+#            result = Teacher.query.filter(
+#                names[0] == Teacher.surname
+#            ).all()
+#
+#            if not result:
+#                result = Teacher.query.filter(
+#                    names[0] == Teacher.name
+#                ).all()
+#        if len(names) == 2:
+#            result = Teacher.query.filter(
+#                names[0] == Teacher.surname or names[1] == Teacher.name
+#            ).all()
+#            if not result:
+#                result = Teacher.query.filter(
+#                    names[1] == Teacher.surname or names[0] == Teacher.name
+#                ).all()
+#
+#        teachers.extend(result)
+    arguments = request.args
     teachers = []
-    data = request.args
-    search = data.get('search', False)
+    search = False
+    subject = arguments.get('subject')
+    study_path = arguments.get('study_path')
+    subjects = [subject]
 
-    if search and len(data) == 1 or not data:
+    if subject is None and study_path is None: 
         teachers = Teacher.query.all()
+        
 
-    if data.getlist('hobbies'):
-        for hobby in data.getlist('hobbies'):
-            hobby: Hobby = Hobby.query.filter_by(name=hobby).first()
-            teachers.extend(hobby.teachers)
-
-    if data.getlist('achievements'):
-        for achievement in data.getlist('achievements'):
-            achievement: Achievement = Achievement.query.filter_by(name=achievement).first()
-            teachers.extend(achievement.teachers)
-
-    subjects = data.getlist('subjects')
-    if data.getlist('subjects'):
-        for subject in data.getlist('subjects'):
-            subject: Subject = Subject.query.filter_by(name=subject).first()
-            teachers.extend(subject.teachers)
-
-    if data.get('age'):
-        print(data.getlist('age'))
-        ages = list(map(int, data.getlist('age')))
-        print(ages)
-
-        teachers.extend(Teacher.query.filter(Teacher.students_class.in_(ages)).all())
-        print(teachers)
-
-    if data.getlist('tariff'):
-        filtered_by_tarrif = []
-        filter_params = data.getlist('tariff')
-        print(filter_params)
-        if '0' in filter_params:
-            print("Filtering by tariff <= 800")
-            filtered_by_tarrif = Teacher.query.filter(Teacher.tariff <= 800).all()
-        if '1' in filter_params:
-            filtered_by_tarrif = Teacher.query.filter(1200 > Teacher.tariff, Teacher.tariff > 800).all()
-        if '2' in filter_params:
-            filtered_by_tarrif = Teacher.query.filter(Teacher.tariff >= 1200).all()
-        print(filtered_by_tarrif)
-        teachers.extend(filtered_by_tarrif)
-
-    if data.get('names'):
-        names = data.get('names').split()
-        result = []
-        if len(names) == 1:
-            result = Teacher.query.filter(
-                names[0] == Teacher.surname
-            ).all()
-
-            if not result:
-                result = Teacher.query.filter(
-                    names[0] == Teacher.name
-                ).all()
-        if len(names) == 2:
-            result = Teacher.query.filter(
-                names[0] == Teacher.surname or names[1] == Teacher.name
-            ).all()
-            if not result:
-                result = Teacher.query.filter(
-                    names[1] == Teacher.surname or names[0] == Teacher.name
-                ).all()
-
-        teachers.extend(result)
+    else:
+        search = True
+        if subject == 'Социальные' or subject == 'Соц-гум':
+            subjects.extend(['История', 'Обществознание'])
+        if subject == 'Иностранные':
+            subjects.extend(['Немецкий', 'Французский'])
+        if subject == 'Другие':
+            subjects.extend(['Астрономия', "Право"])
+        if subject == 'Химбио':
+            subjects.extend(['Химия', 'Биология'])
+        if subject and study_path:
+            pass_subjects = Subject.query.filter(Subject.name.in_(subjects)).all()
+            for sub in pass_subjects:
+                for teacher in sub.teachers:
+                    print(teacher.study_path)
+                    if teacher.study_path == StudyPath[study_path]:
+                        teachers.append(teacher)
+        elif subject:
+            print(subjects)
+            pass_subjects = Subject.query.filter(Subject.name.in_(subjects)).all()
+            print(pass_subjects)
+            for sub in pass_subjects:
+                for teacher in sub.teachers:
+                    teachers.append(teacher)
+        elif study_path:
+            teachers = Teacher.query.filter_by(study_path=study_path).all()
+        else:
+            teachers = Teacher.query.all()
 
     teachers = list(set(teachers))
     if teachers:
         # teachers = sorted(teachers, key=lambda x: x.position)
         shuffle(teachers)
 
-    all_achievements = models.Achievement.query.filter(Achievement.enabled).all()
-    if Achievement(name='другие...') in all_achievements:
-        all_achievements = list(filter(lambda x: x.name != 'другие...', all_achievements))
-        all_achievements.append(models.Achievement(name='другие...'))
+#    all_achievements = models.Achievement.query.filter(Achievement.enabled).all()
+#    if Achievement(name='другие...') in all_achievements:
+#        all_achievements = list(filter(lambda x: x.name != 'другие...', all_achievements))
+#        all_achievements.append(models.Achievement(name='другие...'))
 
     # all_hobbies = models.Hobby.query.filter(Hobby.enabled).all()
     # if Hobby(name='другие...') in all_hobbies:
     #     all_hobbies = list(filter(lambda x: x.name != 'другие...', all_hobbies))
     #     all_hobbies.append(models.Hobby(name='другие...'))
-
+ 
     return render_template('main/teachers.html', teachers=teachers,
                            all_subjects=models.Subject.query.filter(Subject.enabled).all(),
-                           all_achievements=all_achievements, search=search, subjects=subjects, host=config.TEACHERS_HOST, bot_host=config.BOT_HOST)
+                           search=search, subject=subject, subjects=subjects, all_study_paths=list(StudyPath), study_path=study_path, host=config.TEACHERS_HOST, bot_host=config.BOT_HOST)
 
 
 @bp.route('/search_form', methods=['POST', 'GET'])
 def search_form():
     subject = request.args.get('subject')
     subjects = [subject]
+    study_path = request.args.get('study_path')
     if subject == 'Социальные' or subject == 'Соц-гум':
         subjects.extend(['История', 'Обществознание'])
     if subject == 'Иностранные':
@@ -126,10 +157,11 @@ def search_form():
     age = request.form.getlist('age')
     achievements = request.form.getlist('achievements')
     tariff = request.form.getlist('tariff')
+    
     # hobbies = request.form.get('hobbies')
     names = request.form.get('names')
     return redirect(url_for('main.teachers', subjects=subjects, age=age, achievements=achievements, tariff=tariff,
-                            names=names, search=True))
+                            names=names, search=True, study_path=study_path))
 
 
 # @bp.route('/')

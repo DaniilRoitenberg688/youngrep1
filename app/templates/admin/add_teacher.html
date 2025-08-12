@@ -69,6 +69,29 @@
                                 {% endif %}
                             {% endfor %}
                         </div>
+                        <div class="mb-3">
+                            <span>К чему готовите:</span><br>
+                            <span><strong>Тут должно быть выбрано хотя бы одно поле, иначе вас не будет видно на сайте</strong></span>
+
+                            {% for i in form.all_study_paths %}
+                                {% if i %}
+                                    <div class="form-check">
+                                    {% if loop.index != 1 %}
+                                        <input class="form-check-input" type="radio" name="study_paths" id="radio"
+
+                                               value="{{ i }}">
+
+                                    {% else %}
+                                        <input class="form-check-input" checked type="radio" name="study_paths" id="radio"
+                                               value="{{ i }}">
+                                    {% endif %}
+                                        <label class="form-check-label"
+                                               for="radio">{{i.value}}</label>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+
 
                         <div class="mb-3">
                             <span>Achievements</span><br>

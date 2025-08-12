@@ -9,6 +9,15 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from sqlalchemy.orm import validates
 from app import db, login
 
+from enum import Enum 
+
+class StudyPath(Enum):
+    all = "Все"
+    school = "Школа"
+    oge = 'ОГЭ'
+    olymps = "Олимпиады"
+
+
 
 @login.user_loader
 def load_user(id):
@@ -82,6 +91,8 @@ teacher_hobby = db.Table(
 )
 
 
+
+
 class Teacher(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(), nullable=True)
@@ -107,6 +118,8 @@ class Teacher(db.Model):
     hobbies = db.relationship(
         "Hobby", secondary=teacher_hobby, backref=db.backref("teachers")
     )
+
+    study_path = db.Column(db.Enum(StudyPath), default=StudyPath.all) 
 
     is_free = db.Column(db.Boolean, nullable=True, default=False)
 
