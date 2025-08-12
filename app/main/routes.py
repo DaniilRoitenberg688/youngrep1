@@ -1,3 +1,4 @@
+from random import shuffle
 from app.main import bp
 from flask import redirect, render_template, request, url_for, jsonify
 from app.models import Teacher, Hobby, Achievement, Subject, Page, Comment
@@ -92,7 +93,8 @@ def teachers():
 
     teachers = list(set(teachers))
     if teachers:
-        teachers = sorted(teachers, key=lambda x: x.position)
+        # teachers = sorted(teachers, key=lambda x: x.position)
+        shuffle(teachers)
 
     all_achievements = models.Achievement.query.filter(Achievement.enabled).all()
     if Achievement(name='другие...') in all_achievements:

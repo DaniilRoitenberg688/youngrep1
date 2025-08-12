@@ -26,10 +26,9 @@ class Note(BaseModel):
     student_name: str = Field(alias='studentName')
     teacher_id: str = Field(alias='teacherId')
     teacher_name: str = Field(alias='teacherName')
-    lesson_date: str = Field(alias='lessonDate')
-    lesson_time: str = Field(alias='lessonTime')
     telegram_username: str = Field(alias='telegramUsername')
     phone_number: str = Field(alias='phoneNumber')
+    contact_methods: list[str] = Field(alias='contactMethods')
     
     @field_validator('telegram_username', mode='before')
     @classmethod
@@ -48,10 +47,9 @@ async def send_not(note: Note):
         Новая заявка на пробное занятие
 ТГ: {note.telegram_username}
 Номер телефона: +{note.phone_number}
-ФИО ученика: {note.student_name}
+Как обращаться: {note.student_name}
 ФИО препода: {note.teacher_name}
-Время пробного занятия: {note.lesson_time}
-Дата пробного занятия: {note.lesson_date}
+Способы связи: {', '.join(note.contact_methods)}
         '''
     )
     return {"status": "ok"}

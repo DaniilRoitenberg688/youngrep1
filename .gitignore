@@ -9,4 +9,5 @@ teachers.db
 .flaskenv
 .env
 set_teacher_passwords.py
+pyrightconfig.json
 config.py
