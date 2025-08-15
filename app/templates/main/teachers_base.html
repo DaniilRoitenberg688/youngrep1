@@ -596,7 +596,8 @@
                     <form id="bookingForm" class="yr-popup-form">
                         <div class="yr-form-group">
                             <label for="studentName">Как к вам обращаться?</label>
-                            <input type="text" id="studentName" name="studentName" required placeholder="Екатерина">
+                            <input type="text" id="studentName" name="studentName" required
+                                   placeholder="Екатерина">
                             <span class="yr-input-line"></span>
                         </div>
 
@@ -620,7 +621,8 @@
 
                         <div class="yr-form-group">
                             <label for="telegramUsername">Ваш юзернейм в телеграмме (желательно):</label>
-                            <input type="text" id="telegramUsername" name="telegramUsername" placeholder="@durov">
+                            <input type="text" id="telegramUsername" name="telegramUsername"
+                                   placeholder="@durov">
                             <span class="yr-input-line"></span>
                         </div>
 
@@ -634,8 +636,7 @@
                                     <input type="checkbox" name="contactMethod" value="telegram" checked> Telegram
                                 </label>
                                 <label class="yr-checkbox-label">
-                                    <input type="checkbox" name="contactMethod" value="call" checked> Звонок по
-                                    вашему номеру
+                                    <input type="checkbox" name="contactMethod" value="call" checked> Звонок по вашему номеру
                                 </label>
                             </div>
                         </div>
@@ -648,9 +649,7 @@
             <div id="successMessage" class="yr-success-message">
                 <div class="yr-success-icon">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                                d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
-                                stroke="#4d1cca" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#4d1cca" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
                 <p>Ваша заявка принята, с Вами свяжется наш менеджер!</p>
@@ -687,9 +686,11 @@
                     background-color: rgba(0, 0, 0, 0.7);
                     z-index: 9999;
                     justify-content: center;
-                    align-items: center;
+                    align-items: flex-start;
                     opacity: 0;
                     transition: opacity 0.5s ease;
+                    overflow-y: auto;
+                    padding: 20px 0;
                 }
 
                 .yr-popup-overlay.active {
@@ -702,12 +703,23 @@
                     box-shadow: 0 8px 25px rgba(77, 28, 202, 0.3);
                     width: 100%;
                     max-width: 500px;
-                    padding: 30px;
+                    padding: 25px;
                     position: relative;
                     z-index: 10000;
                     transform: translateY(100%);
                     transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
                     border-top: 4px solid var(--main-color);
+                    margin: 20px auto;
+                    box-sizing: border-box;
+                }
+
+                @media (max-width: 600px) {
+                    .yr-popup-container {
+                        padding: 20px 15px;
+                        margin: 10px;
+                        max-height: 90vh;
+                        overflow-y: auto;
+                    }
                 }
 
                 .yr-popup-overlay.active .yr-popup-container {
@@ -722,16 +734,22 @@
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    margin-bottom: 25px;
+                    margin-bottom: 20px;
                 }
 
                 .yr-popup-header h2 {
                     margin: 0;
                     color: var(--main-color-dark);
-                    font-size: 28px;
+                    font-size: 22px;
                     font-weight: 700;
                     text-transform: uppercase;
                     letter-spacing: 1px;
+                }
+
+                @media (max-width: 600px) {
+                    .yr-popup-header h2 {
+                        font-size: 20px;
+                    }
                 }
 
                 .yr-popup-form {
@@ -740,8 +758,14 @@
                 }
 
                 .yr-form-group {
-                    margin-bottom: 25px;
+                    margin-bottom: 20px;
                     position: relative;
+                }
+
+                @media (max-width: 600px) {
+                    .yr-form-group {
+                        margin-bottom: 15px;
+                    }
                 }
 
                 .yr-form-group label {
@@ -751,6 +775,13 @@
                     color: #555;
                     font-size: 15px;
                     transition: all 0.3s ease;
+                }
+
+                @media (max-width: 600px) {
+                    .yr-form-group label {
+                        font-size: 14px;
+                        margin-bottom: 6px;
+                    }
                 }
 
                 .yr-form-group input {
@@ -764,6 +795,13 @@
                     font-family: 'Ubuntu', sans-serif;
                     border-bottom: 1px solid #ddd;
                     transition: border-color 0.3s ease;
+                }
+
+                @media (max-width: 600px) {
+                    .yr-form-group input {
+                        font-size: 15px;
+                        padding: 6px 0;
+                    }
                 }
 
                 .yr-form-group input::placeholder {
@@ -821,19 +859,27 @@
                 }
 
                 .yr-submit-btn {
-                    padding: 14px;
+                    padding: 12px;
                     background-color: var(--main-color);
                     color: white;
                     border: none;
                     border-radius: 0;
                     cursor: pointer;
                     font-size: 16px;
-                    margin-top: 20px;
+                    margin-top: 15px;
                     font-weight: 500;
                     transition: all 0.3s ease;
                     font-family: 'Ubuntu', sans-serif;
                     text-transform: uppercase;
                     letter-spacing: 1px;
+                }
+
+                @media (max-width: 600px) {
+                    .yr-submit-btn {
+                        padding: 10px;
+                        font-size: 15px;
+                        margin-top: 10px;
+                    }
                 }
 
                 .yr-submit-btn:hover {
@@ -849,55 +895,76 @@
                     left: 50%;
                     transform: translate(-50%, -50%);
                     background-color: white;
-                    padding: 30px 40px;
+                    padding: 25px 30px;
                     border-radius: 0;
                     box-shadow: 0 8px 25px rgba(77, 28, 202, 0.3);
                     z-index: 10001;
                     text-align: center;
                     font-family: 'Ubuntu', sans-serif;
                     border-top: 4px solid var(--main-color);
+                    width: 90%;
+                    max-width: 400px;
+                    box-sizing: border-box;
+                }
+
+                @media (max-width: 600px) {
+                    .yr-success-message {
+                        padding: 20px;
+                        width: 95%;
+                    }
                 }
 
                 .yr-success-icon {
-                    width: 60px;
-                    height: 60px;
-                    margin: 0 auto 20px;
+                    width: 50px;
+                    height: 50px;
+                    margin: 0 auto 15px;
                     animation: checkmark 0.6s ease;
                 }
 
-                @keyframes checkmark {
-                    0% {
-                        transform: scale(0);
-                        opacity: 0;
-                    }
-
-                    50% {
-                        transform: scale(1.2);
-                    }
-
-                    100% {
-                        transform: scale(1);
-                        opacity: 1;
+                @media (max-width: 600px) {
+                    .yr-success-icon {
+                        width: 40px;
+                        height: 40px;
                     }
                 }
 
+                @keyframes checkmark {
+                    0% { transform: scale(0); opacity: 0; }
+                    50% { transform: scale(1.2); }
+                    100% { transform: scale(1); opacity: 1; }
+                }
+
                 .yr-success-message p {
-                    margin: 0 0 25px 0;
-                    font-size: 18px;
+                    margin: 0 0 20px 0;
+                    font-size: 16px;
                     color: var(--main-color-dark);
                     font-weight: 500;
                 }
 
+                @media (max-width: 600px) {
+                    .yr-success-message p {
+                        font-size: 15px;
+                        margin-bottom: 15px;
+                    }
+                }
+
                 .yr-close-success-btn {
-                    padding: 10px 20px;
+                    padding: 8px 16px;
                     background-color: var(--main-color);
                     color: white;
                     border: none;
                     border-radius: 0;
                     cursor: pointer;
-                    font-size: 15px;
+                    font-size: 14px;
                     transition: all 0.3s ease;
                     font-family: 'Ubuntu', sans-serif;
+                }
+
+                @media (max-width: 600px) {
+                    .yr-close-success-btn {
+                        padding: 7px 14px;
+                        font-size: 13px;
+                    }
                 }
 
                 .yr-close-success-btn:hover {
@@ -913,32 +980,56 @@
                     left: 50%;
                     transform: translate(-50%, -50%);
                     background-color: white;
-                    padding: 30px 40px;
+                    padding: 25px 30px;
                     border-radius: 0;
                     box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
                     z-index: 10001;
                     text-align: center;
                     font-family: 'Ubuntu', sans-serif;
                     border-top: 4px solid var(--error-color);
+                    width: 90%;
+                    max-width: 400px;
+                    box-sizing: border-box;
+                }
+
+                @media (max-width: 600px) {
+                    .yr-error-message {
+                        padding: 20px;
+                        width: 95%;
+                    }
                 }
 
                 .yr-error-message p {
-                    margin: 0 0 25px 0;
-                    font-size: 18px;
+                    margin: 0 0 20px 0;
+                    font-size: 16px;
                     color: var(--error-color);
                     font-weight: 500;
                 }
 
+                @media (max-width: 600px) {
+                    .yr-error-message p {
+                        font-size: 15px;
+                        margin-bottom: 15px;
+                    }
+                }
+
                 .yr-close-error-btn {
-                    padding: 10px 20px;
+                    padding: 8px 16px;
                     background-color: var(--error-color);
                     color: white;
                     border: none;
                     border-radius: 0;
                     cursor: pointer;
-                    font-size: 15px;
+                    font-size: 14px;
                     transition: all 0.3s ease;
                     font-family: 'Ubuntu', sans-serif;
+                }
+
+                @media (max-width: 600px) {
+                    .yr-close-error-btn {
+                        padding: 7px 14px;
+                        font-size: 13px;
+                    }
                 }
 
                 .yr-close-error-btn:hover {
@@ -956,12 +1047,18 @@
                 .yr-close-popup-btn {
                     background: none;
                     border: none;
-                    font-size: 28px;
+                    font-size: 24px;
                     cursor: pointer;
                     color: var(--main-color-dark);
                     line-height: 1;
                     padding: 0;
                     transition: color 0.3s ease;
+                }
+
+                @media (max-width: 600px) {
+                    .yr-close-popup-btn {
+                        font-size: 22px;
+                    }
                 }
 
                 .yr-close-popup-btn:hover {
@@ -971,8 +1068,14 @@
                 .yr-contact-options {
                     display: flex;
                     flex-direction: column;
-                    gap: 10px;
-                    margin-top: 10px;
+                    gap: 8px;
+                    margin-top: 8px;
+                }
+
+                @media (max-width: 600px) {
+                    .yr-contact-options {
+                        gap: 6px;
+                    }
                 }
 
                 .yr-checkbox-label {
@@ -980,14 +1083,22 @@
                     align-items: center;
                     gap: 8px;
                     cursor: pointer;
-                    font-size: 15px;
+                    font-size: 14px;
                     color: #555;
+                }
+
+                @media (max-width: 600px) {
+                    .yr-checkbox-label {
+                        font-size: 13px;
+                        gap: 6px;
+                    }
                 }
 
                 .yr-checkbox-label input {
                     width: auto;
                     margin: 0;
                     cursor: pointer;
+                    transform: scale(1.1);
                 }
             </style>
 
@@ -1409,25 +1520,26 @@
     color: white;
     font-weight: bold;
     font-family: Arial, sans-serif;
-    font-size: 16px;
     pointer-events: none;
     text-align: center;
-    line-height: 1.1;
-    width: 90%;
-  ">
+    line-height: 1.4;
+  " class="heart-text">
                                                     Наши<br>отзывы
                                                 </div>
                                             </a>
                                         </div>
                                         <style>
                                             .heart {
-                                                width: 120px;
-                                                height: 120px;
-                                                transform: translateY(-15px);
+                                                width: 90px;
+                                                height: 90px;
+                                                transform: translateY(-10px);
                                             }
 
                                             .heart:hover {
-                                                transform: scale(1.05) translateY(-15px);
+                                                transform: scale(1.05) translateY(-10px);
+                                            }
+                                            .heart-text {
+                                                font-size: 13px;
                                             }
 
                                             @media (min-width: 768px) {
@@ -1440,6 +1552,9 @@
 
                                                 .heart:hover {
                                                     transform: scale(1.05) translateY(-25px);
+                                                }
+                                                .heart-text {
+                                                    font-size: 16px;
                                                 }
                                             }
                                         </style>
@@ -1549,7 +1664,7 @@
 
             <div class="t-cover__arrow">
                 <div class="t-cover__arrow-wrapper_animated" style="cursor: pointer;">
-                    <span style="font-family: Ubuntu; color: white; ">К каталогу</span>
+                    <span style="font-family: Ubuntu; color: white; ">К преподавателям</span>
                     <div class="" style="margin-top: 10px">
                         <a onclick="document.getElementById('fucking_teachers').scrollIntoView({behavior: 'smooth'});"
                            style="">
@@ -2129,15 +2244,9 @@
                     </div>
                     <div class="t1106__textwrapper t-align_left t-animate" data-animate-style="fadeinright"
                          data-animate-chain="yes">
-                        <div class="t1106__title t-name t-name_md" field="li_title__3596828002930">Зарегистрируйтесь
-                            в
-                            нашем Telegram боте
+                        <div class="t1106__title t-name t-name_md change-large-margin" field="li_title__3596828002930">Оставить заявку на сайте
                         </div>
-                        <div class="t1106__text t-text t-text_xs" field="li_descr__3596828002931">Сначала вы должны
-                            зарегистрироваться в нашем <a href="https://t.me/YoungRepBot"
-                                                          style="color: rgb(0, 148, 255); border-bottom-color: rgb(0, 148, 255); border-bottom-style: solid; box-shadow: none; text-decoration: none;"
-                                                          target="_blank">Telegram-боте</a>,
-                            затем с вами свяжется наш менеджер.
+                        <div class="t1106__text t-text t-text_xs " field="li_descr__3596828002931">Заполните заявку на первое занятие, и с вами, как можно быстрее, свяжется наш менеджер.
 
                         </div>
                     </div>
@@ -2201,11 +2310,7 @@
                         </div>
                         <div class="t1106__text t-text t-text_xs" field="li_descr__3596828002933">Если вам
                             понравилось
-                            занятие и общение с репетитором, то остаётся продлить обучение. Если же нет,
-                            поделитесь
-                            своими отзывами на наш <a href="mailto:youngrep6@gmail.com" target="_blank"
-                                                      rel="noreferrer noopener"
-                                                      style="color: rgb(66, 162, 0); border-bottom-color: rgb(0, 164, 30); border-bottom-style: solid; box-shadow: none; text-decoration: none;">email</a>
+                            занятие и общение с репетитором, то остаётся продлить обучение.
                         </div>
                     </div>
                 </div>

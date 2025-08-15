@@ -7,7 +7,8 @@ app.app_context().push()
 
 i: Teacher
 for i in Teacher.query.all():
-    i.study_path = StudyPath.all
+    if i.study_path == StudyPath.all:
+        i.study_path = StudyPath.school
 
 db.session.commit()
      

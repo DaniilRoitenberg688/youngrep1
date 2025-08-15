@@ -12,7 +12,6 @@ from app import db, login
 from enum import Enum 
 
 class StudyPath(Enum):
-    all = "Все"
     school = "Школа"
     oge = 'ОГЭ'
     olymps = "Олимпиады"
@@ -119,7 +118,7 @@ class Teacher(db.Model):
         "Hobby", secondary=teacher_hobby, backref=db.backref("teachers")
     )
 
-    study_path = db.Column(db.Enum(StudyPath), default=StudyPath.all) 
+    study_path = db.Column(db.Enum(StudyPath), default=StudyPath.school) 
 
     is_free = db.Column(db.Boolean, nullable=True, default=False)
 
