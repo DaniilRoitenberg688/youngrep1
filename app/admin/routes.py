@@ -194,7 +194,6 @@ def new_teacher():
             empty_hobby = Hobby.query.filter(Hobby.name == '').first()
             print(empty_hobby)
             teacher.hobbies.append(empty_hobby)
-            teacher.is_shown = False
         else:
             for i in hobbies_to_add:
                 hobby = Hobby.query.filter(Hobby.name == i).first()
@@ -218,7 +217,6 @@ def new_teacher():
             empty = Achievement.query.filter(Achievement.name == '').first()
             print(empty)
             teacher.achievements.append(empty)
-            teacher.is_shown = False
         else:
             for i in achievements_to_add:
                 achievement = Achievement.query.filter(Achievement.name == i).first()
@@ -295,7 +293,6 @@ def edit_teacher(id):
             empty_hobby = Hobby.query.filter(Hobby.name == '').first()
             print(empty_hobby)
             teacher.hobbies.append(empty_hobby)
-            teacher.is_shown = False
         else:
             for i in hobbies_to_add:
                 hobby = Hobby.query.filter(Hobby.name == i).first()
@@ -319,7 +316,6 @@ def edit_teacher(id):
             empty = Achievement.query.filter(Achievement.name == '').first()
             print(empty)
             teacher.achievements.append(empty)
-            teacher.is_shown = False
         else:
             for i in achievements_to_add:
                 achievement = Achievement.query.filter(Achievement.name == i).first()

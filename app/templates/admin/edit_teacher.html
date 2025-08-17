@@ -70,10 +70,10 @@
                                 {% if i.name %}
                                 <div class="form-check">
                                     {% if i.name in form.subjects %}
-                                        <input class="form-check-input" type="checkbox" name="subjects" id="radio"
+                                        <input class="form-check-input" type="radio" name="subjects" id="radio"
                                                value="{{ i.name }}" checked>
                                     {% else %}
-                                        <input class="form-check-input" type="checkbox" name="subjects" id="radio"
+                                        <input class="form-check-input" type="radio" name="subjects" id="radio"
                                                value="{{ i.name }}">
                                     {% endif %}
                                     <label class="form-check-label" for="radio">{{ i.name }}</label>
@@ -106,7 +106,7 @@
                         </div>
                         <div class="mb-3">
                             <span>Achievements</span><br>
-                            <span><strong>Тут должно быть выбрано хотя бы одно поле, иначе вас не будет видно на сайте</strong></span>
+    {#}                            <span><strong>Тут должно быть выбрано хотя бы одно поле, иначе вас не будет видно на сайте</strong></span> #}
                             {% for i in form.all_achievements %}
                                 {% if i.name %}
                                 <div class="form-check">
@@ -131,7 +131,7 @@
 
                         <div class="mb-3">
                             <span>Hobbies</span><br>
-                            <span><strong>Тут должно быть выбрано хотя бы одно поле, иначе вас не будет видно на сайте</strong></span>
+{#                            <span><strong>Тут должно быть выбрано хотя бы одно поле, иначе вас не будет видно на сайте</strong></span> #}
 
                             {% for i in form.all_hobbies %}
                                 {% if i.name %}
