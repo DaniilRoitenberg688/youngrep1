@@ -1019,7 +1019,245 @@
                 </div>
                 <div class="col-12 col-lg-1 separator"></div>
                 <div class="about" id="">
-                    <div class="mb-5">
+                    <div style="
+          font-family: &quot;Ubuntu&quot;, Arial, sans-serif;
+          max-width: 100%;
+          margin: 0 auto;
+          padding: 20px;
+          box-sizing: border-box;
+        ">
+                        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap"
+                              rel="stylesheet"/>
+
+                        <div style="
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: #333;
+          ">
+                            Калькулятор пакетов занятий
+                        </div>
+
+                        <div style="
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+          ">
+                            <!-- Пробное занятие -->
+                            <div class="thing" style="
+              max-width: 280px;
+              border-radius: 10px;
+              overflow: hidden;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+              background-color: #5400fe;
+            ">
+                                <div style="
+                color: white;
+                padding: 7px;
+                font-weight: 700;
+                font-size: 13px;
+                text-align: center;
+                letter-spacing: 0.5px;
+              ">
+                                    Пробное занятие
+                                </div>
+                                <div style="
+                border-top: 1px solid rgba(255, 255, 255, 0.3);
+                margin: 0 12px;
+              "></div>
+                                <div style="padding: 7px; text-align: center; color: white">
+                                    <div style="
+                  font-size: 22px;
+                  margin: 7px 0;
+                  font-weight: 500;
+                  line-height: 1.2;
+                ">
+                                        0₽
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 1 час -->
+                            <div class="thing" style="
+              max-width: 280px;
+              border-radius: 10px;
+              overflow: hidden;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+              background-color: #5400fe;
+            ">
+                                <div style="
+                color: white;
+                padding: 7px;
+                font-weight: 700;
+                font-size: 18px;
+                text-align: center;
+                letter-spacing: 0.5px;
+              ">
+                                    1 час
+                                </div>
+                                <div style="
+                border-top: 1px solid rgba(255, 255, 255, 0.3);
+                margin: 0 12px;
+              "></div>
+                                <div style="padding: 7px; color: white">
+                                    <div style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 5px;
+                  margin: 7px 0;
+                ">
+<!--                                        <input type="number" id="hourly-rate" placeholder="Цена" style="-->
+<!--                    width: 80px;-->
+<!--                    padding: 6px 10px;-->
+<!--                    border: 1px solid rgba(255, 255, 255, 0.3);-->
+<!--                    background: rgba(255, 255, 255, 0.1);-->
+<!--                    border-radius: 6px;-->
+<!--                    font-size: 20px;-->
+<!--                    box-sizing: border-box;-->
+<!--                    text-align: center;-->
+<!--                    color: white;-->
+<!--                    font-weight: 500;-->
+<!--                  "/>-->
+                                        <div style="
+                  font-size: 22px;
+                  margin: 7px 0;
+                  font-weight: 500;
+                  line-height: 1.2;
+                " id="one-hours-price">
+                                            {% set price = (teacher.tariff) | int %}
+                                            {{price}}₽
+                                        </div>
+<!--                                        <span style="font-size: 36px; font-weight: 500; line-height: 1.2">₽</span>-->
+                                    </div>
+                                    <div style="
+                  font-size: 11px;
+                  margin-top: 6px;
+                  text-align: center;
+                  opacity: 0.8;
+                ">
+                                        *Тариф репетитора
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 5 часов -->
+                            <div class="thing" style="
+              max-width: 280px;
+              border-radius: 10px;
+              overflow: hidden;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+              background-color: #5400fe;
+            ">
+                                <div style="
+                color: white;
+                padding: 7px;
+                font-weight: 700;
+                font-size: 18px;
+                text-align: center;
+                letter-spacing: 0.5px;
+              ">
+                                    5 часов
+                                </div>
+                                <div style="
+                border-top: 1px solid rgba(255, 255, 255, 0.3);
+                margin: 0 12px;
+              "></div>
+                                <div style="padding: 7px; text-align: center; color: white">
+                                    <div style="
+                  font-size: 22px;
+                  margin: 7px 0;
+                  font-weight: 500;
+                  line-height: 1.2;
+                " id="four-hours-price">
+                                        {% set price = (teacher.tariff * 5 * 0.9) | int %}
+                                        {{price}}₽
+                                    </div>
+                                    <div style="font-size: 11px; margin-top: 6px; opacity: 0.8" id="four-hours-hint">
+                                        0₽ × 90% × 5 = 0₽
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 12 часов -->
+                            <div class="thing" style="
+              max-width: 280px;
+              border-radius: 10px;
+              overflow: hidden;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+              background-color: #5400fe;
+            ">
+                                <div style="
+                color: white;
+                padding: 7px;
+                font-weight: 700;
+                font-size: 18px;
+                text-align:center;
+                letter-spacing: 0.5px;
+              ">
+                                    15 часов
+                                </div>
+                                <div style="
+                border-top: 1px solid rgba(255, 255, 255, 0.3);
+                margin: 0 12px;
+              "></div>
+                                <div style="padding: 5px; text-align: center; color: white">
+                                    <div style="
+                  font-size: 22px;
+                  margin: 7px 0;
+                  font-weight: 500;
+                  line-height: 1.2;
+                " id="twelve-hours-price">
+                                        {% set price2 = teacher.tariff * 15 * 0.8 | int %}
+                                        {{(teacher.tariff * 15 * 0.8) | int}}₽
+                                    </div>
+                                    <div style="font-size: 11px; margin-top: 6px; opacity: 0.8" id="twelve-hours-hint">
+                                        0₽ × 80% × 15 = 0₽
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script>
+                            document
+                            const rate = {{teacher.tariff}};
+                                .getElementById("hourly-rate")
+                                .addEventListener("input", function () {
+
+
+                                    // 4 hours
+                                    const fourHoursPrice = Math.round(rate * 0.9 * 5);
+                                    document.getElementById("four-hours-price").textContent =
+                                        fourHoursPrice + "₽";
+                                    document.getElementById("four-hours-hint").textContent =
+                                        rate + "₽ × 90% × 4 = " + fourHoursPrice + "₽";
+
+                                    // 12 hours
+                                    const twelveHoursPrice = Math.round(rate * 0.8 * 15);
+                                    document.getElementById("twelve-hours-price").textContent =
+                                        twelveHoursPrice + "₽";
+                                    document.getElementById("twelve-hours-hint").textContent =
+                                        rate + "₽ × 80% × 12 = " + twelveHoursPrice + "₽";
+                                });
+                        </script>
+                        <style>
+                            .thing {
+                                flex: 1 1 calc(50% - 20px);
+                                min-width: calc(50% - 20px);
+                            }
+
+                            /*@media (min-width: 768px) {*/
+                            /*    .thing {*/
+                            /*        flex: 1 1 220px;*/
+                            /*        min-width: 220px;*/
+                            /*    }*/
+                            /*}*/
+                        </style>
+                    </div>
+
+                    <div class="mb-5 about-text">
                         <h2 class="mb-3">Рассказ о себе:</h2>
                         <span class="fs-5 mb-5" style="white-space: pre-wrap;">{{ teacher.about_text }}</span>
                     </div>
@@ -1042,7 +1280,7 @@
             .info-text  * {
                 font-size: 95% !important;;
             }
-            .about * {
+            .about-text * {
                 font-size: 95% !important;
             }
 
@@ -1068,7 +1306,7 @@
                 .info-text  * {
                     font-size: 110% !important;;
                 }
-                .about * {
+                .about-text {
                     font-size: 110% !important;
                 }
                 .separator {
