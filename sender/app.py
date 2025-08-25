@@ -24,8 +24,9 @@ app.add_middleware(
 
 class Note(BaseModel):
     student_name: str = Field(alias='studentName')
-    teacher_id: str = Field(alias='teacherId')
-    teacher_name: str = Field(alias='teacherName')
+    teacher_id: str = Field(alias='subjectId')
+    teacher_name: str = Field(alias='subjectName')
+    lerning_request: str = Field(alias='learningRequest')
     telegram_username: str = Field(alias='telegramUsername')
     phone_number: str = Field(alias='phoneNumber')
     contact_methods: list[str] = Field(alias='contactMethods')
@@ -49,6 +50,43 @@ async def send_not(note: Note):
 Номер телефона: +{note.phone_number}
 Как обращаться: {note.student_name}
 ФИО препода: {note.teacher_name}
+Способы связи: {', '.join(note.contact_methods)}
+Проблемы: {note.lerning_request}
+        '''
+    )
+    return {"status": "ok"}
+
+
+
+
+
+class TeacherNote(BaseModel):
+    student_name: str = Field(alias='studentName')
+    teacher_id: str = Field(alias='teacherId')
+    teacher_name: str = Field(alias='teacherName')
+    telegram_username: str = Field(alias='telegramUsername')
+    phone_number: str = Field(alias='phoneNumber')
+    contact_methods: list[str] = Field(alias='contactMethods')
+    
+    @field_validator('telegram_username', mode='before')
+    @classmethod
+    def set_dog(cls, value: str) -> str:
+        if value[0] == '@':
+            return value
+        return '@' + value
+
+
+
+@app.post('/api/send_teacher_not')
+async def send_teacher_not(note: TeacherNote):
+    await bot.send_message(
+        chat_id=CHAT_ID, 
+        text = f'''
+Новая заявка на преподавание
+ТГ: {note.telegram_username}
+Номер телефона: +{note.phone_number}
+ФИО: {note.student_name}
+Предмет: {note.teacher_name}
 Способы связи: {', '.join(note.contact_methods)}
         '''
     )

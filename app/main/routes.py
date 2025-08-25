@@ -136,9 +136,10 @@ def teachers():
     #     all_hobbies = list(filter(lambda x: x.name != 'другие...', all_hobbies))
     #     all_hobbies.append(models.Hobby(name='другие...'))
  
+    replies=ParentReply.query.all()
     return render_template('main/teachers.html', teachers=teachers,
                            all_subjects=models.Subject.query.filter(Subject.enabled).all(),
-                           search=search, subject=subject, subjects=subjects, all_study_paths=list(StudyPath), study_path=study_path, host=config.TEACHERS_HOST, bot_host=config.BOT_HOST)
+                           search=search, subject=subject, subjects=subjects, all_study_paths=list(StudyPath), study_path=study_path, host=config.TEACHERS_HOST, bot_host=config.BOT_HOST, replies=replies)
 
 
 @bp.route('/search_form', methods=['POST', 'GET'])

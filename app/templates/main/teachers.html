@@ -272,11 +272,11 @@
                         {% if teacher.image %}
                         <img class="card-img-top img-fluid teacher-ico" style="object-fit: cover; flex: 0 0 auto"
                              src="/static/teachers_images/{{ teacher.image }}"
-                             onclick="location.href='/teacher_profile/{{ teacher.id }}'">
+                             >
                         {% else %}
                         <img class="card-img-top img-fluid teacher-ico" style="object-fit: cover; flex: 0 0 auto"
                              src="/static/images/empty_avatar.png"
-                             onclick="location.href='/teacher_profile/{{ teacher.id }}'">
+                             >
                         {% endif %}
                         {% if False %}
                         <div style="position: absolute; top: 0; right: 0" class="free-bm">
@@ -297,13 +297,255 @@
                         <div class="card-text fs-4 mt-3"><b>{% for i in teacher.subjects %}
                             {{ i.name }}<br>{% endfor %}</b></div>
                         <div class="card-text fs-4 mt-3"><b>{{teacher.study_path.value }}</b></div>
-                        <span style="  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden; width: auto" class="mt-3 mb-3">{{ teacher.achievements_text }}</span>
+<!--                        <span style="  display: -webkit-box;-->
+<!--  -webkit-line-clamp: 2;-->
+<!--  -webkit-box-orient: vertical;-->
+<!--  overflow: hidden; width: auto" class="mt-3 mb-3">{{ teacher.achievements_text }}</span>-->
 
+                        <div id="rec824409422" class="r t-rec t-rec_pt_0 t-rec_pb_15"
+                             style="padding-top: 0px; padding-bottom: 15px; background-color: white; margin-top: 15px" data-record-type="191"
+                             data-bg-color="#eeeeee">
+                            <!-- T142 -->
+                            <div class="t142">
+                                <div class="t-container_100" style="background-color: white">
+                                    <div class="t142__wrapone">
+                                        <div class="" style="margin-left: 0; margin-right: 0">
+                                            <a class="t-btn t142__submit t142__submit_size_lg t-animate"
+                                               data-animate-style="fadeinup" style="
+                                            color: #fffcfc;
+                                            border: 0px solid #eeeeee;
+                                            background-color: #ff2300;
+                                            border-radius: 10px;
+                                            -moz-border-radius: 10px;
+                                            -webkit-border-radius: 10px;
+                                            box-shadow: 0px 10px 40px -2px
+                                                rgba(0, 11, 48, 0.3);
+                                            padding-right: auto;
+                                            padding-left: auto;
+                                            width: 100%;
+                                            box-sizing: border-box;
+                                        " data-buttonfieldset="button" data-btneffects-first="btneffects-light"
+                                               onclick="location.href='/teacher_profile/{{ teacher.id }}'">
+                                                <span class="t142__text">Профиль
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                                t_onReady(function () {
+                                    t_onFuncLoad("t142_checkSize", function () {
+                                        t142_checkSize("824409422");
+                                    });
+                                });
+                                window.addEventListener("load", function () {
+                                    t_onFuncLoad("t142_checkSize", function () {
+                                        t142_checkSize("824409422");
+                                    });
+                                });
+                            </script>
+                            <style>
+                                @media (hover: hover),
+                                (min-width: 0\0
+                                ) {
+                                    #rec824409422 .t-btn:not(.t-animate_no-hover):hover {
+                                        background-color: #0077ff !important;
+                                    }
+
+                                    #rec824409422 .t-btn:not(.t-animate_no-hover):focus-visible {
+                                        background-color: #0077ff !important;
+                                    }
+
+                                    #rec824409422 .t-btn:not(.t-animate_no-hover) {
+                                        transition-property: background-color, color, border-color,
+                                        box-shadow;
+                                        transition-duration: 0.2s;
+                                        transition-timing-function: ease-in-out;
+                                    }
+                                }
+                            </style>
+                            <style>
+                                #rec824409422 .t-btn[data-btneffects-first],
+                                #rec824409422 .t-btn[data-btneffects-second],
+                                #rec824409422 .t-btn[data-btneffects-third],
+                                #rec824409422 .t-submit[data-btneffects-first],
+                                #rec824409422 .t-submit[data-btneffects-second],
+                                #rec824409422 .t-submit[data-btneffects-third] {
+                                    position: relative;
+                                    overflow: hidden;
+                                    isolation: isolate;
+                                }
+
+                                #rec824409422 .t-btn[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects,
+                                #rec824409422 .t-submit[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects {
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    width: 100%;
+                                    height: 100%;
+                                    -webkit-transform: translateX(-60px);
+                                    -ms-transform: translateX(-60px);
+                                    transform: translateX(-60px);
+                                    -webkit-animation-name: light;
+                                    animation-name: light;
+                                    -webkit-animation-duration: 4s;
+                                    animation-duration: 4s;
+                                    -webkit-animation-timing-function: ease;
+                                    animation-timing-function: ease;
+                                    -webkit-animation-iteration-count: infinite;
+                                    animation-iteration-count: infinite;
+                                }
+
+                                #rec824409422 .t-btn[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects_md,
+                                #rec824409422 .t-submit[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects_md {
+                                    -webkit-animation-name: light-md;
+                                    animation-name: light-md;
+                                }
+
+                                #rec824409422 .t-btn[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects_lg,
+                                #rec824409422 .t-submit[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects_lg {
+                                    -webkit-animation-name: light-lg;
+                                    animation-name: light-lg;
+                                }
+
+                                #rec824409422 .t-btn[data-btneffects-first="btneffects-light"] .t-btn_effects,
+                                #rec824409422 .t-submit[data-btneffects-first="btneffects-light"] .t-btn_effects {
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    width: 60px;
+                                    height: 100%;
+                                    background: -webkit-gradient(linear,
+                                    left top,
+                                    right top,
+                                    from(rgba(255, 255, 255, 1)),
+                                    color-stop(50%, rgba(255, 255, 255, 1)),
+                                    to(rgba(255, 255, 255, 1)));
+                                    background: -webkit-linear-gradient(left,
+                                    rgba(255, 255, 255, 0),
+                                    rgba(255, 255, 255, 1) 50%,
+                                    rgba(255, 255, 255, 1));
+                                    background: -o-linear-gradient(left,
+                                    rgba(255, 255, 255, 1),
+                                    rgba(255, 255, 255, 1) 50%,
+                                    rgba(255, 255, 255, 1));
+                                    background: linear-gradient(90deg,
+                                    rgba(255, 255, 255, 1),
+                                    rgba(255, 255, 255, 1) 50%,
+                                    rgba(255, 255, 255, 1));
+                                }
+
+                                @-webkit-keyframes light {
+                                    20% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
+
+                                    100% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
+                                }
+
+                                @keyframes light {
+                                    20% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
+
+                                    100% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
+                                }
+
+                                @-webkit-keyframes light-md {
+                                    30% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
+
+                                    100% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
+                                }
+
+                                @keyframes light-md {
+                                    30% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
+
+                                    100% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
+                                }
+
+                                @-webkit-keyframes light-lg {
+                                    40% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
+
+                                    100% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
+                                }
+
+                                @keyframes light-lg {
+                                    40% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
+
+                                    100% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
+                                }
+                            </style>
+                            <script>
+                                t_onReady(function () {
+                                    var rec = document.getElementById("rec824409422");
+                                    if (!rec) return;
+                                    var firstButton = rec.querySelectorAll(
+                                        ".t-btn[data-btneffects-first], .t-submit[data-btneffects-first]",
+                                    );
+                                    Array.prototype.forEach.call(
+                                        firstButton,
+                                        function (button) {
+                                            button.insertAdjacentHTML(
+                                                "beforeend",
+                                                '<div class="t-btn_wrap-effects"><div class="t-btn_effects"></div></div>',
+                                            );
+                                            var buttonEffect = button.querySelector(
+                                                ".t-btn_wrap-effects",
+                                            );
+                                            if (button.offsetWidth > 230) {
+                                                buttonEffect.classList.add(
+                                                    "t-btn_wrap-effects_md",
+                                                );
+                                            }
+                                            if (button.offsetWidth > 300) {
+                                                buttonEffect.classList.remove(
+                                                    "t-btn_wrap-effects_md",
+                                                );
+                                                buttonEffect.classList.add(
+                                                    "t-btn_wrap-effects_lg",
+                                                );
+                                            }
+                                        },
+                                    );
+                                });
+                            </script>
+                        </div>
                         <span class="card-text fs-4"><span class="fs-4">{{ teacher.tariff }}</span>₽/час
                         </span>
+
 <!--                        <div>-->
 <!--                            {% if teacher.feedback %}-->
 <!--                            {% for i in range(teacher.feedback) %}-->

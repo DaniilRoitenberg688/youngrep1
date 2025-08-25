@@ -712,7 +712,7 @@
             <div id="popupOverlay" class="yr-popup-overlay">
                 <div class="yr-popup-container">
                     <div class="yr-popup-header">
-                        <h2>ЗАПИСЬ НА ЗАНЯТИЕ</h2>
+                        <h2>Мы подберем вам преподавателя под ваши задачи.</h2>
                         <button id="closePopupBtn" class="yr-close-popup-btn">&times;</button>
                     </div>
                     <form id="bookingForm" class="yr-popup-form">
@@ -724,14 +724,22 @@
                         </div>
 
                         <div class="yr-form-group">
-                            <label for="teacherSearch">ФИО преподавателя:</label>
-                            <div class="yr-teacher-search-container">
-                                <input type="text" id="teacherSearch" name="teacherSearch"
-                                       placeholder="Начните вводить имя..." autocomplete="off">
+                            <label for="subjectSearch">Выберите предмет:</label>
+                            <div class="yr-subject-search-container">
+                                <input type="text" id="subjectSearch" name="subjectSearch" required
+                                       placeholder="Начните вводить название предмета..." autocomplete="off">
                                 <span class="yr-input-line"></span>
-                                <div id="teacherDropdown" class="yr-teacher-dropdown"></div>
+                                <div id="subjectDropdown" class="yr-subject-dropdown"></div>
                             </div>
-                            <input type="hidden" id="teacherId" name="teacherId">
+                            <input type="hidden" id="subjectId" name="subjectId">
+                        </div>
+
+                        <div class="yr-form-group">
+                            <label for="learningRequest">Опишите ваши проблемы и запрос от обучения (кратко):</label>
+                            <textarea id="learningRequest" name="learningRequest" required
+                                      placeholder="Например: подготовка к ЕГЭ, помощь с домашними заданиями, улучшение оценок..."
+                                      rows="3"></textarea>
+                            <span class="yr-textarea-line"></span>
                         </div>
 
                         <div class="yr-form-group">
@@ -864,13 +872,16 @@
                     color: var(--main-color-dark);
                     font-size: 22px;
                     font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
+                    text-align: center;
+                    line-height: 1.3;
+                    flex: 1;
+                    padding-right: 10px;
                 }
 
                 @media (max-width: 600px) {
                     .yr-popup-header h2 {
-                        font-size: 20px;
+                        font-size: 18px;
+                        padding-right: 5px;
                     }
                 }
 
@@ -906,7 +917,8 @@
                     }
                 }
 
-                .yr-form-group input {
+                .yr-form-group input,
+                .yr-form-group textarea {
                     width: 100%;
                     padding: 8px 0;
                     border: none;
@@ -917,26 +929,41 @@
                     font-family: 'Ubuntu', sans-serif;
                     border-bottom: 1px solid #ddd;
                     transition: border-color 0.3s ease;
+                    resize: none;
+                }
+
+                .yr-form-group textarea {
+                    min-height: 80px;
+                    padding: 8px 0;
+                    line-height: 1.4;
                 }
 
                 @media (max-width: 600px) {
-                    .yr-form-group input {
+                    .yr-form-group input,
+                    .yr-form-group textarea {
                         font-size: 15px;
                         padding: 6px 0;
                     }
+
+                    .yr-form-group textarea {
+                        min-height: 70px;
+                    }
                 }
 
-                .yr-form-group input::placeholder {
+                .yr-form-group input::placeholder,
+                .yr-form-group textarea::placeholder {
                     color: #aaa;
                     font-family: 'Ubuntu', sans-serif;
                 }
 
-                .yr-form-group input:focus {
+                .yr-form-group input:focus,
+                .yr-form-group textarea:focus {
                     outline: none;
                     border-color: transparent;
                 }
 
-                .yr-input-line {
+                .yr-input-line,
+                .yr-textarea-line {
                     position: absolute;
                     bottom: 0;
                     left: 0;
@@ -946,15 +973,16 @@
                     transition: width 0.4s ease;
                 }
 
-                .yr-form-group input:focus ~ .yr-input-line {
+                .yr-form-group input:focus ~ .yr-input-line,
+                .yr-form-group textarea:focus ~ .yr-textarea-line {
                     width: 100%;
                 }
 
-                .yr-teacher-search-container {
+                .yr-subject-search-container {
                     position: relative;
                 }
 
-                .yr-teacher-dropdown {
+                .yr-subject-dropdown {
                     display: none;
                     position: absolute;
                     top: 100%;
@@ -969,14 +997,14 @@
                     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
                 }
 
-                .yr-teacher-dropdown div {
+                .yr-subject-dropdown div {
                     padding: 10px;
                     cursor: pointer;
                     transition: background-color 0.2s;
                     font-family: 'Ubuntu', sans-serif;
                 }
 
-                .yr-teacher-dropdown div:hover {
+                .yr-subject-dropdown div:hover {
                     background-color: #f5f5f5;
                 }
 
@@ -1175,6 +1203,7 @@
                     line-height: 1;
                     padding: 0;
                     transition: color 0.3s ease;
+                    flex-shrink: 0;
                 }
 
                 @media (max-width: 600px) {
@@ -1235,7 +1264,7 @@
                     }, 10);
 
                     document.getElementById('bookingForm').reset();
-                    document.getElementById('teacherId').value = '';
+                    document.getElementById('subjectId').value = '';
 
                     // Устанавливаем все чекбоксы выбранными по умолчанию
                     const checkboxes = document.querySelectorAll('input[name="contactMethod"]');
@@ -1294,11 +1323,11 @@
                     const successMessage = document.getElementById('successMessage');
                     const closeSuccessBtn = document.getElementById('closeSuccessBtn');
                     const closeErrorBtn = document.getElementById('closeErrorBtn');
-                    const teacherSearch = document.getElementById('teacherSearch');
-                    const teacherDropdown = document.getElementById('teacherDropdown');
-                    const teacherIdInput = document.getElementById('teacherId');
                     const phoneInput = document.getElementById('phoneNumber');
                     const closePopupBtn = document.getElementById('closePopupBtn');
+                    const subjectSearch = document.getElementById('subjectSearch');
+                    const subjectDropdown = document.getElementById('subjectDropdown');
+                    const subjectIdInput = document.getElementById('subjectId');
 
                     closePopupBtn.addEventListener('click', closeYoungRepBookingPopup);
 
@@ -1318,78 +1347,86 @@
 
                     closeErrorBtn.addEventListener('click', closeError);
 
-                    teacherSearch.addEventListener('input', debounce(function (e) {
+                    // Загрузка предметов через API
+                    subjectSearch.addEventListener('input', debounce(function (e) {
                         const searchTerm = e.target.value.trim();
 
                         if (searchTerm.length < 2) {
-                            teacherDropdown.style.display = 'none';
+                            subjectDropdown.style.display = 'none';
                             return;
                         }
 
-                        fetch('{{host}}/api/teachers')
+                        fetch('{{host}}/api/subjects')  // Замените на ваш API endpoint для предметов
                             .then(response => {
                                 if (!response.ok) {
-                                    throw new Error('Ошибка загрузки списка преподавателей');
+                                    throw new Error('Ошибка загрузки списка предметов');
                                 }
                                 return response.json();
                             })
-                            .then(teachers => {
-                                if (!teachers || !Array.isArray(teachers)) {
-                                    throw new Error('Некорректный формат данных преподавателей');
+                            .then(subjects => {
+                                if (!subjects || !Array.isArray(subjects)) {
+                                    throw new Error('Некорректный формат данных предметов');
                                 }
 
-                                if (teachers.length === 0) {
-                                    teacherDropdown.innerHTML = '<div style="padding: 10px; color: #777;">Преподаватели не найдены</div>';
-                                    teacherDropdown.style.display = 'block';
+                                if (subjects.length === 0) {
+                                    subjectDropdown.innerHTML = '<div style="padding: 10px; color: #777;">Предметы не найдены</div>';
+                                    subjectDropdown.style.display = 'block';
                                     return;
                                 }
 
-                                const filteredTeachers = teachers.filter(teacher =>
-                                    teacher.name && teacher.name.toLowerCase().includes(searchTerm.toLowerCase())
+                                const filteredSubjects = subjects.filter(subject =>
+                                    subject.name && subject.name.toLowerCase().includes(searchTerm.toLowerCase())
                                 );
 
-                                teacherDropdown.innerHTML = '';
+                                subjectDropdown.innerHTML = '';
 
-                                if (filteredTeachers.length === 0) {
-                                    teacherDropdown.innerHTML = '<div style="padding: 10px; color: #777;">Преподаватели не найдены</div>';
-                                    teacherDropdown.style.display = 'block';
+                                if (filteredSubjects.length === 0) {
+                                    subjectDropdown.innerHTML = '<div style="padding: 10px; color: #777;">Предметы не найдены</div>';
+                                    subjectDropdown.style.display = 'block';
                                     return;
                                 }
 
-                                filteredTeachers.forEach(teacher => {
-                                    const teacherElement = document.createElement('div');
-                                    teacherElement.textContent = teacher.name;
-                                    teacherElement.dataset.id = teacher.id;
+                                filteredSubjects.forEach(subject => {
+                                    const subjectElement = document.createElement('div');
+                                    subjectElement.textContent = subject.name;
+                                    subjectElement.dataset.id = subject.id;
 
-                                    teacherElement.addEventListener('click', function () {
-                                        teacherSearch.value = teacher.name;
-                                        teacherIdInput.value = teacher.id;
-                                        teacherDropdown.style.display = 'none';
+                                    subjectElement.addEventListener('click', function () {
+                                        subjectSearch.value = subject.name;
+                                        subjectIdInput.value = subject.id;
+                                        subjectDropdown.style.display = 'none';
                                     });
 
-                                    teacherDropdown.appendChild(teacherElement);
+                                    subjectDropdown.appendChild(subjectElement);
                                 });
 
-                                teacherDropdown.style.display = 'block';
+                                subjectDropdown.style.display = 'block';
                             })
                             .catch(error => {
-                                console.error('Ошибка при загрузке преподавателей:', error);
-                                showError('Не удалось загрузить список преподавателей');
+                                console.error('Ошибка при загрузке предметов:', error);
+                                showError('Не удалось загрузить список предметов');
                             });
                     }, 300));
 
                     document.addEventListener('click', function (e) {
-                        if (e.target !== teacherSearch) {
-                            teacherDropdown.style.display = 'none';
+                        if (e.target !== subjectSearch) {
+                            subjectDropdown.style.display = 'none';
                         }
                     });
 
                     bookingForm.addEventListener('submit', function (e) {
                         e.preventDefault();
 
-                        if (!teacherIdInput.value) {
-                            showError('Пожалуйста, выберите преподавателя из списка');
-                            teacherSearch.focus();
+                        if (!subjectIdInput.value) {
+                            showError('Пожалуйста, выберите предмет из списка');
+                            subjectSearch.focus();
+                            return;
+                        }
+
+                        const learningRequest = document.getElementById('learningRequest').value;
+                        if (!learningRequest.trim()) {
+                            showError('Пожалуйста, опишите ваши проблемы и запрос от обучения');
+                            document.getElementById('learningRequest').focus();
                             return;
                         }
 
@@ -1413,8 +1450,9 @@
 
                         const formData = {
                             studentName: document.getElementById('studentName').value,
-                            teacherId: teacherIdInput.value,
-                            teacherName: teacherSearch.value,
+                            subjectId: subjectIdInput.value,
+                            subjectName: subjectSearch.value,
+                            learningRequest: learningRequest,
                             phoneNumber: cleanPhoneNumber,
                             telegramUsername: document.getElementById('telegramUsername').value,
                             contactMethods: contactMethods
@@ -1438,7 +1476,7 @@
                             })
                             .then(data => {
                                 bookingForm.reset();
-                                teacherIdInput.value = '';
+                                subjectIdInput.value = '';
                                 closeYoungRepBookingPopup();
                                 successMessage.style.display = 'block';
                             })
