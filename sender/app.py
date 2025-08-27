@@ -51,9 +51,9 @@ async def send_not(note: Note):
 ТГ: {note.telegram_username}
 Номер телефона: +{note.phone_number}
 Как обращаться: {note.student_name}
-Предмет: {note.teacher_name}
+{"Учитель" if not note.lerning_request else "Предмет"}: {note.teacher_name}
 Способы связи: {', '.join(note.contact_methods)}
-Проблемы: {note.lerning_request}
+{f"Проблемы:  {note.lerning_request}" if note.lerning_request else ""}
         '''
     )
     return {"status": "ok"}

@@ -1940,13 +1940,15 @@
                         }
 
                         const formData = {
-                            studentName: document.getElementById('studentName').value,
-                            teacherId: teacherIdInput.value,
-                            teacherName: teacherSearch.value,
-                            phoneNumber: cleanPhoneNumber,
-                            telegramUsername: document.getElementById('telegramUsername').value,
-                            contactMethods: contactMethods
+                            "studentName": document.getElementById('studentName').value,
+                            "subjectId": teacherIdInput.value,
+                            "subjectName": teacherSearch.value,
+                            "phoneNumber": cleanPhoneNumber,
+                            "telegramUsername": document.getElementById('telegramUsername').value,
+                            "contactMethods": contactMethods,
+                            "learningRequest": ""
                         };
+                        console.log(formData);
 
                         fetch('{{bot_host}}/api/send_not', {
                             method: 'POST',

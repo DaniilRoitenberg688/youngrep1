@@ -558,8 +558,8 @@ def edit_schedule(id):
 @bp.route('/change_visibility/<int:id>', methods=['POST'])
 def change_visibility(id):
     teacher = db.session.get(Teacher, id)
-    if teacher.subjects[0].name == '' or teacher.achievements[0].name == '' or teacher.hobbies[0].name == '':
-        return jsonify({'id': id, 'changed': False})
+#    if teacher.subjects[0].name == '' or teacher.achievements[0].name == '' or teacher.hobbies[0].name == '':
+#        return jsonify({'id': id, 'changed': False})
     teacher.is_shown = not teacher.is_shown
     if teacher.is_shown is None:
         teacher.is_shown = True
