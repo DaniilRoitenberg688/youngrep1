@@ -618,7 +618,7 @@
                             <div class="yr-form-group">
                                 <label for="learningRequest">Опишите ваши проблемы и запрос от обучения (кратко):</label>
                                 <textarea id="learningRequest" name="learningRequest" required
-                                          placeholder="Например: подготовка к ЕГЭ, помощь с домашними заданиями, улучшение оценок..."
+                                          placeholder="Например: подготовка к ОГЭ, помощь с домашними заданиями, улучшение оценок..."
                                           rows="3"></textarea>
                                 <span class="yr-textarea-line"></span>
                             </div>
@@ -1579,6 +1579,15 @@
                             <input type="hidden" id="yrbwTeacherId" name="teacherId">
                         </div>
 
+
+                        <div class="yr-form-group">
+                            <label for="desc">Рассказ о себе:</label>
+                            <textarea id="desc" name="desc" required
+                                      placeholder="Коротко расскажите о себе, своих знаниях и интересах …"
+                                      rows="3"></textarea>
+                            <span class="yr-textarea-line"></span>
+                        </div>
+
                         <div class="yr-form-group">
                             <label for="yrbwPhoneNumber">Номер телефона:</label>
                             <input type="tel" id="yrbwPhoneNumber" name="phoneNumber" required
@@ -2238,6 +2247,13 @@
                             return;
                         }
 
+                        const learningRequest = document.getElementById('desc').value;
+                        if (!learningRequest.trim()) {
+                            showError('Расскажите о себе!');
+                            document.getElementById('desc').focus();
+                            return;
+                        }
+
                         const phoneRegex = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
                         if (!phoneRegex.test(phoneInput.value)) {
                             showYrbwError('Пожалуйста, введите корректный номер телефона');
@@ -2258,6 +2274,7 @@
 
                         const formData = {
                             studentName: document.getElementById('yrbwStudentName').value,
+                            description: document.getElementById('desc').value,
                             teacherId: teacherIdInput.value,
                             teacherName: teacherSearch.value,
                             phoneNumber: cleanPhoneNumber,

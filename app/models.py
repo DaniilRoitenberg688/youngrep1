@@ -12,7 +12,7 @@ from app import db, login
 from enum import Enum 
 
 class StudyPath(Enum):
-    school = "Школа"
+    school = "Помощь со школой"
     oge = 'ОГЭ'
     olymps = "Олимпиады"
 

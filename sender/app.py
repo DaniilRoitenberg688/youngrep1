@@ -9,7 +9,9 @@ import os
 load_dotenv()
 
 CHAT_ID = os.environ.get('CHAT_ID') or ''
+TEACHERS_CHAT_ID = os.environ.get('TEACHERS_CHAT_ID') or CHAT_ID
 TOKEN = os.environ.get('TOKEN') or ''
+
 
 app = FastAPI()
 bot = Bot(token=TOKEN)
@@ -49,7 +51,7 @@ async def send_not(note: Note):
 ТГ: {note.telegram_username}
 Номер телефона: +{note.phone_number}
 Как обращаться: {note.student_name}
-ФИО препода: {note.teacher_name}
+Предмет: {note.teacher_name}
 Способы связи: {', '.join(note.contact_methods)}
 Проблемы: {note.lerning_request}
         '''
@@ -67,6 +69,7 @@ class TeacherNote(BaseModel):
     telegram_username: str = Field(alias='telegramUsername')
     phone_number: str = Field(alias='phoneNumber')
     contact_methods: list[str] = Field(alias='contactMethods')
+    description: str = Field()
     
     @field_validator('telegram_username', mode='before')
     @classmethod
@@ -80,7 +83,7 @@ class TeacherNote(BaseModel):
 @app.post('/api/send_teacher_not')
 async def send_teacher_not(note: TeacherNote):
     await bot.send_message(
-        chat_id=CHAT_ID, 
+        chat_id=TEACHERS_CHAT_ID, 
         text = f'''
 Новая заявка на преподавание
 ТГ: {note.telegram_username}
@@ -88,6 +91,7 @@ async def send_teacher_not(note: TeacherNote):
 ФИО: {note.student_name}
 Предмет: {note.teacher_name}
 Способы связи: {', '.join(note.contact_methods)}
+Рассказ о себе: {note.description}
         '''
     )
     return {"status": "ok"}
