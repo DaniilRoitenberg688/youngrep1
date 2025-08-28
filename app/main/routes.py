@@ -11,9 +11,6 @@ from config import config
 
 
 
-@bp.route('/back')
-def back():
-    return render_template("main/a.html")
 
 
 @bp.route('/')
