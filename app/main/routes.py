@@ -102,8 +102,8 @@ def teachers():
             subjects.extend(['Астрономия', "Право"])
         if subject == 'Хим-Био':
             subjects.extend(['Химия', 'Биология'])
-        if subject == 'Физ-Мат':
-            subjects.extend(['Математика', 'Физика'])
+        if subject.lower() == 'математика' or subject.lower == "физика":
+            subjects.extend(['Физ-Мат'])
         if subject and study_path:
             pass_subjects = Subject.query.filter(Subject.name.in_(subjects)).all()
             for sub in pass_subjects:
