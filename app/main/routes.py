@@ -10,6 +10,12 @@ from app.models import (Achievement, Comment, Hobby, Page, ParentReply, StudyPat
 from config import config
 
 
+
+@bp.route('/back')
+def back():
+    return render_template("main/a.html")
+
+
 @bp.route('/')
 def teachers():
     page = Page.query.filter_by(name='teacher').first()

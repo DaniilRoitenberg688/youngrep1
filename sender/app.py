@@ -1,3 +1,4 @@
+from asyncio import all_tasks
 from fastapi import FastAPI
 from aiogram import Bot
 from fastapi.middleware.cors import CORSMiddleware
@@ -32,6 +33,7 @@ class Note(BaseModel):
     telegram_username: str = Field(alias='telegramUsername')
     phone_number: str = Field(alias='phoneNumber')
     contact_methods: list[str] = Field(alias='contactMethods')
+    promocode: str | None = Field(alias='promoCode')
     
     @field_validator('telegram_username', mode='before')
     @classmethod
@@ -52,6 +54,7 @@ async def send_not(note: Note):
 Номер телефона: +{note.phone_number}
 Как обращаться: {note.student_name}
 {"Учитель" if not note.lerning_request else "Предмет"}: {note.teacher_name}
+Промик: {note.promocode}
 Способы связи: {', '.join(note.contact_methods)}
 {f"Проблемы:  {note.lerning_request}" if note.lerning_request else ""}
         '''

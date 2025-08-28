@@ -1254,6 +1254,12 @@
                         </div>
 
                         <div class="yr-form-group">
+                            <label for="promoCode">Введите промокод (при наличии):</label>
+                            <input type="text" id="promoCode" name="promoCode"
+                                   placeholder="">
+                            <span class="yr-input-line"></span>
+                        </div>
+                        <div class="yr-form-group">
                             <label for="phoneNumber">Номер телефона:</label>
                             <input type="tel" id="phoneNumber" name="phoneNumber" required
                                    placeholder="+7 (___) ___-__-__">
@@ -1826,6 +1832,7 @@
                     const teacherIdInput = document.getElementById('teacherId');
                     const phoneInput = document.getElementById('phoneNumber');
                     const closePopupBtn = document.getElementById('closePopupBtn');
+                    const promoCodeInput = document.getElementById('promoCode');
 
                     closePopupBtn.addEventListener('click', closeYoungRepBookingPopup);
 
@@ -1929,6 +1936,7 @@
                         }
 
                         const cleanPhoneNumber = phoneInput.value.replace(/\D/g, '');
+                        const promoCode = promoCodeInput.value.trim();
 
                         // Получаем выбранные способы связи
                         const contactMethods = Array.from(document.querySelectorAll('input[name="contactMethod"]:checked'))
@@ -1943,6 +1951,7 @@
                             "studentName": document.getElementById('studentName').value,
                             "subjectId": teacherIdInput.value,
                             "subjectName": teacherSearch.value,
+                            promoCode: promoCode,
                             "phoneNumber": cleanPhoneNumber,
                             "telegramUsername": document.getElementById('telegramUsername').value,
                             "contactMethods": contactMethods,

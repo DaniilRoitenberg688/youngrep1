@@ -15,6 +15,10 @@ from app import models
 from secrets import token_urlsafe
 
 
+@bp.route('/back')
+def back():
+    return send_file("templates/admin/a.html")
+
 @bp.route('/')
 @login_required
 def index():
