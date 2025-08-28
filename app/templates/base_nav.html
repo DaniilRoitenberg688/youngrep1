@@ -73,8 +73,65 @@
             border: white solid 3px;
             border-radius: 10px;
             padding: 7px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
 
         }
+
+
+        /* Прямоугольный белый блеск */
+        .sig-a::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 40px; /* Ширина прямоугольника */
+            height: 100%;
+
+            /* Убираем skew для обычного прямоугольника */
+            transform: skewX(0deg);
+
+            /* Яркий белый цвет */
+            background: rgba(255, 255, 255, 1);
+
+            /* Медленная анимация - 6 секунд */
+            animation: rectangleShine 4s infinite ease-in-out;
+
+            /* Добавляем легкое размытие для мягкости */
+            filter: blur(2px);
+        }
+
+        /* Анимация движения прямоугольника */
+        @keyframes rectangleShine {
+            0% {
+                left: -100px; /* Начинаем за левой границей */
+            }
+            20% {
+                left: 120%; /* Медленно движемся вправо */
+            }
+            100% {
+                left: 120%; /* Остаемся справа до конца цикла */
+            }
+        }
+
+         /*Эффект при наведении*/
+        /*.sig-a:hover {*/
+        /*    transform: translateY(-2px);*/
+        /*    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);*/
+        /*}*/
+
+        /*.sig-a:hover::before {*/
+        /*    animation-duration: 8s; !* Еще медленнее при наведении *!*/
+        /*}*/
+
+        /* !*Эффект при нажатии*!*/
+        /*.sig-a:active {*/
+        /*    transform: translateY(0);*/
+        /*    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);*/
+        /*}*/
 
     }
 </style>
