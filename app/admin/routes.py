@@ -15,9 +15,6 @@ from app import models
 from secrets import token_urlsafe
 
 
-@bp.route('/back')
-def back():
-    return send_file("templates/admin/a.html")
 
 @bp.route('/')
 @login_required
@@ -110,7 +107,7 @@ def login():
 @bp.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('main.index'))
+    return redirect(url_for('main.teachers'))
 
 @bp.route('/add_reply', methods=['POST', "GET"])
 @login_required
