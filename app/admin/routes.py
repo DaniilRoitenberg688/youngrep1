@@ -253,9 +253,11 @@ def new_teacher():
 @login_required
 def delete_teacher(id):
     teacher = db.session.get(Teacher, id)
+    user = User.query.filter_by(teacher_id=id).first()
     if teacher.image:
         os.remove(os.path.join(current_app.config['UPLOAD_PATH'], teacher.image))
     db.session.delete(teacher)
+    db.session.delete(user)
     db.session.commit()
     return redirect(url_for('admin.index'))
 
