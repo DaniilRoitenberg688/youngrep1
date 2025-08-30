@@ -97,16 +97,17 @@ def teachers():
 
     else:
         search = True
-        if subject == 'Социальные' or subject == 'Соц-гум':
-            subjects.extend(['История', 'Обществознание'])
-        if subject == 'Иностранные' or subject == 'Иностранный':
-            subjects.extend(['Немецкий', 'Французский'])
-        if subject == 'Другие':
-            subjects.extend(['Астрономия', "Право"])
-        if subject == 'Хим-Био':
-            subjects.extend(['Химия', 'Биология'])
-        if subject.lower() == 'математика' or subject.lower == "физика":
-            subjects.extend(['Физ-Мат'])
+        if subject is not None:
+            if subject == 'Социальные' or subject == 'Соц-гум':
+                subjects.extend(['История', 'Обществознание'])
+            if subject == 'Иностранные' or subject == 'Иностранный':
+                subjects.extend(['Немецкий', 'Французский'])
+            if subject == 'Другие':
+                subjects.extend(['Астрономия', "Право"])
+            if subject == 'Хим-Био':
+                subjects.extend(['Химия', 'Биология'])
+            if subject.lower() == 'математика' or subject.lower == "физика":
+                subjects.extend(['Физ-Мат'])
         if subject and study_path:
             pass_subjects = Subject.query.filter(Subject.name.in_(subjects)).all()
             for sub in pass_subjects:
