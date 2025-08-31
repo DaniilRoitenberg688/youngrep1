@@ -89,15 +89,19 @@
                             {% for i in form.all_study_paths %}
                                 {% if i %}
                                     <div class="form-check">
-                                    {% if i != form.study_path %}
-                                        <input class="form-check-input" type="radio" name="study_paths" id="radio"
-
+                                        {% if i.name == "oge" and form.is_oge %}
+                                        <input class="form-check-input" checked type="checkbox" name="study_paths" id="radio"
                                                value="{{ i }}">
-
-                                    {% else %}
-                                        <input class="form-check-input" checked type="radio" name="study_paths" id="radio"
+                                        {% elif i.name == "school" and form.is_school %}
+                                        <input class="form-check-input" checked type="checkbox" name="study_paths" id="radio"
                                                value="{{ i }}">
-                                    {% endif %}
+                                        {% elif i.name == "olymps" and form.is_olymps %}
+                                        <input class="form-check-input" checked type="checkbox" name="study_paths" id="radio"
+                                               value="{{ i }}">
+                                        {% else %}
+                                        <input class="form-check-input" type="checkbox" name="study_paths" id="radio"
+                                               value="{{ i }}">
+                                        {% endif %}
                                         <label class="form-check-label"
                                                for="radio">{{i.value}}</label>
                                     </div>

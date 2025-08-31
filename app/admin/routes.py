@@ -78,7 +78,6 @@ def index():
         
 
     teachers = list(set(teachers))
-    teachers = sorted(teachers, key=lambda x: x.position)
 
     return render_template('admin/index.html', title='Teachers', teachers=teachers,
                            all_subjects=models.Subject.query.filter(Subject.enabled).all(),
@@ -224,8 +223,17 @@ def new_teacher():
                 achievement.teachers
                 teacher.achievements.append(achievement)
 
-        study_path = request.form.get('study_paths', '')
-        teacher.study_path = StudyPath[study_path.split('.')[1]] 
+        study_path = request.form.getlist('study_paths') 
+        if not study_path:
+            teacher.is_school = True
+        else:
+            for i in study_path:
+                if "oge" in i:
+                    teacher.is_oge = True
+                if "school" in i:
+                    teacher.is_school = True
+                if "olymps" in i:
+                    teacher.is_olymps = True
 
         db.session.commit()
 
@@ -284,8 +292,18 @@ def edit_teacher(id):
         if not current_user.teacher:
             teacher.is_free = int(request.form.get('is_free', 0))
 
-        study_path = request.form.get('study_paths', '')
-        teacher.study_path = StudyPath[study_path.split('.')[1]] 
+        study_path = request.form.getlist('study_paths') 
+        if not study_path:
+            teacher.is_school = True
+        else:
+            for i in study_path:
+                if "oge" in i:
+                    teacher.is_oge = True
+                if "school" in i:
+                    teacher.is_school = True
+                if "olymps" in i:
+                    teacher.is_olymps = True
+
 
         teacher.subjects.clear()
         teacher.hobbies.clear()
@@ -356,6 +374,10 @@ def edit_teacher(id):
         form.is_free = teacher.is_free
 
         form.study_path = teacher.study_path
+
+        form.is_olymps = teacher.is_olymps
+        form.is_oge = teacher.is_oge
+        form.is_school = teacher.is_school
 
     return render_template('admin/edit_teacher.html', form=form, title='Edit teacher')
 

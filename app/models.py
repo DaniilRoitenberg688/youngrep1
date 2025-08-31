@@ -119,6 +119,9 @@ class Teacher(db.Model):
     )
 
     study_path = db.Column(db.Enum(StudyPath), default=StudyPath.school) 
+    is_school = db.Column(db.Boolean, default=False)
+    is_oge = db.Column(db.Boolean, default=False)
+    is_olymps = db.Column(db.Boolean, default=False)
 
     is_free = db.Column(db.Boolean, nullable=True, default=False)
 

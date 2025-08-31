@@ -76,17 +76,10 @@
                             {% for i in form.all_study_paths %}
                                 {% if i %}
                                     <div class="form-check">
-                                    {% if loop.index != 1 %}
-                                        <input class="form-check-input" type="radio" name="study_paths" id="radio"
-
+                                        <input class="form-check-input" type="checkbox" name="study_paths" id="path"
                                                value="{{ i }}">
-
-                                    {% else %}
-                                        <input class="form-check-input" checked type="radio" name="study_paths" id="radio"
-                                               value="{{ i }}">
-                                    {% endif %}
                                         <label class="form-check-label"
-                                               for="radio">{{i.value}}</label>
+                                               for="path">{{i.value}}</label>
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -96,7 +89,7 @@
                             <span>Achievements</span><br>
     {#                            <span><strong>Тут должно быть выбрано хотя бы одно поле, иначе вас не будет видно на сайте</strong></span>#}
 
-                               {% for i in form.all_achievements %}  
+                               {% for i in form.all_achievements %}
                                 {% if i.name %}
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="achievements" id="radio"
@@ -106,7 +99,7 @@
                                     </div>
                                 {% endif %}
                             {% endfor %}
-                        </div> 
+                        </div>
 
 
                         <div class="mb-5">
