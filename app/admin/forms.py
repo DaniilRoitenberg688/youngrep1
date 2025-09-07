@@ -62,6 +62,9 @@ class EditTeacherForm(AddTeacherForm):
     hobbies: list
     study_path: StudyPath 
     image_path: str
+    is_oge: bool
+    is_school: bool
+    is_olymps: bool
     submit = SubmitField("Edit")
 
 
