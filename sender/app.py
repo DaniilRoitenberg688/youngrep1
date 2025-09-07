@@ -30,7 +30,7 @@ class Note(BaseModel):
     teacher_id: str = Field(alias='subjectId')
     teacher_name: str = Field(alias='subjectName')
     lerning_request: str = Field(alias='learningRequest')
-    telegram_username: str = Field(alias='telegramUsername')
+    telegram_username: str | None = Field(alias='telegramUsername')
     phone_number: str = Field(alias='phoneNumber')
     contact_methods: list[str] = Field(alias='contactMethods')
     promocode: str | None = Field(alias='promoCode')
@@ -38,6 +38,8 @@ class Note(BaseModel):
     @field_validator('telegram_username', mode='before')
     @classmethod
     def set_dog(cls, value: str) -> str:
+        if not value:
+            return ''
         if value[0] == '@':
             return value
         return '@' + value
