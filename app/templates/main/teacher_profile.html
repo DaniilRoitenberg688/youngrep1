@@ -352,36 +352,13 @@
             <!-- T228 -->
             <div id="nav759491682marker"></div>
             <div id="nav759491682" class="t228 t228__positionabsolute"
-                 style="background-color: rgba(77, 28, 202, 0)" data-bgcolor-hex="#4d1cca"
+                 style="background-color: rgba(77, 28, 202, 0); height: 10px" data-bgcolor-hex="#4d1cca"
                  data-bgcolor-rgba="rgba(77,28,202,0.0)" data-navmarker="nav759491682marker" data-appearoffset=""
                  data-bgopacity-two="0" data-menushadow="" data-menushadow-css="" data-bgopacity="0.0"
                  data-bgcolor-rgba-afterscroll="rgba(77,28,202,0.0)" data-menu-items-align="center" data-menu="yes">
                 <div class="t228__maincontainer" style="transform: translateY(-25px)">
                     <div class="t228__padding40px"></div>
                     {% include 'base_nav.html' %}
-                    <div class="t228__rightside" style="height: 75px">
-                        <div class="t228__rightcontainer">
-                            <div class="t228__right_buttons">
-                                <div class="t228__right_buttons_wrap">
-                                    <div class="t228__right_buttons_but">
-                                        <a class="t-btn t-btn_md" style="
-                                                        color: #fffefe;
-                                                        background-color: #ff2300;
-                                                        border-radius: 5px;
-                                                        -moz-border-radius: 5px;
-                                                        -webkit-border-radius: 5px;
-                                                        box-shadow: 0px 10px
-                                                            40px -2px
-                                                            rgba(0, 11, 48, 0.3);
-                                                    " data-buttonfieldset="button"
-                                           onclick="openYoungRepBookingPopup()">
-                                            НАЧАТЬ ЗАНИМАТЬСЯ
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="t228__padding40px"></div>
                 </div>
@@ -710,51 +687,827 @@
     </header>
     <!--/header-->
 
+    <div id="youngRepBookingWidget">
+        <div id="popupOverlay" class="yr-popup-overlay">
+            <div class="yr-popup-container">
+                <div class="yr-popup-header">
+                    <h2>ЗАПИСЬ НА ЗАНЯТИЕ</h2>
+                    <button id="closePopupBtn" class="yr-close-popup-btn">&times;</button>
+                </div>
+                <form id="bookingForm" class="yr-popup-form">
+                    <div class="yr-form-group">
+                        <label for="studentName">Как к вам обращаться?</label>
+                        <input type="text" id="studentName" name="studentName" required
+                               placeholder="Екатерина">
+                        <span class="yr-input-line"></span>
+                    </div>
+
+                    <div class="yr-form-group">
+                        <label for="teacherSearch">ФИО преподавателя:</label>
+                        <div class="yr-teacher-search-container">
+                            <input type="text" id="teacherSearch" name="teacherSearch"
+                                   placeholder="Начните вводить имя..." autocomplete="off"
+                                   value="{{teacher.surname}} {{teacher.name}}">
+                            <span class="yr-input-line"></span>
+                            <div id="teacherDropdown" class="yr-teacher-dropdown"></div>
+                        </div>
+                        <input type="hidden" id="teacherId" name="teacherId" value="{{teacher.id}}">
+                    </div>
+
+                    <div class="yr-form-group">
+                        <label for="promoCode">Введите промокод (при наличии):</label>
+                        <input type="text" id="promoCode" name="promoCode"
+                               placeholder="">
+                        <span class="yr-input-line"></span>
+                    </div>
+                    <div class="yr-form-group">
+                        <label for="phoneNumber">Номер телефона:</label>
+                        <input type="tel" id="phoneNumber" name="phoneNumber" required
+                               placeholder="+7 (___) ___-__-__">
+                        <span class="yr-input-line"></span>
+                    </div>
+
+                    <div class="yr-form-group">
+                        <label for="telegramUsername">Ваш юзернейм в телеграмме (желательно):</label>
+                        <input type="text" id="telegramUsername" name="telegramUsername"
+                               placeholder="@durov">
+                        <span class="yr-input-line"></span>
+                    </div>
+
+                    <div class="yr-form-group">
+                        <label>Как нам с вами связаться?</label>
+                        <div class="yr-contact-options">
+                            <label class="yr-checkbox-label">
+                                <input type="checkbox" name="contactMethod" value="whatsapp" checked> WhatsApp
+                            </label>
+                            <label class="yr-checkbox-label">
+                                <input type="checkbox" name="contactMethod" value="telegram" checked> Telegram
+                            </label>
+                            <label class="yr-checkbox-label">
+                                <input type="checkbox" name="contactMethod" value="call" checked> Звонок по
+                                вашему номеру
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="yr-submit-btn">Отправить запрос</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="successMessage" class="yr-success-message">
+            <div class="yr-success-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                          stroke="#4d1cca" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <p>Ваша заявка принята, с Вами свяжется наш менеджер!</p>
+            <button id="closeSuccessBtn" class="yr-close-success-btn">Закрыть</button>
+        </div>
+
+        <div id="errorMessage" class="yr-error-message">
+            <p id="errorText">Произошла ошибка при отправке данных</p>
+            <button id="closeErrorBtn" class="yr-close-error-btn">Закрыть</button>
+        </div>
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+            :root {
+                --main-color: #4d1cca;
+                --main-color-light: #6d3ae6;
+                --main-color-dark: #3a14a0;
+                --error-color: #e74c3c;
+            }
+
+            #youngRepBookingWidget {
+                font-family: 'Ubuntu', sans-serif;
+                position: relative;
+            }
+
+            .yr-popup-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.7);
+                z-index: 9999;
+                justify-content: center;
+                align-items: flex-start;
+                opacity: 0;
+                transition: opacity 0.5s ease;
+                overflow-y: auto;
+                padding: 20px 0;
+            }
+
+            .yr-popup-overlay.active {
+                opacity: 1;
+            }
+
+            .yr-popup-container {
+                background-color: white;
+                border-radius: 0;
+                box-shadow: 0 8px 25px rgba(77, 28, 202, 0.3);
+                width: 100%;
+                max-width: 500px;
+                padding: 25px;
+                position: relative;
+                z-index: 10000;
+                transform: translateY(100%);
+                transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+                border-top: 4px solid var(--main-color);
+                margin: 20px auto;
+                box-sizing: border-box;
+            }
+
+            @media (max-width: 600px) {
+                .yr-popup-container {
+                    padding: 20px 15px;
+                    margin: 10px;
+                    max-height: 90vh;
+                    overflow-y: auto;
+                }
+            }
+
+            .yr-popup-overlay.active .yr-popup-container {
+                transform: translateY(0);
+            }
+
+            .yr-popup-overlay.closing .yr-popup-container {
+                transform: translateY(100%);
+            }
+
+            .yr-popup-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+
+            .yr-popup-header h2 {
+                margin: 0;
+                color: var(--main-color-dark);
+                font-size: 22px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            @media (max-width: 600px) {
+                .yr-popup-header h2 {
+                    font-size: 20px;
+                }
+            }
+
+            .yr-popup-form {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .yr-form-group {
+                margin-bottom: 20px;
+                position: relative;
+            }
+
+            @media (max-width: 600px) {
+                .yr-form-group {
+                    margin-bottom: 15px;
+                }
+            }
+
+            .yr-form-group label {
+                display: block;
+                margin-bottom: 8px;
+                font-weight: 500;
+                color: #555;
+                font-size: 15px;
+                transition: all 0.3s ease;
+            }
+
+            @media (max-width: 600px) {
+                .yr-form-group label {
+                    font-size: 14px;
+                    margin-bottom: 6px;
+                }
+            }
+
+            .yr-form-group input {
+                width: 100%;
+                padding: 8px 0;
+                border: none;
+                border-radius: 0;
+                font-size: 16px;
+                box-sizing: border-box;
+                background: transparent;
+                font-family: 'Ubuntu', sans-serif;
+                border-bottom: 1px solid #ddd;
+                transition: border-color 0.3s ease;
+            }
+
+            @media (max-width: 600px) {
+                .yr-form-group input {
+                    font-size: 15px;
+                    padding: 6px 0;
+                }
+            }
+
+            .yr-form-group input::placeholder {
+                color: #aaa;
+                font-family: 'Ubuntu', sans-serif;
+            }
+
+            .yr-form-group input:focus {
+                outline: none;
+                border-color: transparent;
+            }
+
+            .yr-input-line {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background-color: var(--main-color);
+                transition: width 0.4s ease;
+            }
+
+            .yr-form-group input:focus ~ .yr-input-line {
+                width: 100%;
+            }
+
+            .yr-teacher-search-container {
+                position: relative;
+            }
+
+            .yr-teacher-dropdown {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                max-height: 200px;
+                overflow-y: auto;
+                background-color: white;
+                border: 1px solid #ddd;
+                border-radius: 0 0 5px 5px;
+                z-index: 100;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .yr-teacher-dropdown div {
+                padding: 10px;
+                cursor: pointer;
+                transition: background-color 0.2s;
+                font-family: 'Ubuntu', sans-serif;
+            }
+
+            .yr-teacher-dropdown div:hover {
+                background-color: #f5f5f5;
+            }
+
+            .yr-submit-btn {
+                padding: 12px;
+                background-color: var(--main-color);
+                color: white;
+                border: none;
+                border-radius: 0;
+                cursor: pointer;
+                font-size: 16px;
+                margin-top: 15px;
+                font-weight: 500;
+                transition: all 0.3s ease;
+                font-family: 'Ubuntu', sans-serif;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            @media (max-width: 600px) {
+                .yr-submit-btn {
+                    padding: 10px;
+                    font-size: 15px;
+                    margin-top: 10px;
+                }
+            }
+
+            .yr-submit-btn:hover {
+                background-color: var(--main-color-dark);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(77, 28, 202, 0.3);
+            }
+
+            .yr-success-message {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: white;
+                padding: 25px 30px;
+                border-radius: 0;
+                box-shadow: 0 8px 25px rgba(77, 28, 202, 0.3);
+                z-index: 10001;
+                text-align: center;
+                font-family: 'Ubuntu', sans-serif;
+                border-top: 4px solid var(--main-color);
+                width: 90%;
+                max-width: 400px;
+                box-sizing: border-box;
+            }
+
+            @media (max-width: 600px) {
+                .yr-success-message {
+                    padding: 20px;
+                    width: 95%;
+                }
+            }
+
+            .yr-success-icon {
+                width: 50px;
+                height: 50px;
+                margin: 0 auto 15px;
+                animation: checkmark 0.6s ease;
+            }
+
+            @media (max-width: 600px) {
+                .yr-success-icon {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+
+            @keyframes checkmark {
+                0% {
+                    transform: scale(0);
+                    opacity: 0;
+                }
+                50% {
+                    transform: scale(1.2);
+                }
+                100% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+
+            .yr-success-message p {
+                margin: 0 0 20px 0;
+                font-size: 16px;
+                color: var(--main-color-dark);
+                font-weight: 500;
+            }
+
+            @media (max-width: 600px) {
+                .yr-success-message p {
+                    font-size: 15px;
+                    margin-bottom: 15px;
+                }
+            }
+
+            .yr-close-success-btn {
+                padding: 8px 16px;
+                background-color: var(--main-color);
+                color: white;
+                border: none;
+                border-radius: 0;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.3s ease;
+                font-family: 'Ubuntu', sans-serif;
+            }
+
+            @media (max-width: 600px) {
+                .yr-close-success-btn {
+                    padding: 7px 14px;
+                    font-size: 13px;
+                }
+            }
+
+            .yr-close-success-btn:hover {
+                background-color: var(--main-color-dark);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(77, 28, 202, 0.3);
+            }
+
+            .yr-error-message {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: white;
+                padding: 25px 30px;
+                border-radius: 0;
+                box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
+                z-index: 10001;
+                text-align: center;
+                font-family: 'Ubuntu', sans-serif;
+                border-top: 4px solid var(--error-color);
+                width: 90%;
+                max-width: 400px;
+                box-sizing: border-box;
+            }
+
+            @media (max-width: 600px) {
+                .yr-error-message {
+                    padding: 20px;
+                    width: 95%;
+                }
+            }
+
+            .yr-error-message p {
+                margin: 0 0 20px 0;
+                font-size: 16px;
+                color: var(--error-color);
+                font-weight: 500;
+            }
+
+            @media (max-width: 600px) {
+                .yr-error-message p {
+                    font-size: 15px;
+                    margin-bottom: 15px;
+                }
+            }
+
+            .yr-close-error-btn {
+                padding: 8px 16px;
+                background-color: var(--error-color);
+                color: white;
+                border: none;
+                border-radius: 0;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.3s ease;
+                font-family: 'Ubuntu', sans-serif;
+            }
+
+            @media (max-width: 600px) {
+                .yr-close-error-btn {
+                    padding: 7px 14px;
+                    font-size: 13px;
+                }
+            }
+
+            .yr-close-error-btn:hover {
+                background-color: #c0392b;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+            }
+
+            .yr-body-no-scroll {
+                overflow: hidden;
+                position: fixed;
+                width: 100%;
+            }
+
+            .yr-close-popup-btn {
+                background: none;
+                border: none;
+                font-size: 24px;
+                cursor: pointer;
+                color: var(--main-color-dark);
+                line-height: 1;
+                padding: 0;
+                transition: color 0.3s ease;
+            }
+
+            @media (max-width: 600px) {
+                .yr-close-popup-btn {
+                    font-size: 22px;
+                }
+            }
+
+            .yr-close-popup-btn:hover {
+                color: var(--main-color);
+            }
+
+            .yr-contact-options {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                margin-top: 8px;
+            }
+
+            @media (max-width: 600px) {
+                .yr-contact-options {
+                    gap: 6px;
+                }
+            }
+
+            .yr-checkbox-label {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                cursor: pointer;
+                font-size: 14px;
+                color: #555;
+            }
+
+            @media (max-width: 600px) {
+                .yr-checkbox-label {
+                    font-size: 13px;
+                    gap: 6px;
+                }
+            }
+
+            .yr-checkbox-label input {
+                width: auto;
+                margin: 0;
+                cursor: pointer;
+                transform: scale(1.1);
+            }
+        </style>
+        <script>
+            function openYoungRepBookingPopup() {
+                const popupOverlay = document.getElementById('popupOverlay');
+                popupOverlay.style.display = 'flex';
+                document.body.classList.add('yr-body-no-scroll');
+
+                setTimeout(() => {
+                    popupOverlay.classList.add('active');
+                }, 10);
+
+                document.getElementById('bookingForm').reset();
+
+                // Устанавливаем все чекбоксы выбранными по умолчанию
+                const checkboxes = document.querySelectorAll('input[name="contactMethod"]');
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = true;
+                });
+            }
+
+            function closeYoungRepBookingPopup() {
+                const popupOverlay = document.getElementById('popupOverlay');
+                popupOverlay.classList.remove('active');
+                popupOverlay.classList.add('closing');
+
+                setTimeout(() => {
+                    popupOverlay.style.display = 'none';
+                    popupOverlay.classList.remove('closing');
+                    document.body.classList.remove('yr-body-no-scroll');
+                }, 600);
+            }
+
+            function showError(message) {
+                const errorMessage = document.getElementById('errorMessage');
+                const errorText = document.getElementById('errorText');
+                errorText.textContent = message || 'Произошла ошибка при отправке данных';
+                errorMessage.style.display = 'block';
+            }
+
+            function closeError() {
+                document.getElementById('errorMessage').style.display = 'none';
+            }
+
+            function phoneMask(input) {
+                const matrix = '+7 (___) ___-__-__';
+                const def = matrix.replace(/\D/g, '');
+                let value = input.value.replace(/\D/g, '');
+                let i = 0;
+
+                if (def.length >= value.length) {
+                    value = def;
+                }
+
+                input.value = matrix.replace(/./g, function (a) {
+                    if (/[_\d]/.test(a) && i < value.length) {
+                        return value.charAt(i++);
+                    } else if (i >= value.length) {
+                        return '';
+                    } else {
+                        return a;
+                    }
+                });
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                const popupOverlay = document.getElementById('popupOverlay');
+                const bookingForm = document.getElementById('bookingForm');
+                const successMessage = document.getElementById('successMessage');
+                const closeSuccessBtn = document.getElementById('closeSuccessBtn');
+                const closeErrorBtn = document.getElementById('closeErrorBtn');
+                const teacherSearch = document.getElementById('teacherSearch');
+                const teacherDropdown = document.getElementById('teacherDropdown');
+                const teacherIdInput = document.getElementById('teacherId');
+                const phoneInput = document.getElementById('phoneNumber');
+                const closePopupBtn = document.getElementById('closePopupBtn');
+                const promoCodeInput = document.getElementById('promoCode');
+
+                closePopupBtn.addEventListener('click', closeYoungRepBookingPopup);
+
+                phoneInput.addEventListener('input', function () {
+                    phoneMask(this);
+                });
+
+                popupOverlay.addEventListener('click', function (e) {
+                    if (e.target === popupOverlay) {
+                        closeYoungRepBookingPopup();
+                    }
+                });
+
+                closeSuccessBtn.addEventListener('click', function () {
+                    successMessage.style.display = 'none';
+                });
+
+                closeErrorBtn.addEventListener('click', closeError);
+
+                teacherSearch.addEventListener('input', debounce(function (e) {
+                    const searchTerm = e.target.value.trim();
+
+                    if (searchTerm.length < 2) {
+                        teacherDropdown.style.display = 'none';
+                        return;
+                    }
+
+                    fetch('{{host}}/api/teachers')
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Ошибка загрузки списка преподавателей');
+                            }
+                            return response.json();
+                        })
+                        .then(teachers => {
+                            if (!teachers || !Array.isArray(teachers)) {
+                                throw new Error('Некорректный формат данных преподавателей');
+                            }
+
+                            if (teachers.length === 0) {
+                                teacherDropdown.innerHTML = '<div style="padding: 10px; color: #777;">Преподаватели не найдены</div>';
+                                teacherDropdown.style.display = 'block';
+                                return;
+                            }
+
+                            const filteredTeachers = teachers.filter(teacher =>
+                                teacher.name && teacher.name.toLowerCase().includes(searchTerm.toLowerCase())
+                            );
+
+                            teacherDropdown.innerHTML = '';
+
+                            if (filteredTeachers.length === 0) {
+                                teacherDropdown.innerHTML = '<div style="padding: 10px; color: #777;">Преподаватели не найдены</div>';
+                                teacherDropdown.style.display = 'block';
+                                return;
+                            }
+
+                            filteredTeachers.forEach(teacher => {
+                                const teacherElement = document.createElement('div');
+                                teacherElement.textContent = teacher.name;
+                                teacherElement.dataset.id = teacher.id;
+
+                                teacherElement.addEventListener('click', function () {
+                                    teacherSearch.value = teacher.name;
+                                    teacherIdInput.value = teacher.id;
+                                    teacherDropdown.style.display = 'none';
+                                });
+
+                                teacherDropdown.appendChild(teacherElement);
+                            });
+
+                            teacherDropdown.style.display = 'block';
+                        })
+                        .catch(error => {
+                            console.error('Ошибка при загрузке преподавателей:', error);
+                            showError('Не удалось загрузить список преподавателей');
+                        });
+                }, 300));
+
+                document.addEventListener('click', function (e) {
+                    if (e.target !== teacherSearch) {
+                        teacherDropdown.style.display = 'none';
+                    }
+                });
+
+                bookingForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    console.log(teacherIdInput.value)
+                    if (!teacherIdInput.value) {
+                        showError('Пожалуйста, выберите преподавателя из списка');
+                        teacherSearch.focus();
+                        return;
+                    }
+
+                    const phoneRegex = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
+                    if (!phoneRegex.test(phoneInput.value)) {
+                        showError('Пожалуйста, введите корректный номер телефона');
+                        phoneInput.focus();
+                        return;
+                    }
+
+                    const cleanPhoneNumber = phoneInput.value.replace(/\D/g, '');
+                    const promoCode = promoCodeInput.value.trim();
+
+                    // Получаем выбранные способы связи
+                    const contactMethods = Array.from(document.querySelectorAll('input[name="contactMethod"]:checked'))
+                        .map(checkbox => checkbox.value);
+
+                    if (contactMethods.length === 0) {
+                        showError('Пожалуйста, выберите хотя бы один способ связи');
+                        return;
+                    }
+
+                    const formData = {
+                        "studentName": document.getElementById('studentName').value,
+                        "subjectId": teacherIdInput.value,
+                        "subjectName": teacherSearch.value,
+                        promoCode: promoCode,
+                        "phoneNumber": cleanPhoneNumber,
+                        "telegramUsername": document.getElementById('telegramUsername').value,
+                        "contactMethods": contactMethods,
+                        "learningRequest": ""
+                    };
+                    console.log(formData);
+
+                    fetch('{{bot_host}}/api/send_not', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData)
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                return response.json();
+                            } else {
+                                return response.json().then(err => {
+                                    throw new Error(err.message || 'Ошибка сервера');
+                                });
+                            }
+                        })
+                        .then(data => {
+                            bookingForm.reset();
+                            teacherIdInput.value = '';
+                            closeYoungRepBookingPopup();
+                            successMessage.style.display = 'block';
+                        })
+                        .catch(error => {
+                            console.error('Ошибка при отправке данных:', error);
+                            showError(error.message || 'Произошла ошибка при отправке данных');
+                        });
+                });
+
+                function debounce(func, wait) {
+                    let timeout;
+                    return function () {
+                        const context = this, args = arguments;
+                        clearTimeout(timeout);
+                        timeout = setTimeout(function () {
+                            func.apply(context, args);
+                        }, wait);
+                    };
+                }
+            });
+        </script>
+    </div>
     <main class="" style="padding-left: 0">
         <div class="pb-lg-5 pt-lg-5" style="height: 0px; background-color: black"></div>
-        <div class="mx-lg-3 mb-5" style="font-family: 'Ubuntu">
-            <h1 class="fs-1 mb-4 mt-3 text-center">
-                {{ teacher.surname }} {{ teacher.name }}
-            </h1>
-            <div class="пtext-center text-lg-start mt-3 d-lg-inline-flex mx-lg-5 mx-1 all-data"
-                 style="padding-left: 0">
-                <div class=" info">
-                    <div class="mb-3">
-                        <div>
-                            {% if teacher.image %}
-                            <img class="teacher-image" style="
+        <div class="comp-vers">
+            <div class="mx-lg-3 mb-5" style="font-family: 'Ubuntu">
+                <h1 class="fs-1 mb-4 mt-3 text-center">
+                    {{ teacher.surname }} {{ teacher.name }}
+                </h1>
+                <div class="пtext-center text-lg-start mt-3 d-lg-inline-flex mx-lg-5 mx-1 all-data"
+                     style="padding-left: 0">
+                    <div class=" info">
+                        <div class="mb-3">
+                            <div>
+                                {% if teacher.image %}
+                                <img class="teacher-image" style="
                                         border-radius: 30px;
                                         object-fit: cover;
                                     " src="/static/teachers_images/{{ teacher.image }}"/>
-                            {% else %}
-                            <img class="teacher-image" style="
+                                {% else %}
+                                <img class="teacher-image" style="
                                         border-radius: 30px;
                                         object-fit: cover;
                                     " src="/static/images/empty_avatar.png"/>
-                            {% endif %}
-                        </div>
+                                {% endif %}
+                            </div>
 
-                        <!--                        {% if teacher.is_free %}-->
-                        <!--                        <div class="px-4 py-5 text-center ms-0 ms-lg-5 fs-5 mt-4 mt-lg-0 mb-0" style="-->
-                        <!--                                        border-radius: 30px;-->
-                        <!--                                        background-color: #4d1cca;-->
-                        <!--                                        color: white;-->
-                        <!--                                        height: 100%;-->
-                        <!--                                    ">-->
-                        <!--                            {{ text }}-->
-                        <!--                        </div>-->
-                        <!--                        {% endif %}-->
-                    </div>
-                    <div id="rec824409422" class="r t-rec t-rec_pt_0 t-rec_pb_15"
-                         style="padding-top: 0px; padding-bottom: 15px; background-color: white;" data-record-type="191"
-                         data-bg-color="#eeeeee">
-                        <!-- T142 -->
-                        <div class="t142">
-                            <div class="t-container_100" style="background-color: white">
-                                <div class="t142__wrapone">
-                                    <div class="t142__wraptwo">
-                                        <a class="t-btn t142__submit t142__submit_size_lg t-animate"
-                                           data-animate-style="fadeinup" style="
+                            <!--                        {% if teacher.is_free %}-->
+                            <!--                        <div class="px-4 py-5 text-center ms-0 ms-lg-5 fs-5 mt-4 mt-lg-0 mb-0" style="-->
+                            <!--                                        border-radius: 30px;-->
+                            <!--                                        background-color: #4d1cca;-->
+                            <!--                                        color: white;-->
+                            <!--                                        height: 100%;-->
+                            <!--                                    ">-->
+                            <!--                            {{ text }}-->
+                            <!--                        </div>-->
+                            <!--                        {% endif %}-->
+                        </div>
+                        <div id="rec824409422" class="r t-rec t-rec_pt_0 t-rec_pb_15"
+                             style="padding-top: 0px; padding-bottom: 15px; background-color: white;"
+                             data-record-type="191"
+                             data-bg-color="#eeeeee">
+                            <!-- T142 -->
+                            <div class="t142">
+                                <div class="t-container_100" style="background-color: white">
+                                    <div class="t142__wrapone">
+                                        <div class="t142__wraptwo">
+                                            <a class="t-btn t142__submit t142__submit_size_lg t-animate"
+                                               data-animate-style="fadeinup" style="
                                             color: #fffcfc;
                                             border: 0px solid #eeeeee;
                                             background-color: #ff2300;
@@ -764,1242 +1517,848 @@
                                             box-shadow: 0px 10px 40px -2px
                                                 rgba(0, 11, 48, 0.3);
                                         " data-buttonfieldset="button" data-btneffects-first="btneffects-light"
-                                           onclick="openYoungRepBookingPopup()">
+                                               onclick="openYoungRepBookingPopup()">
                                                 <span class="t142__text">Записаться на занятие
                                                 </span>
-                                        </a>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <script>
-                            t_onReady(function () {
-                                t_onFuncLoad("t142_checkSize", function () {
-                                    t142_checkSize("824409422");
+                            <script>
+                                t_onReady(function () {
+                                    t_onFuncLoad("t142_checkSize", function () {
+                                        t142_checkSize("824409422");
+                                    });
                                 });
-                            });
-                            window.addEventListener("load", function () {
-                                t_onFuncLoad("t142_checkSize", function () {
-                                    t142_checkSize("824409422");
+                                window.addEventListener("load", function () {
+                                    t_onFuncLoad("t142_checkSize", function () {
+                                        t142_checkSize("824409422");
+                                    });
                                 });
-                            });
-                        </script>
-                        <style>
-                            @media (hover: hover),
-                            (min-width: 0\0
-                            ) {
-                                #rec824409422 .t-btn:not(.t-animate_no-hover):hover {
-                                    background-color: #0077ff !important;
+                            </script>
+                            <style>
+                                @media (hover: hover),
+                                (min-width: 0\0
+                                ) {
+                                    #rec824409422 .t-btn:not(.t-animate_no-hover):hover {
+                                        background-color: #0077ff !important;
+                                    }
+
+                                    #rec824409422 .t-btn:not(.t-animate_no-hover):focus-visible {
+                                        background-color: #0077ff !important;
+                                    }
+
+                                    #rec824409422 .t-btn:not(.t-animate_no-hover) {
+                                        transition-property: background-color, color, border-color,
+                                        box-shadow;
+                                        transition-duration: 0.2s;
+                                        transition-timing-function: ease-in-out;
+                                    }
+                                }
+                            </style>
+                            <style>
+                                #rec824409422 .t-btn[data-btneffects-first],
+                                #rec824409422 .t-btn[data-btneffects-second],
+                                #rec824409422 .t-btn[data-btneffects-third],
+                                #rec824409422 .t-submit[data-btneffects-first],
+                                #rec824409422 .t-submit[data-btneffects-second],
+                                #rec824409422 .t-submit[data-btneffects-third] {
+                                    position: relative;
+                                    overflow: hidden;
+                                    isolation: isolate;
                                 }
 
-                                #rec824409422 .t-btn:not(.t-animate_no-hover):focus-visible {
-                                    background-color: #0077ff !important;
+                                #rec824409422 .t-btn[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects,
+                                #rec824409422 .t-submit[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects {
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    width: 100%;
+                                    height: 100%;
+                                    -webkit-transform: translateX(-60px);
+                                    -ms-transform: translateX(-60px);
+                                    transform: translateX(-60px);
+                                    -webkit-animation-name: light;
+                                    animation-name: light;
+                                    -webkit-animation-duration: 4s;
+                                    animation-duration: 4s;
+                                    -webkit-animation-timing-function: ease;
+                                    animation-timing-function: ease;
+                                    -webkit-animation-iteration-count: infinite;
+                                    animation-iteration-count: infinite;
                                 }
 
-                                #rec824409422 .t-btn:not(.t-animate_no-hover) {
-                                    transition-property: background-color, color, border-color,
-                                    box-shadow;
-                                    transition-duration: 0.2s;
-                                    transition-timing-function: ease-in-out;
-                                }
-                            }
-                        </style>
-                        <style>
-                            #rec824409422 .t-btn[data-btneffects-first],
-                            #rec824409422 .t-btn[data-btneffects-second],
-                            #rec824409422 .t-btn[data-btneffects-third],
-                            #rec824409422 .t-submit[data-btneffects-first],
-                            #rec824409422 .t-submit[data-btneffects-second],
-                            #rec824409422 .t-submit[data-btneffects-third] {
-                                position: relative;
-                                overflow: hidden;
-                                isolation: isolate;
-                            }
-
-                            #rec824409422 .t-btn[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects,
-                            #rec824409422 .t-submit[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects {
-                                position: absolute;
-                                top: 0;
-                                left: 0;
-                                width: 100%;
-                                height: 100%;
-                                -webkit-transform: translateX(-60px);
-                                -ms-transform: translateX(-60px);
-                                transform: translateX(-60px);
-                                -webkit-animation-name: light;
-                                animation-name: light;
-                                -webkit-animation-duration: 4s;
-                                animation-duration: 4s;
-                                -webkit-animation-timing-function: ease;
-                                animation-timing-function: ease;
-                                -webkit-animation-iteration-count: infinite;
-                                animation-iteration-count: infinite;
-                            }
-
-                            #rec824409422 .t-btn[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects_md,
-                            #rec824409422 .t-submit[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects_md {
-                                -webkit-animation-name: light-md;
-                                animation-name: light-md;
-                            }
-
-                            #rec824409422 .t-btn[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects_lg,
-                            #rec824409422 .t-submit[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects_lg {
-                                -webkit-animation-name: light-lg;
-                                animation-name: light-lg;
-                            }
-
-                            #rec824409422 .t-btn[data-btneffects-first="btneffects-light"] .t-btn_effects,
-                            #rec824409422 .t-submit[data-btneffects-first="btneffects-light"] .t-btn_effects {
-                                position: absolute;
-                                top: 0;
-                                left: 0;
-                                width: 60px;
-                                height: 100%;
-                                background: -webkit-gradient(linear,
-                                left top,
-                                right top,
-                                from(rgba(255, 255, 255, 1)),
-                                color-stop(50%, rgba(255, 255, 255, 1)),
-                                to(rgba(255, 255, 255, 1)));
-                                background: -webkit-linear-gradient(left,
-                                rgba(255, 255, 255, 0),
-                                rgba(255, 255, 255, 1) 50%,
-                                rgba(255, 255, 255, 1));
-                                background: -o-linear-gradient(left,
-                                rgba(255, 255, 255, 1),
-                                rgba(255, 255, 255, 1) 50%,
-                                rgba(255, 255, 255, 1));
-                                background: linear-gradient(90deg,
-                                rgba(255, 255, 255, 1),
-                                rgba(255, 255, 255, 1) 50%,
-                                rgba(255, 255, 255, 1));
-                            }
-
-                            @-webkit-keyframes light {
-                                20% {
-                                    -webkit-transform: translateX(100%);
-                                    transform: translateX(100%);
+                                #rec824409422 .t-btn[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects_md,
+                                #rec824409422 .t-submit[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects_md {
+                                    -webkit-animation-name: light-md;
+                                    animation-name: light-md;
                                 }
 
-                                100% {
-                                    -webkit-transform: translateX(100%);
-                                    transform: translateX(100%);
-                                }
-                            }
-
-                            @keyframes light {
-                                20% {
-                                    -webkit-transform: translateX(100%);
-                                    transform: translateX(100%);
+                                #rec824409422 .t-btn[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects_lg,
+                                #rec824409422 .t-submit[data-btneffects-first="btneffects-light"] .t-btn_wrap-effects_lg {
+                                    -webkit-animation-name: light-lg;
+                                    animation-name: light-lg;
                                 }
 
-                                100% {
-                                    -webkit-transform: translateX(100%);
-                                    transform: translateX(100%);
-                                }
-                            }
-
-                            @-webkit-keyframes light-md {
-                                30% {
-                                    -webkit-transform: translateX(100%);
-                                    transform: translateX(100%);
-                                }
-
-                                100% {
-                                    -webkit-transform: translateX(100%);
-                                    transform: translateX(100%);
-                                }
-                            }
-
-                            @keyframes light-md {
-                                30% {
-                                    -webkit-transform: translateX(100%);
-                                    transform: translateX(100%);
-                                }
-
-                                100% {
-                                    -webkit-transform: translateX(100%);
-                                    transform: translateX(100%);
-                                }
-                            }
-
-                            @-webkit-keyframes light-lg {
-                                40% {
-                                    -webkit-transform: translateX(100%);
-                                    transform: translateX(100%);
+                                #rec824409422 .t-btn[data-btneffects-first="btneffects-light"] .t-btn_effects,
+                                #rec824409422 .t-submit[data-btneffects-first="btneffects-light"] .t-btn_effects {
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    width: 60px;
+                                    height: 100%;
+                                    background: -webkit-gradient(linear,
+                                    left top,
+                                    right top,
+                                    from(rgba(255, 255, 255, 1)),
+                                    color-stop(50%, rgba(255, 255, 255, 1)),
+                                    to(rgba(255, 255, 255, 1)));
+                                    background: -webkit-linear-gradient(left,
+                                    rgba(255, 255, 255, 0),
+                                    rgba(255, 255, 255, 1) 50%,
+                                    rgba(255, 255, 255, 1));
+                                    background: -o-linear-gradient(left,
+                                    rgba(255, 255, 255, 1),
+                                    rgba(255, 255, 255, 1) 50%,
+                                    rgba(255, 255, 255, 1));
+                                    background: linear-gradient(90deg,
+                                    rgba(255, 255, 255, 1),
+                                    rgba(255, 255, 255, 1) 50%,
+                                    rgba(255, 255, 255, 1));
                                 }
 
-                                100% {
-                                    -webkit-transform: translateX(100%);
-                                    transform: translateX(100%);
-                                }
-                            }
+                                @-webkit-keyframes light {
+                                    20% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
 
-                            @keyframes light-lg {
-                                40% {
-                                    -webkit-transform: translateX(100%);
-                                    transform: translateX(100%);
+                                    100% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
                                 }
 
-                                100% {
-                                    -webkit-transform: translateX(100%);
-                                    transform: translateX(100%);
+                                @keyframes light {
+                                    20% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
+
+                                    100% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
                                 }
-                            }
-                        </style>
-                        <script>
-                            t_onReady(function () {
-                                var rec = document.getElementById("rec824409422");
-                                if (!rec) return;
-                                var firstButton = rec.querySelectorAll(
-                                    ".t-btn[data-btneffects-first], .t-submit[data-btneffects-first]",
-                                );
-                                Array.prototype.forEach.call(
-                                    firstButton,
-                                    function (button) {
-                                        button.insertAdjacentHTML(
-                                            "beforeend",
-                                            '<div class="t-btn_wrap-effects"><div class="t-btn_effects"></div></div>',
-                                        );
-                                        var buttonEffect = button.querySelector(
-                                            ".t-btn_wrap-effects",
-                                        );
-                                        if (button.offsetWidth > 230) {
-                                            buttonEffect.classList.add(
-                                                "t-btn_wrap-effects_md",
+
+                                @-webkit-keyframes light-md {
+                                    30% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
+
+                                    100% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
+                                }
+
+                                @keyframes light-md {
+                                    30% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
+
+                                    100% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
+                                }
+
+                                @-webkit-keyframes light-lg {
+                                    40% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
+
+                                    100% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
+                                }
+
+                                @keyframes light-lg {
+                                    40% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
+
+                                    100% {
+                                        -webkit-transform: translateX(100%);
+                                        transform: translateX(100%);
+                                    }
+                                }
+                            </style>
+                            <script>
+                                t_onReady(function () {
+                                    var rec = document.getElementById("rec824409422");
+                                    if (!rec) return;
+                                    var firstButton = rec.querySelectorAll(
+                                        ".t-btn[data-btneffects-first], .t-submit[data-btneffects-first]",
+                                    );
+                                    Array.prototype.forEach.call(
+                                        firstButton,
+                                        function (button) {
+                                            button.insertAdjacentHTML(
+                                                "beforeend",
+                                                '<div class="t-btn_wrap-effects"><div class="t-btn_effects"></div></div>',
                                             );
-                                        }
-                                        if (button.offsetWidth > 300) {
-                                            buttonEffect.classList.remove(
-                                                "t-btn_wrap-effects_md",
+                                            var buttonEffect = button.querySelector(
+                                                ".t-btn_wrap-effects",
                                             );
-                                            buttonEffect.classList.add(
-                                                "t-btn_wrap-effects_lg",
-                                            );
-                                        }
-                                    },
-                                );
-                            });
-                        </script>
-                    </div>
-                    <div class="pt-3 px-3 info-text" style="border-radius: 30px; background-color: #bbbbbb;">
-                        <h2 class="fs-2 mb-3 d-font" style="font-size: 50%">Общая информация:</h2>
-                        <div class="ps-3 pb-3">
-                            <h5 class="fs-5 mb-2">
-                                Предметы:
-                                <strong>{% for i in teacher.subjects %}
-                                    {{ i.name }}{% endfor %}</strong>
-                            </h5>
-                            <h5 class="fs-5 mb-2">
-                                Класс:
-                                <strong>{{ teacher.students_class
-                                    }}</strong>
-                            </h5>
-                            <h5 class="fs-5 mb-2">
-                                Область подготовки:
-                                <strong>{{ teacher.study_path.value
-                                    }}</strong>
-                            </h5>
-                            <h5 class="fs-5 mb-2">
-                                Достижения:
-                                <strong style="white-space: pre-wrap;">{{ teacher.achievements_text
-                                    }}</strong>
-                            </h5>
-                            <h5 class="fs-5 mb-2">
-                                Тариф:
-                                <strong>{{ teacher.tariff }}₽/ч</strong>
-                            </h5>
-                            <h5 class="fs-5 mb-2">
-                                Хобби:
-                                <strong style="white-space: pre-wrap;">{{ teacher.hobbies_text }}</strong>
-                            </h5>
+                                            if (button.offsetWidth > 230) {
+                                                buttonEffect.classList.add(
+                                                    "t-btn_wrap-effects_md",
+                                                );
+                                            }
+                                            if (button.offsetWidth > 300) {
+                                                buttonEffect.classList.remove(
+                                                    "t-btn_wrap-effects_md",
+                                                );
+                                                buttonEffect.classList.add(
+                                                    "t-btn_wrap-effects_lg",
+                                                );
+                                            }
+                                        },
+                                    );
+                                });
+                            </script>
                         </div>
+                        <div class="pt-3 px-3 info-text" style="border-radius: 30px; background-color: #bbbbbb;">
+                            <h2 class="fs-2 mb-3 d-font" style="font-size: 50%">Общая информация:</h2>
+                            <div class="ps-3 pb-3">
+                                <h5 class="fs-5 mb-2">
+                                    Предметы:
+                                    <strong>{% for i in teacher.subjects %}
+                                        {{ i.name }}{% endfor %}</strong>
+                                </h5>
+                                <h5 class="fs-5 mb-2">
+                                    Класс:
+                                    <strong>{{ teacher.students_class
+                                        }}</strong>
+                                </h5>
+                                <h5 class="fs-5 mb-2">
+                                    Область подготовки:
+                                    <strong>{{ teacher.study_path.value
+                                        }}</strong>
+                                </h5>
+                                <h5 class="fs-5 mb-2">
+                                    Достижения:
+                                    <strong style="white-space: pre-wrap;">{{ teacher.achievements_text
+                                        }}</strong>
+                                </h5>
+                                <h5 class="fs-5 mb-2">
+                                    Тариф:
+                                    <strong>{{ teacher.tariff }}₽/ч</strong>
+                                </h5>
+                                <h5 class="fs-5 mb-2">
+                                    Хобби:
+                                    <strong style="white-space: pre-wrap;">{{ teacher.hobbies_text }}</strong>
+                                </h5>
+                            </div>
+                        </div>
+
                     </div>
+                    <div class="col-12 col-lg-1 separator"></div>
+                    <div class="about" id="">
+                        <div style="font-family: &quot;Ubuntu&quot;, Arial, sans-serif;max-width: 100%;margin: 0 auto;box-sizing: border-box;">
+                            <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap"
+                                  rel="stylesheet"/>
 
-                </div>
-                <div class="col-12 col-lg-1 separator"></div>
-                <div class="about" id="">
-                    <div style="font-family: &quot;Ubuntu&quot;, Arial, sans-serif;max-width: 100%;margin: 0 auto;box-sizing: border-box;">
-                        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap"
-                              rel="stylesheet"/>
+                            <!--                        <div style="-->
+                            <!--            text-align: center;-->
+                            <!--            font-size: 28px;-->
+                            <!--            font-weight: bold;-->
+                            <!--            margin-bottom: 25px;-->
+                            <!--            color: #333;-->
+                            <!--          ">-->
+                            <!--                            Калькулятор пакетов занятий-->
+                            <!--                        </div>-->
 
-                        <!--                        <div style="-->
-                        <!--            text-align: center;-->
-                        <!--            font-size: 28px;-->
-                        <!--            font-weight: bold;-->
-                        <!--            margin-bottom: 25px;-->
-                        <!--            color: #333;-->
-                        <!--          ">-->
-                        <!--                            Калькулятор пакетов занятий-->
-                        <!--                        </div>-->
-
-                        <div style="display: flex;flex-wrap: wrap;gap: 15px;justify-content: center;">
-                            <!-- Пробное занятие -->
-                            <div class="thing"
-                                 style="max-width: 280px;border-radius: 10px;overflow: hidden;box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);background-color: #5400fe;">
-                                <div style="color: white;padding: 7px;font-weight: 700;font-size: 11px;text-align: center;letter-spacing: 0.5px;">
-                                    Пробное занятие
-                                </div>
-                                <div style="border-top: 1px solid rgba(255, 255, 255, 0.3);margin: 0 12px;"></div>
-                                <div style="padding: 7px; text-align: center; color: white">
-                                    <div style="font-size: 22px;margin: 7px 0;font-weight: 500;line-height: 1.2;">
-                                        0₽
+                            <div style="display: flex;flex-wrap: wrap;gap: 15px;justify-content: center;">
+                                <!-- Пробное занятие -->
+                                <div class="thing"
+                                     style="max-width: 280px;border-radius: 10px;overflow: hidden;box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);background-color: #5400fe;">
+                                    <div style="color: white;padding: 7px;font-weight: 700;font-size: 11px;text-align: center;letter-spacing: 0.5px;">
+                                        Пробное занятие
+                                    </div>
+                                    <div style="border-top: 1px solid rgba(255, 255, 255, 0.3);margin: 0 12px;"></div>
+                                    <div style="padding: 7px; text-align: center; color: white">
+                                        <div style="font-size: 22px;margin: 7px 0;font-weight: 500;line-height: 1.2;">
+                                            0₽
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <!-- 1 час -->
-                            <div class="thing"
-                                 style="max-width: 280px;border-radius: 10px;overflow: hidden;box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);background-color: #5400fe;">
-                                <div style="color: white;padding: 7px;font-weight: 700;font-size: 15px;text-align: center;letter-spacing: 0.5px;">
-                                    1 час
+                                <!-- 1 час -->
+                                <div class="thing"
+                                     style="max-width: 280px;border-radius: 10px;overflow: hidden;box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);background-color: #5400fe;">
+                                    <div style="color: white;padding: 7px;font-weight: 700;font-size: 15px;text-align: center;letter-spacing: 0.5px;">
+                                        1 час
+                                    </div>
+                                    <div style="border-top: 1px solid rgba(255, 255, 255, 0.3);margin: 0 12px;"></div>
+                                    <div style="padding: 7px; color: white">
+                                        <div style="display: flex;align-items: center;justify-content: center;gap: 5px;margin: 7px 0;">
+                                            <!--                                        <input type="number" id="hourly-rate" placeholder="Цена" style="-->
+                                            <!--                    width: 80px;-->
+                                            <!--                    padding: 6px 10px;-->
+                                            <!--                    border: 1px solid rgba(255, 255, 255, 0.3);-->
+                                            <!--                    background: rgba(255, 255, 255, 0.1);-->
+                                            <!--                    border-radius: 6px;-->
+                                            <!--                    font-size: 20px;-->
+                                            <!--                    box-sizing: border-box;-->
+                                            <!--                    text-align: center;-->
+                                            <!--                    color: white;-->
+                                            <!--                    font-weight: 500;-->
+                                            <!--                  "/>-->
+                                            <div style="font-size: 15px;margin: 7px 0;font-weight: 500;line-height: 1.2;"
+                                                 id="one-hours-price">
+                                                {% set price = (teacher.tariff) | int %}
+                                                {{price}}₽
+                                            </div>
+                                            <!--                                        <span style="font-size: 36px; font-weight: 500; line-height: 1.2">₽</span>-->
+                                        </div>
+                                        <div style="font-size: 9px;margin-top: 6px;text-align: center;opacity: 0.8;">
+                                            *Тариф репетитора
+                                        </div>
+                                    </div>
                                 </div>
-                                <div style="border-top: 1px solid rgba(255, 255, 255, 0.3);margin: 0 12px;"></div>
-                                <div style="padding: 7px; color: white">
-                                    <div style="display: flex;align-items: center;justify-content: center;gap: 5px;margin: 7px 0;">
-                                        <!--                                        <input type="number" id="hourly-rate" placeholder="Цена" style="-->
-                                        <!--                    width: 80px;-->
-                                        <!--                    padding: 6px 10px;-->
-                                        <!--                    border: 1px solid rgba(255, 255, 255, 0.3);-->
-                                        <!--                    background: rgba(255, 255, 255, 0.1);-->
-                                        <!--                    border-radius: 6px;-->
-                                        <!--                    font-size: 20px;-->
-                                        <!--                    box-sizing: border-box;-->
-                                        <!--                    text-align: center;-->
-                                        <!--                    color: white;-->
-                                        <!--                    font-weight: 500;-->
-                                        <!--                  "/>-->
+
+                                <!-- 5 часов -->
+                                <div class="thing"
+                                     style="max-width: 280px;border-radius: 10px;overflow: hidden;box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);background-color: #5400fe;">
+                                    <div style="color: white;padding: 7px;font-weight: 700;font-size: 15px;text-align: center;letter-spacing: 0.5px;
+              ">
+                                        5 часов
+                                    </div>
+                                    <div style="border-top: 1px solid rgba(255, 255, 255, 0.3);margin: 0 12px;"></div>
+                                    <div style="padding: 7px; text-align: center; color: white">
                                         <div style="font-size: 15px;margin: 7px 0;font-weight: 500;line-height: 1.2;"
-                                             id="one-hours-price">
-                                            {% set price = (teacher.tariff) | int %}
+                                             id="four-hours-price">
+                                            {% set price = (teacher.tariff * 5 * 0.9) | int %}
                                             {{price}}₽
                                         </div>
-                                        <!--                                        <span style="font-size: 36px; font-weight: 500; line-height: 1.2">₽</span>-->
+                                        <div style="font-size: 9px; margin-top: 6px; opacity: 0.8" id="four-hours-hint">
+                                            0₽ × 90% × 5 = 0₽
+                                        </div>
                                     </div>
-                                    <div style="font-size: 9px;margin-top: 6px;text-align: center;opacity: 0.8;">
-                                        *Тариф репетитора
+                                </div>
+
+                                <!-- 12 часов -->
+                                <div class="thing"
+                                     style="max-width: 280px;border-radius: 10px;overflow: hidden;box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);background-color: #5400fe;">
+                                    <div style="color: white;padding: 7px;font-weight: 700;font-size: 15px;text-align:center;letter-spacing: 0.5px;">
+                                        15 часов
+                                    </div>
+                                    <div style="border-top: 1px solid rgba(255, 255, 255, 0.3);margin: 0 12px;"></div>
+                                    <div style="padding: 5px; text-align: center; color: white">
+                                        <div style="font-size: 15px;margin: 7px 0;font-weight: 500;line-height: 1.2;"
+                                             id="twelve-hours-price">
+                                            {% set price2 = teacher.tariff * 15 * 0.8 | int %}
+                                            {{(teacher.tariff * 15 * 0.8) | int}}₽
+                                        </div>
+                                        <div style="font-size: 9px; margin-top: 6px; opacity: 0.8"
+                                             id="twelve-hours-hint">
+                                            0₽ × 80% × 15 = 0₽
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- 5 часов -->
-                            <div class="thing"
-                                 style="max-width: 280px;border-radius: 10px;overflow: hidden;box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);background-color: #5400fe;">
-                                <div style="color: white;padding: 7px;font-weight: 700;font-size: 15px;text-align: center;letter-spacing: 0.5px;
-              ">
-                                    5 часов
-                                </div>
-                                <div style="border-top: 1px solid rgba(255, 255, 255, 0.3);margin: 0 12px;"></div>
-                                <div style="padding: 7px; text-align: center; color: white">
-                                    <div style="font-size: 15px;margin: 7px 0;font-weight: 500;line-height: 1.2;"
-                                         id="four-hours-price">
-                                        {% set price = (teacher.tariff * 5 * 0.9) | int %}
-                                        {{price}}₽
-                                    </div>
-                                    <div style="font-size: 9px; margin-top: 6px; opacity: 0.8" id="four-hours-hint">
-                                        0₽ × 90% × 5 = 0₽
-                                    </div>
-                                </div>
-                            </div>
+                            <script>
+                                document
+                                const rate = {
+                                {
+                                    teacher.tariff
+                                }
+                                }
+                                ;
+                                .getElementById("hourly-rate")
+                                    .addEventListener("input", function () {
 
-                            <!-- 12 часов -->
-                            <div class="thing"
-                                 style="max-width: 280px;border-radius: 10px;overflow: hidden;box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);background-color: #5400fe;">
-                                <div style="color: white;padding: 7px;font-weight: 700;font-size: 15px;text-align:center;letter-spacing: 0.5px;">
-                                    15 часов
-                                </div>
-                                <div style="border-top: 1px solid rgba(255, 255, 255, 0.3);margin: 0 12px;"></div>
-                                <div style="padding: 5px; text-align: center; color: white">
-                                    <div style="font-size: 15px;margin: 7px 0;font-weight: 500;line-height: 1.2;"
-                                         id="twelve-hours-price">
-                                        {% set price2 = teacher.tariff * 15 * 0.8 | int %}
-                                        {{(teacher.tariff * 15 * 0.8) | int}}₽
-                                    </div>
-                                    <div style="font-size: 9px; margin-top: 6px; opacity: 0.8" id="twelve-hours-hint">
-                                        0₽ × 80% × 15 = 0₽
-                                    </div>
-                                </div>
-                            </div>
+
+                                        // 4 hours
+                                        const fourHoursPrice = Math.round(rate * 0.9 * 5);
+                                        document.getElementById("four-hours-price").textContent =
+                                            fourHoursPrice + "₽";
+                                        document.getElementById("four-hours-hint").textContent =
+                                            rate + "₽ × 90% × 4 = " + fourHoursPrice + "₽";
+
+                                        // 12 hours
+                                        const twelveHoursPrice = Math.round(rate * 0.8 * 15);
+                                        document.getElementById("twelve-hours-price").textContent =
+                                            twelveHoursPrice + "₽";
+                                        document.getElementById("twelve-hours-hint").textContent =
+                                            rate + "₽ × 80% × 12 = " + twelveHoursPrice + "₽";
+                                    });
+                            </script>
+                            <style>
+                                .thing {
+                                    flex: 1 1 calc(50% - 20px);
+                                    min-width: calc(50% - 20px);
+                                }
+
+                                /*@media (min-width: 768px) {*/
+                                /*    .thing {*/
+                                /*        flex: 1 1 220px;*/
+                                /*        min-width: 220px;*/
+                                /*    }*/
+                                /*}*/
+                            </style>
                         </div>
 
-                        <script>
-                            document
-                            const rate = {
-                            {
-                                teacher.tariff
-                            }
-                            }
-                            ;
-                            .getElementById("hourly-rate")
-                                .addEventListener("input", function () {
-
-
-                                    // 4 hours
-                                    const fourHoursPrice = Math.round(rate * 0.9 * 5);
-                                    document.getElementById("four-hours-price").textContent =
-                                        fourHoursPrice + "₽";
-                                    document.getElementById("four-hours-hint").textContent =
-                                        rate + "₽ × 90% × 4 = " + fourHoursPrice + "₽";
-
-                                    // 12 hours
-                                    const twelveHoursPrice = Math.round(rate * 0.8 * 15);
-                                    document.getElementById("twelve-hours-price").textContent =
-                                        twelveHoursPrice + "₽";
-                                    document.getElementById("twelve-hours-hint").textContent =
-                                        rate + "₽ × 80% × 12 = " + twelveHoursPrice + "₽";
-                                });
-                        </script>
-                        <style>
-                            .thing {
-                                flex: 1 1 calc(50% - 20px);
-                                min-width: calc(50% - 20px);
-                            }
-
-                            /*@media (min-width: 768px) {*/
-                            /*    .thing {*/
-                            /*        flex: 1 1 220px;*/
-                            /*        min-width: 220px;*/
-                            /*    }*/
-                            /*}*/
-                        </style>
-                    </div>
-
-                    <div class="mb-5 about-text">
-                        <h2 class="mb-3">Рассказ о себе:</h2>
-                        <span class="fs-5 mb-5" style="white-space: pre-wrap;">{{ teacher.about_text }}</span>
+                        <div class="mb-5 about-text">
+                            <h2 class="mb-3">Рассказ о себе:</h2>
+                            <span class="fs-5 mb-5" style="white-space: pre-wrap;">{{ teacher.about_text }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <style>
-            #about_text_desktop {
-                display: none;
-            }
+            <style>
+                #about_text_desktop {
+                    display: none;
+                }
 
-            .all-data {
-                display: flex;
-                /* По умолчанию (на маленьких экранах) — в ряд */
-                flex-direction: row;
-                /* Отступ между блоками */
-                gap: 10px;
+                .all-data {
+                    display: flex;
+                    /* По умолчанию (на маленьких экранах) — в ряд */
+                    flex-direction: row;
+                    /* Отступ между блоками */
+                    gap: 10px;
 
-            }
-
-            .info-text * {
-                font-size: 95% !important;;
-            }
-
-            .about-text * {
-                font-size: 95% !important;
-            }
-
-
-            .teacher-image {
-                width: 200px;
-                height: 200px;
-
-            }
-
-            .separator {
-                display: none;
-            }
-
-
-            @media (min-width: 768px) {
-
-                .teacher-image {
-                    width: 350px;
-                    height: 350px;
                 }
 
                 .info-text * {
-                    font-size: 110% !important;;
+                    font-size: 95% !important;;
                 }
 
-                .about-text {
-                    font-size: 110% !important;
+                .about-text * {
+                    font-size: 95% !important;
+                }
+
+
+                .teacher-image {
+                    width: 200px;
+                    height: 200px;
+
                 }
 
                 .separator {
+                    display: none;
+                }
+
+
+                @media (min-width: 768px) {
+
+                    .teacher-image {
+                        width: 350px;
+                        height: 350px;
+                    }
+
+                    .info-text * {
+                        font-size: 110% !important;;
+                    }
+
+                    .about-text {
+                        font-size: 110% !important;
+                    }
+
+                    .separator {
+                        display: block;
+                    }
+
+                }
+            </style>
+        </div>
+
+        <div class="mobile-vers">
+            <div style="padding: 10px; font-family: Ubuntu, sans-serif">
+                <div>
+                    <div class="profile">
+                        {% if teacher.image %}
+                        <img class="" style="
+                                    " src="/static/teachers_images/{{ teacher.image }}"/>
+                        {% else %}
+                        <img class="" style="
+                                    " src="/static/images/empty_avatar.png"/>
+                        {% endif %}
+                        <div class="profile-info">
+                            <h1>{{teacher.surname}} {{teacher.name}}</h1>
+                            <p>{% for i in teacher.subjects%}{{i.name}}{%endfor%}</p>
+                            <div class="quick-cta">
+                                <button id="start-btn" style="" onclick="openYoungRepBookingPopup()">Записаться на занятие</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="calc">
+
+                        <div style="font-family: &quot;Ubuntu&quot;, Arial, sans-serif;max-width: 100%;margin: 0 auto;box-sizing: border-box;">
+                            <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap"
+                                  rel="stylesheet"/>
+
+                            <!--                        <div style="-->
+                            <!--            text-align: center;-->
+                            <!--            font-size: 28px;-->
+                            <!--            font-weight: bold;-->
+                            <!--            margin-bottom: 25px;-->
+                            <!--            color: #333;-->
+                            <!--          ">-->
+                            <!--                            Калькулятор пакетов занятий-->
+                            <!--                        </div>-->
+
+                            <div style="display: flex;gap: 5px;justify-content: center;">
+                                <!-- Пробное занятие -->
+                                <div class="thing-b"
+                                     style="max-width: 10px;border-radius: 10px;overflow: hidden;box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);background-color: #5400fe;">
+                                    <div style="color: white;padding: 7px;font-weight: 700;font-size: 12px;text-align: center;letter-spacing: 0.5px;">
+                                        Пробное
+                                    </div>
+                                    <div style="border-top: 2px solid rgba(255, 255, 255, 0.3);margin: 0 12px;"></div>
+                                    <div style="padding-top: 2px; text-align: center; color: white">
+                                        <div style="font-size: 22px;margin: 7px 0;font-weight: 500;line-height: 1.2;">
+                                            0₽
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 1 час -->
+                                <div class="thing-b"
+                                     style="; border-radius: 10px;overflow: hidden;box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);background-color: #5400fe;">
+                                    <div style=" color: white;padding: 7px;font-weight: 700;font-size: 12px;text-align: center;letter-spacing: 0.5px;">
+                                        1 час
+                                    </div>
+                                    <div style=" border-top: 2px solid rgba(255, 255, 255, 0.3);margin: 0 12px;"></div>
+                                    <div style=" padding: 7px 0; color: white">
+                                        <div style="display: flex;align-items: center;justify-content: center;gap: 5px;margin: 7px 0;">
+                                            <!--                                        <input type="number" id="hourly-rate" placeholder="Цена" style="-->
+                                            <!--                    width: 80px;-->
+                                            <!--                    padding: 6px 10px;-->
+                                            <!--                    border: 1px solid rgba(255, 255, 255, 0.3);-->
+                                            <!--                    background: rgba(255, 255, 255, 0.1);-->
+                                            <!--                    border-radius: 6px;-->
+                                            <!--                    font-size: 20px;-->
+                                            <!--                    box-sizing: border-box;-->
+                                            <!--                    text-align: center;-->
+                                            <!--                    color: white;-->
+                                            <!--                    font-weight: 500;-->
+                                            <!--                  "/>-->
+                                            <div style="font-size: 15px;margin: 2px 0;font-weight: 500;line-height: 0; "
+                                                 id="one-hours-price">
+                                                {% set price = (teacher.tariff) | int %}
+                                                {{price}}₽
+                                            </div>
+                                            <!--                                        <span style="font-size: 36px; font-weight: 500; line-height: 1.2">₽</span>-->
+                                        </div>
+                                        <div style="font-size: 9px;margin-top: 15px;text-align: center;opacity: 0.8;">
+                                            *Тариф
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 5 часов -->
+                                <div class="thing-b"
+                                     style="max-width: 10px;border-radius: 10px;overflow: hidden;box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);background-color: #5400fe;">
+                                    <div style="color: white;padding: 7px;font-weight: 700;font-size: 12px;text-align: center;letter-spacing: 0.5px;
+              ">
+                                        5 часов
+                                    </div>
+                                    <div style="border-top: 2px solid rgba(255, 255, 255, 0.3);margin: 0 12px;"></div>
+                                    <div style="padding: 7px; text-align: center; color: white">
+                                        <div style="font-size: 15px;margin: 2px 0;font-weight: 500;line-height: 1.2;"
+                                             id="four-hours-price">
+                                            {% set price = (teacher.tariff * 5 * 0.9) | int %}
+                                            {{price}}₽
+                                        </div>
+                                        <div style="font-size: 9px; margin-top: 6px; opacity: 0.8" id="four-hours-hint">
+                                            0₽×90%×5=0₽
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 12 часов -->
+                                <div class="thing-b"
+                                     style="max-width: 10px;border-radius: 10px;overflow: hidden;box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);background-color: #5400fe;">
+                                    <div style="color: white;padding: 7px;font-weight: 700;font-size: 12px;text-align:center;letter-spacing: 0.5px;">
+                                        15 часов
+                                    </div>
+                                    <div style="border-top: 2px solid rgba(255, 255, 255, 0.3);margin: 0 12px;"></div>
+                                    <div style="padding: 5px; text-align: center; color: white">
+                                        <div style="font-size: 15px;margin: 2px 0;font-weight: 500;line-height: 1.2;"
+                                             id="twelve-hours-price">
+                                            {% set price2 = teacher.tariff * 15 * 0.8 | int %}
+                                            {{(teacher.tariff * 15 * 0.8) | int}}₽
+                                        </div>
+                                        <div style="font-size: 9px; margin-top: 6px; opacity: 0.8"
+                                             id="twelve-hours-hint">
+                                            0₽×80%×15=0₽
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script>
+                                document
+                                const rate = {
+                                {
+                                    teacher.tariff
+                                }
+                                }
+                                ;
+                                .getElementById("hourly-rate")
+                                    .addEventListener("input", function () {
+
+
+                                        // 4 hours
+                                        const fourHoursPrice = Math.round(rate * 0.9 * 5);
+                                        document.getElementById("four-hours-price").textContent =
+                                            fourHoursPrice + "₽";
+                                        document.getElementById("four-hours-hint").textContent =
+                                            rate + "₽ × 90% × 4 = " + fourHoursPrice + "₽";
+
+                                        // 12 hours
+                                        const twelveHoursPrice = Math.round(rate * 0.8 * 15);
+                                        document.getElementById("twelve-hours-price").textContent =
+                                            twelveHoursPrice + "₽";
+                                        document.getElementById("twelve-hours-hint").textContent =
+                                            rate + "₽ × 80% × 12 = " + twelveHoursPrice + "₽";
+                                    });
+                            </script>
+                            <style>
+                                .thing-b {
+                                    flex: 1 1 1 1 calc(25% - 5px);
+                                    min-width: calc(25% - 5px);
+                                }
+
+                                /*@media (min-width: 768px) {*/
+                                /*    .thing {*/
+                                /*        flex: 1 1 220px;*/
+                                /*        min-width: 220px;*/
+                                /*    }*/
+                                /*}*/
+                            </style>
+                        </div>
+                    </div>
+                    <div class="new-info">
+                        <div class="info-row"><span>📘 Предмет: {{teacher.subjects[0].name}}</span></div>
+                        {% if teacher.oge_ball %}
+                            <div class="info-row"><span>🎓 Балл ОГЭ: {{teacher.oge_ball}}</span></div>
+                        {% endif %}
+                        <div class="info-row">
+                            <span>🏆 Достижения:</span>
+                            <div class="achievements">
+                                <span id="achievements-text" style="display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; width: auto"
+                                >{{teacher.achievements_text}}</span>
+                            </div>
+                        </div>
+                        <button class="toggle-btn" id="achievements-toggle">Подробнее</button>
+                    </div>
+                    <div class="ab">
+                        <h2>О себе</h2>
+
+                        <span id="about-text" style="  display: -webkit-box;
+                          -webkit-line-clamp: 3;
+                          -webkit-box-orient: vertical;
+                          overflow: hidden; width: auto" class="about-text">{{ teacher.about_text}}</span>
+                        <button class="toggle-btn" id="about-toggle">Читать далее</button>
+                    </div>
+
+
+                </div>
+            </div>
+            <style>
+                .profile {
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                    margin-bottom: 16px;
+                }
+
+                .profile img {
+                    width: 125px;
+                    height: 125px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+                }
+
+                .profile-info h1 {
+                    margin: 0 0 4px;
+                    font-size: 22px;
+                    font-weight: bold;
+                }
+
+                .profile-info p {
+                    color: #666;
+                    font-size: 14px;
+                    margin-bottom: 10px;
+                }
+
+                .new-info {
+                    background: #bbbbbb;
+                    border-radius: 12px;
+                    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+                    padding: 12px;
+                    margin-top: 7px;
+                    margin-bottom: 16px;
+                }
+
+                .info-row {
+                    font-size: 14px;
+                    margin-bottom: 4px;
+                }
+
+                .info-row span:first-child {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 0;
+                    gap: 1px;
+                }
+
+                button.toggle-btn {
+                    background: none;
+                    border: none;
+                    color: #6b21a8;
+                    font-size: 12px;
+                    cursor: pointer;
+                }
+
+                .ab {
+                    background: white;
+                    border-radius: 12px;
+                    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+                    padding: 12px;
+                    margin-bottom: 16px;
+                }
+
+                .ab h2, .new-info h2 {
+                    font-size: 16px;
+                    margin: 0 0 0px;
+                }
+
+                .ab span, .info-details span {
+                    font-size: 14px;
+                    color: #333;
+                    margin: 0;
+                    line-height: 1.4;
+                }
+                .profile-info .quick-cta button {
+                    padding: 8px 12px;
+                    background:  #ff2300;
+                    color: #fff;
+                    font-size: 14px;
+                    font-weight: bold;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+                    transition: all 0.3s ease;
+                    position: relative;
+                    overflow: hidden;
+                }
+                .profile-info .quick-cta button:hover {
+                    background: #dc2626;
+                }
+                #start-btn::before {
+                    content: "";
+                    top: 0;
+                    left: -100%;
+                    width: 40px; /* Ширина прямоугольника */
+                    height: 100%;
+                    position: absolute;
+
+                    /* Убираем skew для обычного прямоугольника */
+                    transform: skewX(0deg);
+
+                    /* Яркий белый цвет */
+                    background: rgba(255, 255, 255, 1);
+
+                    /* Медленная анимация - 6 секунд */
+                    animation: rectangleShine 4s infinite ease-in-out;
+
+                    /* Добавляем легкое размытие для мягкости */
+                    filter: blur(2px);
+                }
+
+                /* Анимация движения прямоугольника */
+                @keyframes rectangleShine {
+                    0% {
+                        left: -100px; /* Начинаем за левой границей */
+                    }
+                    20% {
+                        left: 120%; /* Медленно движемся вправо */
+                    }
+                    100% {
+                        left: 120%; /* Остаемся справа до конца цикла */
+                    }
+                }
+            </style>
+        </div>
+
+        <style>
+            .comp-vers {
+                display: none;
+            }
+
+            .mobile-vers {
+                display: block;
+            }
+
+            @media (min-width: 768px) {
+                .comp-vers {
                     display: block;
+                }
+
+                .mobile-vers {
+                    display: none;
                 }
 
             }
         </style>
-        <div id="youngRepBookingWidget">
-            <div id="popupOverlay" class="yr-popup-overlay">
-                <div class="yr-popup-container">
-                    <div class="yr-popup-header">
-                        <h2>ЗАПИСЬ НА ЗАНЯТИЕ</h2>
-                        <button id="closePopupBtn" class="yr-close-popup-btn">&times;</button>
-                    </div>
-                    <form id="bookingForm" class="yr-popup-form">
-                        <div class="yr-form-group">
-                            <label for="studentName">Как к вам обращаться?</label>
-                            <input type="text" id="studentName" name="studentName" required
-                                   placeholder="Екатерина">
-                            <span class="yr-input-line"></span>
-                        </div>
+        <script>
+            // О себе
+            const aboutBtn = document.getElementById('about-toggle');
+            const aboutText = document.getElementById('about-text');
+            let aboutExpanded = false;
 
-                        <div class="yr-form-group">
-                            <label for="teacherSearch">ФИО преподавателя:</label>
-                            <div class="yr-teacher-search-container">
-                                <input type="text" id="teacherSearch" name="teacherSearch"
-                                       placeholder="Начните вводить имя..." autocomplete="off"
-                                       value="{{teacher.surname}} {{teacher.name}}">
-                                <span class="yr-input-line"></span>
-                                <div id="teacherDropdown" class="yr-teacher-dropdown"></div>
-                            </div>
-                            <input type="hidden" id="teacherId" name="teacherId" value="{{teacher.id}}">
-                        </div>
-
-                        <div class="yr-form-group">
-                            <label for="promoCode">Введите промокод (при наличии):</label>
-                            <input type="text" id="promoCode" name="promoCode"
-                                   placeholder="">
-                            <span class="yr-input-line"></span>
-                        </div>
-                        <div class="yr-form-group">
-                            <label for="phoneNumber">Номер телефона:</label>
-                            <input type="tel" id="phoneNumber" name="phoneNumber" required
-                                   placeholder="+7 (___) ___-__-__">
-                            <span class="yr-input-line"></span>
-                        </div>
-
-                        <div class="yr-form-group">
-                            <label for="telegramUsername">Ваш юзернейм в телеграмме (желательно):</label>
-                            <input type="text" id="telegramUsername" name="telegramUsername"
-                                   placeholder="@durov">
-                            <span class="yr-input-line"></span>
-                        </div>
-
-                        <div class="yr-form-group">
-                            <label>Как нам с вами связаться?</label>
-                            <div class="yr-contact-options">
-                                <label class="yr-checkbox-label">
-                                    <input type="checkbox" name="contactMethod" value="whatsapp" checked> WhatsApp
-                                </label>
-                                <label class="yr-checkbox-label">
-                                    <input type="checkbox" name="contactMethod" value="telegram" checked> Telegram
-                                </label>
-                                <label class="yr-checkbox-label">
-                                    <input type="checkbox" name="contactMethod" value="call" checked> Звонок по
-                                    вашему номеру
-                                </label>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="yr-submit-btn">Отправить запрос</button>
-                    </form>
-                </div>
-            </div>
-
-            <div id="successMessage" class="yr-success-message">
-                <div class="yr-success-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
-                              stroke="#4d1cca" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                <p>Ваша заявка принята, с Вами свяжется наш менеджер!</p>
-                <button id="closeSuccessBtn" class="yr-close-success-btn">Закрыть</button>
-            </div>
-
-            <div id="errorMessage" class="yr-error-message">
-                <p id="errorText">Произошла ошибка при отправке данных</p>
-                <button id="closeErrorBtn" class="yr-close-error-btn">Закрыть</button>
-            </div>
-
-            <style>
-                @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
-
-                :root {
-                    --main-color: #4d1cca;
-                    --main-color-light: #6d3ae6;
-                    --main-color-dark: #3a14a0;
-                    --error-color: #e74c3c;
+            aboutBtn.addEventListener('click', () => {
+                if (aboutExpanded) {
+                    aboutText.style["-webkit-line-clamp"] = "3"
+                    aboutBtn.textContent = "Читать далее";
+                } else {
+                    aboutText.style["-webkit-line-clamp"] = "none"
+                    aboutBtn.textContent = "Свернуть";
                 }
+                aboutExpanded = !aboutExpanded;
+            });
 
-                #youngRepBookingWidget {
-                    font-family: 'Ubuntu', sans-serif;
-                    position: relative;
+            const achBtn = document.getElementById('achievements-toggle');
+            const achText = document.getElementById('achievements-text');
+            let achExpanded = false;
+
+            achBtn.addEventListener('click', () => {
+                if (achExpanded) {
+                    console.log(achText.style["-webkit-line-clamp"]);
+                    achText.style["-webkit-line-clamp"] = "1"
+                    achBtn.textContent = "Подробнее";
+                } else {
+                    console.log(achText.style["-webkit-line-clamp"]);
+                    achText.style["-webkit-line-clamp"] = "none"
+                    achBtn.textContent = "Свернуть";
                 }
-
-                .yr-popup-overlay {
-                    display: none;
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background-color: rgba(0, 0, 0, 0.7);
-                    z-index: 9999;
-                    justify-content: center;
-                    align-items: flex-start;
-                    opacity: 0;
-                    transition: opacity 0.5s ease;
-                    overflow-y: auto;
-                    padding: 20px 0;
-                }
-
-                .yr-popup-overlay.active {
-                    opacity: 1;
-                }
-
-                .yr-popup-container {
-                    background-color: white;
-                    border-radius: 0;
-                    box-shadow: 0 8px 25px rgba(77, 28, 202, 0.3);
-                    width: 100%;
-                    max-width: 500px;
-                    padding: 25px;
-                    position: relative;
-                    z-index: 10000;
-                    transform: translateY(100%);
-                    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-                    border-top: 4px solid var(--main-color);
-                    margin: 20px auto;
-                    box-sizing: border-box;
-                }
-
-                @media (max-width: 600px) {
-                    .yr-popup-container {
-                        padding: 20px 15px;
-                        margin: 10px;
-                        max-height: 90vh;
-                        overflow-y: auto;
-                    }
-                }
-
-                .yr-popup-overlay.active .yr-popup-container {
-                    transform: translateY(0);
-                }
-
-                .yr-popup-overlay.closing .yr-popup-container {
-                    transform: translateY(100%);
-                }
-
-                .yr-popup-header {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    margin-bottom: 20px;
-                }
-
-                .yr-popup-header h2 {
-                    margin: 0;
-                    color: var(--main-color-dark);
-                    font-size: 22px;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
-                }
-
-                @media (max-width: 600px) {
-                    .yr-popup-header h2 {
-                        font-size: 20px;
-                    }
-                }
-
-                .yr-popup-form {
-                    display: flex;
-                    flex-direction: column;
-                }
-
-                .yr-form-group {
-                    margin-bottom: 20px;
-                    position: relative;
-                }
-
-                @media (max-width: 600px) {
-                    .yr-form-group {
-                        margin-bottom: 15px;
-                    }
-                }
-
-                .yr-form-group label {
-                    display: block;
-                    margin-bottom: 8px;
-                    font-weight: 500;
-                    color: #555;
-                    font-size: 15px;
-                    transition: all 0.3s ease;
-                }
-
-                @media (max-width: 600px) {
-                    .yr-form-group label {
-                        font-size: 14px;
-                        margin-bottom: 6px;
-                    }
-                }
-
-                .yr-form-group input {
-                    width: 100%;
-                    padding: 8px 0;
-                    border: none;
-                    border-radius: 0;
-                    font-size: 16px;
-                    box-sizing: border-box;
-                    background: transparent;
-                    font-family: 'Ubuntu', sans-serif;
-                    border-bottom: 1px solid #ddd;
-                    transition: border-color 0.3s ease;
-                }
-
-                @media (max-width: 600px) {
-                    .yr-form-group input {
-                        font-size: 15px;
-                        padding: 6px 0;
-                    }
-                }
-
-                .yr-form-group input::placeholder {
-                    color: #aaa;
-                    font-family: 'Ubuntu', sans-serif;
-                }
-
-                .yr-form-group input:focus {
-                    outline: none;
-                    border-color: transparent;
-                }
-
-                .yr-input-line {
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    width: 0;
-                    height: 2px;
-                    background-color: var(--main-color);
-                    transition: width 0.4s ease;
-                }
-
-                .yr-form-group input:focus ~ .yr-input-line {
-                    width: 100%;
-                }
-
-                .yr-teacher-search-container {
-                    position: relative;
-                }
-
-                .yr-teacher-dropdown {
-                    display: none;
-                    position: absolute;
-                    top: 100%;
-                    left: 0;
-                    right: 0;
-                    max-height: 200px;
-                    overflow-y: auto;
-                    background-color: white;
-                    border: 1px solid #ddd;
-                    border-radius: 0 0 5px 5px;
-                    z-index: 100;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                }
-
-                .yr-teacher-dropdown div {
-                    padding: 10px;
-                    cursor: pointer;
-                    transition: background-color 0.2s;
-                    font-family: 'Ubuntu', sans-serif;
-                }
-
-                .yr-teacher-dropdown div:hover {
-                    background-color: #f5f5f5;
-                }
-
-                .yr-submit-btn {
-                    padding: 12px;
-                    background-color: var(--main-color);
-                    color: white;
-                    border: none;
-                    border-radius: 0;
-                    cursor: pointer;
-                    font-size: 16px;
-                    margin-top: 15px;
-                    font-weight: 500;
-                    transition: all 0.3s ease;
-                    font-family: 'Ubuntu', sans-serif;
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
-                }
-
-                @media (max-width: 600px) {
-                    .yr-submit-btn {
-                        padding: 10px;
-                        font-size: 15px;
-                        margin-top: 10px;
-                    }
-                }
-
-                .yr-submit-btn:hover {
-                    background-color: var(--main-color-dark);
-                    transform: translateY(-2px);
-                    box-shadow: 0 4px 12px rgba(77, 28, 202, 0.3);
-                }
-
-                .yr-success-message {
-                    display: none;
-                    position: fixed;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    background-color: white;
-                    padding: 25px 30px;
-                    border-radius: 0;
-                    box-shadow: 0 8px 25px rgba(77, 28, 202, 0.3);
-                    z-index: 10001;
-                    text-align: center;
-                    font-family: 'Ubuntu', sans-serif;
-                    border-top: 4px solid var(--main-color);
-                    width: 90%;
-                    max-width: 400px;
-                    box-sizing: border-box;
-                }
-
-                @media (max-width: 600px) {
-                    .yr-success-message {
-                        padding: 20px;
-                        width: 95%;
-                    }
-                }
-
-                .yr-success-icon {
-                    width: 50px;
-                    height: 50px;
-                    margin: 0 auto 15px;
-                    animation: checkmark 0.6s ease;
-                }
-
-                @media (max-width: 600px) {
-                    .yr-success-icon {
-                        width: 40px;
-                        height: 40px;
-                    }
-                }
-
-                @keyframes checkmark {
-                    0% {
-                        transform: scale(0);
-                        opacity: 0;
-                    }
-                    50% {
-                        transform: scale(1.2);
-                    }
-                    100% {
-                        transform: scale(1);
-                        opacity: 1;
-                    }
-                }
-
-                .yr-success-message p {
-                    margin: 0 0 20px 0;
-                    font-size: 16px;
-                    color: var(--main-color-dark);
-                    font-weight: 500;
-                }
-
-                @media (max-width: 600px) {
-                    .yr-success-message p {
-                        font-size: 15px;
-                        margin-bottom: 15px;
-                    }
-                }
-
-                .yr-close-success-btn {
-                    padding: 8px 16px;
-                    background-color: var(--main-color);
-                    color: white;
-                    border: none;
-                    border-radius: 0;
-                    cursor: pointer;
-                    font-size: 14px;
-                    transition: all 0.3s ease;
-                    font-family: 'Ubuntu', sans-serif;
-                }
-
-                @media (max-width: 600px) {
-                    .yr-close-success-btn {
-                        padding: 7px 14px;
-                        font-size: 13px;
-                    }
-                }
-
-                .yr-close-success-btn:hover {
-                    background-color: var(--main-color-dark);
-                    transform: translateY(-2px);
-                    box-shadow: 0 4px 12px rgba(77, 28, 202, 0.3);
-                }
-
-                .yr-error-message {
-                    display: none;
-                    position: fixed;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    background-color: white;
-                    padding: 25px 30px;
-                    border-radius: 0;
-                    box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
-                    z-index: 10001;
-                    text-align: center;
-                    font-family: 'Ubuntu', sans-serif;
-                    border-top: 4px solid var(--error-color);
-                    width: 90%;
-                    max-width: 400px;
-                    box-sizing: border-box;
-                }
-
-                @media (max-width: 600px) {
-                    .yr-error-message {
-                        padding: 20px;
-                        width: 95%;
-                    }
-                }
-
-                .yr-error-message p {
-                    margin: 0 0 20px 0;
-                    font-size: 16px;
-                    color: var(--error-color);
-                    font-weight: 500;
-                }
-
-                @media (max-width: 600px) {
-                    .yr-error-message p {
-                        font-size: 15px;
-                        margin-bottom: 15px;
-                    }
-                }
-
-                .yr-close-error-btn {
-                    padding: 8px 16px;
-                    background-color: var(--error-color);
-                    color: white;
-                    border: none;
-                    border-radius: 0;
-                    cursor: pointer;
-                    font-size: 14px;
-                    transition: all 0.3s ease;
-                    font-family: 'Ubuntu', sans-serif;
-                }
-
-                @media (max-width: 600px) {
-                    .yr-close-error-btn {
-                        padding: 7px 14px;
-                        font-size: 13px;
-                    }
-                }
-
-                .yr-close-error-btn:hover {
-                    background-color: #c0392b;
-                    transform: translateY(-2px);
-                    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
-                }
-
-                .yr-body-no-scroll {
-                    overflow: hidden;
-                    position: fixed;
-                    width: 100%;
-                }
-
-                .yr-close-popup-btn {
-                    background: none;
-                    border: none;
-                    font-size: 24px;
-                    cursor: pointer;
-                    color: var(--main-color-dark);
-                    line-height: 1;
-                    padding: 0;
-                    transition: color 0.3s ease;
-                }
-
-                @media (max-width: 600px) {
-                    .yr-close-popup-btn {
-                        font-size: 22px;
-                    }
-                }
-
-                .yr-close-popup-btn:hover {
-                    color: var(--main-color);
-                }
-
-                .yr-contact-options {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 8px;
-                    margin-top: 8px;
-                }
-
-                @media (max-width: 600px) {
-                    .yr-contact-options {
-                        gap: 6px;
-                    }
-                }
-
-                .yr-checkbox-label {
-                    display: flex;
-                    align-items: center;
-                    gap: 8px;
-                    cursor: pointer;
-                    font-size: 14px;
-                    color: #555;
-                }
-
-                @media (max-width: 600px) {
-                    .yr-checkbox-label {
-                        font-size: 13px;
-                        gap: 6px;
-                    }
-                }
-
-                .yr-checkbox-label input {
-                    width: auto;
-                    margin: 0;
-                    cursor: pointer;
-                    transform: scale(1.1);
-                }
-            </style>
-            <script>
-                function openYoungRepBookingPopup() {
-                    const popupOverlay = document.getElementById('popupOverlay');
-                    popupOverlay.style.display = 'flex';
-                    document.body.classList.add('yr-body-no-scroll');
-
-                    setTimeout(() => {
-                        popupOverlay.classList.add('active');
-                    }, 10);
-
-                    document.getElementById('bookingForm').reset();
-
-                    // Устанавливаем все чекбоксы выбранными по умолчанию
-                    const checkboxes = document.querySelectorAll('input[name="contactMethod"]');
-                    checkboxes.forEach(checkbox => {
-                        checkbox.checked = true;
-                    });
-                }
-
-                function closeYoungRepBookingPopup() {
-                    const popupOverlay = document.getElementById('popupOverlay');
-                    popupOverlay.classList.remove('active');
-                    popupOverlay.classList.add('closing');
-
-                    setTimeout(() => {
-                        popupOverlay.style.display = 'none';
-                        popupOverlay.classList.remove('closing');
-                        document.body.classList.remove('yr-body-no-scroll');
-                    }, 600);
-                }
-
-                function showError(message) {
-                    const errorMessage = document.getElementById('errorMessage');
-                    const errorText = document.getElementById('errorText');
-                    errorText.textContent = message || 'Произошла ошибка при отправке данных';
-                    errorMessage.style.display = 'block';
-                }
-
-                function closeError() {
-                    document.getElementById('errorMessage').style.display = 'none';
-                }
-
-                function phoneMask(input) {
-                    const matrix = '+7 (___) ___-__-__';
-                    const def = matrix.replace(/\D/g, '');
-                    let value = input.value.replace(/\D/g, '');
-                    let i = 0;
-
-                    if (def.length >= value.length) {
-                        value = def;
-                    }
-
-                    input.value = matrix.replace(/./g, function (a) {
-                        if (/[_\d]/.test(a) && i < value.length) {
-                            return value.charAt(i++);
-                        } else if (i >= value.length) {
-                            return '';
-                        } else {
-                            return a;
-                        }
-                    });
-                }
-
-                document.addEventListener('DOMContentLoaded', function () {
-                    const popupOverlay = document.getElementById('popupOverlay');
-                    const bookingForm = document.getElementById('bookingForm');
-                    const successMessage = document.getElementById('successMessage');
-                    const closeSuccessBtn = document.getElementById('closeSuccessBtn');
-                    const closeErrorBtn = document.getElementById('closeErrorBtn');
-                    const teacherSearch = document.getElementById('teacherSearch');
-                    const teacherDropdown = document.getElementById('teacherDropdown');
-                    const teacherIdInput = document.getElementById('teacherId');
-                    const phoneInput = document.getElementById('phoneNumber');
-                    const closePopupBtn = document.getElementById('closePopupBtn');
-                    const promoCodeInput = document.getElementById('promoCode');
-
-                    closePopupBtn.addEventListener('click', closeYoungRepBookingPopup);
-
-                    phoneInput.addEventListener('input', function () {
-                        phoneMask(this);
-                    });
-
-                    popupOverlay.addEventListener('click', function (e) {
-                        if (e.target === popupOverlay) {
-                            closeYoungRepBookingPopup();
-                        }
-                    });
-
-                    closeSuccessBtn.addEventListener('click', function () {
-                        successMessage.style.display = 'none';
-                    });
-
-                    closeErrorBtn.addEventListener('click', closeError);
-
-                    teacherSearch.addEventListener('input', debounce(function (e) {
-                        const searchTerm = e.target.value.trim();
-
-                        if (searchTerm.length < 2) {
-                            teacherDropdown.style.display = 'none';
-                            return;
-                        }
-
-                        fetch('{{host}}/api/teachers')
-                            .then(response => {
-                                if (!response.ok) {
-                                    throw new Error('Ошибка загрузки списка преподавателей');
-                                }
-                                return response.json();
-                            })
-                            .then(teachers => {
-                                if (!teachers || !Array.isArray(teachers)) {
-                                    throw new Error('Некорректный формат данных преподавателей');
-                                }
-
-                                if (teachers.length === 0) {
-                                    teacherDropdown.innerHTML = '<div style="padding: 10px; color: #777;">Преподаватели не найдены</div>';
-                                    teacherDropdown.style.display = 'block';
-                                    return;
-                                }
-
-                                const filteredTeachers = teachers.filter(teacher =>
-                                    teacher.name && teacher.name.toLowerCase().includes(searchTerm.toLowerCase())
-                                );
-
-                                teacherDropdown.innerHTML = '';
-
-                                if (filteredTeachers.length === 0) {
-                                    teacherDropdown.innerHTML = '<div style="padding: 10px; color: #777;">Преподаватели не найдены</div>';
-                                    teacherDropdown.style.display = 'block';
-                                    return;
-                                }
-
-                                filteredTeachers.forEach(teacher => {
-                                    const teacherElement = document.createElement('div');
-                                    teacherElement.textContent = teacher.name;
-                                    teacherElement.dataset.id = teacher.id;
-
-                                    teacherElement.addEventListener('click', function () {
-                                        teacherSearch.value = teacher.name;
-                                        teacherIdInput.value = teacher.id;
-                                        teacherDropdown.style.display = 'none';
-                                    });
-
-                                    teacherDropdown.appendChild(teacherElement);
-                                });
-
-                                teacherDropdown.style.display = 'block';
-                            })
-                            .catch(error => {
-                                console.error('Ошибка при загрузке преподавателей:', error);
-                                showError('Не удалось загрузить список преподавателей');
-                            });
-                    }, 300));
-
-                    document.addEventListener('click', function (e) {
-                        if (e.target !== teacherSearch) {
-                            teacherDropdown.style.display = 'none';
-                        }
-                    });
-
-                    bookingForm.addEventListener('submit', function (e) {
-                        e.preventDefault();
-
-                        console.log(teacherIdInput.value)
-                        if (!teacherIdInput.value) {
-                            showError('Пожалуйста, выберите преподавателя из списка');
-                            teacherSearch.focus();
-                            return;
-                        }
-
-                        const phoneRegex = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
-                        if (!phoneRegex.test(phoneInput.value)) {
-                            showError('Пожалуйста, введите корректный номер телефона');
-                            phoneInput.focus();
-                            return;
-                        }
-
-                        const cleanPhoneNumber = phoneInput.value.replace(/\D/g, '');
-                        const promoCode = promoCodeInput.value.trim();
-
-                        // Получаем выбранные способы связи
-                        const contactMethods = Array.from(document.querySelectorAll('input[name="contactMethod"]:checked'))
-                            .map(checkbox => checkbox.value);
-
-                        if (contactMethods.length === 0) {
-                            showError('Пожалуйста, выберите хотя бы один способ связи');
-                            return;
-                        }
-
-                        const formData = {
-                            "studentName": document.getElementById('studentName').value,
-                            "subjectId": teacherIdInput.value,
-                            "subjectName": teacherSearch.value,
-                            promoCode: promoCode,
-                            "phoneNumber": cleanPhoneNumber,
-                            "telegramUsername": document.getElementById('telegramUsername').value,
-                            "contactMethods": contactMethods,
-                            "learningRequest": ""
-                        };
-                        console.log(formData);
-
-                        fetch('{{bot_host}}/api/send_not', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify(formData)
-                        })
-                            .then(response => {
-                                if (response.ok) {
-                                    return response.json();
-                                } else {
-                                    return response.json().then(err => {
-                                        throw new Error(err.message || 'Ошибка сервера');
-                                    });
-                                }
-                            })
-                            .then(data => {
-                                bookingForm.reset();
-                                teacherIdInput.value = '';
-                                closeYoungRepBookingPopup();
-                                successMessage.style.display = 'block';
-                            })
-                            .catch(error => {
-                                console.error('Ошибка при отправке данных:', error);
-                                showError(error.message || 'Произошла ошибка при отправке данных');
-                            });
-                    });
-
-                    function debounce(func, wait) {
-                        let timeout;
-                        return function () {
-                            const context = this, args = arguments;
-                            clearTimeout(timeout);
-                            timeout = setTimeout(function () {
-                                func.apply(context, args);
-                            }, wait);
-                        };
-                    }
-                });
-            </script>
-        </div>
+                achExpanded = !achExpanded;
+            });
+        </script>
 
 
         <!--        <div-->

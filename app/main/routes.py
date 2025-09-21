@@ -254,6 +254,11 @@ def teachers_profile(id):
         text = file.read()
     days = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
     schedule = teacher.parse_schedule()
+    short_achs = teacher.achievements_text.split()
+    if not short_achs:
+        short_achs = teacher.achievements_text.split('\n')
+    else:
+        short_achs[0] = short_achs[0][:len(short_achs[0] )-1]
     return render_template(
         "main/teacher_profile.html",
         teacher=teacher,
@@ -262,6 +267,7 @@ def teachers_profile(id):
         schedule=schedule,
         host=config.TEACHERS_HOST,
         bot_host=config.BOT_HOST,
+        short_achs=short_achs[0]
     )
 
 

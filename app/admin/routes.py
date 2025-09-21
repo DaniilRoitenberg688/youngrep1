@@ -181,6 +181,7 @@ def new_teacher():
             school=form.school.data,
             about_text=form.about_text.data,
             tariff=form.tariff.data,
+            oge_ball=form.oge_ball.data,
             achievements_text=form.achievements_text.data,
             hobbies_text=form.hobbies_text.data,
             is_free=int(request.form.get('is_free', 0)),
@@ -282,6 +283,7 @@ def edit_teacher(id):
         teacher.name = form.name.data
         teacher.surname = form.surname.data
         teacher.tariff = form.tariff.data
+        teacher.oge_ball = form.oge_ball.data
         teacher.students_class = form.student_class.data
         teacher.school = form.school.data
         teacher.about_text = form.about_text.data
@@ -356,6 +358,7 @@ def edit_teacher(id):
         form.name.data = teacher.name
         form.surname.data = teacher.surname
         form.tariff.data = teacher.tariff
+        form.oge_ball.data = teacher.oge_ball
         form.student_class.data = teacher.students_class
         form.school.data = teacher.school
         form.about_text.data = teacher.about_text

@@ -27,6 +27,7 @@ class AddTeacherForm(FlaskForm):
     surname = StringField("Surname")
     student_class = StringField("Student class")
     tariff = StringField("Tariff")
+    oge_ball = StringField("Балл огэ")
     school = StringField("School")
     about_text = TextAreaField("About")
     image_link = StringField("Image link")
@@ -53,7 +54,11 @@ class AddTeacherForm(FlaskForm):
 
     def validate_tariff(self, tariff):
         if tariff.data and not tariff.data.isdigit():
-            raise ValidationError("Tariff must be a digit")
+            raise validationerror("tariff must be a digit")
+
+    def validate_oge_ball(self, oge_ball):
+        if oge_ball.data and not oge_ball.data.isdigit():
+            raise validationerror("oge ball must be a digit")
 
 
 class EditTeacherForm(AddTeacherForm):

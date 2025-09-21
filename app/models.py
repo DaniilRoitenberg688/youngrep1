@@ -98,6 +98,7 @@ class Teacher(db.Model):
     surname = db.Column(db.String(), nullable=True)
     students_class = db.Column(db.Integer, nullable=True, index=True)
     tariff = db.Column(db.Integer, nullable=True, index=True)
+    oge_ball = db.Column(db.Integer, nullable=True, default=0)
     school = db.Column(db.String(), nullable=True)
     feedback = db.Column(db.Integer, nullable=True)
     about_text = db.Column(db.Text, nullable=True)

@@ -1,49 +1,71 @@
-<div class="t228__leftside" style="height: 70px; margin-top: 0;" >
-    <div class="t228__leftcontainer"><a href="{{ url_for('main.teachers') }}" class="t228__imgwrapper">
-        <div class="t228__logo t-title" field="title">YoungRep</div>
-    </a></div>
+<div class="base-nav">
+    <div class="t228__leftside logo" style="margin-top: 0;">
+        <div class="t228__leftcontainer" style="padding: 0"><a href="{{ url_for('main.teachers') }}" class="">
+            <div class="t228__logo t-title logo" field="title" style="">YoungRep</div>
+        </a></div>
+    </div>
+    <div class="t228__centerside sig-d" style="height: 160px; ">
+        <nav class="t228__centercontainer" style="box-sizing: border-box">
+            <ul role="list" class="sig-lu t228__list t-menu__list t228__list_hidden">
+                <li class="sig-li "
+                    style="padding: 0"><a class="sig-a t-menu__link-item"
+                                          href="{{ url_for('main.about') }}"
+                                          data-menu-submenu-hook="" data-menu-item-number="1">
+                    О нас
+                </a></li>
+                <!--            <li class="t228__list_item"-->
+                <!--                style="padding:0 15px;"><a class="t-menu__link-item"-->
+                <!--                                           href="{{ url_for('main.teachers') }}"-->
+                <!--                                           data-menu-submenu-hook="" data-menu-item-number="2">-->
+                <!--                Каталог репетиторов-->
+                <!--            </a></li>-->
+                <!-- <li class="t228__list_item"
+                    style="padding:0 15px;"><a class="t-menu__link-item"
+                                               href="{{ url_for('main.checking_system') }}"
+                                               data-menu-submenu-hook="" data-menu-item-number="3">
+                    Checking Система
+                </a></li> -->
+                <li class=" sig-li "
+                    style=""><a class="sig-a t-menu__link-item"
+                                href="{{ url_for('main.invite') }}"
+                                data-menu-submenu-hook="" data-menu-item-number="4">
+                    Преподавать у нас
+                </a></li>
+
+                <li class="sig-li "
+                    style=""><a class="sig-a t-menu__link-item "
+                                href="{{ url_for('main.answer_and_questions') }}"
+                                data-menu-submenu-hook="" data-menu-item-number="5">
+
+                    <!--                                               onclick="a()"-->
+
+                    Вопросы&Ответы
+                </a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="t228__rightside but-start" style="height: 75px; ">
+        <div class="t228__rightcontainer" style="padding-bottom: 0px">
+            <div class="t228__right_buttons" style="padding: 5px">
+                <div class="t228__right_buttons_wrap">
+                    <div class="t228__right_buttons_but" style="margin: 0">
+                        <a class="t-btn t-btn_md but-start" style="
+                            color: #fffefe;
+                            background-color: #ff2300;
+                            border-radius: 5px;
+                            -moz-border-radius: 5px;
+                            -webkit-border-radius: 5px;
+                            box-shadow: 0px 10px 40px -2px rgba(0, 11, 48, 0.3);
+                          " data-buttonfieldset="button" onclick="openYoungRepBookingPopup()">
+                            НАЧАТЬ ЗАНИМАТЬСЯ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="t228__centerside sig-d" style="height: 160px; ">
-    <nav class="t228__centercontainer" style="box-sizing: border-box">
-        <ul role="list" class="sig-lu t228__list t-menu__list t228__list_hidden">
-            <li class="sig-li "
-                style="padding: 0"><a class="sig-a t-menu__link-item"
-                                               href="{{ url_for('main.about') }}"
-                                               data-menu-submenu-hook="" data-menu-item-number="1">
-                О нас
-            </a></li>
-<!--            <li class="t228__list_item"-->
-<!--                style="padding:0 15px;"><a class="t-menu__link-item"-->
-<!--                                           href="{{ url_for('main.teachers') }}"-->
-<!--                                           data-menu-submenu-hook="" data-menu-item-number="2">-->
-<!--                Каталог репетиторов-->
-<!--            </a></li>-->
-            <!-- <li class="t228__list_item"
-                style="padding:0 15px;"><a class="t-menu__link-item"
-                                           href="{{ url_for('main.checking_system') }}"
-                                           data-menu-submenu-hook="" data-menu-item-number="3">
-                Checking Система
-            </a></li> -->
-            <li class=" sig-li "
-                style=""><a class="sig-a t-menu__link-item"
-                                               href="{{ url_for('main.invite') }}"
-                                               data-menu-submenu-hook="" data-menu-item-number="4">
-                Преподавать у нас
-            </a></li>
-
-            <li class="sig-li "
-                style=""><a class="sig-a t-menu__link-item "
-                                               href="{{ url_for('main.answer_and_questions') }}"
-                                               data-menu-submenu-hook="" data-menu-item-number="5">
-
-                <!--                                               onclick="a()"-->
-
-                Вопросы&Ответы
-            </a></li>
-        </ul>
-    </nav>
-</div>
-
 <style>
     .sig-lu {
         display: flex;
@@ -62,27 +84,51 @@
     .sig-d {
         margin-bottom: 5px;
     }
+    .base-nav {
+        transform: translateY(-30px);
+        margin: 25px;
+    }
+
     @media (max-width: 362px) {
-       .sig-d {
-           margin-bottom: 65px;
-       }
+        .sig-d {
+            margin-bottom: 65px;
+        }
+
     }
 
     @media (max-width: 768px) {
+        .base-nav {
+            transform: translateY(30px);
+            margin: 0;
+            padding-bottom: 5px;
+        }
         .sig-li {
             display: block !important;
             /*padding-right: 10px;*/
             /*padding-left: 10px;*/
             font-family: Ubuntu, sans-serif;
-            font-size: 13px !important;
+            font-size: 11px !important;
 
 
         }
+
         .sig-d {
             height: 35px !important;
         }
+
+        .logo {
+            height: 35px;
+            margin-top: 0;
+            font-size: 20px !important;
+        }
+
+        .but-start {
+            font-size: 10px !important;
+            padding: 0px 20px !important;
+        }
+
         .sig-a {
-            border: white solid 3px;
+            border: white solid 1px;
             border-radius: 10px;
             padding: 7px;
             transition: all 0.3s ease;
@@ -129,16 +175,14 @@
             }
         }
 
-         /*Эффект при наведении*/
+        /*Эффект при наведении*/
         /*.sig-a:hover {*/
         /*    transform: translateY(-2px);*/
         /*    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);*/
         /*}*/
-
         /*.sig-a:hover::before {*/
         /*    animation-duration: 8s; !* Еще медленнее при наведении *!*/
         /*}*/
-
         /* !*Эффект при нажатии*!*/
         /*.sig-a:active {*/
         /*    transform: translateY(0);*/

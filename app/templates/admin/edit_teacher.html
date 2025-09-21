@@ -39,6 +39,13 @@
                         </div>
 
                         <div class="mb-5">
+                            {{ form.oge_ball.label(class="") }}
+                            {{ form.oge_ball(class="form-control") }}
+                            {% for error in form.oge_ball.errors %}
+                            <p class="alert alert-danger mt-2">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="mb-5">
                             {{ form.student_class.label(class="") }}
                             {{ form.student_class(class="form-control") }}
                             {% for error in form.student_class.errors %}
