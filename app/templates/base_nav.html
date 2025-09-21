@@ -4,7 +4,7 @@
             <div class="t228__logo t-title logo" field="title" style="">YoungRep</div>
         </a></div>
     </div>
-    <div class="t228__centerside sig-d" style="height: 160px; ">
+    <div class="t228__centerside sig-d" style=" margin-bottom: 0">
         <nav class="t228__centercontainer" style="box-sizing: border-box">
             <ul role="list" class="sig-lu t228__list t-menu__list t228__list_hidden">
                 <li class="sig-li "
@@ -45,7 +45,7 @@
         </nav>
     </div>
 
-    <div class="t228__rightside but-start" style="height: 75px; ">
+    <div class="t228__rightside but-start pre-start-but" style="height: 75px; ">
         <div class="t228__rightcontainer" style="padding-bottom: 0px">
             <div class="t228__right_buttons" style="padding: 5px">
                 <div class="t228__right_buttons_wrap">
@@ -84,8 +84,9 @@
     .sig-d {
         margin-bottom: 5px;
     }
+
     .base-nav {
-        transform: translateY(-30px);
+        transform: translateY(0);
         margin: 25px;
     }
 
@@ -98,10 +99,10 @@
 
     @media (max-width: 768px) {
         .base-nav {
-            transform: translateY(30px);
+            transform: translateY(25px);
             margin: 0;
-            padding-bottom: 5px;
         }
+
         .sig-li {
             display: block !important;
             /*padding-right: 10px;*/
@@ -109,11 +110,10 @@
             font-family: Ubuntu, sans-serif;
             font-size: 11px !important;
 
-
         }
 
         .sig-d {
-            height: 35px !important;
+            height: 75px !important;
         }
 
         .logo {
@@ -123,8 +123,10 @@
         }
 
         .but-start {
+
             font-size: 10px !important;
             padding: 0px 20px !important;
+            display: none;
         }
 
         .sig-a {
